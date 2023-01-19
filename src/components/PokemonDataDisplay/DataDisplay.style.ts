@@ -58,7 +58,7 @@ export const PropertiesContainer = styled.div`
   justify-content: space-between;
 `;
 interface RefProp extends React.FC {
-  changeDisplay: boolean;
+  changeDisplay?: boolean;
 }
 export const HeaderContainer = styled.div<RefProp>`
   grid-area: 3/1;

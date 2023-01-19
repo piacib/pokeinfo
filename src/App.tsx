@@ -1,34 +1,38 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
+import React, { useState } from "react";
 import "./App.css";
+import { TypeWriterContainer } from "./TypeWriterContainer.style";
+import { AppDisplay, Button, BottomBorder } from "./App.style";
+import { TeamDisplay } from "./components/TeamDisplay/TeamDisplay";
+import { useLocation } from "react-router-dom";
+const config = {
+  childList: true,
+  subtree: true,
+};
 
-function App() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count isnt {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  );
+const displayCutOff = 600;
+export interface AppProps {
+  /** room-battle-${string}-${number} */
+  roomId: string;
 }
+const App: React.FC<AppProps> = ({ roomId }) => {
+  const [opponentsTeam, setOpponentsTeam] = useState<boolean>(true);
+  const [changeDisplay, setChangeDisplay] = useState<boolean>(false);
+  const location = useLocation();
+  const battleId = location.pathname.slice(1);
+  return (
+    <>
+      <AppDisplay>
+        <TypeWriterContainer>
+          <h1>Poke Info</h1>
+        </TypeWriterContainer>
+        <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
+          Switch Team
+        </Button>
+        <TeamDisplay roomId={roomId} opponentsTeam={opponentsTeam} />
+      </AppDisplay>
+      <BottomBorder />
+    </>
+  );
+};
 
 export default App;
