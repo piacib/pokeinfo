@@ -7,17 +7,17 @@ import TypeDisplay from "../TypesDisplay/TypesDisplay";
 import StatsDisplay from "../StatsDisplay/StatsDisplay";
 import OtherFormatsDisplay from "./OtherFormatsDisplay";
 import { Dex } from "@pkmn/dex";
-import { AppProps } from "../../App";
+import { RoomIdProp } from "../../App";
 import RandomBattlePokemonDisplay from "./RandomBattlePokemonDisplay";
 
 const { Species } = Dex.data;
 
-interface PokemonDataDisplayProps extends AppProps {
+interface PokemonDataDisplayProps extends RoomIdProp {
   pokemon: string;
 }
 const displayCutOff = 300;
 const PokemonDataDisplay = ({ pokemon, roomId }: PokemonDataDisplayProps) => {
-  console.log("PokemonDataDisplay", pokemon);
+  // console.log("PokemonDataDisplay", pokemon);
   const [typesArray, setTypesArray] = useState<TypeName[] | null>(null);
   const [changeDisplay, setChangeDisplay] = useState<boolean>(false);
 
@@ -29,7 +29,7 @@ const PokemonDataDisplay = ({ pokemon, roomId }: PokemonDataDisplayProps) => {
         console.error(
           "error retrieving type",
           dexSearchPrepper(pokemon),
-          pokemon
+          pokemon,
         );
         return;
       }
