@@ -1,12 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 const showdownWs = "ws://sim.smogon.com:8000/showdown/websocket";
 
-export const useWebSocket = () => {
-  const [wsData, setWsData] = useState("");
-
-  const ws = useRef();
+export const useWebSocket = (socketUrl: string) => {
+  const ws = useRef<WebSocket>();
+  // opens and closes websocket
   useEffect(() => {
-    ws.current = new WebSocket(showdownWs);
+    ws.current = new WebSocket(socketUrl);
     ws.current.onopen = () => console.log("ws opened");
     ws.current.onclose = () => console.log("ws closed");
 
@@ -16,17 +15,13 @@ export const useWebSocket = () => {
       wsCurrent.close();
     };
   }, []);
+
   useEffect(() => {
+    // Exit condition
     if (!ws.current) return;
-
     ws.current.onmessage = (e) => {
-      // const message = JSON.parse(e.data);
-      console.log("e", e);
       console.log(e.data);
-      const isStart = e.data.includes("|start");
-
-      if (isStart) {
-      }
+      return e;
     };
   }, []);
 };
