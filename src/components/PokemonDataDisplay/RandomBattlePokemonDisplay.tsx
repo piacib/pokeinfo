@@ -18,7 +18,9 @@ const emptyRandbatsPokemonData = {
   },
 };
 const getBattleType = () => {
-  const pathname = !isDevelopmentMode ? document.location.pathname : devPathname;
+  const pathname = !isDevelopmentMode
+    ? document.location.pathname
+    : devPathname;
   const regMatch = pathname.match(/(?<=\-).+?(?=\-)/);
   return regMatch ? regMatch[0] : "";
 };
@@ -38,7 +40,7 @@ interface RandomBattleData {
 }
 const useRandomBattleData = (): [
   RandomBattleData,
-  React.Dispatch<React.SetStateAction<RandomBattleData>>
+  React.Dispatch<React.SetStateAction<RandomBattleData>>,
 ] => {
   const [randbatsPokemonData, setRandbatsPokemonData] =
     useState<RandomBattleData>(emptyRandbatsPokemonData);
@@ -46,8 +48,10 @@ const useRandomBattleData = (): [
   useEffect(() => {
     async function asyncFetchRandomPokemonData() {
       const battleType = getBattleType();
-      console.log(`https://pkmn.github.io/randbats/data/${battleType}.json`);
-      const fetchData = await fetch(`https://pkmn.github.io/randbats/data/${battleType}.json`);
+      // console.log(`https://pkmn.github.io/randbats/data/${battleType}.json`);
+      const fetchData = await fetch(
+        `https://pkmn.github.io/randbats/data/${battleType}.json`,
+      );
       const response = await fetchData.json();
       setRandbatsPokemonData(response);
     }
@@ -67,20 +71,28 @@ const RandomBattlePokemonDisplay: React.FC<RandomBattlePokemonDisplayProps> = ({
 }) => {
   const [randbatsPokemonData] = useRandomBattleData();
 
-  if (Object.keys(randbatsPokemonData).length > 1 && !randbatsPokemonData[pokemon]) {
+  if (
+    Object.keys(randbatsPokemonData).length > 1 &&
+    !randbatsPokemonData[pokemon]
+  ) {
     console.error("no data for this pokemon", randbatsPokemonData, pokemon);
     return <></>;
   }
   const movesData = getMoves(randbatsPokemonData[pokemon]?.moves);
   const rolesData = randbatsPokemonData[pokemon]?.roles;
-  console.log("pokemon Data", randbatsPokemonData[pokemon]);
+  // console.log("pokemon Data", randbatsPokemonData[pokemon]);
   return randbatsPokemonData[pokemon] ? (
     <>
       {rolesData ? (
-        <RolesDisplay pokemonData={rolesData} initialRole={Object.keys(rolesData)[0]} />
+        <RolesDisplay
+          pokemonData={rolesData}
+          initialRole={Object.keys(rolesData)[0]}
+        />
       ) : (
         <PropertiesContainer>
-          <AbilitiesDisplay abilities={randbatsPokemonData[pokemon].abilities} />
+          <AbilitiesDisplay
+            abilities={randbatsPokemonData[pokemon].abilities}
+          />
           <ItemsDisplay items={randbatsPokemonData[pokemon].items} />
           <MovesDisplay movesData={movesData} />
         </PropertiesContainer>
