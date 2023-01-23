@@ -2,19 +2,22 @@ import React, { useState } from "react";
 import { Button, ButtonDisplay } from "./TeamDisplay.style";
 import SpriteImage from "../SpriteImage";
 import { pokemonNameFilter } from "./TeamDisplay.functions";
-import { AppProps } from "../../App";
+import { RoomIdProp } from "../../App";
 import { useTeams } from "./useTeams";
 import PokeDexScreen from "../PokeDexScreen/PokeDex";
 import PokemonDataDisplay from "../PokemonDataDisplay/PokemonDataDisplay";
+import { useParams } from "react-router-dom";
 
-interface TeamProps extends AppProps {
+interface TeamProps {
   opponentsTeam: boolean;
 }
 // fetches latest pokemon data from auto updating github dataset
-export const TeamDisplay = ({ opponentsTeam, roomId }: TeamProps) => {
-  const [teams] = useTeams(roomId);
+export const TeamDisplay = ({ opponentsTeam }: TeamProps) => {
+  const { battleRoomId } = useParams();
+  const [teams] = useTeams(battleRoomId ? battleRoomId : "");
   const [index, setIndex] = useState(0);
   const pokemon = teams[Number(opponentsTeam)][index];
+  console.log("battleRoomId", battleRoomId);
   return (
     <>
       <PokeDexScreen>
@@ -30,7 +33,9 @@ export const TeamDisplay = ({ opponentsTeam, roomId }: TeamProps) => {
           ))}
         </ButtonDisplay>
       </PokeDexScreen>
-      {pokemon && <PokemonDataDisplay pokemon={pokemon} roomId={roomId} />}
+      {pokemon && battleRoomId && (
+        <PokemonDataDisplay pokemon={pokemon} roomId={battleRoomId} />
+      )}
     </>
   );
 };
