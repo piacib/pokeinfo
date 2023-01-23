@@ -7,8 +7,22 @@ type teamsType = [string[], string[]];
 type setTeamsType = (roomId: string, props?: [string[], string[]]) => void;
 
 const notRevealedTeam: teamsType = [
-  ["Not revealed", "Not revealed", "Not revealed", "Not revealed", "Not revealed", "Not revealed"],
-  ["Not revealed", "Not revealed", "Not revealed", "Not revealed", "Not revealed", "Not revealed"],
+  [
+    "Not revealed",
+    "Not revealed",
+    "Not revealed",
+    "Not revealed",
+    "Not revealed",
+    "Not revealed",
+  ],
+  [
+    "Not revealed",
+    "Not revealed",
+    "Not revealed",
+    "Not revealed",
+    "Not revealed",
+    "Not revealed",
+  ],
 ];
 /** teamsType: [usersTeam[''],opponentsTeam['']] | null */
 export const useTeams = (roomId: string): [teamsType, setTeamsType] => {
@@ -20,7 +34,7 @@ export const useTeams = (roomId: string): [teamsType, setTeamsType] => {
       if (mutation.target instanceof HTMLDivElement) {
         if (mutation.target.className === "inner message-log") {
           setMessageLogAdded(true);
-          console.log("message log found", mutationList);
+          // console.log("message log found", mutationList);
         }
       }
     }
@@ -35,7 +49,7 @@ export const useTeams = (roomId: string): [teamsType, setTeamsType] => {
       battleRoomEl &&
       battleRoomEl?.getElementsByClassName("inner message-log")[0] === undefined
     ) {
-      console.log("adding body observer");
+      // console.log("adding body observer");
       bodyObserver.observe(document.body, config);
     } else {
       setMessageLogAdded(true);
@@ -52,17 +66,17 @@ export const useTeams = (roomId: string): [teamsType, setTeamsType] => {
       setTeamstemp(notRevealedTeam);
     }
 
-    console.log(
-      "setTeams user",
-      usersTeam.map((pokemon) => pokemon.ariaLabel),
-      usersTeam.map((pokemon) => pokemonNameFilter(pokemon.ariaLabel))
-    );
+    // console.log(
+    //   "setTeams user",
+    //   usersTeam.map((pokemon) => pokemon.ariaLabel),
+    //   usersTeam.map((pokemon) => pokemonNameFilter(pokemon.ariaLabel))
+    // );
 
-    console.log(
-      "setTeams opp",
-      opponentsTeam.map((pokemon) => pokemon.ariaLabel),
-      opponentsTeam.map((pokemon) => pokemonNameFilter(pokemon.ariaLabel))
-    );
+    // console.log(
+    //   "setTeams opp",
+    //   opponentsTeam.map((pokemon) => pokemon.ariaLabel),
+    //   opponentsTeam.map((pokemon) => pokemonNameFilter(pokemon.ariaLabel))
+    // );
     setTeamstemp([
       usersTeam.map((pokemon) => pokemonNameFilter(pokemon.ariaLabel)),
       opponentsTeam.map((pokemon) => pokemonNameFilter(pokemon.ariaLabel)),
@@ -78,10 +92,14 @@ export const useTeams = (roomId: string): [teamsType, setTeamsType] => {
   // to watch for new turns
 
   useEffect(() => {
-    const messageLog = battleRoomEl?.getElementsByClassName("inner message-log")[0];
+    const messageLog =
+      battleRoomEl?.getElementsByClassName("inner message-log")[0];
     const callback = (mutationList: MutationRecord[]) => {
       for (const mutation of mutationList) {
-        if (mutation.type === "childList" && mutation.addedNodes[0]?.nodeName === "H2") {
+        if (
+          mutation.type === "childList" &&
+          mutation.addedNodes[0]?.nodeName === "H2"
+        ) {
           setTeams(roomId);
         }
       }
