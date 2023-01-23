@@ -3,22 +3,20 @@ import "./App.css";
 import { TypeWriterContainer } from "./TypeWriterContainer.style";
 import { AppDisplay, Button, BottomBorder } from "./App.style";
 import { TeamDisplay } from "./components/TeamDisplay/TeamDisplay";
-import { useLocation } from "react-router-dom";
 const config = {
   childList: true,
   subtree: true,
 };
-
-const displayCutOff = 600;
-export interface AppProps {
+export interface RoomIdProp {
   /** room-battle-${string}-${number} */
   roomId: string;
 }
-const App: React.FC<AppProps> = ({ roomId }) => {
+const displayCutOff = 600;
+
+const App: React.FC = () => {
   const [opponentsTeam, setOpponentsTeam] = useState<boolean>(true);
   const [changeDisplay, setChangeDisplay] = useState<boolean>(false);
-  const location = useLocation();
-  const battleId = location.pathname.slice(1);
+
   return (
     <>
       <AppDisplay>
@@ -28,7 +26,7 @@ const App: React.FC<AppProps> = ({ roomId }) => {
         <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
           Switch Team
         </Button>
-        <TeamDisplay roomId={roomId} opponentsTeam={opponentsTeam} />
+        <TeamDisplay opponentsTeam={opponentsTeam} />
       </AppDisplay>
       <BottomBorder />
     </>
