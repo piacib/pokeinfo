@@ -7,14 +7,29 @@ import { GlobalStyles } from "./GlobalStyles";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ErrorPage } from "./components/ErrorScreens/RouteError";
+import { TeamDisplay } from "./components/TeamDisplay/TeamDisplay";
+import { TypeWriterContainer } from "./TypeWriterContainer.style";
+async function loader() {}
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App roomId={devRoomId} />,
+    element: <App />,
+    errorElement: <ErrorPage />,
   },
-  {path:":id",
-  element:<App roomId={devRoomId} />
-}
+  {
+    path: "/pokeinfo",
+    element: <App />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: ":battleRoomId",
+        // loader: () => {},
+        element: <TeamDisplay opponentsTeam={false} />,
+      },
+    ],
+  },
+  { path: "pokeinfo/:battleRoomId", element: <App /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
@@ -24,5 +39,5 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <ThemeProvider theme={theme}>
       <RouterProvider router={router} />
     </ThemeProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
