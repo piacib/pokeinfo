@@ -3,6 +3,7 @@ import "./App.css";
 import { TypeWriterContainer } from "./TypeWriterContainer.style";
 import { AppDisplay, Button, BottomBorder } from "./App.style";
 import { TeamDisplay } from "./components/TeamDisplay/TeamDisplay";
+import { useParams } from "react-router-dom";
 const config = {
   childList: true,
   subtree: true,
@@ -16,7 +17,7 @@ const displayCutOff = 600;
 const App: React.FC = () => {
   const [opponentsTeam, setOpponentsTeam] = useState<boolean>(true);
   const [changeDisplay, setChangeDisplay] = useState<boolean>(false);
-
+  const { battleRoomId } = useParams();
   return (
     <>
       <AppDisplay>
@@ -26,7 +27,15 @@ const App: React.FC = () => {
         <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
           Switch Team
         </Button>
-        <TeamDisplay opponentsTeam={opponentsTeam} />
+
+        {battleRoomId ? (
+          <TeamDisplay
+            opponentsTeam={opponentsTeam}
+            battleRoomId={battleRoomId}
+          />
+        ) : (
+          <></>
+        )}
       </AppDisplay>
       <BottomBorder />
     </>
