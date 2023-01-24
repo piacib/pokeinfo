@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, ButtonDisplay } from "./TeamDisplay.style";
 import SpriteImage from "../SpriteImage";
 import { pokemonNameFilter } from "./TeamDisplay.functions";
@@ -7,22 +7,25 @@ import { useTeams } from "./useTeams";
 import PokeDexScreen from "../PokeDexScreen/PokeDex";
 import PokemonDataDisplay from "../PokemonDataDisplay/PokemonDataDisplay";
 import { useParams } from "react-router-dom";
+import { useWebSocket } from "../../hooks/useWebsSocket";
 
 interface TeamProps {
   opponentsTeam: boolean;
+  battleRoomId: string;
 }
 // fetches latest pokemon data from auto updating github dataset
-export const TeamDisplay = ({ opponentsTeam }: TeamProps) => {
-  const { battleRoomId } = useParams();
-  const [teams] = useTeams(battleRoomId ? battleRoomId : "");
+export const TeamDisplay = ({ opponentsTeam, battleRoomId }: TeamProps) => {
+  // const [teams] = useTeams(battleRoomId ? battleRoomId : "");
   const [index, setIndex] = useState(0);
-  const pokemon = teams[Number(opponentsTeam)][index];
+  const [teams] = useWebSocket(battleRoomId);
+  const pokemon = teams[Number(opponentsTeam) ? "p1" : "p2"][index];
+
   console.log("battleRoomId", battleRoomId);
   return (
     <>
       <PokeDexScreen>
         <ButtonDisplay>
-          {teams[Number(opponentsTeam)]?.map((x, idx) => (
+          {teams[Number(opponentsTeam) ? "p1" : "p2"]?.map((x, idx) => (
             <Button
               key={pokemonNameFilter(x) + idx}
               onClick={() => setIndex(idx)}
