@@ -25,7 +25,7 @@ const router = createBrowserRouter([
       {
         path: ":battleRoomId",
         // loader: () => {},
-        element: <TeamDisplay opponentsTeam={false} />,
+        element: <App />,
       },
     ],
   },
