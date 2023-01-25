@@ -18,6 +18,7 @@ const App: React.FC = () => {
   const [opponentsTeam, setOpponentsTeam] = useState<boolean>(true);
   const [changeDisplay, setChangeDisplay] = useState<boolean>(false);
   const { battleRoomId } = useParams();
+  console.log(document.location.pathname);
   return (
     <>
       <AppDisplay>
