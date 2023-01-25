@@ -6,12 +6,16 @@ import { devRoomId, isDevelopmentMode } from "./developmentMode";
 import { GlobalStyles } from "./GlobalStyles";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createHashRouter,
+  RouterProvider,
+} from "react-router-dom";
 import { ErrorPage } from "./components/ErrorScreens/RouteError";
 import { TeamDisplay } from "./components/TeamDisplay/TeamDisplay";
 import { TypeWriterContainer } from "./TypeWriterContainer.style";
 async function loader() {}
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <App />,
