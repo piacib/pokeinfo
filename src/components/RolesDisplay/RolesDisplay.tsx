@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { PropertiesContainer, PropertyDisplay } from "../PokemonDataDisplay/DataDisplay.style";
+import {
+  PropertiesContainer,
+  PropertyDisplay,
+} from "../PokemonDataDisplay/DataDisplay.style";
 import { RolesBtn, RolesContainer } from "./RolesDisplay.style";
 import AbilitiesDisplay from "../AbilitiesDisplay/AbilitiesDisplay";
 import ItemsDisplay from "../ItemsDisplay/ItemsDisplay";
 import MovesDisplay from "../MovesDisplay/MovesDisplay";
 import { RolesData } from "../../types";
-import { getMoves } from "../PokemonDataDisplay/RandomBattlePokemonDisplay";
+import { getMoves } from "../RandomPokemonDisplay/RandomBattlePokemonDisplay";
 import { TypeBox } from "../EffectivnessDisplay/EffectivnessDisplay.style";
 interface RolesDisplayProps {
   pokemonData: RolesData;
   initialRole: string;
 }
-const RolesDisplay: React.FC<RolesDisplayProps> = ({ pokemonData, initialRole }) => {
+const RolesDisplay: React.FC<RolesDisplayProps> = ({
+  pokemonData,
+  initialRole,
+}) => {
   const [role, setRole] = useState<string>("");
   useEffect(() => {
     setRole(Object.keys(pokemonData)[0]);
