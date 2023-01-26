@@ -18,11 +18,14 @@ interface RefProp extends React.FC {
 export const AppDisplay = styled.div<RefProp>`
   min-width: 100px;
   padding: 36px 8px 0;
-  display: ${(props) => (props.changeDisplay ? "flex" : "grid")};
-  min-height: 250px;
-  flex-direction: column;
-  font-size: 12px;
+  display: grid;
   grid-gap: 15px;
+  @media (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+  }
+  min-height: 250px;
+  font-size: 12px;
 `;
 export const TypeColorBackground = css<TypeColorInterface>`
   background-color: ${(props) => typeColorConverter[props.background]};
