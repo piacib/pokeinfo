@@ -29,7 +29,10 @@ const App: React.FC = () => {
           Switch Team
         </Button>
         {isDevelopmentMode && !battleRoomId ? (
-          <TeamDisplay opponentsTeam={opponentsTeam} battleRoomId={"testing"} />
+          <TeamDisplay
+            opponentsTeam={opponentsTeam}
+            battleRoomId={"random-testing"}
+          />
         ) : (
           <></>
         )}
