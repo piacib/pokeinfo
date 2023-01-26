@@ -1,10 +1,6 @@
 import styled, { css } from "styled-components";
 export const StatsContainer = styled.table`
   grid-column: 2/4;
-  /* display: grid; */
-  /* grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 10px; */
   background: #e0e7ea;
   border: 1px solid #aaa;
   font-size: 1.2em;
@@ -22,7 +18,7 @@ export const StatBox = styled.th`
   padding-right: 0.4rem;
   max-width: 10rem;
 `;
-export const TextOneLine = css`
+const TextOneLine = css`
   overflow: hidden;
   white-space: nowrap;
 `;
