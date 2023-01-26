@@ -1,23 +1,8 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import { PropertyDisplay } from "./components/PokemonDataDisplay/DataDisplay.style";
 import { typeColorConverter } from "./functions";
 import { TypeColorInterface } from "./types";
-export const RefreshButton = styled.button`
-  grid-column: 3/4;
-  background-color: transparent;
-  grid-row: 1;
-  border: none;
-  position: relative;
-  justify-self: end;
-  align-self: center;
-  border-radius: 50%;
-  width: 4em;
-  height: 4em;
-`;
-export const Refresh = styled.img`
-  width: 100%;
-`;
+
 export const Button = styled.button`
   border: none;
   white-space: 0;
@@ -38,12 +23,6 @@ export const AppDisplay = styled.div<RefProp>`
   flex-direction: column;
   font-size: 12px;
   grid-gap: 15px;
-`;
-export const BottomBorder = styled.div`
-  margin: 6px 0;
-  padding: 4px 8px;
-  border: 1px solid #aaa;
-  background: #e0e7ea;
 `;
 export const TypeColorBackground = css<TypeColorInterface>`
   background-color: ${(props) => typeColorConverter[props.background]};
