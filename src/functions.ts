@@ -21,7 +21,9 @@ export const getBattleType = (url: string) => {
   if (!battleType) {
     return "No Battle Type Found";
   }
-  return randomDataBattleTypes.includes(battleType[0]) ? battleType[0] : "Not a random battle";
+  return randomDataBattleTypes.includes(battleType[0])
+    ? battleType[0]
+    : "Not a random battle";
 };
 export const isRandomBattle = (url: string): isRandomBattleReturn => {
   const battleType = url.match(/(?<=-).+?(?=-)/g);
@@ -59,8 +61,8 @@ export const getMoveData = (data: string[] | null) => {
             category: json.damage_class.name,
             power: json.power,
             accuracy: json.accuracy,
-          })
-        )
+          }),
+        ),
     );
   }
   return dataSet;
@@ -103,28 +105,16 @@ export const getBattleRoomID = (pathname: string) => {
   }
   return "";
 };
-export const createContainer = (roomId: string, battleRoom: HTMLElement) => {
-  const appId = `react-root-${roomId}`;
-  const rootEl = document.getElementById(appId);
-  if (rootEl) {
-    // element is already added, return early
-    return;
-  }
-  const app = document.createElement("div");
-  app.id = appId;
-  const battleLog = battleRoom.getElementsByClassName("battle-log");
-  if (battleLog && battleLog[0]) {
-    battleLog[0].prepend(app);
-  }
-  return document.getElementById(appId);
-};
 
 const Types = Dex.data.Types;
 const damageAdjustor = (objectEntries: [string, number]): [string, number] => {
   if (!objectEntries[1]) {
     return [objectEntries[0], 1];
   }
-  return [objectEntries[0], Math.abs((objectEntries[1] - 3) / -objectEntries[1])];
+  return [
+    objectEntries[0],
+    Math.abs((objectEntries[1] - 3) / -objectEntries[1]),
+  ];
 };
 
 // creates damage obj from arr of entries in type.damageTaken object
@@ -141,6 +131,9 @@ export const damageCalculator = (typesArray: TypeName[]) => {
   const type1 = damageCalculatorOneType(typesArray[0]);
   const type2 = damageCalculatorOneType(typesArray[1]);
   const types = Object.keys(type1);
-  const damageObjectEntries = types.map((type) => [type, type1[type] * type2[type]]);
+  const damageObjectEntries = types.map((type) => [
+    type,
+    type1[type] * type2[type],
+  ]);
   return Object.fromEntries(damageObjectEntries);
 };
