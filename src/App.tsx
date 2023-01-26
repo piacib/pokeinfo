@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { TypeWriterContainer } from "./TypeWriterContainer.style";
 import { AppDisplay, Button, BottomBorder } from "./App.style";
 import { TeamDisplay } from "./components/TeamDisplay/TeamDisplay";
-const config = {
-  childList: true,
-  subtree: true,
-};
+import { isDevelopmentMode } from "./developmentMode";
 export interface RoomIdProp {
   /** room-battle-${string}-${number} */
   roomId: string;
@@ -15,8 +12,16 @@ const displayCutOff = 600;
 
 const App: React.FC = () => {
   const [opponentsTeam, setOpponentsTeam] = useState<boolean>(true);
-  const [changeDisplay, setChangeDisplay] = useState<boolean>(false);
-
+  const [battleRoomId, setBattleRoomId] = useState("");
+  useEffect(() => {
+    if (window.location.search) {
+      const regMatch = window.location.search.match(/=(.*)/);
+      if (regMatch) {
+        setBattleRoomId(regMatch[1]);
+      }
+    }
+  });
+  console.log(document.location.pathname);
   return (
     <>
       <AppDisplay>
@@ -26,7 +31,19 @@ const App: React.FC = () => {
         <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
           Switch Team
         </Button>
-        <TeamDisplay opponentsTeam={opponentsTeam} />
+        {isDevelopmentMode && !battleRoomId ? (
+          <TeamDisplay opponentsTeam={opponentsTeam} battleRoomId={"testing"} />
+        ) : (
+          <></>
+        )}
+        {battleRoomId ? (
+          <TeamDisplay
+            opponentsTeam={opponentsTeam}
+            battleRoomId={battleRoomId}
+          />
+        ) : (
+          <></>
+        )}
       </AppDisplay>
       <BottomBorder />
     </>
