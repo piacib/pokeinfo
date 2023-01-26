@@ -30,6 +30,7 @@ export const TeamDisplay = ({ opponentsTeam, battleRoomId }: TeamProps) => {
     return () => {};
   }, []);
 
+  const battleTypeRegex = battleRoomId.match(/battle-(.*)-/);
   return (
     <>
       <PokeDexScreen>
@@ -45,8 +46,8 @@ export const TeamDisplay = ({ opponentsTeam, battleRoomId }: TeamProps) => {
           ))}
         </ButtonDisplay>
       </PokeDexScreen>
-      {pokemon && battleRoomId && (
-        <PokemonDataDisplay pokemon={pokemon} roomId={battleRoomId} />
+      {pokemon && battleTypeRegex && (
+        <PokemonDataDisplay pokemon={pokemon} battleType={battleTypeRegex[1]} />
       )}
     </>
   );
