@@ -1,15 +1,3 @@
-export enum Sender {
-  React,
-  Content,
-}
-export interface ChromeMessage {
-  from: Sender;
-  message: any;
-}
-export interface PokemonResponse {
-  opponentsTeam: string[] | null;
-  usersTeam: string[] | null;
-}
 export type isRandomBattleReturn = null | false | string;
 export interface TypeColorInterface {
   background: TypeName | string;
@@ -51,7 +39,7 @@ export const TypeNamesArr = [
   "Fairy",
   "???",
 ] as const;
-export type TypeTuple = typeof TypeNamesArr;
+type TypeTuple = typeof TypeNamesArr;
 export type TypeName = TypeTuple[number];
 
 export function isTypeName(value: string): value is TypeName {
