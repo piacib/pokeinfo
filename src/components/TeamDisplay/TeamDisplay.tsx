@@ -5,11 +5,7 @@ import { pokemonNameFilter } from "./TeamDisplay.functions";
 import PokeDexScreen from "../PokeDexScreen/PokeDex";
 import PokemonDataDisplay from "../PokemonDataDisplay/PokemonDataDisplay";
 import { useWebSocket } from "../../hooks/useWebsSocket";
-import {
-  isDevelopmentMode,
-  opponentTestTeam,
-  userTestTeam,
-} from "../../developmentMode";
+import { opponentTestTeam, userTestTeam } from "../../developmentMode";
 
 interface TeamProps {
   opponentsTeam: boolean;
