@@ -3,7 +3,6 @@ import {
   ContainerTop,
   Container,
   InnerContainer,
-  RedCircle,
   RedCircleTop,
   RedCircleBottom,
   ContainerBottom,
