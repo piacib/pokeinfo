@@ -3,11 +3,7 @@ import "./App.css";
 import { TypeWriterContainer } from "./TypeWriterContainer.style";
 import { AppDisplay, Button, BottomBorder } from "./App.style";
 import { TeamDisplay } from "./components/TeamDisplay/TeamDisplay";
-import { useParams } from "react-router-dom";
-const config = {
-  childList: true,
-  subtree: true,
-};
+import { isDevelopmentMode } from "./developmentMode";
 export interface RoomIdProp {
   /** room-battle-${string}-${number} */
   roomId: string;
@@ -16,7 +12,6 @@ const displayCutOff = 600;
 
 const App: React.FC = () => {
   const [opponentsTeam, setOpponentsTeam] = useState<boolean>(true);
-  const [changeDisplay, setChangeDisplay] = useState<boolean>(false);
   const [battleRoomId, setBattleRoomId] = useState("");
   useEffect(() => {
     if (window.location.search) {
@@ -36,7 +31,11 @@ const App: React.FC = () => {
         <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
           Switch Team
         </Button>
-
+        {isDevelopmentMode && !battleRoomId ? (
+          <TeamDisplay opponentsTeam={opponentsTeam} battleRoomId={"testing"} />
+        ) : (
+          <></>
+        )}
         {battleRoomId ? (
           <TeamDisplay
             opponentsTeam={opponentsTeam}
