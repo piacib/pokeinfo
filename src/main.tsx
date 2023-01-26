@@ -15,7 +15,7 @@ import { ErrorPage } from "./components/ErrorScreens/RouteError";
 import { TeamDisplay } from "./components/TeamDisplay/TeamDisplay";
 import { TypeWriterContainer } from "./TypeWriterContainer.style";
 async function loader() {}
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
@@ -33,7 +33,8 @@ const router = createHashRouter([
       },
     ],
   },
-  { path: "pokeinfo/:battleRoomId", element: <App /> },
+  // { path: "/pokeinfo/:battleRoomId", element: <App /> },
+  { path: "/pokeinfo/test", element: <h1>Testing testing</h1> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
