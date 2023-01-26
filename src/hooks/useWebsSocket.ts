@@ -27,7 +27,7 @@ type setTeamsType = (roomId: string, props?: [string[], string[]]) => void;
 //   ],
 // ];
 
-const showdownWs = "ws://sim.smogon.com:8000/showdown/websocket";
+const showdownWs = "wss://sim3.psim.us/showdown/websocket";
 export const useWebSocket = (battleRoomId: string) => {
   const ws = useRef<WebSocket>();
   const [turnNumber, setTurnNumber] = useState<Number>(0);
