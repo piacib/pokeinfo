@@ -42,7 +42,8 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <GlobalStyles />
     {/* <FontStyles /> */}
     <ThemeProvider theme={theme}>
-      <RouterProvider router={router} />
+      <App />
+      {/* <RouterProvider router={router} /> */}
     </ThemeProvider>
   </React.StrictMode>,
 );
