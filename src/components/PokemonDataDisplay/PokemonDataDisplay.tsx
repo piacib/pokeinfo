@@ -7,16 +7,20 @@ import TypeDisplay from "../TypesDisplay/TypesDisplay";
 import StatsDisplay from "../StatsDisplay/StatsDisplay";
 import OtherFormatsDisplay from "./OtherFormatsDisplay";
 import { Dex } from "@pkmn/dex";
-import { RoomIdProp } from "../../App";
 import RandomBattlePokemonDisplay from "../RandomPokemonDisplay/RandomBattlePokemonDisplay";
 
 const { Species } = Dex.data;
 
-interface PokemonDataDisplayProps extends RoomIdProp {
+interface PokemonDataDisplayProps {
   pokemon: string;
+  battleType: string;
 }
-const PokemonDataDisplay = ({ pokemon, roomId }: PokemonDataDisplayProps) => {
-  // console.log("PokemonDataDisplay", pokemon);
+const PokemonDataDisplay = ({
+  pokemon,
+  battleType,
+}: PokemonDataDisplayProps) => {
+  console.log("PokemonDataDisplay", pokemon);
+  console.log("PokemonDataDisplay", battleType);
   const [typesArray, setTypesArray] = useState<TypeName[] | null>(null);
 
   useEffect(() => {
@@ -40,8 +44,7 @@ const PokemonDataDisplay = ({ pokemon, roomId }: PokemonDataDisplayProps) => {
       setTypesArray(newArr);
     }
   }, [pokemon]);
-  const isGen9 = roomId.includes("gen9");
-  const isRandomBattle = roomId.includes("random");
+  const isRandomBattle = battleType.includes("random");
   const regExPokemonName = pokemon.match(/^([\w]+)-/);
   const pokemonName = pokemon[0].toUpperCase() + pokemon.slice(1);
   const pokemonExists = Dex.species.get(pokemon).exists;
@@ -62,7 +65,7 @@ const PokemonDataDisplay = ({ pokemon, roomId }: PokemonDataDisplayProps) => {
             {isRandomBattle ? (
               <RandomBattlePokemonDisplay
                 pokemon={pokemonName}
-                isGen9={isGen9}
+                battleType={""}
               />
             ) : (
               <OtherFormatsDisplay pokemon={pokemonName} />
