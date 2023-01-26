@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import { TypeWriterContainer } from "./TypeWriterContainer.style";
-import { AppDisplay, Button, BottomBorder } from "./App.style";
+import { AppDisplay, Button } from "./App.style";
 import { TeamDisplay } from "./components/TeamDisplay/TeamDisplay";
 import { isDevelopmentMode } from "./developmentMode";
 export interface RoomIdProp {
   /** room-battle-${string}-${number} */
   roomId: string;
 }
-const displayCutOff = 600;
-
 const App: React.FC = () => {
   const [opponentsTeam, setOpponentsTeam] = useState<boolean>(true);
   const [battleRoomId, setBattleRoomId] = useState("");
@@ -21,7 +19,6 @@ const App: React.FC = () => {
       }
     }
   });
-  console.log(document.location.pathname);
   return (
     <>
       <AppDisplay>
@@ -45,7 +42,6 @@ const App: React.FC = () => {
           <></>
         )}
       </AppDisplay>
-      <BottomBorder />
     </>
   );
 };
