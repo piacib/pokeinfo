@@ -6,29 +6,11 @@ import {
 } from "./websocket.functions";
 
 type teamsType = { p1: string[]; p2: string[] };
-type setTeamsType = (roomId: string, props?: [string[], string[]]) => void;
-
-// const notRevealedTeam: teamsType = [
-//   [
-//     "Not revealed",
-//     "Not revealed",
-//     "Not revealed",
-//     "Not revealed",
-//     "Not revealed",
-//     "Not revealed",
-//   ],
-//   [
-//     "Not revealed",
-//     "Not revealed",
-//     "Not revealed",
-//     "Not revealed",
-//     "Not revealed",
-//     "Not revealed",
-//   ],
-// ];
 
 const showdownWs = "wss://sim3.psim.us/showdown/websocket";
-export const useWebSocket = (battleRoomId: string) => {
+export const useWebSocket = (
+  battleRoomId: string,
+): [teamsType, React.Dispatch<React.SetStateAction<teamsType>>] => {
   const ws = useRef<WebSocket>();
   const [turnNumber, setTurnNumber] = useState<Number>(0);
   const [teams, setTeams] = useState<teamsType>({ p1: [], p2: [] });
@@ -97,5 +79,5 @@ export const useWebSocket = (battleRoomId: string) => {
       console.log("newTeams", newTeams);
     }
   }, [message]);
-  return [teams];
+  return [teams, setTeams];
 };
