@@ -8,18 +8,16 @@ import StatsDisplay from "../StatsDisplay/StatsDisplay";
 import OtherFormatsDisplay from "./OtherFormatsDisplay";
 import { Dex } from "@pkmn/dex";
 import { RoomIdProp } from "../../App";
-import RandomBattlePokemonDisplay from "./RandomBattlePokemonDisplay";
+import RandomBattlePokemonDisplay from "../RandomPokemonDisplay/RandomBattlePokemonDisplay";
 
 const { Species } = Dex.data;
 
 interface PokemonDataDisplayProps extends RoomIdProp {
   pokemon: string;
 }
-const displayCutOff = 300;
 const PokemonDataDisplay = ({ pokemon, roomId }: PokemonDataDisplayProps) => {
   // console.log("PokemonDataDisplay", pokemon);
   const [typesArray, setTypesArray] = useState<TypeName[] | null>(null);
-  const [changeDisplay, setChangeDisplay] = useState<boolean>(false);
 
   useEffect(() => {
     if (Dex.species.get(pokemon).exists) {
