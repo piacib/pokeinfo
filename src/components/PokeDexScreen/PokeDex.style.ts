@@ -1,12 +1,6 @@
-import React from "react";
-
 import styled, { css } from "styled-components";
-export const Border = css`
+const Border = css`
   border: 1px solid black;
-`;
-export const ContainerBorder = css`
-  border: 3px solid black;
-  border-radius: 0 0 0 15px;
 `;
 export const ContainerTop = styled.div`
   display: flex;
@@ -15,7 +9,8 @@ export const ContainerTop = styled.div`
   justify-content: space-between;
 `;
 export const Container = styled.div`
-  ${ContainerBorder}
+  border: 3px solid black;
+  border-radius: 0 0 0 15px;
   grid-column: 1/2;
   display: flex;
   flex-direction: column;
@@ -62,28 +57,3 @@ export const BarContainer = styled.div`
     margin: 2px 0;
   }
 `;
-interface Props {
-  children: React.ReactNode;
-}
-const PokeDexScreen: React.FC<Props> = ({ children }) => {
-  return (
-    <Container>
-      <ContainerTop>
-        <RedCircleTop />
-        <RedCircleTop />
-      </ContainerTop>
-      <InnerContainer>{children}</InnerContainer>
-      <ContainerBottom>
-        <RedCircleBottom />
-        <BarContainer>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </BarContainer>
-      </ContainerBottom>
-    </Container>
-  );
-};
-
-export default PokeDexScreen;

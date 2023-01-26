@@ -12,14 +12,20 @@ import { MoveData } from "@pkmn/dex-types";
 interface MovesProps {
   move: MoveData;
 }
-export const MoveInfoPopUp: React.FC<MovesProps> = ({ move }) => {
+const MoveInfoPopUp: React.FC<MovesProps> = ({ move }) => {
   return (
     <MoveInfo>
       <MoveDescription>{move.shortDesc}</MoveDescription>
       <MoveType background={move.type}>{move.type}</MoveType>
-      {typeof move.accuracy === "number" && <MoveProperty>Accuracy: {move.accuracy}%</MoveProperty>}
-      {Boolean(move.priority) && <MoveProperty>Priority: {move.priority}</MoveProperty>}
-      {Boolean(move.basePower) && <MoveProperty>Power: {move.basePower}</MoveProperty>}
+      {typeof move.accuracy === "number" && (
+        <MoveProperty>Accuracy: {move.accuracy}%</MoveProperty>
+      )}
+      {Boolean(move.priority) && (
+        <MoveProperty>Priority: {move.priority}</MoveProperty>
+      )}
+      {Boolean(move.basePower) && (
+        <MoveProperty>Power: {move.basePower}</MoveProperty>
+      )}
       <MoveProperty>Category: {move.category}</MoveProperty>
     </MoveInfo>
   );
@@ -30,6 +36,7 @@ interface MovesDisplayProps {
 }
 /**  movesData: MoveData[]  @pkmn/dex-types */
 const MovesDisplay: React.FC<MovesDisplayProps> = ({ movesData }) => {
+  console.log("moves dis", movesData);
   return (
     <MovesContainer>
       <h3>Moves:</h3>
@@ -43,7 +50,7 @@ const MovesDisplay: React.FC<MovesDisplayProps> = ({ movesData }) => {
           </MoveBtn>
         ) : (
           <></>
-        )
+        ),
       )}
     </MovesContainer>
   );

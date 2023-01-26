@@ -5,11 +5,7 @@ import { pokemonNameFilter } from "./TeamDisplay.functions";
 import PokeDexScreen from "../PokeDexScreen/PokeDex";
 import PokemonDataDisplay from "../PokemonDataDisplay/PokemonDataDisplay";
 import { useWebSocket } from "../../hooks/useWebsSocket";
-import {
-  isDevelopmentMode,
-  opponentTestTeam,
-  userTestTeam,
-} from "../../developmentMode";
+import { opponentTestTeam, userTestTeam } from "../../developmentMode";
 
 interface TeamProps {
   opponentsTeam: boolean;
@@ -34,6 +30,7 @@ export const TeamDisplay = ({ opponentsTeam, battleRoomId }: TeamProps) => {
     return () => {};
   }, []);
 
+  const battleTypeRegex = battleRoomId.match(/battle-(.*)-/);
   return (
     <>
       <PokeDexScreen>
@@ -49,8 +46,8 @@ export const TeamDisplay = ({ opponentsTeam, battleRoomId }: TeamProps) => {
           ))}
         </ButtonDisplay>
       </PokeDexScreen>
-      {pokemon && battleRoomId && (
-        <PokemonDataDisplay pokemon={pokemon} roomId={battleRoomId} />
+      {pokemon && battleTypeRegex && (
+        <PokemonDataDisplay pokemon={pokemon} battleType={battleTypeRegex[1]} />
       )}
     </>
   );

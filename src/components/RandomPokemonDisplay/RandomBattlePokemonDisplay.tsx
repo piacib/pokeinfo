@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { PokemonData, isRandomBattleReturn } from "../../types";
+import { PokemonData } from "../../types";
 import { Dex } from "@pkmn/dex";
 import { dexSearchPrepper } from "../../functions";
 import ItemsDisplay from "../ItemsDisplay/ItemsDisplay";
@@ -7,7 +7,7 @@ import MovesDisplay from "../MovesDisplay/MovesDisplay";
 import AbilitiesDisplay from "../AbilitiesDisplay/AbilitiesDisplay";
 import { devPathname, isDevelopmentMode } from "../../developmentMode";
 import RolesDisplay from "../RolesDisplay/RolesDisplay";
-import { PropertiesContainer } from "./DataDisplay.style";
+import { PropertiesContainer } from "../PokemonDataDisplay/DataDisplay.style";
 const { Moves } = Dex.data;
 const emptyRandbatsPokemonData = {
   "": {
@@ -63,11 +63,12 @@ const useRandomBattleData = (): [
 
 interface RandomBattlePokemonDisplayProps {
   pokemon: string;
+  battleType?: string;
   isGen9?: boolean;
 }
 const RandomBattlePokemonDisplay: React.FC<RandomBattlePokemonDisplayProps> = ({
   pokemon,
-  isGen9 = false,
+  battleType,
 }) => {
   const [randbatsPokemonData] = useRandomBattleData();
 
