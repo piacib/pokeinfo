@@ -63,11 +63,12 @@ const useRandomBattleData = (): [
 
 interface RandomBattlePokemonDisplayProps {
   pokemon: string;
+  battleType?: string;
   isGen9?: boolean;
 }
 const RandomBattlePokemonDisplay: React.FC<RandomBattlePokemonDisplayProps> = ({
   pokemon,
-  isGen9 = false,
+  battleType,
 }) => {
   const [randbatsPokemonData] = useRandomBattleData();
 
