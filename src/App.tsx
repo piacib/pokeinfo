@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { TypeWriterContainer } from "./TypeWriterContainer.style";
 import { AppDisplay, Button, BottomBorder } from "./App.style";
@@ -17,7 +17,15 @@ const displayCutOff = 600;
 const App: React.FC = () => {
   const [opponentsTeam, setOpponentsTeam] = useState<boolean>(true);
   const [changeDisplay, setChangeDisplay] = useState<boolean>(false);
-  const { battleRoomId } = useParams();
+  const [battleRoomId, setBattleRoomId] = useState("");
+  useEffect(() => {
+    if (window.location.search) {
+      const regMatch = window.location.search.match(/=(.*)/);
+      if (regMatch) {
+        setBattleRoomId(regMatch[1]);
+      }
+    }
+  });
   console.log(document.location.pathname);
   return (
     <>
