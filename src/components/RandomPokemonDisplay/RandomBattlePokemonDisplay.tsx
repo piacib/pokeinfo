@@ -38,7 +38,9 @@ interface RandomBattlePokemonData extends PokemonData {
 interface RandomBattleData {
   [key: string]: RandomBattlePokemonData;
 }
-const useRandomBattleData = (): [
+const useRandomBattleData = (
+  battleType: string,
+): [
   RandomBattleData,
   React.Dispatch<React.SetStateAction<RandomBattleData>>,
 ] => {
@@ -47,7 +49,6 @@ const useRandomBattleData = (): [
   // fetchs random pokemon data only on startup
   useEffect(() => {
     async function asyncFetchRandomPokemonData() {
-      const battleType = getBattleType();
       // console.log(`https://pkmn.github.io/randbats/data/${battleType}.json`);
       const fetchData = await fetch(
         `https://pkmn.github.io/randbats/data/${battleType}.json`,
@@ -63,14 +64,13 @@ const useRandomBattleData = (): [
 
 interface RandomBattlePokemonDisplayProps {
   pokemon: string;
-  battleType?: string;
-  isGen9?: boolean;
+  battleType: string;
 }
 const RandomBattlePokemonDisplay: React.FC<RandomBattlePokemonDisplayProps> = ({
   pokemon,
   battleType,
 }) => {
-  const [randbatsPokemonData] = useRandomBattleData();
+  const [randbatsPokemonData] = useRandomBattleData(battleType);
 
   if (
     Object.keys(randbatsPokemonData).length > 1 &&
