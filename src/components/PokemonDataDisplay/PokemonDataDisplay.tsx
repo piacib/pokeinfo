@@ -65,7 +65,7 @@ const PokemonDataDisplay = ({
             {isRandomBattle ? (
               <RandomBattlePokemonDisplay
                 pokemon={pokemonName}
-                battleType={""}
+                battleType={battleType}
               />
             ) : (
               <OtherFormatsDisplay pokemon={pokemonName} />
