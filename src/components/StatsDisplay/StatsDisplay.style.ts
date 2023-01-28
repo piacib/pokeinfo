@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 export const StatsContainer = styled.table`
   grid-column: 2/4;
+  grid-row: 1/3;
   background: #e0e7ea;
   border: 1px solid #aaa;
   font-size: 1.2em;

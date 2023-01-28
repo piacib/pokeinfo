@@ -17,6 +17,7 @@ export const Container = styled.div`
   justify-content: center;
   place-items: center;
   padding: 5px 10px;
+  max-height: 100px;
 `;
 export const InnerContainer = styled.div`
   border: 2px solid black;
