@@ -3,7 +3,9 @@ import "./App.css";
 import { TypeWriterContainer } from "./TypeWriterContainer.style";
 import { AppDisplay, Button } from "./App.style";
 import { TeamDisplay } from "./components/TeamDisplay/TeamDisplay";
-import { isDevelopmentMode } from "./developmentMode";
+import { isDevelopmentMode, devRoomId } from "./developmentMode";
+import WelcomeDisplay from "./components/WelcomeDisplay/WelcomeDisplay";
+
 export interface RoomIdProp {
   /** room-battle-${string}-${number} */
   roomId: string;
@@ -11,6 +13,7 @@ export interface RoomIdProp {
 const App: React.FC = () => {
   const [opponentsTeam, setOpponentsTeam] = useState<boolean>(true);
   const [battleRoomId, setBattleRoomId] = useState("");
+  console.log(battleRoomId);
   useEffect(() => {
     if (window.location.search) {
       const regMatch = window.location.search.match(/=(.*)/);
@@ -21,6 +24,32 @@ const App: React.FC = () => {
   });
   return (
     <>
+      {/* {!battleRoomId || battleRoomId !== "random-testing" ? (
+        <AppDisplay>
+          <TypeWriterContainer>
+            <h1>Poke Info</h1>
+          </TypeWriterContainer>
+          <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
+            Switch Team
+          </Button>
+          {isDevelopmentMode && !battleRoomId ? (
+            <TeamDisplay
+              opponentsTeam={opponentsTeam}
+              battleRoomId={"random-testing"}
+            />
+          ) : (
+            <></>
+          )}
+          {battleRoomId ? (
+            <TeamDisplay
+              opponentsTeam={opponentsTeam}
+              battleRoomId={battleRoomId}
+            />
+          ) : (
+            <></>
+          )}
+        </AppDisplay>
+      ) :  */}
       <AppDisplay>
         <TypeWriterContainer>
           <h1>Poke Info</h1>
@@ -28,23 +57,18 @@ const App: React.FC = () => {
         <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
           Switch Team
         </Button>
-        {isDevelopmentMode && !battleRoomId ? (
-          <TeamDisplay
-            opponentsTeam={opponentsTeam}
-            battleRoomId={"random-testing"}
-          />
-        ) : (
-          <></>
+        {isDevelopmentMode && (
+          <TeamDisplay opponentsTeam={opponentsTeam} battleRoomId={devRoomId} />
         )}
-        {battleRoomId ? (
+        {battleRoomId && !isDevelopmentMode && (
           <TeamDisplay
             opponentsTeam={opponentsTeam}
             battleRoomId={battleRoomId}
           />
-        ) : (
-          <></>
         )}
       </AppDisplay>
+
+      {/* <WelcomeDisplay /> */}
     </>
   );
 };
