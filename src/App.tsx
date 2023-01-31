@@ -50,13 +50,13 @@ const App: React.FC = () => {
           )}
         </AppDisplay>
       ) :  */}
+      <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
+        Switch Team
+      </Button>
       <AppDisplay>
         <TypeWriterContainer>
           <h1>Poke Info</h1>
         </TypeWriterContainer>
-        <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
-          Switch Team
-        </Button>
         {isDevelopmentMode && (
           <TeamDisplay opponentsTeam={opponentsTeam} battleRoomId={devRoomId} />
         )}
