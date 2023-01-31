@@ -18,6 +18,7 @@ export const Container = styled.div`
   place-items: center;
   padding: 5px 10px;
   max-height: 100px;
+  height: 350px;
 `;
 export const InnerContainer = styled.div`
   border: 2px solid black;
