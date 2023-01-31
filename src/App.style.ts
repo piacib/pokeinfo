@@ -11,7 +11,7 @@ export const Button = styled.button`
   position: sticky;
   top: 0;
   align-self: flex-end;
-  width: 7rem;
+  /* width: 7rem; */
 `;
 interface RefProp extends React.FC {
   changeDisplay?: boolean;

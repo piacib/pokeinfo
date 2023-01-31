@@ -24,32 +24,6 @@ const App: React.FC = () => {
   });
   return (
     <>
-      {/* {!battleRoomId || battleRoomId !== "random-testing" ? (
-        <AppDisplay>
-          <TypeWriterContainer>
-            <h1>Poke Info</h1>
-          </TypeWriterContainer>
-          <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
-            Switch Team
-          </Button>
-          {isDevelopmentMode && !battleRoomId ? (
-            <TeamDisplay
-              opponentsTeam={opponentsTeam}
-              battleRoomId={"random-testing"}
-            />
-          ) : (
-            <></>
-          )}
-          {battleRoomId ? (
-            <TeamDisplay
-              opponentsTeam={opponentsTeam}
-              battleRoomId={battleRoomId}
-            />
-          ) : (
-            <></>
-          )}
-        </AppDisplay>
-      ) :  */}
       <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
         Switch Team
       </Button>
