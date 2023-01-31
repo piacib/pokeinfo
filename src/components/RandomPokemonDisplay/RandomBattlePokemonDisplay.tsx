@@ -24,7 +24,6 @@ const RandomBattlePokemonDisplay: React.FC<RandomBattlePokemonDisplayProps> = ({
   battleType,
 }) => {
   const [randbatsPokemonData] = useRandomBattleData(battleType);
-
   if (
     Object.keys(randbatsPokemonData).length > 1 &&
     !randbatsPokemonData[pokemon]
