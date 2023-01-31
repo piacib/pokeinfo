@@ -1,24 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useReducer, useRef, useState } from "react";
+import { isRandomBattle } from "../functions";
 import {
-  getSwappedPkm,
-  getTurnNumber,
+  getBattleType,
   getBuiltTeam,
+  getSwappedPkm,
 } from "./websocket.functions";
-
 type teamsType = { p1: string[]; p2: string[] };
-
 const showdownWs = "wss://sim3.psim.us/showdown/websocket";
+
 export const useWebSocket = (
   battleRoomId: string,
 ): [teamsType, React.Dispatch<React.SetStateAction<teamsType>>] => {
   const ws = useRef<WebSocket>();
-  const [turnNumber, setTurnNumber] = useState<Number>(0);
   const [teams, setTeams] = useState<teamsType>({ p1: [], p2: [] });
   const [message, setMessage] = useState("");
-  const isRandomBattle = battleRoomId.includes("random");
-  const isNewTurn = (data: string) => {
-    return turnNumber !== getTurnNumber(data);
-  };
   // opens and closes websocket
   useEffect(() => {
     ws.current = new WebSocket(showdownWs);
@@ -35,9 +30,7 @@ export const useWebSocket = (
       wsCurrent.close();
     };
   }, []);
-  const joinBattleStream = (battleRoomId: string) => {
-    ws.current?.send(`|/join ${battleRoomId}`);
-  };
+
   useEffect(() => {
     // Exit condition
     if (!ws.current) return;
@@ -46,20 +39,18 @@ export const useWebSocket = (
       setMessage(e.data);
     };
   }, []);
+
   useEffect(() => {
-    const isStart = message.includes("|start");
-    console.log("turn", getTurnNumber(message));
-    console.log("is starting message", isStart);
-    if (!isRandomBattle) {
+    const battleType = getBattleType(message);
+    if (battleType && !isRandomBattle(battleType)) {
       const tempTeams = getBuiltTeam(message);
       if (tempTeams) {
-        setTeams({
-          p1: tempTeams[0],
-          p2: tempTeams[1],
-        });
+        setTeams(tempTeams);
+        ws.current?.close();
         return;
       }
     }
+
     const swapped = getSwappedPkm(message);
     console.log("teams", teams, swapped);
     if (swapped) {

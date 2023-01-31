@@ -60,6 +60,7 @@ const PokemonDataDisplay = ({
             </PokemonName>
             <TypeDisplay types={typesArray} />
           </HeaderContainer>
+          <DamageDisplay typesArray={typesArray} />
           <StatsDisplay pokemon={pokemonName} />
           <>
             {isRandomBattle ? (
@@ -71,7 +72,6 @@ const PokemonDataDisplay = ({
               <OtherFormatsDisplay pokemon={pokemonName} />
             )}
           </>
-          <DamageDisplay typesArray={typesArray} />
         </>
       ) : (
         <>

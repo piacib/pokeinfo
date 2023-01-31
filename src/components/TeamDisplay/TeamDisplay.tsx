@@ -5,7 +5,11 @@ import { pokemonNameFilter } from "./TeamDisplay.functions";
 import PokeDexScreen from "../PokeDexScreen/PokeDex";
 import PokemonDataDisplay from "../PokemonDataDisplay/PokemonDataDisplay";
 import { useWebSocket } from "../../hooks/useWebsSocket";
-import { opponentTestTeam, userTestTeam } from "../../developmentMode";
+import {
+  devRoomId,
+  opponentTestTeam,
+  userTestTeam,
+} from "../../developmentMode";
 
 interface TeamProps {
   opponentsTeam: boolean;
@@ -21,7 +25,7 @@ export const TeamDisplay = ({ opponentsTeam, battleRoomId }: TeamProps) => {
   const pokemon = teams[teamKey][index];
   console.log("battleRoomId", battleRoomId);
   useEffect(() => {
-    if (battleRoomId === "testing") {
+    if (battleRoomId === devRoomId) {
       setTeams({
         p1: userTestTeam,
         p2: opponentTestTeam,

@@ -34,13 +34,16 @@ const RandomBattlePokemonDisplay: React.FC<RandomBattlePokemonDisplayProps> = ({
   const movesData = getMoves(randbatsPokemonData[pokemon]?.moves);
   const rolesData = randbatsPokemonData[pokemon]?.roles;
   // console.log("pokemon Data", randbatsPokemonData[pokemon]);
-  return randbatsPokemonData[pokemon] ? (
+  if (!randbatsPokemonData[pokemon]) return <></>;
+  return (
     <>
       {rolesData ? (
-        <RolesDisplay
-          pokemonData={rolesData}
-          initialRole={Object.keys(rolesData)[0]}
-        />
+        <>
+          <RolesDisplay
+            pokemonData={rolesData}
+            initialRole={Object.keys(rolesData)[0]}
+          />
+        </>
       ) : (
         <PropertiesContainer>
           <AbilitiesDisplay
@@ -51,8 +54,6 @@ const RandomBattlePokemonDisplay: React.FC<RandomBattlePokemonDisplayProps> = ({
         </PropertiesContainer>
       )}
     </>
-  ) : (
-    <></>
   );
 };
 export default RandomBattlePokemonDisplay;

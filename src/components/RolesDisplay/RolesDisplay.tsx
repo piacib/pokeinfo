@@ -24,19 +24,19 @@ const RolesDisplay: React.FC<RolesDisplayProps> = ({
   }, [pokemonData]);
   return (
     <>
-      {Object.keys(pokemonData).length > 1 && (
-        <RolesContainer>
-          <h3>Roles: </h3>
-          {Object.keys(pokemonData).map((role) => (
-            <RolesBtn onClick={() => setRole(role)} key={role}>
-              {role}
-            </RolesBtn>
-          ))}
-        </RolesContainer>
-      )}
-      {pokemonData[role] && (
-        <>
-          <PropertiesContainer>
+      <PropertiesContainer>
+        {Object.keys(pokemonData).length > 1 && (
+          <RolesContainer>
+            <h3>Roles: </h3>
+            {Object.keys(pokemonData).map((role) => (
+              <RolesBtn onClick={() => setRole(role)} key={role}>
+                {role}
+              </RolesBtn>
+            ))}
+          </RolesContainer>
+        )}
+        {pokemonData[role] && (
+          <>
             <PropertyDisplay>
               <h3>TeraTypes:</h3>
               {pokemonData[role].teraTypes.map((x) => (
@@ -46,9 +46,9 @@ const RolesDisplay: React.FC<RolesDisplayProps> = ({
             <AbilitiesDisplay abilities={pokemonData[role].abilities} />
             <ItemsDisplay items={pokemonData[role].items} />
             <MovesDisplay movesData={getMoves(pokemonData[role].moves)} />
-          </PropertiesContainer>
-        </>
-      )}
+          </>
+        )}
+      </PropertiesContainer>
     </>
   );
 };

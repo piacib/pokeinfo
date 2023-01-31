@@ -4,7 +4,7 @@ export const PropertyDisplay = styled.div`
   height: fit-content;
   display: flex;
   flex-direction: row;
-  padding-bottom: 10px;
+  /* padding-bottom: 10px; */
   flex-wrap: wrap;
   align-items: center;
   position: relative;
@@ -46,7 +46,7 @@ export const PokemonName = styled.a`
   grid-column: 1/2;
   font-size: 1.8rem;
   max-width: 11rem;
-  padding-bottom: 0.2rem;
+  /* padding-bottom: 0.2rem; */
   overflow: hidden;
 `;
 export const PropertiesContainer = styled.div`
@@ -61,9 +61,11 @@ interface RefProp extends React.FC {
   changeDisplay?: boolean;
 }
 export const HeaderContainer = styled.div<RefProp>`
-  grid-area: 3/1;
+  /* grid-area: 3/1; */
+
   display: flex;
   justify-content: space-between;
   flex-direction: ${(props) => (props.changeDisplay ? "column" : "row")};
   margin-bottom: 0.3rem;
+  height: 3rem;
 `;
