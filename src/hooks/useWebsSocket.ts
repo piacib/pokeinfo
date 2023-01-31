@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
-  getStartingPkm,
   getSwappedPkm,
   getTurnNumber,
+  getBuiltTeam,
 } from "./websocket.functions";
 
 type teamsType = { p1: string[]; p2: string[] };
@@ -15,6 +15,7 @@ export const useWebSocket = (
   const [turnNumber, setTurnNumber] = useState<Number>(0);
   const [teams, setTeams] = useState<teamsType>({ p1: [], p2: [] });
   const [message, setMessage] = useState("");
+  const isRandomBattle = battleRoomId.includes("random");
   const isNewTurn = (data: string) => {
     return turnNumber !== getTurnNumber(data);
   };
@@ -29,9 +30,7 @@ export const useWebSocket = (
       }
     };
     ws.current.onclose = () => console.log("ws closed");
-
     const wsCurrent = ws.current;
-
     return () => {
       wsCurrent.close();
     };
@@ -51,12 +50,16 @@ export const useWebSocket = (
     const isStart = message.includes("|start");
     console.log("turn", getTurnNumber(message));
     console.log("is starting message", isStart);
-    // console.log("getSwappedPkm", getSwappedPkm(e.data));
-    // if (isStart) {
-    //   const p1Pkm = getStartingPkm(e.data);
-    //   const p2Pkm = getStartingPkm(e.data, 2);
-    //   return;
-    // }
+    if (!isRandomBattle) {
+      const tempTeams = getBuiltTeam(message);
+      if (tempTeams) {
+        setTeams({
+          p1: tempTeams[0],
+          p2: tempTeams[1],
+        });
+        return;
+      }
+    }
     const swapped = getSwappedPkm(message);
     console.log("teams", teams, swapped);
     if (swapped) {
