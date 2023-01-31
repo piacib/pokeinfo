@@ -8,16 +8,17 @@ export const Button = styled.button`
   white-space: 0;
   border-radius: 20px;
   background-color: ${(props) => props.theme.color.pokedexRed};
-  position: absolute;
-  left: 5px;
-  top: 25px;
+  position: sticky;
+  top: 0;
+  align-self: flex-end;
+  width: 7rem;
 `;
 interface RefProp extends React.FC {
   changeDisplay?: boolean;
 }
 export const AppDisplay = styled.div<RefProp>`
   min-width: 100px;
-  /* padding: 36px 8px 0; */
+  padding: 2rem 0;
   display: grid;
   grid-gap: 15px;
   @media (max-width: 600px) {
