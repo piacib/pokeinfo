@@ -1,23 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useReducer, useRef, useState } from "react";
+import { isRandomBattle } from "../functions";
 import {
-  getStartingPkm,
+  getBattleType,
+  getBuiltTeam,
   getSwappedPkm,
-  getTurnNumber,
 } from "./websocket.functions";
-
 type teamsType = { p1: string[]; p2: string[] };
-
 const showdownWs = "wss://sim3.psim.us/showdown/websocket";
+
 export const useWebSocket = (
   battleRoomId: string,
 ): [teamsType, React.Dispatch<React.SetStateAction<teamsType>>] => {
   const ws = useRef<WebSocket>();
-  const [turnNumber, setTurnNumber] = useState<Number>(0);
   const [teams, setTeams] = useState<teamsType>({ p1: [], p2: [] });
   const [message, setMessage] = useState("");
-  const isNewTurn = (data: string) => {
-    return turnNumber !== getTurnNumber(data);
-  };
+
   // opens and closes websocket
   useEffect(() => {
     ws.current = new WebSocket(showdownWs);
@@ -29,16 +26,12 @@ export const useWebSocket = (
       }
     };
     ws.current.onclose = () => console.log("ws closed");
-
     const wsCurrent = ws.current;
-
     return () => {
       wsCurrent.close();
     };
   }, []);
-  const joinBattleStream = (battleRoomId: string) => {
-    ws.current?.send(`|/join ${battleRoomId}`);
-  };
+
   useEffect(() => {
     // Exit condition
     if (!ws.current) return;
@@ -47,16 +40,18 @@ export const useWebSocket = (
       setMessage(e.data);
     };
   }, []);
+
   useEffect(() => {
-    const isStart = message.includes("|start");
-    console.log("turn", getTurnNumber(message));
-    console.log("is starting message", isStart);
-    // console.log("getSwappedPkm", getSwappedPkm(e.data));
-    // if (isStart) {
-    //   const p1Pkm = getStartingPkm(e.data);
-    //   const p2Pkm = getStartingPkm(e.data, 2);
-    //   return;
-    // }
+    const battleType = getBattleType(message);
+    if (battleType && !isRandomBattle(battleType)) {
+      const tempTeams = getBuiltTeam(message);
+      if (tempTeams) {
+        setTeams(tempTeams);
+        ws.current?.close();
+        return;
+      }
+    }
+
     const swapped = getSwappedPkm(message);
     console.log("teams", teams, swapped);
     if (swapped) {
