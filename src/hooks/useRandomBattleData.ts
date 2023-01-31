@@ -23,6 +23,9 @@ export const useRandomBattleData = (
   const [randbatsPokemonData, setRandbatsPokemonData] =
     useState<RandomBattleData>(emptyRandbatsPokemonData);
   // fetchs random pokemon data only on startup
+  if (!battleType.includes("randombattle")) {
+    console.error(battleType + " is not a valid random battle type");
+  }
   useEffect(() => {
     async function asyncFetchRandomPokemonData() {
       // console.log(`https://pkmn.github.io/randbats/data/${battleType}.json`);
