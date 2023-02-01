@@ -9,11 +9,6 @@ export const StatsContainer = styled.table`
   background-color: #6890f0;
   border-radius: 15px;
   color: black;
-  div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
 `;
 export const StatBox = styled.th`
   display: flex;
@@ -31,13 +26,12 @@ export const StatName = styled.div`
 `;
 export const StatValue = styled.div``;
 export const StatsHead = styled.thead`
-  /* background: green; */
   * > h2 {
     margin: 0;
   }
 `;
 export const StatBar = styled.td`
-  width: 75%;
+  width: 80%;
 `;
 interface StatEntry {
   stat: number;
@@ -45,7 +39,6 @@ interface StatEntry {
 export const Bar = styled.div<StatEntry>`
   height: 20px;
   width: ${(props) => `${(props.stat * 100) / 255}%`};
-  /* background: yellow; */
 `;
 
 interface RowType {
