@@ -283,7 +283,7 @@ Error generating stack: `+i.message+`
   }
 `,AW=A.p`
   margin: 0 0.5rem 0 0;
-`,gr=({damage:e,effectivenessArray:t})=>k(LW,{children:t.length?k(Te,{children:t.map(a=>q(EB,{background:a,children:[k(AW,{children:a}),q(IW,{children:[e,k("span",{children:"x"})]})]},a))}):null}),xW=({typesArray:e})=>{const[t,a]=j.useState({0:[],.25:[],.5:[],2:[],4:[]});return j.useEffect(()=>{if(e){const r=YE(e);let s={0:[],.25:[],.5:[],2:[],4:[]};BB.forEach(i=>{r&&(r[i]===0?s[0].push(i):r[i]===.25?s[.25].push(i):r[i]===.5?s[.5].push(i):r[i]===2?s[2].push(i):r[i]===4&&s[4].push(i))}),a(s)}},[e]),k(FW,{children:t?q(Te,{children:[k(gr,{damage:"0",effectivenessArray:t[0]}),k(gr,{damage:"¼",effectivenessArray:t[.25]}),k(gr,{damage:"½",effectivenessArray:t[.5]}),k(gr,{damage:"2",effectivenessArray:t[2]}),k(gr,{damage:"4",effectivenessArray:t[4]})]}):k(HW,{})})},BW=A.div`
+`,gr=({damage:e,effectivenessArray:t})=>k(LW,{children:t.length?k(Te,{children:t.map(a=>q(EB,{background:a,children:[k(AW,{children:a}),q(IW,{children:[k("span",{children:e}),k("span",{children:"x"})]})]},a))}):null}),xW=({typesArray:e})=>{const[t,a]=j.useState({0:[],.25:[],.5:[],2:[],4:[]});return j.useEffect(()=>{if(e){const r=YE(e);let s={0:[],.25:[],.5:[],2:[],4:[]};BB.forEach(i=>{r&&(r[i]===0?s[0].push(i):r[i]===.25?s[.25].push(i):r[i]===.5?s[.5].push(i):r[i]===2?s[2].push(i):r[i]===4&&s[4].push(i))}),a(s)}},[e]),k(FW,{children:t?q(Te,{children:[k(gr,{damage:"0",effectivenessArray:t[0]}),k(gr,{damage:"¼",effectivenessArray:t[.25]}),k(gr,{damage:"½",effectivenessArray:t[.5]}),k(gr,{damage:"2",effectivenessArray:t[2]}),k(gr,{damage:"4",effectivenessArray:t[4]})]}):k(HW,{})})},BW=A.div`
   background-color: ${e=>e.theme.color.typeColors[e.background]};
 `,Hn=A(BW)`
   padding: 0.2rem 1rem;
