@@ -9,7 +9,7 @@ import { dexSearchPrepper } from "../../functions";
 
 const Items = Dex.data.Items;
 interface ItemsDisplayProps {
-  items: string[];
+  items: string[] | undefined;
 }
 const ItemsDisplay: React.FC<ItemsDisplayProps> = ({ items }) => {
   return (
