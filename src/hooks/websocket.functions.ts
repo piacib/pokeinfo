@@ -3,6 +3,24 @@ export const testMessage =
 export const ouTestMessage =
   "|clearpoke|poke|p1|Amoonguss, M||poke|p1|Iron Moth||poke|p1|Iron Valiant||poke|p1|Dondozo, M||poke|p1|Meowscarada, F||poke|p1|Orthworm, M||poke|p2|Dragonite, F||poke|p2|Iron Moth||poke|p2|Iron Valiant||poke|p2|Azumarill, M||poke|p2|Meowscarada, F||poke|p2|Orthworm, M||teampreview";
 
+const ouTestResult = {
+  p1: [
+    "Amoonguss",
+    "Iron Moth",
+    "Iron Valiant",
+    "Dondozo",
+    "Meowscarada",
+    "Orthworm",
+  ],
+  p2: [
+    "Dragonite",
+    "Iron Moth",
+    "Iron Valiant",
+    "Azumarill",
+    "Meowscarada",
+    "Orthworm",
+  ],
+};
 // turn number regex /\|turn\|(?!.*\|turn)/
 
 export const getBattleType = (data: string) => {
@@ -13,7 +31,7 @@ export const getBattleType = (data: string) => {
   return null;
 };
 export const getBuiltTeam = (data: string) => {
-  // gets text following p1| untill either a comma (which precedes gender) or |
+  // gets text following p1| until either a comma (which precedes gender) or |
   // used for any non random battle
   const regExMatch1 = data.match(/(?<=poke\|p1\|)(.*?)(?=\||,)/g);
   const regExMatch2 = data.match(/(?<=poke\|p2\|)(.*?)(?=\||,)/g);
@@ -24,8 +42,10 @@ export const getBuiltTeam = (data: string) => {
 };
 
 export const getSwappedPkm = (data: string) => {
-  const regExMatch1 = data.match(/(?<=switch\|p1a: [a-zA-Z0-9]*\|)(.*?)(?=,)/g);
-  const regExMatch2 = data.match(/(?<=switch\|p2a: [a-zA-Z0-9]*\|)(.*?)(?=,)/g);
+  // const regExMatch1 = data.match(/(?<=switch\|p1a: [^=]*\|)(.*?)(?=,)/g);
+  // const regExMatch2 = data.match(/(?<=switch\|p2a: [^=]*\|)(.*?)(?=,)/g);
+  const regExMatch1 = data.match(/(?<=switch\|p1a: (.*?)*\|)(.*?)(?=,)/g);
+  const regExMatch2 = data.match(/(?<=switch\|p2a: (.*?)*\|)(.*?)(?=,)/g);
   if (!regExMatch1 && !regExMatch2) {
     return false;
   }
