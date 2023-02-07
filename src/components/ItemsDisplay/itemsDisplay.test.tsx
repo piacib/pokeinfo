@@ -30,7 +30,6 @@ test("loads and displays item display", async () => {
     const element = screen.getByText(regex);
     expect(element).toBeInTheDocument();
   });
-  screen.debug();
 });
 test("item description is initially invisible", async () => {
   render(
