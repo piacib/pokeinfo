@@ -2,7 +2,6 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { ThemeProvider, ThemeProviderComponent } from "styled-components";
 import { theme } from "../../theme";
-import userEvent from "@testing-library/user-event";
 import MovesDisplay from "./MovesDisplay";
 import { MoveData } from "@pkmn/dex";
 const testData: MoveData[] = [
@@ -138,7 +137,7 @@ test("loads and displays", async () => {
   expect(moves).toBeInTheDocument();
 });
 
-test("displays moves data", async () => {
+test("displays moves data", () => {
   render(
     <ThemeProvider theme={theme}>
       <MovesDisplay movesData={testData} />
