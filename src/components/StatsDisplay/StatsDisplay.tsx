@@ -18,7 +18,7 @@ interface Stats {
   spd: number;
   spe: number;
 }
-type keyOfStats = keyof Stats;
+export type keyOfStats = keyof Stats;
 interface obj {
   [keyOfStats: string]: string;
 }
@@ -51,23 +51,25 @@ const StatsDisplay: React.FC<StatsDisplayProps> = ({ pokemon }) => {
   return (
     <StatsContainer>
       <StatsHead>
-        <th>
+        <tr>
           <h2>Stats</h2>
-        </th>
+        </tr>
       </StatsHead>
-      {Object.entries(stats).map((x) => (
-        <StatsTableRow>
-          <StatBox key={`${x[0]}`}>
-            <StatName>{stateNameObj[x[0]]}:</StatName>
-            <StatValue>
-              <b>{x[1]}</b>
-            </StatValue>
-          </StatBox>
-          <StatBar>
-            <Bar stat={x[1]}></Bar>
-          </StatBar>
-        </StatsTableRow>
-      ))}
+      <tbody>
+        {Object.entries(stats).map((x) => (
+          <StatsTableRow key={`${x[0]}`} type={x[0]}>
+            <StatBox>
+              <StatName>{stateNameObj[x[0]]}:</StatName>
+              <StatValue>
+                <b>{x[1]}</b>
+              </StatValue>
+            </StatBox>
+            <StatBar>
+              <Bar stat={x[1]}></Bar>
+            </StatBar>
+          </StatsTableRow>
+        ))}
+      </tbody>
     </StatsContainer>
   );
 };
