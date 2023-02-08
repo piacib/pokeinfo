@@ -3,8 +3,7 @@ import "./App.css";
 import { TypeWriterContainer } from "./TypeWriterContainer.style";
 import { AppDisplay, Button } from "./App.style";
 import { TeamDisplay } from "./components/TeamDisplay/TeamDisplay";
-import { isDevelopmentMode, devRoomId } from "./developmentMode";
-import WelcomeDisplay from "./components/WelcomeDisplay/WelcomeDisplay";
+import Home from "./components/Home/Home";
 
 export interface RoomIdProp {
   /** room-battle-${string}-${number} */
@@ -13,7 +12,6 @@ export interface RoomIdProp {
 const App: React.FC = () => {
   const [opponentsTeam, setOpponentsTeam] = useState<boolean>(true);
   const [battleRoomId, setBattleRoomId] = useState("");
-  console.log(battleRoomId);
   useEffect(() => {
     if (window.location.search) {
       const regMatch = window.location.search.match(/=(.*)/);
@@ -24,25 +22,24 @@ const App: React.FC = () => {
   });
   return (
     <>
-      <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
-        Switch Team
-      </Button>
-      <AppDisplay>
-        <TypeWriterContainer>
-          <h1>Poke Info</h1>
-        </TypeWriterContainer>
-        {isDevelopmentMode && (
-          <TeamDisplay opponentsTeam={opponentsTeam} battleRoomId={devRoomId} />
-        )}
-        {battleRoomId && !isDevelopmentMode && (
-          <TeamDisplay
-            opponentsTeam={opponentsTeam}
-            battleRoomId={battleRoomId}
-          />
-        )}
-      </AppDisplay>
-
-      {/* <WelcomeDisplay /> */}
+      {battleRoomId ? (
+        <>
+          <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
+            Switch Team
+          </Button>
+          <AppDisplay>
+            <TypeWriterContainer>
+              <h1>Poke Info</h1>
+            </TypeWriterContainer>
+            <TeamDisplay
+              opponentsTeam={opponentsTeam}
+              battleRoomId={battleRoomId}
+            />
+          </AppDisplay>
+        </>
+      ) : (
+        <Home setBattleRoomId={setBattleRoomId} />
+      )}
     </>
   );
 };
