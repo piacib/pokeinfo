@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { TypeWriterContainer } from "./TypeWriterContainer.style";
 import { AppDisplay, BattleButton, Button } from "./App.style";
@@ -15,6 +15,10 @@ const App: React.FC = () => {
   const [battleRoomId, setBattleRoomId] = useState("");
   const [isInExtension, setIsInExtension] = useState(false);
   const [displayUrlInput, setDisplayUrlInput] = useState(false);
+  const previousBattleRoomId = useRef("");
+  // useEffect(() => {
+  //   previousBattleRoomId.current = battleRoomId;
+  // }, [battleRoomId]);
   useEffect(() => {
     if (window.location.search) {
       const regMatch = window.location.search.match(/\?battleId=(.*)/);
@@ -27,6 +31,7 @@ const App: React.FC = () => {
   });
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
+    previousBattleRoomId.current = battleRoomId;
     const target = e.target as typeof e.target & {
       url: { value: string };
     };
@@ -34,10 +39,11 @@ const App: React.FC = () => {
     if (battleIndex === -1) {
       return;
     }
-    const battleRoomId = target.url.value.slice(battleIndex);
-    setBattleRoomId(battleRoomId);
-    console.log(battleRoomId);
+    const battleRoomIdTemp = target.url.value.slice(battleIndex);
+    setBattleRoomId(battleRoomIdTemp);
+    console.log(battleRoomIdTemp);
   };
+  console.log("prev", previousBattleRoomId, battleRoomId);
 
   return (
     <>
@@ -65,6 +71,7 @@ const App: React.FC = () => {
             <TeamDisplay
               opponentsTeam={opponentsTeam}
               battleRoomId={battleRoomId}
+              previousBattleRoomId={previousBattleRoomId.current}
             />
           </AppDisplay>
         </>
