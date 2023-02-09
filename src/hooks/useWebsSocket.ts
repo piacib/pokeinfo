@@ -29,7 +29,7 @@ export const useWebSocket = (
     return () => {
       wsCurrent.close();
     };
-  }, []);
+  }, [battleRoomId]);
 
   useEffect(() => {
     // Exit condition
