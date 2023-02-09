@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { devRoomId } from "../../developmentMode";
 import { TypeWriterContainer } from "../../TypeWriterContainer.style";
-import { WelcomeContainer } from "./Home.style";
+import PokeDexScreen from "../PokeDexScreen/PokeDex";
+import {
+  ButtonContainer,
+  HomeContainer,
+  UrlForm,
+  WelcomeText,
+} from "./Home.style";
 interface Props {
   setBattleRoomId: React.Dispatch<React.SetStateAction<string>>;
 }
 const Home: React.FC<Props> = ({ setBattleRoomId }) => {
+  const [displayUrlInput, setDisplayUrlInput] = useState(false);
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     const target = e.target as typeof e.target & {
@@ -20,23 +27,28 @@ const Home: React.FC<Props> = ({ setBattleRoomId }) => {
     console.log(battleRoomId);
   };
   return (
-    <WelcomeContainer>
+    <HomeContainer>
       <TypeWriterContainer>
         <h1>Welcome To PokeInfo</h1>
       </TypeWriterContainer>
-      <p>
+      <WelcomeText>
         Enter the url from your pokemon showdown battle to get real time data or
         click example
-      </p>
-      <button onClick={() => setBattleRoomId(devRoomId)}>Example</button>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <label>
-          Enter Url:
-          <input type="text" name="url" />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-    </WelcomeContainer>
+      </WelcomeText>
+      <ButtonContainer>
+        <button onClick={() => setBattleRoomId(devRoomId)}>Example</button>
+        <button onClick={() => setDisplayUrlInput(!displayUrlInput)}>
+          Url
+        </button>
+      </ButtonContainer>
+      {displayUrlInput && (
+        <UrlForm onSubmit={(e) => handleSubmit(e)}>
+          <label htmlFor="url">Enter Url:</label>
+          <input type="text" id="url" name="url" />
+          <input type="submit" value="Submit" />
+        </UrlForm>
+      )}
+    </HomeContainer>
   );
 };
 
