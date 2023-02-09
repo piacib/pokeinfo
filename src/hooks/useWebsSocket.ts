@@ -25,12 +25,14 @@ export const useWebSocket = (
       }
     };
     ws.current.onclose = () => console.log("ws closed");
+    console.log(ws.current);
     const wsCurrent = ws.current;
+
     return () => {
       wsCurrent.close();
     };
   }, [battleRoomId]);
-
+  useEffect(() => {}, []);
   useEffect(() => {
     // Exit condition
     if (!ws.current) return;
