@@ -15,12 +15,17 @@ interface TeamProps {
   opponentsTeam: boolean;
   teamtoDisplay?: "p1" | "p2";
   battleRoomId: string;
+  previousBattleRoomId: string;
 }
 // fetches latest pokemon data from auto updating github dataset
-export const TeamDisplay = ({ opponentsTeam, battleRoomId }: TeamProps) => {
+export const TeamDisplay = ({
+  opponentsTeam,
+  battleRoomId,
+  previousBattleRoomId,
+}: TeamProps) => {
   // const [teams] = useTeams(battleRoomId ? battleRoomId : "");
   const [index, setIndex] = useState(0);
-  const [teams, setTeams] = useWebSocket(battleRoomId);
+  const [teams, setTeams] = useWebSocket(battleRoomId, previousBattleRoomId);
   const teamKey = Number(opponentsTeam) ? "p1" : "p2";
   const pokemon = teams[teamKey][index];
   console.log("battleRoomId", battleRoomId);
