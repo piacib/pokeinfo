@@ -5,7 +5,7 @@ export const devRoomId = "room-" + devPathname;
 export const userTestTeam = [
   "Jumpluff",
   "Abomasnow",
-  "Flapple",
+  "Iron Moth",
   "Drifblim",
   "Gyarados",
   "Giratina",
