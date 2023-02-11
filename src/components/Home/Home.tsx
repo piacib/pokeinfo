@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { devRoomId } from "../../developmentMode";
 import { TypeWriterContainer } from "../../TypeWriterContainer.style";
-import PokeDexScreen from "../PokeDexScreen/PokeDex";
 import {
   ButtonContainer,
   HomeContainer,
@@ -25,7 +24,6 @@ const Home: React.FC<Props> = ({ setBattleRoomId }) => {
     }
     const battleRoomId = target.url.value.slice(battleIndex);
     setBattleRoomId(battleRoomId);
-    console.log(battleRoomId);
   };
   return (
     <HomeContainer>
