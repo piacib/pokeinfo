@@ -6,6 +6,7 @@ import {
   ButtonContainer,
   HomeContainer,
   UrlForm,
+  WelcomeHeader,
   WelcomeText,
 } from "./Home.style";
 interface Props {
@@ -29,7 +30,7 @@ const Home: React.FC<Props> = ({ setBattleRoomId }) => {
   return (
     <HomeContainer>
       <TypeWriterContainer>
-        <h1>Welcome To PokeInfo</h1>
+        <WelcomeHeader>Welcome To PokeInfo</WelcomeHeader>
       </TypeWriterContainer>
       <WelcomeText>
         Enter the url from your pokemon showdown battle to get real time data or
