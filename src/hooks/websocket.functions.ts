@@ -44,8 +44,8 @@ export const getBuiltTeam = (data: string) => {
 export const getSwappedPkm = (data: string) => {
   // const regExMatch1 = data.match(/(?<=switch\|p1a: [^=]*\|)(.*?)(?=,)/g);
   // const regExMatch2 = data.match(/(?<=switch\|p2a: [^=]*\|)(.*?)(?=,)/g);
-  const regExMatch1 = data.match(/(?<=switch\|p1a: (.*?)*\|)(.*?)(?=,)/g);
-  const regExMatch2 = data.match(/(?<=switch\|p2a: (.*?)*\|)(.*?)(?=,)/g);
+  const regExMatch1 = data.match(/(?<=switch\|p1a: [^\|]*\|)(.*?)(?=,)/g);
+  const regExMatch2 = data.match(/(?<=switch\|p2a: [^\|]*\|)(.*?)(?=,)/g);
   if (!regExMatch1 && !regExMatch2) {
     return false;
   }
