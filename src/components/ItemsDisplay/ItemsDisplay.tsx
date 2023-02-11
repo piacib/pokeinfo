@@ -15,14 +15,18 @@ const ItemsDisplay: React.FC<ItemsDisplayProps> = ({ items }) => {
   return (
     <ItemsContainer>
       <h3>Items:</h3>
-      {items?.map((item) => (
-        <PropertyBtn key={item}>
-          {item}
-          <HiddenPropertyText>
-            {Items[dexSearchPrepper(item)].desc}
-          </HiddenPropertyText>
-        </PropertyBtn>
-      ))}
+      {items ? (
+        items.map((item) => (
+          <PropertyBtn key={item}>
+            {item}
+            <HiddenPropertyText>
+              {Items[dexSearchPrepper(item)].desc}
+            </HiddenPropertyText>
+          </PropertyBtn>
+        ))
+      ) : (
+        <PropertyBtn>None</PropertyBtn>
+      )}
     </ItemsContainer>
   );
 };

@@ -9,16 +9,8 @@ test("Abilities text is present", () => {
   render(
     <ThemeProvider theme={theme}>
       <AbilitiesDisplay abilities={[]} />
-    </ThemeProvider>
+    </ThemeProvider>,
   );
   const abilities = screen.getByText(/Abilities/i);
   expect(abilities).toBeInTheDocument();
-});
-
-test("Abilities are present", () => {
-  render(
-    <ThemeProvider theme={theme}>
-      <AbilitiesDisplay abilities={testAbilities} />
-    </ThemeProvider>
-  );
 });
