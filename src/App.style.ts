@@ -31,8 +31,6 @@ export const AppDisplay = styled.div<RefProp>`
     display: flex;
     flex-direction: column;
   }
-  min-height: 250px;
-  font-size: 12px;
 `;
 export const TypeColorBackground = css<TypeColorInterface>`
   background-color: ${(props) => typeColorConverter[props.background]};
