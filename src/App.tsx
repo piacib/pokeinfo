@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./App.css";
 import { TypeWriterContainer } from "./TypeWriterContainer.style";
 import { AppDisplay, BattleButton, Button } from "./App.style";
 import { TeamDisplay } from "./components/TeamDisplay/TeamDisplay";
