@@ -35,5 +35,8 @@ export const TypeWriterContainer = styled.div`
     /* letter-spacing: 0.15em; Adjust as needed */
     animation: ${typing} 3.5s steps(40, end),
       ${blinkCaret} 1.5s step-end infinite;
+    @media (prefers-reduced-motion: no-preference) {
+      animation: ${blinkCaret} 1.5s step-end infinite;
+    }
   }
 `;
