@@ -11,13 +11,15 @@ export const TypeBox = styled(TypeColoredComponent)`
   ${PillDesign}
   /* margin: 5px;
 
-  padding: ${(props) => props.theme.padding.small} ${(props) => props.theme.padding.medium};
+  padding: ${(props) => props.theme.padding.small} ${(props) =>
+    props.theme.padding.medium};
   border-radius: 10px; */
   display: flex;
   align-items: center;
 `;
 export const Effectivness = styled.p`
   background: snow;
+  color: black;
   border-radius: 50%;
   padding: 0.3rem;
   margin: 0;
