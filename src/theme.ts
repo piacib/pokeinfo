@@ -39,5 +39,13 @@ const theme: DefaultTheme = {
     pokedexRed: "rgb(253,0,1)",
   },
   buttonBorderRadius: "10px",
+  lightMode: {
+    background: "#eef2f5",
+    color: "black",
+  },
+  darkMode: {
+    background: "black",
+    color: "white",
+  },
 };
 export { theme };
