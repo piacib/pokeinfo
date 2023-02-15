@@ -4,6 +4,8 @@ import { AppDisplay, BattleButton, Button } from "./App.style";
 import { TeamDisplay } from "./components/TeamDisplay/TeamDisplay";
 import Home from "./components/Home/Home";
 import { UrlForm } from "./components/Home/Home.style";
+import { keepTheme } from "./components/ModeToggle/theme";
+import ModeToggle from "./components/ModeToggle/ModeToggle";
 
 export interface RoomIdProp {
   /** room-battle-${string}-${number} */
@@ -18,6 +20,9 @@ const App: React.FC = () => {
   // useEffect(() => {
   //   previousBattleRoomId.current = battleRoomId;
   // }, [battleRoomId]);
+  useEffect(() => {
+    keepTheme();
+  });
   useEffect(() => {
     if (window.location.search) {
       const regMatch = window.location.search.match(/\?battleId=(.*)/);
@@ -48,6 +53,7 @@ const App: React.FC = () => {
     <>
       {battleRoomId ? (
         <>
+          <ModeToggle />
           <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
             Switch Team
           </Button>
