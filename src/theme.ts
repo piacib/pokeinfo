@@ -1,4 +1,12 @@
 import { DefaultTheme } from "styled-components";
+const lightMode = {
+  background: "#eef2f5",
+  color: "black",
+};
+const darkMode = {
+  background: "black",
+  color: "white",
+};
 
 const theme: DefaultTheme = {
   media: {
@@ -7,7 +15,7 @@ const theme: DefaultTheme = {
   outerBorderWidth: "5px",
   outerBorderColor: "solid",
   outerBorderStyle: "black",
-  backgroundColor: "#c5bfbf",
+  backgroundColor: " ",
   secondaryBorderMargin: "0.25rem",
   padding: {
     medium: ".25rem",
@@ -47,5 +55,17 @@ const theme: DefaultTheme = {
     background: "black",
     color: "white",
   },
+  burgerMenu: {
+    measureType: "px",
+    barWidth: 60,
+    barHeight: 8,
+    hamburgerGap: 6,
+    foreground: "#333",
+    background: "white",
+    hamburgerMargin: 8,
+    animationTiming: "200ms ease-in-out",
+    // hamburgerHeight: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
+  },
 };
+
 export { theme };

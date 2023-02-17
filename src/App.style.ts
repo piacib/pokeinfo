@@ -16,7 +16,7 @@ export const Button = styled.button`
 export const BattleButton = styled.button`
   border-radius: 20px;
   width: fit-content;
-  position: absolute;
+  /* position: absolute; */
   top: 0;
 `;
 interface RefProp extends React.FC {
@@ -49,4 +49,9 @@ export const PillDesign = css`
   padding: 0.1rem 0.25rem;
   border-radius: 10px;
   font-size: 1rem;
+`;
+export const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 `;

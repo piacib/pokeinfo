@@ -31,5 +31,15 @@ declare module "styled-components" {
     buttonBorderRadius: string;
     lightMode: ModeObj;
     darkMode: ModeObj;
+    burgerMenu: {
+      measureType: string;
+      barWidth: number;
+      barHeight: number;
+      hamburgerGap: number;
+      foreground: string;
+      background: string;
+      hamburgerMargin: number;
+      animationTiming: string;
+    };
   }
 }
