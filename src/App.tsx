@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { TypeWriterContainer } from "./TypeWriterContainer.style";
-import { AppDisplay, BattleButton, Button } from "./App.style";
+import { AppDisplay, BattleButton, Button, Header } from "./App.style";
 import { TeamDisplay } from "./components/TeamDisplay/TeamDisplay";
 import Home from "./components/Home/Home";
 import { UrlForm } from "./components/Home/Home.style";
 import { keepTheme } from "./components/ModeToggle/theme";
 import ModeToggle from "./components/ModeToggle/ModeToggle";
+import OptionsMenu from "./components/OptionsMenu/OptionsMenu";
 
 export interface RoomIdProp {
   /** room-battle-${string}-${number} */
@@ -53,23 +54,31 @@ const App: React.FC = () => {
     <>
       {battleRoomId ? (
         <>
-          <ModeToggle />
-          <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
-            Switch Team
-          </Button>
-          {!isInExtension && (
-            <BattleButton onClick={() => setDisplayUrlInput(!displayUrlInput)}>
-              Enter new battle
-            </BattleButton>
-          )}
-          {displayUrlInput && (
-            <UrlForm onSubmit={(e) => handleSubmit(e)}>
-              <label htmlFor="url">Enter Url:</label>
-              <input type="text" id="url" name="url" />
-              <input type="submit" value="Submit" />
-            </UrlForm>
-          )}
           <AppDisplay>
+            <>
+              <OptionsMenu>
+                {!isInExtension && (
+                  <BattleButton
+                    onClick={() => setDisplayUrlInput(!displayUrlInput)}
+                  >
+                    Enter new battle
+                  </BattleButton>
+                )}
+                {displayUrlInput && (
+                  <UrlForm onSubmit={(e) => handleSubmit(e)}>
+                    <label htmlFor="url">Enter Url:</label>
+                    <input type="text" id="url" name="url" />
+                    <input type="submit" value="Submit" />
+                  </UrlForm>
+                )}
+                <ModeToggle />
+                <h1>Hello</h1>
+              </OptionsMenu>
+              <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
+                Switch Team
+              </Button>
+            </>
+
             <TypeWriterContainer>
               <h1>Poke Info</h1>
             </TypeWriterContainer>
