@@ -8,6 +8,7 @@ export const SideBar = styled.aside`
   font-size: 10px;
   position: absolute;
   top: 0;
+  left: 0;
   transition: translate ${(props) => props.theme.burgerMenu.animationTiming};
   translate: -100%;
   padding: 0.5rem 1rem;
