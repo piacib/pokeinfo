@@ -73,7 +73,6 @@ const App: React.FC = () => {
                 </UrlForm>
               )}
               <ModeToggle />
-              <h1>Hello</h1>
             </OptionsMenu>
             <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
               Switch Team
