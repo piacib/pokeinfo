@@ -50,3 +50,8 @@ export const PillDesign = css`
   border-radius: 10px;
   font-size: 1rem;
 `;
+export const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+`;
