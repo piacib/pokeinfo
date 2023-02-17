@@ -1,4 +1,12 @@
 import { DefaultTheme } from "styled-components";
+const lightMode = {
+  background: "#eef2f5",
+  color: "black",
+};
+const darkMode = {
+  background: "black",
+  color: "white",
+};
 
 const theme: DefaultTheme = {
   media: {
@@ -7,7 +15,7 @@ const theme: DefaultTheme = {
   outerBorderWidth: "5px",
   outerBorderColor: "solid",
   outerBorderStyle: "black",
-  backgroundColor: "#c5bfbf",
+  backgroundColor: " ",
   secondaryBorderMargin: "0.25rem",
   padding: {
     medium: ".25rem",
@@ -59,4 +67,5 @@ const theme: DefaultTheme = {
     // hamburgerHeight: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
   },
 };
+
 export { theme };
