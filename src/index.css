@@ -56,7 +56,6 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 :root {
-  color: #213547;
   background-color: #ffffff;
 }
 a:hover {
@@ -69,4 +68,5 @@ button {
   display: flex;
   flex-direction: column;
   width: 100%;
+  color: #eef2f5;
 }
