@@ -7,6 +7,8 @@ import { UrlForm } from "./components/Home/Home.style";
 import { keepTheme } from "./components/ModeToggle/theme";
 import ModeToggle from "./components/ModeToggle/ModeToggle";
 import OptionsMenu from "./components/OptionsMenu/OptionsMenu";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./theme";
 
 export interface RoomIdProp {
   /** room-battle-${string}-${number} */
@@ -53,32 +55,31 @@ const App: React.FC = () => {
   return (
     <>
       {battleRoomId ? (
-        <>
+        <ThemeProvider theme={theme}>
+          <Header>
+            <OptionsMenu>
+              {!isInExtension && (
+                <BattleButton
+                  onClick={() => setDisplayUrlInput(!displayUrlInput)}
+                >
+                  Enter new battle
+                </BattleButton>
+              )}
+              {displayUrlInput && (
+                <UrlForm onSubmit={(e) => handleSubmit(e)}>
+                  <label htmlFor="url">Enter Url:</label>
+                  <input type="text" id="url" name="url" />
+                  <input type="submit" value="Submit" />
+                </UrlForm>
+              )}
+              <ModeToggle />
+              <h1>Hello</h1>
+            </OptionsMenu>
+            <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
+              Switch Team
+            </Button>
+          </Header>
           <AppDisplay>
-            <>
-              <OptionsMenu>
-                {!isInExtension && (
-                  <BattleButton
-                    onClick={() => setDisplayUrlInput(!displayUrlInput)}
-                  >
-                    Enter new battle
-                  </BattleButton>
-                )}
-                {displayUrlInput && (
-                  <UrlForm onSubmit={(e) => handleSubmit(e)}>
-                    <label htmlFor="url">Enter Url:</label>
-                    <input type="text" id="url" name="url" />
-                    <input type="submit" value="Submit" />
-                  </UrlForm>
-                )}
-                <ModeToggle />
-                <h1>Hello</h1>
-              </OptionsMenu>
-              <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
-                Switch Team
-              </Button>
-            </>
-
             <TypeWriterContainer>
               <h1>Poke Info</h1>
             </TypeWriterContainer>
@@ -88,7 +89,7 @@ const App: React.FC = () => {
               previousBattleRoomId={previousBattleRoomId.current}
             />
           </AppDisplay>
-        </>
+        </ThemeProvider>
       ) : (
         <Home setBattleRoomId={setBattleRoomId} />
       )}
