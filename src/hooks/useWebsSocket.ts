@@ -10,10 +10,12 @@ const showdownWs = "wss://sim3.psim.us/showdown/websocket";
 
 export const useWebSocket = (
   battleRoomId: string,
+  previousBattleRoomId?: string | null,
 ): [teamsType, React.Dispatch<React.SetStateAction<teamsType>>] => {
   const ws = useRef<WebSocket>();
   const [teams, setTeams] = useState<teamsType>({ p1: [], p2: [] });
   const [message, setMessage] = useState("");
+
   // opens and closes websocket
   useEffect(() => {
     ws.current = new WebSocket(showdownWs);
@@ -26,10 +28,21 @@ export const useWebSocket = (
     };
     ws.current.onclose = () => console.log("ws closed");
     const wsCurrent = ws.current;
+
     return () => {
       wsCurrent.close();
     };
   }, []);
+  // checks if previous battle id is present
+  // if yes then leaves stream and joins new battleroom id stream
+  useEffect(() => {
+    if (previousBattleRoomId && ws.current) {
+      setTeams({ p1: [], p2: [] });
+      setMessage("");
+      ws.current?.send(`|/leave ${previousBattleRoomId}`);
+      ws.current?.send(`|/join ${battleRoomId}`);
+    }
+  }, [previousBattleRoomId]);
 
   useEffect(() => {
     // Exit condition
@@ -52,7 +65,6 @@ export const useWebSocket = (
     }
 
     const swapped = getSwappedPkm(message);
-    console.log("teams", teams, swapped);
     if (swapped) {
       let newTeams = teams;
       if (swapped.p1) {
@@ -70,7 +82,6 @@ export const useWebSocket = (
         });
       }
       setTeams(newTeams);
-      console.log("newTeams", newTeams);
     }
   }, [message]);
   return [teams, setTeams];

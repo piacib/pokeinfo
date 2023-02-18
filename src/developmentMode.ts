@@ -3,9 +3,9 @@ export const devPathname = "battle-gen9randombattle-1710900595";
 export const devRoomId = "room-" + devPathname;
 
 export const userTestTeam = [
-  "Altaria",
+  "Jumpluff",
   "Abomasnow",
-  "Flapple",
+  "Iron Moth",
   "Drifblim",
   "Gyarados",
   "Giratina",
