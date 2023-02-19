@@ -29,9 +29,11 @@ export const hoverDisplayCss = css`
     display: block;
     position: absolute;
     text-align: start;
-    background: white;
+    border: 2px solid ${(props) => props.theme.fontColor};
+    background: ${(props) => props.theme.backgroundColor};
+    border-radius: ${(props) => props.theme.buttonBorderRadius};
+    padding: ${(props) => props.theme.padding.medium};
     z-index: 2;
-    border: 1px solid black;
   }
 `;
 export const PropertyBtn = styled.div`
