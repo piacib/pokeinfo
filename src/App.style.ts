@@ -31,12 +31,8 @@ export const AppDisplay = styled.div<RefProp>`
     display: flex;
     flex-direction: column;
   }
-  background-color: ${(props) => props.theme.lightMode.background};
-  color: ${(props) => props.theme.lightMode.color};
-  @media (prefers-color-scheme: dark) {
-    background-color: ${(props) => props.theme.darkMode.background};
-    color: ${(props) => props.theme.darkMode.color};
-  }
+  background-color: ${(props) => props.theme.backgroundColor};
+  color: ${(props) => props.theme.fontColor};
 `;
 export const TypeColorBackground = css<TypeColorInterface>`
   background-color: ${(props) => typeColorConverter[props.background]};
