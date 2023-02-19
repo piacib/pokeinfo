@@ -8,7 +8,8 @@ import { keepTheme } from "./components/ModeToggle/theme";
 import ModeToggle from "./components/ModeToggle/ModeToggle";
 import OptionsMenu from "./components/OptionsMenu/OptionsMenu";
 import { ThemeProvider } from "styled-components";
-import { theme } from "./theme";
+import { theme, darkMode } from "./theme";
+import { GlobalStyles } from "./GlobalStyles";
 
 export interface RoomIdProp {
   /** room-battle-${string}-${number} */
@@ -20,6 +21,7 @@ const App: React.FC = () => {
   const [isInExtension, setIsInExtension] = useState(false);
   const [displayUrlInput, setDisplayUrlInput] = useState(false);
   const previousBattleRoomId = useRef("");
+  const [lightMode, setLightMode] = useState("dark");
   // useEffect(() => {
   //   previousBattleRoomId.current = battleRoomId;
   // }, [battleRoomId]);
@@ -51,47 +53,53 @@ const App: React.FC = () => {
     console.log(battleRoomIdTemp);
   };
   console.log("prev", previousBattleRoomId, battleRoomId);
-
+  console.log("theme", localStorage.getItem("theme"));
+  const themeObjGenerator = (lightMode: string) => {
+    return lightMode === "light" ? theme : { ...theme, ...darkMode };
+  };
   return (
     <>
-      {battleRoomId ? (
-        <ThemeProvider theme={theme}>
-          <Header>
-            <OptionsMenu>
-              {!isInExtension && (
-                <BattleButton
-                  onClick={() => setDisplayUrlInput(!displayUrlInput)}
-                >
-                  Enter new battle
-                </BattleButton>
-              )}
-              {displayUrlInput && (
-                <UrlForm onSubmit={(e) => handleSubmit(e)}>
-                  <label htmlFor="url">Enter Url:</label>
-                  <input type="text" id="url" name="url" />
-                  <input type="submit" value="Submit" />
-                </UrlForm>
-              )}
-              <ModeToggle />
-            </OptionsMenu>
-            <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
-              Switch Team
-            </Button>
-          </Header>
-          <AppDisplay>
-            <TypeWriterContainer>
-              <h1>Poke Info</h1>
-            </TypeWriterContainer>
-            <TeamDisplay
-              opponentsTeam={opponentsTeam}
-              battleRoomId={battleRoomId}
-              previousBattleRoomId={previousBattleRoomId.current}
-            />
-          </AppDisplay>
-        </ThemeProvider>
-      ) : (
-        <Home setBattleRoomId={setBattleRoomId} />
-      )}
+      <GlobalStyles theme={themeObjGenerator(lightMode)} />
+      <ThemeProvider theme={themeObjGenerator(lightMode)}>
+        {battleRoomId ? (
+          <>
+            <Header>
+              <OptionsMenu>
+                {!isInExtension && (
+                  <BattleButton
+                    onClick={() => setDisplayUrlInput(!displayUrlInput)}
+                  >
+                    Enter new battle
+                  </BattleButton>
+                )}
+                {displayUrlInput && (
+                  <UrlForm onSubmit={(e) => handleSubmit(e)}>
+                    <label htmlFor="url">Enter Url:</label>
+                    <input type="text" id="url" name="url" />
+                    <input type="submit" value="Submit" />
+                  </UrlForm>
+                )}
+                <ModeToggle togClass={lightMode} setTogClass={setLightMode} />
+              </OptionsMenu>
+              <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
+                Switch Team
+              </Button>
+            </Header>
+            <AppDisplay>
+              <TypeWriterContainer>
+                <h1>Poke Info</h1>
+              </TypeWriterContainer>
+              <TeamDisplay
+                opponentsTeam={opponentsTeam}
+                battleRoomId={battleRoomId}
+                previousBattleRoomId={previousBattleRoomId.current}
+              />
+            </AppDisplay>
+          </>
+        ) : (
+          <Home setBattleRoomId={setBattleRoomId} />
+        )}
+      </ThemeProvider>
     </>
   );
 };
