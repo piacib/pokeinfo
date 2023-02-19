@@ -1,11 +1,10 @@
 import { DefaultTheme } from "styled-components";
-const lightMode = {
-  background: "#eef2f5",
-  color: "black",
-};
-const darkMode = {
-  background: "black",
-  color: "white",
+import { ModeObj } from "./styled";
+// dark mode object gets pread
+export const darkMode: ModeObj = {
+  backgroundColor: "#333",
+  fontColor: "white",
+  pokedexColor: "white",
 };
 
 const theme: DefaultTheme = {
@@ -15,7 +14,9 @@ const theme: DefaultTheme = {
   outerBorderWidth: "5px",
   outerBorderColor: "solid",
   outerBorderStyle: "black",
-  backgroundColor: " ",
+  backgroundColor: "#eef2f5",
+  pokedexColor: "#333",
+  fontColor: "black",
   secondaryBorderMargin: "0.25rem",
   padding: {
     medium: ".25rem",
@@ -47,14 +48,6 @@ const theme: DefaultTheme = {
     pokedexRed: "rgb(253,0,1)",
   },
   buttonBorderRadius: "10px",
-  lightMode: {
-    background: "#eef2f5",
-    color: "black",
-  },
-  darkMode: {
-    background: "black",
-    color: "white",
-  },
   burgerMenu: {
     measureType: "px",
     barWidth: 60,
