@@ -6,6 +6,8 @@ export const HomeContainer = styled.div`
   align-content: center;
   justify-content: center;
   margin: 0.5rem;
+  color: ${(props) => props.theme.fontColor};
+  background-color: ${(props) => props.theme.backgroundColor};
 `;
 export const ButtonContainer = styled.div`
   display: flex;
