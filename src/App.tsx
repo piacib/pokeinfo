@@ -10,7 +10,7 @@ import OptionsMenu from "./components/OptionsMenu/OptionsMenu";
 import { ThemeProvider } from "styled-components";
 import { theme, darkMode } from "./theme";
 import { GlobalStyles } from "./GlobalStyles";
-
+const themeObj = theme;
 export interface RoomIdProp {
   /** room-battle-${string}-${number} */
   roomId: string;
@@ -21,10 +21,18 @@ const App: React.FC = () => {
   const [isInExtension, setIsInExtension] = useState(false);
   const [displayUrlInput, setDisplayUrlInput] = useState(false);
   const previousBattleRoomId = useRef("");
-  const [lightMode, setLightMode] = useState("dark");
+  const [lightMode, setLightMode] = useState("light");
   // useEffect(() => {
   //   previousBattleRoomId.current = battleRoomId;
   // }, [battleRoomId]);
+  useEffect(() => {
+    const localTheme = localStorage.getItem("theme");
+    if (localTheme) {
+      if (localTheme.includes("dark")) {
+        setLightMode("dark");
+      }
+    }
+  }, []);
   useEffect(() => {
     keepTheme();
   });
@@ -53,7 +61,6 @@ const App: React.FC = () => {
     console.log(battleRoomIdTemp);
   };
   console.log("prev", previousBattleRoomId, battleRoomId);
-  console.log("theme", localStorage.getItem("theme"));
   const themeObjGenerator = (lightMode: string) => {
     return lightMode === "light" ? theme : { ...theme, ...darkMode };
   };
@@ -97,7 +104,9 @@ const App: React.FC = () => {
             </AppDisplay>
           </>
         ) : (
-          <Home setBattleRoomId={setBattleRoomId} />
+          <>
+            <Home setBattleRoomId={setBattleRoomId} />
+          </>
         )}
       </ThemeProvider>
     </>
