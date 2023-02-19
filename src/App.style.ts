@@ -24,7 +24,7 @@ interface RefProp extends React.FC {
 }
 export const AppDisplay = styled.div<RefProp>`
   min-width: 100px;
-  padding: 2rem 0;
+  padding: 2rem 0.8rem;
   display: grid;
   grid-gap: 15px;
   @media (max-width: 600px) {
