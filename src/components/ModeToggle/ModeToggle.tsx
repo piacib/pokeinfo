@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { setTheme } from "./theme";
 // to adjust toggle size set font-size
-const Toggle = () => {
-  const [togClass, setTogClass] = useState("dark");
+interface Props {
+  togClass: string;
+  setTogClass: React.Dispatch<React.SetStateAction<string>>;
+}
+const Toggle: React.FC<Props> = ({ togClass, setTogClass }) => {
+  // const [togClass, setTogClass] = useState("dark");
   let theme = localStorage.getItem("theme");
   // check local storage for preferred theme
   useEffect(() => {
