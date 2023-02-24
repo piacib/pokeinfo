@@ -26,7 +26,7 @@ export const TeamDisplay = ({
   // const [teams] = useTeams(battleRoomId ? battleRoomId : "");
   const [index, setIndex] = useState(0);
   const [teams, setTeams] = useWebSocket(battleRoomId, previousBattleRoomId);
-  const teamKey = Number(opponentsTeam) ? "p1" : "p2";
+  const teamKey = Number(opponentsTeam) ? "p2" : "p1";
   const pokemon = teams[teamKey][index];
   console.log("battleRoomId", battleRoomId);
   useEffect(() => {

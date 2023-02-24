@@ -9,6 +9,9 @@ export const StatsContainer = styled.table`
   background-color: #6890f0;
   border-radius: 15px;
   color: black;
+  @media (max-width: ${(props) => props.theme.media.smallScreen}) {
+    order: 99;
+  } ;
 `;
 export const StatBox = styled.th`
   display: flex;
