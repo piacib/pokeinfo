@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { setTheme } from "./theme";
+import "./toggle.css";
 // to adjust toggle size set font-size
 interface Props {
   togClass: string;
