@@ -32,7 +32,7 @@ export const AppDisplay = styled.div<RefProp>`
     flex-direction: column;
   }
   background-color: ${(props) => props.theme.backgroundColor};
-  color: ${(props) => props.theme.fontColor};
+  /* color: ${(props) => props.theme.fontColor}; */
 `;
 export const TypeColorBackground = css<TypeColorInterface>`
   background-color: ${(props) => typeColorConverter[props.background]};
