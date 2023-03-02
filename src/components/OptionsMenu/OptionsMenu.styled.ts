@@ -9,6 +9,7 @@ export const SideBar = styled.aside`
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 5;
   transition: translate ${(props) => props.theme.burgerMenu.animationTiming};
   translate: -100%;
   padding: 0.5rem 1rem;
@@ -36,15 +37,7 @@ export const HamburgerLabel = styled.label`
   gap: ${(props) =>
     props.theme.burgerMenu.hamburgerGap + props.theme.burgerMenu.measureType};
   width: max-content;
-  position: absolute;
-  top: ${(props) =>
-    props.theme.burgerMenu.hamburgerMargin +
-    props.theme.burgerMenu.measureType};
-  left: ${(props) =>
-    props.theme.burgerMenu.hamburgerMargin +
-    props.theme.burgerMenu.measureType};
-
-  z-index: 2;
+  z-index: 8;
   cursor: pointer;
   :has(input:checked) {
     --foreground: ${(props) => props.theme.burgerMenu.background};
