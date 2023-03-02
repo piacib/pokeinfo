@@ -49,5 +49,11 @@ export const PillDesign = css`
 export const Header = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
+  justify-content: space-between;
+  margin: 10px;
+`;
+export const Spacer = styled.div`
+  width: 100%;
+  height: 40px;
 `;
