@@ -65,7 +65,7 @@ export const HamburgerLabel = styled.label`
       props.theme.burgerMenu.barWidth + props.theme.burgerMenu.measureType};
     height: ${(props) =>
       props.theme.burgerMenu.barHeight + props.theme.burgerMenu.measureType};
-    background-color: ${(props) => props.theme.burgerMenu.foreground};
+    background-color: ${(props) => props.theme.fontColor};
     border-radius: 9999px;
     transform-origin: left center;
     transition: opacity ${(props) => props.theme.burgerMenu.animationTiming},
