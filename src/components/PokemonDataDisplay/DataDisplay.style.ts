@@ -4,6 +4,8 @@ export const PropertyDisplay = styled.div`
   height: fit-content;
   display: flex;
   flex-direction: row;
+  color: ${(props) => props.theme.fontColor};
+
   /* padding-bottom: 10px; */
   flex-wrap: wrap;
   align-items: center;
@@ -30,6 +32,7 @@ export const hoverDisplayCss = css`
     position: absolute;
     text-align: start;
     border: 2px solid ${(props) => props.theme.fontColor};
+    color: ${(props) => props.theme.fontColor};
     background: ${(props) => props.theme.backgroundColor};
     border-radius: ${(props) => props.theme.buttonBorderRadius};
     padding: ${(props) => props.theme.padding.medium};
@@ -39,8 +42,9 @@ export const hoverDisplayCss = css`
 export const PropertyBtn = styled.div`
   ${hoverDisplayCss}
   ${propertyCss}
-  border: none;
-  background: lightgrey;
+  border: 2px solid  ${(props) => props.theme.fontColor};
+  background-color: ${(props) => props.theme.backgroundColor};
+  color: ${(props) => props.theme.fontColor};
 `;
 export const PokemonName = styled.a`
   align-self: center;
@@ -48,6 +52,7 @@ export const PokemonName = styled.a`
   grid-column: 1/2;
   font-size: 1.8rem;
   max-width: 11rem;
+  color: ${(props) => props.theme.fontColor};
   /* padding-bottom: 0.2rem; */
   overflow: hidden;
 `;
