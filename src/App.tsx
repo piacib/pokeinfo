@@ -1,41 +1,30 @@
 import React, { useEffect, useRef, useState } from "react";
 import { TypeWriterContainer } from "./TypeWriterContainer.style";
-import { AppDisplay, BattleButton, Button, Header } from "./App.style";
+import { AppDisplay, BattleButton, Button, Header, Spacer } from "./App.style";
 import { TeamDisplay } from "./components/TeamDisplay/TeamDisplay";
 import Home from "./components/Home/Home";
 import { UrlForm } from "./components/Home/Home.style";
-import { keepTheme } from "./components/ModeToggle/theme";
 import ModeToggle from "./components/ModeToggle/ModeToggle";
 import OptionsMenu from "./components/OptionsMenu/OptionsMenu";
 import { ThemeProvider } from "styled-components";
-import { theme, darkMode } from "./theme";
+import { themeObjGenerator } from "./theme";
 import { GlobalStyles } from "./GlobalStyles";
-const themeObj = theme;
+import { useLightMode } from "./hooks/useLightMode";
 export interface RoomIdProp {
   /** room-battle-${string}-${number} */
   roomId: string;
 }
+
 const App: React.FC = () => {
   const [opponentsTeam, setOpponentsTeam] = useState<boolean>(true);
   const [battleRoomId, setBattleRoomId] = useState("");
   const [isInExtension, setIsInExtension] = useState(false);
   const [displayUrlInput, setDisplayUrlInput] = useState(false);
   const previousBattleRoomId = useRef("");
-  const [lightMode, setLightMode] = useState("light");
+  const [lightMode, setLightMode] = useLightMode();
   // useEffect(() => {
   //   previousBattleRoomId.current = battleRoomId;
   // }, [battleRoomId]);
-  useEffect(() => {
-    const localTheme = localStorage.getItem("theme");
-    if (localTheme) {
-      if (localTheme.includes("dark")) {
-        setLightMode("dark");
-      }
-    }
-  }, []);
-  useEffect(() => {
-    keepTheme();
-  });
   useEffect(() => {
     if (window.location.search) {
       const regMatch = window.location.search.match(/\?battleId=(.*)/);
@@ -60,34 +49,35 @@ const App: React.FC = () => {
     setBattleRoomId(battleRoomIdTemp);
     console.log(battleRoomIdTemp);
   };
-  console.log("prev", previousBattleRoomId, battleRoomId);
-  const themeObjGenerator = (lightMode: string) => {
-    return lightMode === "light" ? theme : { ...theme, ...darkMode };
-  };
+
   return (
     <>
       <GlobalStyles theme={themeObjGenerator(lightMode)} />
       <ThemeProvider theme={themeObjGenerator(lightMode)}>
         {battleRoomId ? (
           <>
+            {isInExtension && <Spacer />}
+
             <Header>
-              <OptionsMenu>
-                {!isInExtension && (
+              {!isInExtension ? (
+                <OptionsMenu>
                   <BattleButton
                     onClick={() => setDisplayUrlInput(!displayUrlInput)}
                   >
                     Enter new battle
                   </BattleButton>
-                )}
-                {displayUrlInput && (
-                  <UrlForm onSubmit={(e) => handleSubmit(e)}>
-                    <label htmlFor="url">Enter Url:</label>
-                    <input type="text" id="url" name="url" />
-                    <input type="submit" value="Submit" />
-                  </UrlForm>
-                )}
+                  {displayUrlInput && (
+                    <UrlForm onSubmit={(e) => handleSubmit(e)}>
+                      <label htmlFor="url">Enter Url:</label>
+                      <input type="text" id="url" name="url" />
+                      <input type="submit" value="Submit" />
+                    </UrlForm>
+                  )}
+                  <ModeToggle togClass={lightMode} setTogClass={setLightMode} />
+                </OptionsMenu>
+              ) : (
                 <ModeToggle togClass={lightMode} setTogClass={setLightMode} />
-              </OptionsMenu>
+              )}
               <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
                 Switch Team
               </Button>
