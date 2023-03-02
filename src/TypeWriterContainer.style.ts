@@ -24,6 +24,7 @@ export const TypeWriterContainer = styled.div`
   grid-column: 1/2;
   margin: auto;
   * {
+    color: ${(props) => props.theme.fontColor};
     font-family: "VT323";
     height: 1em;
     font-size: 4.5rem;
