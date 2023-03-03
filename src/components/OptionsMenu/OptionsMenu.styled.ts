@@ -21,7 +21,8 @@ export const SideBar = styled.aside`
   );
   background-color: ${(props) => props.theme.burgerMenu.foreground};
   color: ${(props) => props.theme.burgerMenu.background};
-  max-width: 10rem;
+  width: 10rem;
+
   min-height: 100vh;
 `;
 export const HamburgerLabel = styled.label`
@@ -106,4 +107,8 @@ export const HamburgerLabel = styled.label`
 `;
 export const SidebarList = styled.ul`
   list-style: none;
+  padding: 0;
+`;
+export const UrlLabel = styled.label`
+  font-size: 1.2rem;
 `;
