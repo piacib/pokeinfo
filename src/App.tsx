@@ -15,7 +15,26 @@ export interface RoomIdProp {
   /** room-battle-${string}-${number} */
   roomId: string;
 }
-
+interface Props {
+  handleSubmit: (e: React.SyntheticEvent) => void;
+}
+const UrlSearch = ({ handleSubmit }: Props) => {
+  const [displayUrlInput, setDisplayUrlInput] = useState(false);
+  return (
+    <>
+      <BattleButton onClick={() => setDisplayUrlInput(!displayUrlInput)}>
+        Enter new battle
+      </BattleButton>
+      {displayUrlInput && (
+        <UrlForm onSubmit={(e) => handleSubmit(e)}>
+          <UrlLabel htmlFor="url">Enter Url:</UrlLabel>
+          <TextInput type="text" id="url" name="url" />
+          <input type="submit" value="Submit" />
+        </UrlForm>
+      )}
+    </>
+  );
+};
 const App: React.FC = () => {
   const [opponentsTeam, setOpponentsTeam] = useState<boolean>(true);
   const [battleRoomId, setBattleRoomId] = useState("");
@@ -61,18 +80,7 @@ const App: React.FC = () => {
             <Header>
               {!isInExtension ? (
                 <OptionsMenu>
-                  <BattleButton
-                    onClick={() => setDisplayUrlInput(!displayUrlInput)}
-                  >
-                    Enter new battle
-                  </BattleButton>
-                  {displayUrlInput && (
-                    <UrlForm onSubmit={(e) => handleSubmit(e)}>
-                      <UrlLabel htmlFor="url">Enter Url:</UrlLabel>
-                      <TextInput type="text" id="url" name="url" />
-                      <input type="submit" value="Submit" />
-                    </UrlForm>
-                  )}
+                  <UrlSearch handleSubmit={handleSubmit} />
                   <ModeToggle togClass={lightMode} setTogClass={setLightMode} />
                 </OptionsMenu>
               ) : (
