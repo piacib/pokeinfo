@@ -1,26 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
-import { TypeWriterContainer } from "./TypeWriterContainer.style";
-import { AppDisplay, BattleButton, Button, Header, Spacer } from "./App.style";
-import { TeamDisplay } from "./components/TeamDisplay/TeamDisplay";
 import Home from "./components/Home/Home";
-import { TextInput, UrlForm } from "./components/Home/Home.style";
 import ModeToggle from "./components/ModeToggle/ModeToggle";
 import OptionsMenu from "./components/OptionsMenu/OptionsMenu";
+import UrlSearch from "./components/UrlSearch/UrlSearch";
+import TeamDisplay from "./components/TeamDisplay/TeamDisplay";
+import { TypeWriterContainer } from "./TypeWriterContainer.style";
+import { AppDisplay, Button, Header, Spacer } from "./App.style";
 import { ThemeProvider } from "styled-components";
 import { themeObjGenerator } from "./theme";
 import { GlobalStyles } from "./GlobalStyles";
 import { useLightMode } from "./hooks/useLightMode";
-import { UrlLabel } from "./components/OptionsMenu/OptionsMenu.styled";
-export interface RoomIdProp {
-  /** room-battle-${string}-${number} */
-  roomId: string;
-}
+
 
 const App: React.FC = () => {
   const [opponentsTeam, setOpponentsTeam] = useState<boolean>(true);
   const [battleRoomId, setBattleRoomId] = useState("");
   const [isInExtension, setIsInExtension] = useState(false);
-  const [displayUrlInput, setDisplayUrlInput] = useState(false);
   const previousBattleRoomId = useRef("");
   const [lightMode, setLightMode] = useLightMode();
   // useEffect(() => {
@@ -61,18 +56,7 @@ const App: React.FC = () => {
             <Header>
               {!isInExtension ? (
                 <OptionsMenu>
-                  <BattleButton
-                    onClick={() => setDisplayUrlInput(!displayUrlInput)}
-                  >
-                    Enter new battle
-                  </BattleButton>
-                  {displayUrlInput && (
-                    <UrlForm onSubmit={(e) => handleSubmit(e)}>
-                      <UrlLabel htmlFor="url">Enter Url:</UrlLabel>
-                      <TextInput type="text" id="url" name="url" />
-                      <input type="submit" value="Submit" />
-                    </UrlForm>
-                  )}
+                  <UrlSearch handleSubmit={handleSubmit} />
                   <ModeToggle togClass={lightMode} setTogClass={setLightMode} />
                 </OptionsMenu>
               ) : (

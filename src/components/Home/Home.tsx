@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { devRoomId } from "../../developmentMode";
 import { TypeWriterContainer } from "../../TypeWriterContainer.style";
+import { Form } from "../UrlSearch/UrlSearch";
+import { UrlForm } from "../UrlSearch/UrlSearch.style";
 import {
   ButtonContainer,
   HomeContainer,
-  UrlForm,
   WelcomeHeader,
   WelcomeText,
 } from "./Home.style";
@@ -40,13 +41,7 @@ const Home: React.FC<Props> = ({ setBattleRoomId }) => {
           Url
         </button>
       </ButtonContainer>
-      {displayUrlInput && (
-        <UrlForm onSubmit={(e) => handleSubmit(e)}>
-          <label htmlFor="url">Enter Url:</label>
-          <input type="text" id="url" name="url" />
-          <input type="submit" value="Submit" />
-        </UrlForm>
-      )}
+      {displayUrlInput && <Form handleSubmit={handleSubmit} />}
     </HomeContainer>
   );
 };

@@ -18,7 +18,7 @@ interface TeamProps {
   previousBattleRoomId: string;
 }
 // fetches latest pokemon data from auto updating github dataset
-export const TeamDisplay = ({
+const TeamDisplay = ({
   opponentsTeam,
   battleRoomId,
   previousBattleRoomId,
@@ -61,3 +61,4 @@ export const TeamDisplay = ({
     </>
   );
 };
+export default TeamDisplay

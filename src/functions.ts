@@ -16,15 +16,6 @@ const randomDataBattleTypes = [
   "gen1randombattle",
 ];
 
-export const getBattleType = (url: string) => {
-  const battleType = url.match(/(?<=-).+?(?=-)/g);
-  if (!battleType) {
-    return "No Battle Type Found";
-  }
-  return randomDataBattleTypes.includes(battleType[0])
-    ? battleType[0]
-    : "Not a random battle";
-};
 export const isRandomBattle = (url: string): isRandomBattleReturn => {
   const battleType = url.match(/(?<=-).+?(?=-)/g);
   if (!battleType) {
@@ -35,9 +26,7 @@ export const isRandomBattle = (url: string): isRandomBattleReturn => {
 export const dexSearchPrepper = (str: string): string => {
   return str.toLowerCase().replace(/\W+/g, "");
 };
-export const isURLShowdown = (url: string) => {
-  return url.includes("play.pokemonshowdown.com");
-};
+
 const moveFetchPrepper = (move: string) => {
   return move.replace(" ", "-").toLowerCase();
 };
@@ -92,18 +81,6 @@ export const typeColorConverter: TypeColorObjType = {
   Dark: "rgb(112, 88, 72)",
   Fairy: "rgb(238, 153, 172)",
   "???": "rgb(117, 117, 117)",
-};
-export const observerConfig = {
-  childList: true,
-  subtree: true,
-};
-export const getBattleRoomID = (pathname: string) => {
-  // takes in string returns what follows the last "/"
-  const regexMatch = pathname.match(/(?<=-)(?:.(?!-))+$/);
-  if (regexMatch && regexMatch[0]) {
-    return regexMatch[0];
-  }
-  return "";
 };
 
 const Types = Dex.data.Types;

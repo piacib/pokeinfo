@@ -109,6 +109,4 @@ export const SidebarList = styled.ul`
   list-style: none;
   padding: 0;
 `;
-export const UrlLabel = styled.label`
-  font-size: 1.2rem;
-`;
+

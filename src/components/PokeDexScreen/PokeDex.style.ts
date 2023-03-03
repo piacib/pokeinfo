@@ -27,7 +27,7 @@ export const InnerContainer = styled.div`
   margin: 5px 0;
   padding: 2px;
 `;
-export const RedCircle = styled.div`
+const RedCircle = styled.div`
   ${Border}
   border-radius: 50%;
   background: ${(props) => props.theme.color.pokedexRed};
