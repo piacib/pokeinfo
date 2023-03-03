@@ -22,7 +22,7 @@ const blinkCaret = keyframes`
 export const TypeWriterContainer = styled.div`
   @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
   grid-column: 1/2;
-  margin: auto;
+  margin: 0 auto;
   * {
     color: ${(props) => props.theme.fontColor};
     font-family: "VT323";
