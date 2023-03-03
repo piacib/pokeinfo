@@ -8,9 +8,6 @@ export const Button = styled.button`
   white-space: 0;
   border-radius: 20px;
   background-color: ${(props) => props.theme.color.pokedexRed};
-  position: sticky;
-  top: 0;
-  align-self: flex-end;
   /* width: 7rem; */
 `;
 export const BattleButton = styled.button`
@@ -25,7 +22,7 @@ interface RefProp extends React.FC {
 }
 export const AppDisplay = styled.div<RefProp>`
   min-width: 100px;
-  padding: 2rem 0.8rem;
+  padding: 1rem 0.8rem;
   display: grid;
   grid-gap: 15px;
   @media (max-width: 600px) {
@@ -50,9 +47,9 @@ export const PillDesign = css`
 export const Header = styled.div`
   display: flex;
   flex-direction: row;
-  /* justify-content: flex-end; */
+  align-items: center;
   justify-content: space-between;
-  margin: 10px;
+  margin: 10px 10px 0 10px;
 `;
 export const Spacer = styled.div`
   width: 100%;
