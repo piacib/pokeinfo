@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { ToggleContainer } from "./ModeToggle.style";
 import { setTheme } from "./theme";
 import "./toggle.css";
 // to adjust toggle size set font-size
@@ -28,7 +29,7 @@ const Toggle: React.FC<Props> = ({ togClass, setTogClass }) => {
     }
   };
   return (
-    <div className="container_toggle">
+    <ToggleContainer>
       <input
         type="checkbox"
         id="toggle"
@@ -39,7 +40,7 @@ const Toggle: React.FC<Props> = ({ togClass, setTogClass }) => {
       <label htmlFor="toggle" className="toggle-label">
         <span className="toggle-label-background"></span>
       </label>
-    </div>
+    </ToggleContainer>
   );
 };
 
