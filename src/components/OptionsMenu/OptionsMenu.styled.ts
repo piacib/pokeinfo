@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ToggleContainer } from "../ModeToggle/ModeToggle.style";
 
 export const SideBar = styled.aside`
   --hamburgerHeight: ${(props) =>
@@ -108,5 +109,9 @@ export const HamburgerLabel = styled.label`
 export const SidebarList = styled.ul`
   list-style: none;
   padding: 0;
+  ${ToggleContainer} {
+    position: absolute;
+    top: 0;
+    right: 5px;
+  }
 `;
-
