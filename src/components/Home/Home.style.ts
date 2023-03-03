@@ -5,7 +5,7 @@ export const HomeContainer = styled.div`
   flex-direction: column;
   align-content: center;
   justify-content: center;
-  margin: 0.5rem;
+  height: 100%;
   color: ${(props) => props.theme.fontColor};
   background-color: ${(props) => props.theme.backgroundColor};
 `;
@@ -27,6 +27,7 @@ export const UrlForm = styled.form`
   align-items: center;
   display: flex;
   justify-content: center;
+  flex-direction: column;
 `;
 export const WelcomeHeader = styled.h1`
   font-size: 4.5rem;
@@ -36,4 +37,8 @@ export const WelcomeHeader = styled.h1`
   @media (max-width: 24rem) {
     font-size: 2rem;
   }
+`;
+export const TextInput = styled.input`
+  width: 100%;
+  margin: 5px 0;
 `;
