@@ -3,13 +3,14 @@ import { TypeWriterContainer } from "./TypeWriterContainer.style";
 import { AppDisplay, BattleButton, Button, Header, Spacer } from "./App.style";
 import { TeamDisplay } from "./components/TeamDisplay/TeamDisplay";
 import Home from "./components/Home/Home";
-import { UrlForm } from "./components/Home/Home.style";
+import { TextInput, UrlForm } from "./components/Home/Home.style";
 import ModeToggle from "./components/ModeToggle/ModeToggle";
 import OptionsMenu from "./components/OptionsMenu/OptionsMenu";
 import { ThemeProvider } from "styled-components";
 import { themeObjGenerator } from "./theme";
 import { GlobalStyles } from "./GlobalStyles";
 import { useLightMode } from "./hooks/useLightMode";
+import { UrlLabel } from "./components/OptionsMenu/OptionsMenu.styled";
 export interface RoomIdProp {
   /** room-battle-${string}-${number} */
   roomId: string;
@@ -68,8 +69,8 @@ const App: React.FC = () => {
                   </BattleButton>
                   {displayUrlInput && (
                     <UrlForm onSubmit={(e) => handleSubmit(e)}>
-                      <label htmlFor="url">Enter Url:</label>
-                      <input type="text" id="url" name="url" />
+                      <UrlLabel htmlFor="url">Enter Url:</UrlLabel>
+                      <TextInput type="text" id="url" name="url" />
                       <input type="submit" value="Submit" />
                     </UrlForm>
                   )}
