@@ -58,7 +58,6 @@ const App: React.FC = () => {
         {battleRoomId ? (
           <>
             {isInExtension && <Spacer />}
-
             <Header>
               {!isInExtension ? (
                 <OptionsMenu>
@@ -95,9 +94,7 @@ const App: React.FC = () => {
             </AppDisplay>
           </>
         ) : (
-          <>
-            <Home setBattleRoomId={setBattleRoomId} />
-          </>
+          <Home setBattleRoomId={setBattleRoomId} />
         )}
       </ThemeProvider>
     </>
