@@ -51,10 +51,11 @@ export const PokemonName = styled.a`
   text-transform: capitalize;
   grid-column: 1/2;
   font-size: 1.8rem;
+  line-height: 1.8rem;
   max-width: 11rem;
   color: ${(props) => props.theme.fontColor};
-  /* padding-bottom: 0.2rem; */
-  overflow: hidden;
+
+  text-overflow: ellipsis;
 `;
 export const PropertiesContainer = styled.div`
   margin: 5px 0 0 0;
