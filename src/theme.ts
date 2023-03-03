@@ -2,7 +2,7 @@ import { DefaultTheme } from "styled-components";
 import { ModeObj } from "./styled";
 
 // dark mode object gets pread
-export const darkMode: ModeObj = {
+const darkMode: ModeObj = {
   backgroundColor: "#333",
   fontColor: "white",
   pokedexColor: "white",

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { HamburgerLabel, SideBar, SidebarList } from "./OptionsMenu.styled";
 // import "./options.css";
 interface Props {
   children: React.ReactNode[];
 }
-export const OptionMenu: React.FC<Props> = ({ children }) => {
+const OptionsMenu: React.FC<Props> = ({ children }) => {
   return (
     <>
       <HamburgerLabel>
@@ -20,4 +20,4 @@ export const OptionMenu: React.FC<Props> = ({ children }) => {
     </>
   );
 };
-export default OptionMenu;
+export default OptionsMenu;

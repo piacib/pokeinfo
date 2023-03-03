@@ -18,9 +18,8 @@ interface Stats {
   spd: number;
   spe: number;
 }
-export type keyOfStats = keyof Stats;
 interface obj {
-  [keyOfStats: string]: string;
+  [k: string]: string;
 }
 const stateNameObj: obj = {
   hp: "HP",
