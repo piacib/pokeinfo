@@ -10,10 +10,7 @@ import { ThemeProvider } from "styled-components";
 import { themeObjGenerator } from "./theme";
 import { GlobalStyles } from "./GlobalStyles";
 import { useLightMode } from "./hooks/useLightMode";
-export interface RoomIdProp {
-  /** room-battle-${string}-${number} */
-  roomId: string;
-}
+
 
 const App: React.FC = () => {
   const [opponentsTeam, setOpponentsTeam] = useState<boolean>(true);
