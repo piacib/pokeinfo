@@ -11,7 +11,6 @@ import { themeObjGenerator } from "./theme";
 import { GlobalStyles } from "./GlobalStyles";
 import { useLightMode } from "./hooks/useLightMode";
 
-
 const App: React.FC = () => {
   const [opponentsTeam, setOpponentsTeam] = useState<boolean>(true);
   const [battleRoomId, setBattleRoomId] = useState("");
@@ -55,16 +54,26 @@ const App: React.FC = () => {
             {isInExtension && <Spacer />}
             <Header>
               {!isInExtension ? (
-                <OptionsMenu>
-                  <UrlSearch handleSubmit={handleSubmit} />
-                  <ModeToggle togClass={lightMode} setTogClass={setLightMode} />
-                </OptionsMenu>
+                <>
+                  <OptionsMenu>
+                    <ModeToggle
+                      togClass={lightMode}
+                      setTogClass={setLightMode}
+                    />
+                    <UrlSearch handleSubmit={handleSubmit} />
+                  </OptionsMenu>
+                  <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
+                    Switch Team
+                  </Button>
+                </>
               ) : (
-                <ModeToggle togClass={lightMode} setTogClass={setLightMode} />
+                <>
+                  <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
+                    Switch Team
+                  </Button>
+                  <ModeToggle togClass={lightMode} setTogClass={setLightMode} />
+                </>
               )}
-              <Button onClick={() => setOpponentsTeam(!opponentsTeam)}>
-                Switch Team
-              </Button>
             </Header>
             <AppDisplay>
               <TypeWriterContainer>
