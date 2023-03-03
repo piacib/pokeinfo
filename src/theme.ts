@@ -1,13 +1,23 @@
 import { DefaultTheme } from "styled-components";
+import { ModeObj } from "./styled";
 
-const theme: DefaultTheme = {
+// dark mode object gets pread
+const darkMode: ModeObj = {
+  backgroundColor: "#333",
+  fontColor: "white",
+  pokedexColor: "white",
+};
+
+export const theme: DefaultTheme = {
   media: {
     smallScreen: "600px",
   },
   outerBorderWidth: "5px",
   outerBorderColor: "solid",
   outerBorderStyle: "black",
-  backgroundColor: "#c5bfbf",
+  backgroundColor: "#eef2f5",
+  pokedexColor: "#333",
+  fontColor: "black",
   secondaryBorderMargin: "0.25rem",
   padding: {
     medium: ".25rem",
@@ -39,5 +49,18 @@ const theme: DefaultTheme = {
     pokedexRed: "rgb(253,0,1)",
   },
   buttonBorderRadius: "10px",
+  burgerMenu: {
+    measureType: "px",
+    barWidth: 60,
+    barHeight: 8,
+    hamburgerGap: 6,
+    foreground: "#333",
+    background: "white",
+    hamburgerMargin: 8,
+    animationTiming: "200ms ease-in-out",
+    // hamburgerHeight: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
+  },
 };
-export { theme };
+export const themeObjGenerator = (lightMode: string) => {
+  return lightMode === "light" ? theme : { ...theme, ...darkMode };
+};

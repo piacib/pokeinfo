@@ -22,8 +22,9 @@ const blinkCaret = keyframes`
 export const TypeWriterContainer = styled.div`
   @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
   grid-column: 1/2;
-  margin: auto;
+  margin: 0 auto;
   * {
+    color: ${(props) => props.theme.fontColor};
     font-family: "VT323";
     height: 1em;
     font-size: 4.5rem;
@@ -35,5 +36,8 @@ export const TypeWriterContainer = styled.div`
     /* letter-spacing: 0.15em; Adjust as needed */
     animation: ${typing} 3.5s steps(40, end),
       ${blinkCaret} 1.5s step-end infinite;
+    @media (prefers-reduced-motion) {
+      animation: ${blinkCaret} 1.5s step-end infinite;
+    }
   }
 `;

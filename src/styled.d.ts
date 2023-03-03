@@ -1,9 +1,14 @@
 import { TypeName } from "./types";
 // import original module declarations
 import "styled-components";
+interface ModeObj {
+  pokedexColor: string;
+  backgroundColor: string;
+  fontColor: string;
+}
 // and extend them!
 declare module "styled-components" {
-  export interface DefaultTheme {
+  export interface DefaultTheme extends ModeObj {
     media: {
       smallScreen: string;
     };
@@ -11,7 +16,6 @@ declare module "styled-components" {
     outerBorderColor: string;
     outerBorderStyle: string;
     secondaryBorderMargin: string;
-    backgroundColor: string;
     padding: {
       medium: string;
       small: string;
@@ -25,5 +29,15 @@ declare module "styled-components" {
       pokedexRed: string;
     };
     buttonBorderRadius: string;
+    burgerMenu: {
+      measureType: string;
+      barWidth: number;
+      barHeight: number;
+      hamburgerGap: number;
+      foreground: string;
+      background: string;
+      hamburgerMargin: number;
+      animationTiming: string;
+    };
   }
 }

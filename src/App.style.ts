@@ -8,15 +8,13 @@ export const Button = styled.button`
   white-space: 0;
   border-radius: 20px;
   background-color: ${(props) => props.theme.color.pokedexRed};
-  position: sticky;
-  top: 0;
-  align-self: flex-end;
   /* width: 7rem; */
 `;
 export const BattleButton = styled.button`
   border-radius: 20px;
   width: fit-content;
-  position: absolute;
+  /* position: absolute; */
+
   top: 0;
 `;
 interface RefProp extends React.FC {
@@ -24,15 +22,15 @@ interface RefProp extends React.FC {
 }
 export const AppDisplay = styled.div<RefProp>`
   min-width: 100px;
-  padding: 2rem 0.8rem;
+  padding: 1rem 0.8rem;
   display: grid;
   grid-gap: 15px;
   @media (max-width: 600px) {
     display: flex;
     flex-direction: column;
   }
-  min-height: 250px;
-  font-size: 12px;
+  background-color: ${(props) => props.theme.backgroundColor};
+  /* color: ${(props) => props.theme.fontColor}; */
 `;
 export const TypeColorBackground = css<TypeColorInterface>`
   background-color: ${(props) => typeColorConverter[props.background]};
@@ -45,4 +43,15 @@ export const PillDesign = css`
   padding: 0.1rem 0.25rem;
   border-radius: 10px;
   font-size: 1rem;
+`;
+export const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 10px 0 10px;
+`;
+export const Spacer = styled.div`
+  width: 100%;
+  height: 40px;
 `;

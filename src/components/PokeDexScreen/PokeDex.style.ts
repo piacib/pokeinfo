@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 const Border = css`
-  border: 1px solid black;
+  border: 1px solid ${(props) => props.theme.pokedexColor};
 `;
 export const ContainerTop = styled.div`
   display: flex;
@@ -9,7 +9,7 @@ export const ContainerTop = styled.div`
   justify-content: space-between;
 `;
 export const Container = styled.div`
-  border: 3px solid black;
+  border: 3px solid ${(props) => props.theme.pokedexColor};
   border-radius: 0 0 0 15px;
   grid-column: 1/2;
   display: flex;
@@ -21,13 +21,13 @@ export const Container = styled.div`
   height: 350px;
 `;
 export const InnerContainer = styled.div`
-  border: 2px solid black;
+  border: 2px solid ${(props) => props.theme.pokedexColor};
   border-radius: 5px;
   width: 100%;
   margin: 5px 0;
   padding: 2px;
 `;
-export const RedCircle = styled.div`
+const RedCircle = styled.div`
   ${Border}
   border-radius: 50%;
   background: ${(props) => props.theme.color.pokedexRed};
@@ -55,7 +55,7 @@ export const BarContainer = styled.div`
   * {
     width: 100%;
     height: 3px;
-    background: black;
+    background: ${(props) => props.theme.pokedexColor};
     margin: 2px 0;
   }
 `;

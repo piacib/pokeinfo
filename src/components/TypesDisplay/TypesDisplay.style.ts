@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { TypeColorInterface } from "../../types";
 
 const TypeColoredComponent = styled.div<TypeColorInterface>`
-  background-color: ${(props) => props.theme.color.typeColors[props.background]};
+  background-color: ${(props) =>
+    props.theme.color.typeColors[props.background]};
 `;
 
 export const Type = styled(TypeColoredComponent)`
@@ -19,7 +20,7 @@ export const TypeContainer = styled.div<Props>`
   grid-column: 1;
   display: flex;
   flex-direction: row;
-  align-self: center;
+  align-items: center;
   justify-self: end;
   height: 100%;
   padding: 0 1.2rem;

@@ -4,6 +4,8 @@ export const PropertyDisplay = styled.div`
   height: fit-content;
   display: flex;
   flex-direction: row;
+  color: ${(props) => props.theme.fontColor};
+
   /* padding-bottom: 10px; */
   flex-wrap: wrap;
   align-items: center;
@@ -29,25 +31,31 @@ export const hoverDisplayCss = css`
     display: block;
     position: absolute;
     text-align: start;
-    background: white;
+    border: 2px solid ${(props) => props.theme.fontColor};
+    color: ${(props) => props.theme.fontColor};
+    background: ${(props) => props.theme.backgroundColor};
+    border-radius: ${(props) => props.theme.buttonBorderRadius};
+    padding: ${(props) => props.theme.padding.medium};
     z-index: 2;
-    border: 1px solid black;
   }
 `;
 export const PropertyBtn = styled.div`
   ${hoverDisplayCss}
   ${propertyCss}
-  border: none;
-  background: lightgrey;
+  border: 2px solid  ${(props) => props.theme.fontColor};
+  background-color: ${(props) => props.theme.backgroundColor};
+  color: ${(props) => props.theme.fontColor};
 `;
 export const PokemonName = styled.a`
   align-self: center;
   text-transform: capitalize;
   grid-column: 1/2;
   font-size: 1.8rem;
+  line-height: 1.8rem;
   max-width: 11rem;
-  /* padding-bottom: 0.2rem; */
-  overflow: hidden;
+  color: ${(props) => props.theme.fontColor};
+
+  text-overflow: ellipsis;
 `;
 export const PropertiesContainer = styled.div`
   margin: 5px 0 0 0;
