@@ -22,13 +22,6 @@ export const ButtonContainer = styled.div`
 export const WelcomeText = styled.p`
   text-align: center;
 `;
-export const UrlForm = styled.form`
-  margin: 1rem 0;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-`;
 export const WelcomeHeader = styled.h1`
   font-size: 4.5rem;
   @media (max-width: 35rem) {
@@ -38,7 +31,4 @@ export const WelcomeHeader = styled.h1`
     font-size: 2rem;
   }
 `;
-export const TextInput = styled.input`
-  width: 100%;
-  margin: 5px 0;
-`;
+
