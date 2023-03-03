@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { ToggleContainer } from "./ModeToggle.style";
+import {
+  ToggleCheckbox,
+  ToggleContainer,
+  ToggleLabel,
+  ToggleLabelSpan,
+} from "./ModeToggle.style";
 import { setTheme } from "./theme";
-import "./toggle.css";
+// import "./toggle.css";
 // to adjust toggle size set font-size
 interface Props {
   togClass: string;
@@ -30,16 +35,15 @@ const Toggle: React.FC<Props> = ({ togClass, setTogClass }) => {
   };
   return (
     <ToggleContainer>
-      <input
+      <ToggleCheckbox
         type="checkbox"
         id="toggle"
-        className="toggle-checkbox"
         onChange={handleChange}
         checked={togClass === "light" ? true : false}
       />
-      <label htmlFor="toggle" className="toggle-label">
-        <span className="toggle-label-background"></span>
-      </label>
+      <ToggleLabel htmlFor="toggle">
+        <ToggleLabelSpan></ToggleLabelSpan>
+      </ToggleLabel>
     </ToggleContainer>
   );
 };
