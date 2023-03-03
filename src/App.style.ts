@@ -17,6 +17,7 @@ export const BattleButton = styled.button`
   border-radius: 20px;
   width: fit-content;
   /* position: absolute; */
+
   top: 0;
 `;
 interface RefProp extends React.FC {
