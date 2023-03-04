@@ -22,7 +22,7 @@ const App: React.FC = () => {
   // }, [battleRoomId]);
   useEffect(() => {
     if (window.location.search) {
-      const regMatch = window.location.search.match(/\?battleId=(.*)/);
+      const regMatch = window.location.search.match(/\?battleId=(.*)&/);
       console.log(regMatch);
       if (regMatch) {
         setIsInExtension(true);
