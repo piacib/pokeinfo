@@ -23,7 +23,7 @@ const App: React.FC = () => {
   useEffect(() => {
     if (window.location.search) {
       const regMatch = window.location.search.match(/\?battleId=(.*)&/);
-      console.log(regMatch);
+      // console.log("regmatch", regMatch);
       if (regMatch) {
         setIsInExtension(true);
         setBattleRoomId(regMatch[1]);
@@ -42,9 +42,9 @@ const App: React.FC = () => {
     }
     const battleRoomIdTemp = target.url.value.slice(battleIndex);
     setBattleRoomId(battleRoomIdTemp);
-    console.log(battleRoomIdTemp);
+    // console.log(battleRoomIdTemp);
   };
-
+  // console.log("battleRoomId", battleRoomId);
   return (
     <>
       <GlobalStyles theme={themeObjGenerator(lightMode)} />
