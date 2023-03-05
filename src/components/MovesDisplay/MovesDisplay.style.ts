@@ -5,12 +5,18 @@ import {
   propertyCss,
   PropertyDisplay,
 } from "../PokemonDataDisplay/DataDisplay.style";
-import { PillDesign, TypeColorBackground, TypeColoredComponent } from "../../App.style";
-
+import {
+  PillDesign,
+  TypeColorBackground,
+  TypeColoredComponent,
+} from "../../App.style";
+export const HiddenMoveText = styled(HiddenPropertyText)``;
 export const MoveBtn = styled(TypeColoredComponent)`
+  position: relative;
   ${hoverDisplayCss}
   ${PillDesign}
-  &:hover ${HiddenPropertyText} {
+  &:hover ${HiddenMoveText} {
+    bottom: 2.1rem;
     left: 0;
     min-width: 170px;
     padding: ${(props) => props.theme.padding.medium};

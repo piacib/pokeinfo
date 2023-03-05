@@ -6,6 +6,7 @@ import {
   MoveDescription,
   MoveProperty,
   MovesContainer,
+  HiddenMoveText,
 } from "./MovesDisplay.style";
 import { HiddenPropertyText } from "../PokemonDataDisplay/DataDisplay.style";
 import { MoveData } from "@pkmn/dex-types";
@@ -44,9 +45,9 @@ const MovesDisplay: React.FC<MovesDisplayProps> = ({ movesData }) => {
         move ? (
           <MoveBtn background={move.type} key={move.name}>
             <p>{move.name}</p>
-            <HiddenPropertyText>
+            <HiddenMoveText>
               <MoveInfoPopUp move={move} />
-            </HiddenPropertyText>
+            </HiddenMoveText>
           </MoveBtn>
         ) : (
           <></>
