@@ -12,23 +12,27 @@ import {
 } from "../../developmentMode";
 
 interface TeamProps {
-  opponentsTeam: boolean;
-  teamtoDisplay?: "p1" | "p2";
+  teamToDisplay: "p1" | "p2";
   battleRoomId: string;
   previousBattleRoomId: string;
+  activePkmTrack: boolean;
+  setActivePkmTrack: React.Dispatch<React.SetStateAction<boolean>>;
 }
 // fetches latest pokemon data from auto updating github dataset
 const TeamDisplay = ({
-  opponentsTeam,
   battleRoomId,
   previousBattleRoomId,
+  teamToDisplay = "p2",
+  activePkmTrack = false,
+  setActivePkmTrack,
 }: TeamProps) => {
-  // const [teams] = useTeams(battleRoomId ? battleRoomId : "");
   const [index, setIndex] = useState(0);
-  const [teams, setTeams] = useWebSocket(battleRoomId, previousBattleRoomId);
-  const teamKey = Number(opponentsTeam) ? "p2" : "p1";
-  const pokemon = teams[teamKey][index];
-  console.log("battleRoomId", battleRoomId);
+
+  const [[teams, setTeams], activePokemon] = useWebSocket(
+    battleRoomId,
+    previousBattleRoomId,
+    activePkmTrack,
+  );
   useEffect(() => {
     if (battleRoomId === devRoomId) {
       setTeams({
@@ -38,16 +42,30 @@ const TeamDisplay = ({
     }
     return () => {};
   }, []);
-
+  const activePokemonCheck = (
+    teamToDisplay: "p1" | "p2",
+    activePkmTrack: boolean,
+  ) => {
+    if (!activePkmTrack) {
+      return teams[teamToDisplay][index];
+    }
+    if (activePokemon[teamToDisplay][0]) {
+      return activePokemon[teamToDisplay][0];
+    }
+    return teams[teamToDisplay][index];
+  };
   const battleTypeRegex = battleRoomId.match(/battle-(.*)-/);
   return (
     <>
       <PokeDexScreen>
         <ButtonDisplay>
-          {teams[teamKey]?.map((x, idx) => (
+          {teams[teamToDisplay]?.map((x, idx) => (
             <Button
               key={pokemonNameFilter(x) + idx}
-              onClick={() => setIndex(idx)}
+              onClick={() => {
+                setActivePkmTrack(false);
+                setIndex(idx);
+              }}
               disabled={x === "Not revealed"}
             >
               <SpriteImage name={pokemonNameFilter(x)} />
@@ -55,10 +73,13 @@ const TeamDisplay = ({
           ))}
         </ButtonDisplay>
       </PokeDexScreen>
-      {pokemon && battleTypeRegex && (
-        <PokemonDataDisplay pokemon={pokemon} battleType={battleTypeRegex[1]} />
+      {battleTypeRegex && activePokemonCheck(teamToDisplay, activePkmTrack) && (
+        <PokemonDataDisplay
+          pokemon={activePokemonCheck(teamToDisplay, activePkmTrack)}
+          battleType={battleTypeRegex[1]}
+        />
       )}
     </>
   );
 };
-export default TeamDisplay
+export default TeamDisplay;
