@@ -2,7 +2,14 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { typeColorConverter } from "./functions";
 import { TypeColorInterface } from "./types";
-
+export const ModeToggleContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  h3 {
+    text-transform: capitalize;
+  }
+`;
 export const Button = styled.button`
   border: none;
   white-space: 0;
