@@ -19,20 +19,30 @@ const PokemonDataDisplay = ({
   pokemon,
   battleType,
 }: PokemonDataDisplayProps) => {
-  console.log("PokemonDataDisplay", pokemon);
-  console.log("PokemonDataDisplay", battleType);
   const [typesArray, setTypesArray] = useState<TypeName[] | null>(null);
-
+  const [pkmn, setPkmn] = useState(pokemon);
   useEffect(() => {
-    if (Dex.species.get(pokemon).exists) {
+    // check if pokemon is in Species
+    if (Species[dexSearchPrepper(pokemon)]) {
+      setPkmn(pokemon);
+      return;
+    }
+    // if not in Species check pokemon is in a cosmetic form
+    //  which follows format of ${pokemon}-${cosmetic form}
+    const regExMatch = pokemon.match(/(.*)-/);
+    if (regExMatch && regExMatch[1]) {
+      if (Species[dexSearchPrepper(regExMatch[1])].name) {
+        setPkmn(regExMatch[1]);
+      }
+    }
+  }, [pokemon]);
+  useEffect(() => {
+    if (Dex.species.get(pkmn).exists) {
       let newArr: TypeName[] = [];
-      const TypeArr = Species[dexSearchPrepper(pokemon)]?.types;
+      const TypeArr = Species[dexSearchPrepper(pkmn)]?.types;
       if (!TypeArr) {
-        console.error(
-          "error retrieving type",
-          dexSearchPrepper(pokemon),
-          pokemon,
-        );
+        console.error("error retrieving type", dexSearchPrepper(pkmn), pkmn);
+        setTypesArray(newArr);
         return;
       }
 
@@ -41,49 +51,56 @@ const PokemonDataDisplay = ({
           newArr.push(entry);
         }
       });
+      console.log("typesArr", typesArray);
       setTypesArray(newArr);
+    } else {
+      console.error("pokemon does not exist in dex", pokemon);
     }
-  }, [pokemon]);
+  }, [pkmn]);
+
   const isRandomBattle = battleType.includes("random");
-  const regExPokemonName = pokemon.match(/^([\w]+)-/);
-  const pokemonName = pokemon[0].toUpperCase() + pokemon.slice(1);
+
+  // exit if pokemon doesnt exist (should never happen)
   const pokemonExists = Dex.species.get(pokemon).exists;
+
   return (
     <>
-      {pokemonExists ? (
-        <>
-          <HeaderContainer>
-            <PokemonName
-              href={`https://www.smogon.com/dex/ss/pokemon/${pokemon}/`}
-            >
-              {regExPokemonName ? regExPokemonName[1] : pokemon}
-            </PokemonName>
-            <TypeDisplay types={typesArray} />
-          </HeaderContainer>
-          <DamageDisplay typesArray={typesArray} />
-          <StatsDisplay pokemon={pokemonName} />
+      <>
+        {pokemonExists ? (
           <>
+            <HeaderContainer>
+              <PokemonName
+                href={`https://www.smogon.com/dex/ss/pokemon/${pkmn}/`}
+              >
+                {pokemon}
+              </PokemonName>
+              <TypeDisplay types={typesArray} />
+            </HeaderContainer>
+            <DamageDisplay typesArray={typesArray} />
+            <StatsDisplay pokemon={pkmn} />
             {isRandomBattle ? (
               <RandomBattlePokemonDisplay
-                pokemon={pokemonName}
+                pokemon={pkmn}
                 battleType={battleType}
               />
             ) : (
-              <OtherFormatsDisplay pokemon={pokemonName} />
+              <OtherFormatsDisplay pokemon={pkmn} />
             )}
           </>
-        </>
-      ) : (
-        <>
-          <HeaderContainer>
-            <PokemonName
-              href={`https://www.smogon.com/dex/ss/pokemon/${pokemon}/`}
-            >
-              {regExPokemonName ? regExPokemonName[1] : pokemon}
-            </PokemonName>
-          </HeaderContainer>
-        </>
-      )}
+        ) : (
+          <>
+            <HeaderContainer>
+              <PokemonName
+                href={`https://www.smogon.com/dex/ss/pokemon/${pkmn}/`}
+              >
+                {pokemon}
+              </PokemonName>
+            </HeaderContainer>
+            <h2>It appears the pokemon {pokemon} is not in our database</h2>
+          </>
+        )}
+        <></>
+      </>
     </>
   );
 };
