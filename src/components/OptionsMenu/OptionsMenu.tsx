@@ -12,8 +12,8 @@ const OptionsMenu: React.FC<Props> = ({ children }) => {
       </HamburgerLabel>
       <SideBar>
         <SidebarList>
-          {children.map((child) => (
-            <li>{child}</li>
+          {children.map((child, idx) => (
+            <li key={`${child}${idx}}`}>{child}</li>
           ))}
         </SidebarList>
       </SideBar>
