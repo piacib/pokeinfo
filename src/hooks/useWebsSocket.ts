@@ -70,9 +70,7 @@ export const useWebSocket = (
         return;
       }
     }
-    // console.log(message);
     const swapped = getSwappedPkm(message);
-    // console.log("swapped", swapped);
     if (swapped) {
       const { p1, p2 } = swapped;
       const temp: teamsType = activePokemon;
@@ -83,7 +81,6 @@ export const useWebSocket = (
       if (p2 && temp.p2[0] !== p2[0]) {
         temp.p2 = p2;
       }
-      console.log("active", temp);
       setActivePokemon(temp);
     }
     if (swapped) {

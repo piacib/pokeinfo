@@ -33,7 +33,6 @@ const RandomBattlePokemonDisplay: React.FC<RandomBattlePokemonDisplayProps> = ({
   }
   const movesData = getMoves(randbatsPokemonData[pokemonName]?.moves);
   const rolesData = randbatsPokemonData[pokemonName]?.roles;
-  console.log("pokemon Data", randbatsPokemonData[pokemonName]);
   if (!randbatsPokemonData[pokemonName]) return <></>;
   return (
     <>

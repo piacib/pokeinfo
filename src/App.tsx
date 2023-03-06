@@ -25,13 +25,10 @@ const App: React.FC = () => {
   const [activePkmTrack, setActivePkmTrack] = useState(false);
   const previousBattleRoomId = useRef("");
   const [lightMode, setLightMode] = useLightMode();
-  // useEffect(() => {
-  //   previousBattleRoomId.current = battleRoomId;
-  // }, [battleRoomId]);
+
   useEffect(() => {
     if (window.location.search) {
       const regMatch = window.location.search.match(/\?battleId=(.*)&/);
-      // console.log("regmatch", regMatch);
       if (regMatch) {
         setIsInExtension(true);
         setActivePkmTrack(true);
@@ -51,9 +48,7 @@ const App: React.FC = () => {
     }
     const battleRoomIdTemp = target.url.value.slice(battleIndex);
     setBattleRoomId(battleRoomIdTemp);
-    // console.log(battleRoomIdTemp);
   };
-  // console.log("teamToDisplay", teamToDisplay);
   return (
     <>
       <GlobalStyles theme={themeObjGenerator(lightMode)} />

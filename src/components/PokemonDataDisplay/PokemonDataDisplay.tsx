@@ -51,7 +51,6 @@ const PokemonDataDisplay = ({
           newArr.push(entry);
         }
       });
-      console.log("typesArr", typesArray);
       setTypesArray(newArr);
     } else {
       console.error("pokemon does not exist in dex", pokemon);
