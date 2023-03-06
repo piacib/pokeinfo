@@ -55,6 +55,7 @@ export const ToggleContainer = styled.div`
 `;
 export const ToggleCheckbox = styled.input`
   opacity: 0;
+  position: absolute;
 `;
 export const ToggleLabel = styled.label`
   width: var(--width);
@@ -64,9 +65,7 @@ export const ToggleLabel = styled.label`
   border-radius: 6.25em;
   border: 0.1875em solid var(--indigo-border);
   display: flex;
-  position: absolute;
-  right: 0;
-  top: 5px;
+  position: relative;
   transition: all 350ms ease-in;
   color: var(--indigo-color);
   ${ToggleCheckbox}:checked + & {
