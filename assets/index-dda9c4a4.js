@@ -684,7 +684,6 @@ Error generating stack: `+i.message+`
   position: relative;
   ${mR}
   ${oR}
-  white-space: nowrap;
 
   &:hover ${wR} {
     bottom: 100%;
@@ -700,6 +699,7 @@ Error generating stack: `+i.message+`
   }
   p {
     margin: 0.3rem 0;
+    white-space: nowrap;
   }
   border: none;
 `,aq=N.ul`
