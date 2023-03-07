@@ -26,16 +26,17 @@ const DamageDisplay: React.FC<DamageDisplayProps> = ({ typesArray }) => {
     2: [],
     4: [],
   });
+
   useEffect(() => {
-    if (typesArray) {
+    let effect: EffectObj = {
+      0: [],
+      0.25: [],
+      0.5: [],
+      2: [],
+      4: [],
+    };
+    if (typesArray && typesArray.length) {
       const damageObj: DamageObj = damageCalculator(typesArray);
-      let effect: EffectObj = {
-        0: [],
-        0.25: [],
-        0.5: [],
-        2: [],
-        4: [],
-      };
       TypeNamesArr.forEach((x) => {
         if (damageObj) {
           if (damageObj[x] === 0) {
@@ -51,8 +52,8 @@ const DamageDisplay: React.FC<DamageDisplayProps> = ({ typesArray }) => {
           }
         }
       });
-      setEffectObj(effect);
     }
+    setEffectObj(effect);
   }, [typesArray]);
 
   return (
@@ -60,8 +61,14 @@ const DamageDisplay: React.FC<DamageDisplayProps> = ({ typesArray }) => {
       {effectObj ? (
         <>
           <EffectivnessDisplay damage={"0"} effectivenessArray={effectObj[0]} />
-          <EffectivnessDisplay damage={"¼"} effectivenessArray={effectObj[0.25]} />
-          <EffectivnessDisplay damage={"½"} effectivenessArray={effectObj[0.5]} />
+          <EffectivnessDisplay
+            damage={"¼"}
+            effectivenessArray={effectObj[0.25]}
+          />
+          <EffectivnessDisplay
+            damage={"½"}
+            effectivenessArray={effectObj[0.5]}
+          />
           <EffectivnessDisplay damage={"2"} effectivenessArray={effectObj[2]} />
           <EffectivnessDisplay damage={"4"} effectivenessArray={effectObj[4]} />
         </>

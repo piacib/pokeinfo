@@ -41,17 +41,19 @@ const StatsDisplay: React.FC<StatsDisplayProps> = ({ pokemon }) => {
     spd: 0,
     spe: 0,
   });
+  const pokemonName = pokemon[0].toUpperCase() + pokemon.slice(1);
+
   useEffect(() => {
-    if (Dex.species.get(pokemon).exists) {
-      setStats(Dex.species.get(pokemon).baseStats);
+    if (Dex.species.get(pokemonName).exists) {
+      setStats(Dex.species.get(pokemonName).baseStats);
     }
-  }, [pokemon]);
+  }, [pokemonName]);
 
   return (
     <StatsContainer>
       <StatsHead>
         <tr>
-          <h2>Stats</h2>
+          <th colSpan={2}>Stats</th>
         </tr>
       </StatsHead>
       <tbody>

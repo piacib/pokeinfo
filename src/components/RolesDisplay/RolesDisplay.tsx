@@ -40,7 +40,9 @@ const RolesDisplay: React.FC<RolesDisplayProps> = ({
             <PropertyDisplay>
               <h3>TeraTypes:</h3>
               {pokemonData[role].teraTypes.map((x) => (
-                <TypeBox background={x}>{x}</TypeBox>
+                <TypeBox key={x} background={x}>
+                  {x}
+                </TypeBox>
               ))}
             </PropertyDisplay>
             <AbilitiesDisplay abilities={pokemonData[role].abilities} />

@@ -37,7 +37,6 @@ interface MovesDisplayProps {
 }
 /**  movesData: MoveData[]  @pkmn/dex-types */
 const MovesDisplay: React.FC<MovesDisplayProps> = ({ movesData }) => {
-  // console.log("moves dis", movesData);
   return (
     <MovesContainer>
       <h3>Moves:</h3>

@@ -7,10 +7,14 @@ interface OtherFormatsDisplayProps {
 }
 
 const OtherFormatsDisplay = ({ pokemon }: OtherFormatsDisplayProps) => {
+  const pokemonName = pokemon[0].toUpperCase() + pokemon.slice(1);
+
   if (pokemon === "Not revealed") {
     return <></>;
   }
-  const abilities = Object.entries(Dex.species.get(pokemon).abilities).map((x) => x[1]);
+  const abilities = Object.entries(Dex.species.get(pokemon).abilities).map(
+    (x) => x[1],
+  );
 
   return <AbilitiesDisplay abilities={abilities} />;
 };

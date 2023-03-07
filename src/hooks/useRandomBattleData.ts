@@ -28,7 +28,6 @@ export const useRandomBattleData = (
   }
   useEffect(() => {
     async function asyncFetchRandomPokemonData() {
-      // console.log(`https://pkmn.github.io/randbats/data/${battleType}.json`);
       const fetchData = await fetch(
         `https://pkmn.github.io/randbats/data/${battleType}.json`,
       );

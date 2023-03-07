@@ -7,15 +7,22 @@ import {
 } from "./websocket.functions";
 type teamsType = { p1: string[]; p2: string[] };
 const showdownWs = "wss://sim3.psim.us/showdown/websocket";
-
+type ReturnType = [
+  [teamsType, React.Dispatch<React.SetStateAction<teamsType>>],
+  teamsType,
+];
 export const useWebSocket = (
   battleRoomId: string,
   previousBattleRoomId?: string | null,
-): [teamsType, React.Dispatch<React.SetStateAction<teamsType>>] => {
+  activePkmTrack = false,
+): ReturnType => {
   const ws = useRef<WebSocket>();
   const [teams, setTeams] = useState<teamsType>({ p1: [], p2: [] });
   const [message, setMessage] = useState("");
-
+  const [activePokemon, setActivePokemon] = useState<teamsType>({
+    p1: [],
+    p2: [],
+  });
   // opens and closes websocket
   useEffect(() => {
     ws.current = new WebSocket(showdownWs);
@@ -63,8 +70,19 @@ export const useWebSocket = (
         return;
       }
     }
-
     const swapped = getSwappedPkm(message);
+    if (swapped) {
+      const { p1, p2 } = swapped;
+      const temp: teamsType = activePokemon;
+
+      if (p1 && temp.p1[0] !== p1[0]) {
+        temp.p1 = p1;
+      }
+      if (p2 && temp.p2[0] !== p2[0]) {
+        temp.p2 = p2;
+      }
+      setActivePokemon(temp);
+    }
     if (swapped) {
       let newTeams = teams;
       if (swapped.p1) {
@@ -84,5 +102,5 @@ export const useWebSocket = (
       setTeams(newTeams);
     }
   }, [message]);
-  return [teams, setTeams];
+  return [[teams, setTeams], activePokemon];
 };
