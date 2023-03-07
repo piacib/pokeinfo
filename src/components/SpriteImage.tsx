@@ -1,5 +1,4 @@
 import React from "react";
-import PokeballSVG from "../media/PokeballSvg";
 import { Sprites } from "@pkmn/img";
 interface SpriteImageProps {
   name: string;
@@ -15,7 +14,6 @@ const SpriteImage: React.FC<SpriteImageProps> = ({
   if (name === "Not revealed") {
     return (
       <span
-        className={"picon"}
         style={{
           transform: "scale(1.5)",
           background:
