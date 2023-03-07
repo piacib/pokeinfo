@@ -11,17 +11,25 @@ import {
   TypeColoredComponent,
 } from "../../App.style";
 export const HiddenMoveText = styled(HiddenPropertyText)``;
+const mediaWidth = "230px";
 export const MoveBtn = styled(TypeColoredComponent)`
   position: relative;
   ${hoverDisplayCss}
   ${PillDesign}
+  @media (max-width: ${mediaWidth}) {
+    position: static;
+  }
   &:hover ${HiddenMoveText} {
     bottom: 2.1rem;
-    left: 0;
+    right: 0;
     min-width: 170px;
     padding: ${(props) => props.theme.padding.medium};
     font-size: 1.1rem;
     margin: 5px 0;
+    @media (max-width: ${mediaWidth}) {
+      min-width: auto;
+      /* right: auto; */
+    }
   }
   p {
     margin: 0.3rem 0;
