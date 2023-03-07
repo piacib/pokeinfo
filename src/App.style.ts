@@ -31,6 +31,7 @@ export const AppDisplay = styled.div<RefProp>`
   min-width: 100px;
   padding: 1rem 0.8rem;
   display: grid;
+  grid-template-columns: 1fr 1fr;
   grid-gap: 15px;
   @media (max-width: 600px) {
     display: flex;
