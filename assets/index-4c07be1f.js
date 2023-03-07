@@ -684,7 +684,8 @@ Error generating stack: `+i.message+`
   position: relative;
   ${mR}
   ${oR}
-  
+  white-space: nowrap;
+
   &:hover ${wR} {
     bottom: 100%;
     right: 0;
