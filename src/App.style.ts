@@ -12,10 +12,11 @@ export const ModeToggleContainer = styled.div`
 `;
 export const Button = styled.button`
   border: none;
-  white-space: 0;
+  white-space: nowrap;
   border-radius: 20px;
   background-color: ${(props) => props.theme.color.pokedexRed};
   /* width: 7rem; */
+  font-size: 0.8rem;
 `;
 export const BattleButton = styled.button`
   border-radius: 20px;
