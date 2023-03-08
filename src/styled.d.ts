@@ -11,6 +11,7 @@ declare module "styled-components" {
   export interface DefaultTheme extends ModeObj {
     media: {
       smallScreen: string;
+      extraSmallScreen: string;
     };
     outerBorderWidth: string;
     outerBorderColor: string;
@@ -38,6 +39,11 @@ declare module "styled-components" {
       background: string;
       hamburgerMargin: number;
       animationTiming: string;
+      extraSmallScreen: {
+        barWidth: number;
+        barHeight: number;
+        hamburgerGap: number;
+      };
     };
   }
 }
