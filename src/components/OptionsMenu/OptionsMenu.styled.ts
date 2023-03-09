@@ -34,6 +34,12 @@ export const HamburgerLabel = styled.label`
   --x-width: calc(var(--hamburgerHeight) * 1.41421356237);
   --foreground: ${(props) => props.theme.burgerMenu.foreground};
   --background: ${(props) => props.theme.burgerMenu.background};
+  @media (max-width: ${(props) => props.theme.media.extraSmallScreen}) {
+    --hamburgerHeight: ${(props) =>
+      props.theme.burgerMenu.extraSmallScreen.barHeight * 3 +
+      props.theme.burgerMenu.extraSmallScreen.hamburgerGap * 2 +
+      props.theme.burgerMenu.measureType};
+  }
   display: flex;
   flex-direction: column;
   gap: ${(props) =>
@@ -68,6 +74,14 @@ export const HamburgerLabel = styled.label`
       rotate ${(props) => props.theme.burgerMenu.animationTiming},
       translate ${(props) => props.theme.burgerMenu.animationTiming},
       background-color ${(props) => props.theme.burgerMenu.animationTiming};
+    @media (max-width: ${(props) => props.theme.media.extraSmallScreen}) {
+      width: ${(props) =>
+        props.theme.burgerMenu.extraSmallScreen.barWidth +
+        props.theme.burgerMenu.measureType};
+      height: ${(props) =>
+        props.theme.burgerMenu.extraSmallScreen.barHeight +
+        props.theme.burgerMenu.measureType};
+    }
   }
   input {
     appearance: none;
@@ -104,6 +118,33 @@ export const HamburgerLabel = styled.label`
   }
   :has(input:checked) + ${SideBar} {
     translate: 0;
+  }
+  @media (max-width: ${(props) => props.theme.media.extraSmallScreen}) {
+    gap: ${(props) =>
+      props.theme.burgerMenu.extraSmallScreen.hamburgerGap +
+      props.theme.burgerMenu.measureType};
+    :has(input:checked)::after {
+      translate: 0
+        ${(props) =>
+          props.theme.burgerMenu.extraSmallScreen.barHeight / 2 +
+          props.theme.burgerMenu.measureType};
+    }
+    :has(input:checked)::before {
+      translate: 0
+        ${(props) =>
+          props.theme.burgerMenu.extraSmallScreen.barHeight / -2 +
+          props.theme.burgerMenu.measureType};
+    }
+    ::before,
+    ::after,
+    input {
+      width: ${(props) =>
+        props.theme.burgerMenu.extraSmallScreen.barWidth +
+        props.theme.burgerMenu.measureType};
+      height: ${(props) =>
+        props.theme.burgerMenu.extraSmallScreen.barHeight +
+        props.theme.burgerMenu.measureType};
+    }
   }
 `;
 export const SidebarList = styled.ul`

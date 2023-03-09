@@ -11,6 +11,7 @@ const darkMode: ModeObj = {
 export const theme: DefaultTheme = {
   media: {
     smallScreen: "600px",
+    extraSmallScreen: "230px",
   },
   outerBorderWidth: "5px",
   outerBorderColor: "solid",
@@ -58,6 +59,11 @@ export const theme: DefaultTheme = {
     background: "white",
     hamburgerMargin: 8,
     animationTiming: "200ms ease-in-out",
+    extraSmallScreen: {
+      barWidth: 20,
+      barHeight: 4,
+      hamburgerGap: 2,
+    },
     // hamburgerHeight: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
   },
 };

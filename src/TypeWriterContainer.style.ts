@@ -39,5 +39,11 @@ export const TypeWriterContainer = styled.div`
     @media (prefers-reduced-motion) {
       animation: ${blinkCaret} 1.5s step-end infinite;
     }
+    @media (max-width: 370px) {
+      font-size: 3.2rem;
+    }
+    @media (max-width: 270px) {
+      font-size: 36px;
+    }
   }
 `;

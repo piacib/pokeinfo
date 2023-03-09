@@ -1,6 +1,9 @@
 import React from "react";
 import { AbilitiesContainer } from "./Abilities.style";
-import { PropertyBtn, HiddenPropertyText } from "../PokemonDataDisplay/DataDisplay.style";
+import {
+  PropertyBtn,
+  HiddenPropertyText,
+} from "../PokemonDataDisplay/DataDisplay.style";
 import { Dex } from "@pkmn/dex";
 import { dexSearchPrepper } from "../../functions";
 
@@ -9,15 +12,22 @@ interface AbilitiesDisplayProps {
   abilities: string[];
 }
 const AbilitiesDisplay: React.FC<AbilitiesDisplayProps> = ({ abilities }) => {
+  console.log("abilities", abilities);
   return (
     <AbilitiesContainer>
       <h3>Abilities:</h3>
-      {abilities.map((ability) => (
-        <PropertyBtn key={ability}>
-          {ability}
-          <HiddenPropertyText>{Abilities[dexSearchPrepper(ability)]?.shortDesc}</HiddenPropertyText>
-        </PropertyBtn>
-      ))}
+      {abilities && (
+        <>
+          {abilities.map((ability) => (
+            <PropertyBtn key={ability}>
+              {ability}
+              <HiddenPropertyText>
+                {Abilities[dexSearchPrepper(ability)]?.shortDesc}
+              </HiddenPropertyText>
+            </PropertyBtn>
+          ))}
+        </>
+      )}
     </AbilitiesContainer>
   );
 };

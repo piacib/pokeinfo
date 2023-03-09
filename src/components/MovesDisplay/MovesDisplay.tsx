@@ -19,15 +19,27 @@ const MoveInfoPopUp: React.FC<MovesProps> = ({ move }) => {
       <MoveDescription>{move.shortDesc}</MoveDescription>
       <MoveType background={move.type}>{move.type}</MoveType>
       {typeof move.accuracy === "number" && (
-        <MoveProperty>Accuracy: {move.accuracy}%</MoveProperty>
+        <MoveProperty>
+          <span>Accuracy: </span>
+          <span>{move.accuracy}%</span>
+        </MoveProperty>
       )}
       {Boolean(move.priority) && (
-        <MoveProperty>Priority: {move.priority}</MoveProperty>
+        <MoveProperty>
+          <span>Priority: </span>
+          <span>{move.priority}</span>
+        </MoveProperty>
       )}
       {Boolean(move.basePower) && (
-        <MoveProperty>Power: {move.basePower}</MoveProperty>
+        <MoveProperty>
+          <span>Power: </span>
+          <span>{move.basePower}</span>
+        </MoveProperty>
       )}
-      <MoveProperty>Category: {move.category}</MoveProperty>
+      <MoveProperty>
+        <span>Category: </span>
+        <span>{move.category}</span>
+      </MoveProperty>
     </MoveInfo>
   );
 };

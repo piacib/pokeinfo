@@ -21,7 +21,7 @@ export const TypeContainer = styled.div<Props>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-self: end;
+  justify-content: center;
   height: 100%;
   padding: 0 1.2rem;
   ${Type}:first-child {

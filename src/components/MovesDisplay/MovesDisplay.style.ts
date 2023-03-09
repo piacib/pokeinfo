@@ -11,20 +11,27 @@ import {
   TypeColoredComponent,
 } from "../../App.style";
 export const HiddenMoveText = styled(HiddenPropertyText)``;
+const mediaWidth = "400px";
 export const MoveBtn = styled(TypeColoredComponent)`
   position: relative;
   ${hoverDisplayCss}
   ${PillDesign}
+
   &:hover ${HiddenMoveText} {
-    bottom: 2.1rem;
-    left: 0;
-    min-width: 170px;
+    bottom: 100%;
+    right: 0;
+    width: 11rem;
     padding: ${(props) => props.theme.padding.medium};
     font-size: 1.1rem;
     margin: 5px 0;
+    @media (max-width: ${(props) => props.theme.media.smallScreen}) {
+      left: 0;
+      max-width: 130px;
+    }
   }
   p {
     margin: 0.3rem 0;
+    white-space: nowrap;
   }
   border: none;
 `;
@@ -35,7 +42,7 @@ export const MoveInfo = styled.ul`
   margin: 0;
 `;
 const cssMoveProperty = css`
-  white-space: nowrap;
+  /* white-space: nowrap; */
 `;
 export const MoveProperty = styled.li`
   ${cssMoveProperty}
@@ -46,6 +53,7 @@ export const MoveDescription = styled(MoveProperty)`
 export const MovesContainer = styled(PropertyDisplay)`
   display: flex;
   position: relative;
+  padding-right: 4rem;
 `;
 
 export const MoveType = styled(MoveProperty)`

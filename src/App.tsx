@@ -85,47 +85,6 @@ const App: React.FC = () => {
                   Switch Team
                 </Button>
               </>
-              {/* {!isInExtension ? (
-                <>
-                  <OptionsMenu>
-                    <ModeToggle
-                      togClass={lightMode}
-                      setTogClass={setLightMode}
-                    />
-                    <PokeTracker
-                      toggle={activePkmTrack}
-                      setToggle={setActivePkmTrack}
-                    />
-                    <UrlSearch handleSubmit={handleSubmit} />
-                  </OptionsMenu>
-                  <Button
-                    onClick={() => {
-                      if (teamToDisplay === "p1") {
-                        setTeamToDisplay("p2");
-                      } else {
-                        setTeamToDisplay("p1");
-                      }
-                    }}
-                  >
-                    Switch Team
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <Button
-                    onClick={() => {
-                      if (teamToDisplay === "p1") {
-                        setTeamToDisplay("p2");
-                      }
-
-                      setTeamToDisplay("p1");
-                    }}
-                  >
-                    Switch Team
-                  </Button>
-                  <ModeToggle togClass={lightMode} setTogClass={setLightMode} />
-                </>
-              )} */}
             </Header>
             <AppDisplay>
               <TypeWriterContainer>

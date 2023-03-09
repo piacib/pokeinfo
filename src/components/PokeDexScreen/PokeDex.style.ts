@@ -17,8 +17,9 @@ export const Container = styled.div`
   justify-content: center;
   place-items: center;
   padding: 5px 10px;
-  max-height: 100px;
-  height: 350px;
+  max-width: 700px;
+  /* max-height: 100px;
+  height: 350px; */
 `;
 export const InnerContainer = styled.div`
   border: 2px solid ${(props) => props.theme.pokedexColor};
@@ -26,6 +27,7 @@ export const InnerContainer = styled.div`
   width: 100%;
   margin: 5px 0;
   padding: 2px;
+  
 `;
 const RedCircle = styled.div`
   ${Border}

@@ -52,6 +52,7 @@ export const PokemonName = styled.a`
   grid-column: 1/2;
   font-size: 1.8rem;
   line-height: 1.8rem;
+  padding: 5px 0;
   max-width: 11rem;
   color: ${(props) => props.theme.fontColor};
 
@@ -76,4 +77,9 @@ export const HeaderContainer = styled.div<RefProp>`
   flex-direction: ${(props) => (props.changeDisplay ? "column" : "row")};
   margin-bottom: 0.3rem;
   height: 3rem;
+
+  @media (max-width: 300px) {
+    flex-direction: column;
+    height: fit-content;
+  }
 `;
