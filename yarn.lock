@@ -434,7 +434,7 @@
   dependencies:
     "@pkmn/types" "^3.0.0"
 
-"@pkmn/dex@^0.7.15":
+"@pkmn/dex@^0.7.26":
   version "0.7.26"
   resolved "https://registry.yarnpkg.com/@pkmn/dex/-/dex-0.7.26.tgz#5b4d77a139ccc4660a70f5a265253d11b75b260a"
   integrity sha512-hwD4OEBi2qXhDwHSG8BJpO120Y8JFo/x5D3PlDBy87c1RrKoCeyB7n2z8iWEqRzTaH51RjuzMxoboWLguf+V6g==
