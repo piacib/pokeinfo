@@ -8,6 +8,23 @@ const emptyRandbatsPokemonData = {
     moves: [],
   },
 };
+const subStringRemover = (origStr: string, subStr: string) => {
+  if (!origStr.includes(subStr)) {
+    return origStr;
+  }
+  const index = origStr.indexOf(subStr);
+  return origStr.slice(0, index) + origStr.slice(index + subStr.length);
+};
+const battleTypeCheck = (battleType: string) => {
+  if (battleType.includes("unrated")) {
+    return subStringRemover(battleType, "unrated");
+  }
+  if (battleType.includes("blitz")) {
+    return subStringRemover(battleType, "blitz");
+  }
+  return battleType;
+};
+
 interface RandomBattlePokemonData extends PokemonData {
   level: number;
 }
@@ -22,14 +39,17 @@ export const useRandomBattleData = (
 ] => {
   const [randbatsPokemonData, setRandbatsPokemonData] =
     useState<RandomBattleData>(emptyRandbatsPokemonData);
-  // fetchs random pokemon data only on startup
+
   if (!battleType.includes("randombattle")) {
+    // fetchs random pokemon data only on startup
     console.error(battleType + " is not a valid random battle type");
   }
   useEffect(() => {
     async function asyncFetchRandomPokemonData() {
+      let key = battleTypeCheck(battleType);
+
       const fetchData = await fetch(
-        `https://pkmn.github.io/randbats/data/${battleType}.json`,
+        `https://pkmn.github.io/randbats/data/${key}.json`,
       );
       const response = await fetchData.json();
       setRandbatsPokemonData(response);
