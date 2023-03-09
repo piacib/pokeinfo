@@ -15,13 +15,17 @@ const randomDataBattleTypes = [
   "gen2randombattle",
   "gen1randombattle",
 ];
-
 export const isRandomBattle = (url: string): isRandomBattleReturn => {
-  const battleType = url.match(/(?<=-).+?(?=-)/g);
-  if (!battleType) {
+  const urlArr = url.split("-");
+  const gen = urlArr.filter((x) => x.startsWith("gen"));
+  if (!gen.length) {
     return null;
   }
-  return randomDataBattleTypes.includes(battleType[0]) ? battleType[0] : false;
+  const str = gen[0];
+  if (str && str.includes("random")) {
+    return str;
+  }
+  return false;
 };
 export const dexSearchPrepper = (str: string): string => {
   return str.toLowerCase().replace(/\W+/g, "");
