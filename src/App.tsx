@@ -22,7 +22,7 @@ const App: React.FC = () => {
   const [teamToDisplay, setTeamToDisplay] = useState<"p1" | "p2">("p2");
   const [battleRoomId, setBattleRoomId] = useState("");
   const [isInExtension, setIsInExtension] = useState(false);
-  const [activePkmTrack, setActivePkmTrack] = useState(false);
+  const [activePkmTrack, setActivePkmTrack] = useState(true);
   const previousBattleRoomId = useRef("");
   const [lightMode, setLightMode] = useLightMode();
 
@@ -31,7 +31,6 @@ const App: React.FC = () => {
       const regMatch = window.location.search.match(/\?battleId=(.*)&/);
       if (regMatch) {
         setIsInExtension(true);
-        setActivePkmTrack(true);
         setBattleRoomId(regMatch[1]);
       }
     }
