@@ -7,4 +7,8 @@ export const DamageContainer = styled.div`
   flex-direction: column;
   /* justify-content: center; */
   font-size: 0.95rem;
+  @media (max-width: 400px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 `;

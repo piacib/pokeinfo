@@ -12,7 +12,6 @@ interface AbilitiesDisplayProps {
   abilities: string[];
 }
 const AbilitiesDisplay: React.FC<AbilitiesDisplayProps> = ({ abilities }) => {
-  console.log("abilities", abilities);
   return (
     <AbilitiesContainer>
       <h3>Abilities:</h3>

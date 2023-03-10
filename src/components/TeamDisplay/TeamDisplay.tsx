@@ -23,7 +23,7 @@ const TeamDisplay = ({
   battleRoomId,
   previousBattleRoomId,
   teamToDisplay = "p2",
-  activePkmTrack = false,
+  activePkmTrack = true,
   setActivePkmTrack,
 }: TeamProps) => {
   const [index, setIndex] = useState(0);
@@ -31,7 +31,7 @@ const TeamDisplay = ({
   const [[teams, setTeams], activePokemon] = useWebSocket(
     battleRoomId,
     previousBattleRoomId,
-    activePkmTrack,
+    // activePkmTrack,
   );
   useEffect(() => {
     if (battleRoomId === devRoomId) {
