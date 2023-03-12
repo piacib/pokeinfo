@@ -64,7 +64,6 @@ const iosSwitchMatch = (data: string, player: "p1" | "p2") => {
   );
   let matches: string[] = [];
   for (const m of match) {
-    console.log("match", player, m[2]);
     matches.push(m[2]);
   }
   if (!matches.length) {
