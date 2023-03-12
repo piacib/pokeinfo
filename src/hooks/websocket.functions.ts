@@ -1,27 +1,4 @@
-export const testMessage =
-  ">battle-gen9randombattle-1776630292|init|battle|title|testplayerr4354 vs. bentanamo10|j|☆testplayerr4354|j|☆bentanamo10|t:|1674089898|gametype|singles|player|p1|testplayerr4354|170||player|p2|bentanamo10|102||teamsize|p1|6|teamsize|p2|6|gen|9|tier|[Gen 9] Random Battle|rule|Species Clause: Limit one of each Pokémon|rule|HP Percentage Mod: HP is shown in percentages|rule|Sleep Clause Mod: Limit one foe put to sleep||t:|1674089898|start|switch|p1a: Basculin|Basculin, L86, M|100/100|switch|p2a: Floatzel|Floatzel, L85, M|100/100|turn|1|inactive|Battle timer is ON: inactive players will automatically lose when time's up. (requested by bentanamo10)|inactiveoff|Battle timer is now OFF.||t:|1674090121|switch|p1a: Klawf|Klawf, L83, M|100/100|move|p2a: Floatzel|Ice Spinner|p1a: Klawf|-damage|p1a: Klawf|72/100|-damage|p2a: Floatzel|91/100|[from] item: Life Orb||upkeep|turn|2||t:|1674090211|switch|p2a: Iron Moth|Iron Moth, L80|100/100|move|p1a: Klawf|Stone Edge|p2a: Iron Moth|-supereffective|p2a: Iron Moth|-damage|p2a: Iron Moth|0 fnt|faint|p2a: Iron Moth|-end|p2a: Iron Moth|Quark Drive|[silent]||upkeep||t:|1674091106|switch|p2a: Talonflame|Talonflame, L85, M|100/100|turn|3||t:|1674091116|-terastallize|p2a: Talonflame|Ground|move|p2a: Talonflame|Brave Bird|p1a: Klawf|-resisted|p1a: Klawf|-damage|p1a: Klawf|54/100|-damage|p2a: Talonflame|95/100|[from] Recoil|move|p1a: Klawf|Stone Edge|p2a: Talonflame|-resisted|p2a: Talonflame|-damage|p2a: Talonflame|72/100||upkeep|turn|4||t:|1674091146|move|p2a: Talonflame|Roost|p2a: Talonflame|-heal|p2a: Talonflame|100/100|move|p1a: Klawf|Stone Edge|p2a: Talonflame|-resisted|p2a: Talonflame|-damage|p2a: Talonflame|77/100||upkeep|turn|5";
-export const ouTestMessage =
-  "|clearpoke|poke|p1|Amoonguss, M||poke|p1|Iron Moth||poke|p1|Iron Valiant||poke|p1|Dondozo, M||poke|p1|Meowscarada, F||poke|p1|Orthworm, M||poke|p2|Dragonite, F||poke|p2|Iron Moth||poke|p2|Iron Valiant||poke|p2|Azumarill, M||poke|p2|Meowscarada, F||poke|p2|Orthworm, M||teampreview";
-
-const ouTestResult = {
-  p1: [
-    "Amoonguss",
-    "Iron Moth",
-    "Iron Valiant",
-    "Dondozo",
-    "Meowscarada",
-    "Orthworm",
-  ],
-  p2: [
-    "Dragonite",
-    "Iron Moth",
-    "Iron Valiant",
-    "Azumarill",
-    "Meowscarada",
-    "Orthworm",
-  ],
-};
-// turn number regex /\|turn\|(?!.*\|turn)/
+import { teamsType } from "./useWebsSocket";
 
 export const getBattleType = (data: string) => {
   const match = data.match(/battle-(.*?)-/);
@@ -42,10 +19,129 @@ export const getBuiltTeam = (data: string) => {
 };
 
 export const getSwappedPkm = (data: string) => {
-  const regExMatch1 = data.match(/(?<=switch\|p1a: [^\|]*\|)(.*?)(?=,)/g);
-  const regExMatch2 = data.match(/(?<=switch\|p2a: [^\|]*\|)(.*?)(?=,)/g);
+  const regExMatch1: string[] | null = data.match(
+    /(?<=switch\|p1a: [^\|]*\|)(.*?)(?=,|\|)/g,
+  );
+  const regExMatch2: string[] | null = data.match(
+    /(?<=switch\|p2a: [^\|]*\|)(.*?)(?=,|\|)/g,
+  );
   if (!regExMatch1 && !regExMatch2) {
     return false;
   }
   return { p1: regExMatch1, p2: regExMatch2 };
+};
+
+const iosBuiltMatch = (data: string, player: "p1" | "p2") => {
+  const match = data.matchAll(
+    player === "p1"
+      ? /(?:poke\|p1\|)(.*?)(?=\||,)/g
+      : /(?:poke\|p2\|)(.*?)(?=\||,)/g,
+  );
+  let matches: string[] = [];
+  for (const m of match) {
+    matches.push(m[1]);
+  }
+  return matches;
+};
+
+export const getSafariBuiltTeam = (data: string) => {
+  // gets text following p1| until either a comma (which precedes gender) or |
+  // used for any non random battle
+  const regExMatch1 = iosBuiltMatch(data, "p1");
+  const regExMatch2 = iosBuiltMatch(data, "p2");
+  // console.log({ p1: regExMatch1, p2: regExMatch2 });
+  if (!regExMatch1 || !regExMatch2) {
+    return false;
+  }
+  return { p1: regExMatch1, p2: regExMatch2 };
+};
+
+const iosSwitchMatch = (data: string, player: "p1" | "p2") => {
+  const match = data.matchAll(
+    player === "p1"
+      ? /(?:switch\|p1a:) ([^\|]*\|)(.*?)(?=,|\|)/g
+      : /(?:switch\|p2a:) ([^\|]*\|)(.*?)(?=,|\|)/g,
+  );
+  let matches: string[] = [];
+  for (const m of match) {
+    console.log("match", player, m[2]);
+    matches.push(m[2]);
+  }
+  if (!matches.length) {
+    return null;
+  }
+  return matches;
+};
+export const getSafariSwappedPkm = (data: string) => {
+  const regExMatch1 = iosSwitchMatch(data, "p1");
+  const regExMatch2 = iosSwitchMatch(data, "p2");
+  // console.log("safari", regExMatch1, regExMatch2);
+  if (!regExMatch1 && !regExMatch2) {
+    return false;
+  }
+  return { p1: regExMatch1, p2: regExMatch2 };
+};
+const getRandomTeamData = (
+  swapped: {
+    p1: string[] | null;
+    p2: string[] | null;
+  },
+  teams: teamsType,
+) => {
+  let newTeams = teams;
+  if (swapped.p1) {
+    swapped.p1.map((newPokemon) => {
+      if (!newTeams.p1.includes(newPokemon)) {
+        newTeams = { p1: [...newTeams.p1, newPokemon], p2: newTeams.p2 };
+      }
+    });
+  }
+  if (swapped.p2) {
+    swapped.p2.map((newPokemon) => {
+      if (!newTeams.p2.includes(newPokemon)) {
+        newTeams = { p2: [...newTeams.p2, newPokemon], p1: newTeams.p1 };
+      }
+    });
+  }
+  return newTeams;
+};
+
+export const getActivePokemon = (
+  swapped: {
+    p1: string[] | null;
+    p2: string[] | null;
+  },
+  activePokemon: teamsType,
+) => {
+  if (swapped) {
+    const { p1, p2 } = swapped;
+    const temp: teamsType = activePokemon;
+    if (p1 && p1.length) {
+      temp.p1 = [p1[p1.length - 1]];
+    }
+    if (p2 && p2.length) {
+      temp.p2 = [p2[p2.length - 1]];
+    }
+    return temp;
+  }
+};
+export const isMac = window.navigator.userAgent.includes("Mac");
+
+export const getRandomBattleData = (
+  message: string,
+  activePokemon: teamsType,
+  teams: teamsType,
+) => {
+  const swapped = !isMac
+    ? getSwappedPkm(message)
+    : getSafariSwappedPkm(message);
+  if (swapped) {
+    const tempActive = getActivePokemon(swapped, activePokemon);
+    const tempTeams = getRandomTeamData(swapped, teams);
+    return {
+      activePokemon: tempActive ? tempActive : activePokemon,
+      teams: tempTeams ? tempTeams : teams,
+    };
+  }
+  return { activePokemon, teams };
 };
