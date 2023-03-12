@@ -68,7 +68,6 @@ test("random battle selector works", () => {
   const data = randomTest;
   const teams = getSwappedPkm(data.test);
   expect(teams).toBeTruthy();
-  console.log(teams);
   if (teams) {
     expect(teams["p1"]).toStrictEqual(data.results["p1"]);
     expect(teams["p2"]).toStrictEqual(data.results["p2"]);
