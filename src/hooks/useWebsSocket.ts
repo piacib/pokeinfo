@@ -26,29 +26,76 @@ const useWebSocketConnection = (
   const [message, setMessage] = useState("");
   // opens and closes websocket
   useEffect(() => {
-    ws.current = new WebSocket(showdownWs);
-    ws.current.onopen = () => {
-      console.log("ws opened");
-      if (ws.current) {
-        console.log("joining battleRoom", battleRoomId);
-        ws.current.send(`|/join ${battleRoomId}`);
-      }
-    };
-    ws.current.onclose = () => console.log("ws closed");
-    const wsCurrent = ws.current;
+    function connect(timeout = 500) {
+      ws.current = new WebSocket(showdownWs);
 
+      ws.current.onopen = () => {
+        console.log("ws opened");
+        if (ws.current?.readyState) {
+          console.log("joining battleRoom", battleRoomId, ws.current);
+          ws.current.send(`|/join ${battleRoomId}`);
+        }
+      };
+
+      ws.current.onmessage = (e) => {
+        setMessage(e.data);
+      };
+
+      ws.current.onclose = function (e) {
+        console.log(
+          "Socket is closed. Reconnect will be attempted in 1 second.",
+          e.reason,
+        );
+        setTimeout(function () {
+          connect((timeout += timeout));
+        }, timeout);
+      };
+
+      ws.current.onerror = function (err: Event) {
+        console.error("Socket encountered error: ", err, "Closing socket");
+        ws.current?.close();
+      };
+    }
+
+    connect();
     return () => {
-      wsCurrent.close();
+      ws.current?.close();
     };
   }, []);
-  useEffect(() => {
-    // Exit condition
-    if (!ws.current) return;
-    // message reactions
-    ws.current.onmessage = (e) => {
-      setMessage(e.data);
-    };
-  }, []);
+
+  //   console.log("battleRoomId change", ws.current, battleRoomId);
+  //   if (battleRoomId && !ws.current) {
+  //     console.log("reestablishing ws");
+  //     // site is loaded but internet app was closed
+  //     // ws closed so must reestablish connection
+  //     ws.current = new WebSocket(showdownWs);
+  //     ws.current.onopen = () => {
+  //       console.log("reestablishing ws opened");
+  //       if (ws.current) {
+  //         console.log("reestablishing joining battleRoom", battleRoomId);
+  //         ws.current.send(`|/join ${battleRoomId}`);
+  //       }
+  //     };
+  //     ws.current.onclose = () => {
+  //       console.log("ws closed");
+  //       ws.current = undefined;
+  //     };
+  //     const wsCurrent = ws.current;
+
+  //     return () => {
+  //       wsCurrent.close();
+  //     };
+  //   }
+  // }, [battleRoomId, ws.current]);
+
+  // useEffect(() => {
+  //   // Exit condition
+  //   if (!ws.current) return;
+  //   // message reactions
+  //   ws.current.onmessage = (e) => {
+  //     setMessage(e.data);
+  //   };
+  // }, []);
   return [ws, [message, setMessage]];
 };
 export const useWebSocket = (
@@ -56,6 +103,7 @@ export const useWebSocket = (
   previousBattleRoomId?: string | null,
   // activePkmTrack = false,
 ): ReturnType => {
+  console.log("ws", battleRoomId, previousBattleRoomId);
   const [ws, [message, setMessage]] = useWebSocketConnection(battleRoomId);
   const [teams, setTeams] = useState<teamsType>({ p1: [], p2: [] });
   const [activePokemon, setActivePokemon] = useState<teamsType>({
@@ -81,13 +129,13 @@ export const useWebSocket = (
     if (!battleType || !isRandomBattle(battleType)) {
       return;
     }
-    console.log(battleType, "is random");
+    // console.log(battleType, "is random");
     const { activePokemon: tempActive, teams: tempTeams } = getRandomBattleData(
       message,
       activePokemon,
       teams,
     );
-    console.log({ message, tempTeams, activePokemon });
+    // console.log({ message, tempTeams, activePokemon });
     setTeams(tempTeams);
     setActivePokemon(activePokemon);
     // const swapped = !isMac
@@ -125,7 +173,7 @@ export const useWebSocket = (
       return;
     }
 
-    console.log(battleType, "is built");
+    // console.log(battleType, "is built");
     // gets team from inital load and
     // sets itself to not enter loop again
     if (!teamRecieved) {
@@ -140,8 +188,8 @@ export const useWebSocket = (
     const swapped = !isMac
       ? getSwappedPkm(message)
       : getSafariSwappedPkm(message);
-    console.log(getSwappedPkm(message), getSafariSwappedPkm(message));
-    console.log({ message, swapped });
+    // console.log(getSwappedPkm(message), getSafariSwappedPkm(message));
+    // console.log({ message, swapped });
     if (swapped) {
       const temp = getActivePokemon(swapped, activePokemon);
       if (temp) {
