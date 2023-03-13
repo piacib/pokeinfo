@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { isTypeName, TypeName } from "../../types";
 import { dexSearchPrepper } from "../../functions";
-import { PokemonName, HeaderContainer } from "./DataDisplay.style";
+import {
+  PokemonName,
+  HeaderContainer,
+  NoPokemonText,
+} from "./DataDisplay.style";
 import DamageDisplay from "../DamageDisplay/DamageDisplay";
 import TypeDisplay from "../TypesDisplay/TypesDisplay";
 import StatsDisplay from "../StatsDisplay/StatsDisplay";
@@ -37,7 +41,6 @@ const usePokemon = (pokemon: string): [string, TypeName[] | null] => {
         setTypesArray(newArr);
         return;
       }
-
       TypeArr.forEach((entry) => {
         if (isTypeName(entry)) {
           newArr.push(entry);
@@ -45,6 +48,7 @@ const usePokemon = (pokemon: string): [string, TypeName[] | null] => {
       });
       setTypesArray(newArr);
     } else {
+      setPkmn("");
       console.error("pokemon does not exist in dex", pokemon);
     }
   }, [pkmn]);
@@ -58,23 +62,19 @@ const PokemonDataDisplay = ({
   pokemon,
   battleType,
 }: PokemonDataDisplayProps) => {
+  console.log("pokemon", pokemon);
   const [pkmn, typesArray] = usePokemon(pokemon);
-
   const isRandomBattle = battleType.includes("random");
-
-  // exit if pokemon doesnt exist (should never happen)
-  const pokemonExists = Dex.species.get(pokemon).exists;
-
   return (
     <>
       <>
-        {pkmn && typesArray ? (
+        {Dex.species.get(pokemon).exists && typesArray ? (
           <>
             <HeaderContainer>
               <PokemonName
                 href={`https://www.smogon.com/dex/ss/pokemon/${pkmn}/`}
               >
-                {pokemon}
+                {pkmn}
               </PokemonName>
               <TypeDisplay types={typesArray} />
             </HeaderContainer>
@@ -98,7 +98,9 @@ const PokemonDataDisplay = ({
                 {pokemon}
               </PokemonName>
             </HeaderContainer>
-            <h2>It appears the pokemon {pokemon} is not in our database</h2>
+            <NoPokemonText>
+              It appears the pokemon {pokemon} is not in our database
+            </NoPokemonText>
           </>
         )}
         <></>
