@@ -17,6 +17,7 @@ import { GlobalStyles } from "./GlobalStyles";
 import { useLightMode } from "./hooks/useLightMode";
 import PokeTracker from "./components/PokeTracker/PokeTracker";
 import { LoadingScreen } from "./components/LoadingScreen";
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 const TeamDisplay = React.lazy(
   () => import("./components/TeamDisplay/TeamDisplay"),
 );
@@ -93,15 +94,17 @@ const App: React.FC = () => {
               <TypeWriterContainer>
                 <h1>Poke Info</h1>
               </TypeWriterContainer>
-              <Suspense fallback={<LoadingScreen />}>
-                <TeamDisplay
-                  teamToDisplay={teamToDisplay}
-                  battleRoomId={battleRoomId}
-                  previousBattleRoomId={previousBattleRoomId.current}
-                  activePkmTrack={activePkmTrack}
-                  setActivePkmTrack={setActivePkmTrack}
-                />
-              </Suspense>
+              <ErrorBoundary>
+                <Suspense fallback={<LoadingScreen />}>
+                  <TeamDisplay
+                    teamToDisplay={teamToDisplay}
+                    battleRoomId={battleRoomId}
+                    previousBattleRoomId={previousBattleRoomId.current}
+                    activePkmTrack={activePkmTrack}
+                    setActivePkmTrack={setActivePkmTrack}
+                  />
+                </Suspense>
+              </ErrorBoundary>
             </AppDisplay>
           </>
         ) : (
