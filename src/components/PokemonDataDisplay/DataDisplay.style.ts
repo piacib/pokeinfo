@@ -83,3 +83,8 @@ export const HeaderContainer = styled.div<RefProp>`
     height: fit-content;
   }
 `;
+export const NoPokemonText = styled.h2`
+  color: ${(props) => props.theme.fontColor};
+  grid-column: 1/3;
+  text-align: center;
+`;
