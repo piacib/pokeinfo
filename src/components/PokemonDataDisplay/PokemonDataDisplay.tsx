@@ -10,17 +10,9 @@ import { Dex } from "@pkmn/dex";
 import RandomBattlePokemonDisplay from "../RandomPokemonDisplay/RandomBattlePokemonDisplay";
 
 const { Species } = Dex.data;
-
-interface PokemonDataDisplayProps {
-  pokemon: string;
-  battleType: string;
-}
-const PokemonDataDisplay = ({
-  pokemon,
-  battleType,
-}: PokemonDataDisplayProps) => {
-  const [typesArray, setTypesArray] = useState<TypeName[] | null>(null);
+const usePokemon = (pokemon: string): [string, TypeName[] | null] => {
   const [pkmn, setPkmn] = useState(pokemon);
+  const [typesArray, setTypesArray] = useState<TypeName[] | null>(null);
   useEffect(() => {
     // check if pokemon is in Species
     if (Species[dexSearchPrepper(pokemon)]) {
@@ -56,6 +48,17 @@ const PokemonDataDisplay = ({
       console.error("pokemon does not exist in dex", pokemon);
     }
   }, [pkmn]);
+  return [pkmn, typesArray];
+};
+interface PokemonDataDisplayProps {
+  pokemon: string;
+  battleType: string;
+}
+const PokemonDataDisplay = ({
+  pokemon,
+  battleType,
+}: PokemonDataDisplayProps) => {
+  const [pkmn, typesArray] = usePokemon(pokemon);
 
   const isRandomBattle = battleType.includes("random");
 
@@ -65,7 +68,7 @@ const PokemonDataDisplay = ({
   return (
     <>
       <>
-        {pokemonExists ? (
+        {pkmn && typesArray ? (
           <>
             <HeaderContainer>
               <PokemonName
