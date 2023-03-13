@@ -13,6 +13,7 @@ import OtherFormatsDisplay from "./OtherFormatsDisplay";
 import { TextInput } from "../UrlSearch/UrlSearch.style";
 import { usePokemon } from "../../hooks/usePokemon";
 import { LoadingScreen } from "../LoadingScreen";
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 const RandomBattlePokemonDisplay = React.lazy(
   () => import("../RandomPokemonDisplay/RandomBattlePokemonDisplay"),
 );
@@ -50,12 +51,14 @@ const PokemonDataDisplay = ({
           <DamageDisplay typesArray={typesArray} />
           <StatsDisplay pokemon={pkmn} />
           {isRandomBattle ? (
-            <Suspense fallback={<LoadingScreen />}>
-              <RandomBattlePokemonDisplay
-                pokemon={pkmn}
-                battleType={battleType}
-              />
-            </Suspense>
+            <ErrorBoundary>
+              <Suspense fallback={<LoadingScreen />}>
+                <RandomBattlePokemonDisplay
+                  pokemon={pkmn}
+                  battleType={battleType}
+                />
+              </Suspense>
+            </ErrorBoundary>
           ) : (
             <OtherFormatsDisplay pokemon={pkmn} />
           )}
