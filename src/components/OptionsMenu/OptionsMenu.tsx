@@ -10,7 +10,7 @@ const OptionsMenu: React.FC<Props> = ({ children }) => {
       <HamburgerLabel>
         <input type="checkbox" />
       </HamburgerLabel>
-      <SideBar>
+      <SideBar data-testid="aside-menu">
         <SidebarList>
           {children.map((child, idx) => (
             <li key={`${child}${idx}}`}>{child}</li>

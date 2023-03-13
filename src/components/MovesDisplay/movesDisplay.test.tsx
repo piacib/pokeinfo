@@ -1,7 +1,9 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import "@testing-library/jest-dom";
+import { describe, expect, it } from "vitest";
 import { ThemeProvider, ThemeProviderComponent } from "styled-components";
 import { theme } from "../../theme";
+import "@testing-library/jest-dom";
+
 import MovesDisplay from "./MovesDisplay";
 import { MoveData } from "@pkmn/dex";
 const testData: MoveData[] = [

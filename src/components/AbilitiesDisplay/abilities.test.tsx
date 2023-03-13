@@ -2,10 +2,12 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme";
-import AbilitiesDisplay from "./AbilitiesDisplay";
 import "@testing-library/jest-dom";
+
+import AbilitiesDisplay from "./AbilitiesDisplay";
+import { describe, expect, it } from "vitest";
 import { testAbilities } from "../../developmentMode";
-test("Abilities text is present", () => {
+it("Abilities text is present", () => {
   render(
     <ThemeProvider theme={theme}>
       <AbilitiesDisplay abilities={[]} />
