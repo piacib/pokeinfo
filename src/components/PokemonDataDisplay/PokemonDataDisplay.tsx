@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import {
   PokemonName,
   HeaderContainer,
@@ -10,9 +10,12 @@ import DamageDisplay from "../DamageDisplay/DamageDisplay";
 import TypeDisplay from "../TypesDisplay/TypesDisplay";
 import StatsDisplay from "../StatsDisplay/StatsDisplay";
 import OtherFormatsDisplay from "./OtherFormatsDisplay";
-import RandomBattlePokemonDisplay from "../RandomPokemonDisplay/RandomBattlePokemonDisplay";
 import { TextInput } from "../UrlSearch/UrlSearch.style";
 import { usePokemon } from "../../hooks/usePokemon";
+import { LoadingScreen } from "../LoadingScreen";
+const RandomBattlePokemonDisplay = React.lazy(
+  () => import("../RandomPokemonDisplay/RandomBattlePokemonDisplay"),
+);
 
 interface PokemonDataDisplayProps {
   pokemon: string;
@@ -47,10 +50,12 @@ const PokemonDataDisplay = ({
           <DamageDisplay typesArray={typesArray} />
           <StatsDisplay pokemon={pkmn} />
           {isRandomBattle ? (
-            <RandomBattlePokemonDisplay
-              pokemon={pkmn}
-              battleType={battleType}
-            />
+            <Suspense fallback={<LoadingScreen />}>
+              <RandomBattlePokemonDisplay
+                pokemon={pkmn}
+                battleType={battleType}
+              />
+            </Suspense>
           ) : (
             <OtherFormatsDisplay pokemon={pkmn} />
           )}
