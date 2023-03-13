@@ -11,7 +11,7 @@ export const userTestTeam = [
   "Giratina",
 ];
 export const opponentTestTeam = [
-  "Annihilape",
+  "Annihiladpe",
   "Carbink",
   "Azumarill",
   "Gallade",
