@@ -26,27 +26,40 @@ const useWebSocketConnection = (
   const [message, setMessage] = useState("");
   // opens and closes websocket
   useEffect(() => {
-    ws.current = new WebSocket(showdownWs);
-    ws.current.onopen = () => {
-      console.log("ws opened");
-      if (ws.current) {
-        console.log("joining battleRoom", battleRoomId);
-        ws.current.send(`|/join ${battleRoomId}`);
-      }
-    };
-    ws.current.onclose = () => console.log("ws closed");
-    const wsCurrent = ws.current;
+    function connect(timeout = 500) {
+      ws.current = new WebSocket(showdownWs);
 
+      ws.current.onopen = () => {
+        console.log("ws opened");
+        if (ws.current?.readyState) {
+          console.log("joining battleRoom", battleRoomId, ws.current);
+          ws.current.send(`|/join ${battleRoomId}`);
+        }
+      };
+
+      ws.current.onmessage = (e) => {
+        setMessage(e.data);
+      };
+
+      ws.current.onclose = function (e) {
+        console.log(
+          "Socket is closed. Reconnect will be attempted in 1 second.",
+          e.reason,
+        );
+        setTimeout(function () {
+          connect((timeout += timeout));
+        }, timeout);
+      };
+
+      ws.current.onerror = function (err: Event) {
+        console.error("Socket encountered error: ", err, "Closing socket");
+        ws.current?.close();
+      };
+    }
+
+    connect();
     return () => {
-      wsCurrent.close();
-    };
-  }, []);
-  useEffect(() => {
-    // Exit condition
-    if (!ws.current) return;
-    // message reactions
-    ws.current.onmessage = (e) => {
-      setMessage(e.data);
+      ws.current?.close();
     };
   }, []);
   return [ws, [message, setMessage]];
@@ -56,6 +69,7 @@ export const useWebSocket = (
   previousBattleRoomId?: string | null,
   // activePkmTrack = false,
 ): ReturnType => {
+  console.log("ws", battleRoomId, previousBattleRoomId);
   const [ws, [message, setMessage]] = useWebSocketConnection(battleRoomId);
   const [teams, setTeams] = useState<teamsType>({ p1: [], p2: [] });
   const [activePokemon, setActivePokemon] = useState<teamsType>({
@@ -81,51 +95,22 @@ export const useWebSocket = (
     if (!battleType || !isRandomBattle(battleType)) {
       return;
     }
-    console.log(battleType, "is random");
     const { activePokemon: tempActive, teams: tempTeams } = getRandomBattleData(
       message,
       activePokemon,
       teams,
     );
-    console.log({ message, tempTeams, activePokemon });
     setTeams(tempTeams);
-    setActivePokemon(activePokemon);
-    // const swapped = !isMac
-    //   ? getSwappedPkm(message)
-    //   : getSafariSwappedPkm(message);
-    // const temp = getActivePokemon(message, activePokemon);
-    // if (temp) {
-    //   setActivePokemon(temp);
-    // }
-    // if (swapped) {
-    //   let newTeams = teams;
-    //   if (swapped.p1) {
-    //     swapped.p1.map((newPokemon) => {
-    //       if (!newTeams.p1.includes(newPokemon)) {
-    //         newTeams = { p1: [...newTeams.p1, newPokemon], p2: newTeams.p2 };
-    //       }
-    //     });
-    //   }
-    //   if (swapped.p2) {
-    //     swapped.p2.map((newPokemon) => {
-    //       if (!newTeams.p2.includes(newPokemon)) {
-    //         newTeams = { p2: [...newTeams.p2, newPokemon], p1: newTeams.p1 };
-    //       }
-    //     });
-    //   }
-    //   setTeams(newTeams);
-    // }
+    // setActivePokemon(activePokemon);
+    setActivePokemon(tempActive);
   }, [message]);
 
   // handles non random battle messages
   useEffect(() => {
-    // console.log("checking built team", teams);
     const battleType = getBattleType(message);
     if (!battleType || isRandomBattle(battleType)) {
       return;
     }
-
-    console.log(battleType, "is built");
     // gets team from inital load and
     // sets itself to not enter loop again
     if (!teamRecieved) {
@@ -140,8 +125,6 @@ export const useWebSocket = (
     const swapped = !isMac
       ? getSwappedPkm(message)
       : getSafariSwappedPkm(message);
-    console.log(getSwappedPkm(message), getSafariSwappedPkm(message));
-    console.log({ message, swapped });
     if (swapped) {
       const temp = getActivePokemon(swapped, activePokemon);
       if (temp) {

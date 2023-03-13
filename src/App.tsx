@@ -37,6 +37,7 @@ const App: React.FC = () => {
   });
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
+    console.log('handleSubmit',previousBattleRoomId.current, battleRoomId);
     previousBattleRoomId.current = battleRoomId;
     const target = e.target as typeof e.target & {
       url: { value: string };
