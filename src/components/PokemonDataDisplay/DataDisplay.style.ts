@@ -88,3 +88,7 @@ export const NoPokemonText = styled.h2`
   grid-column: 1/3;
   text-align: center;
 `;
+export const SearchForm = styled.form`
+  color: ${(props) => props.theme.fontColor};
+`;
+export const SearchLabel = styled.label``;
