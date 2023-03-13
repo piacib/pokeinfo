@@ -68,13 +68,11 @@ interface NoPokemonFoundProps {
 const NoPokemonFound = ({ pkmn, handleSubmit }: NoPokemonFoundProps) => {
   return (
     <>
-      <HeaderContainer>
-        <PokemonName href={`https://www.smogon.com/dex/ss/pokemon/${pkmn}/`}>
-          {pkmn}
-        </PokemonName>
-      </HeaderContainer>
       <NoPokemonText>
-        It appears the pokemon {pkmn} is not in our database
+        It appears the pokemon {pkmn} is not in our database.
+        <br />
+        <br />
+        Try searching the pokemon name
       </NoPokemonText>
       <Form handleSubmit={handleSubmit} />
     </>
