@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { Suspense, useEffect, useRef, useState } from "react";
 import Home from "./components/Home/Home";
 import ModeToggle from "./components/ModeToggle/ModeToggle";
 import OptionsMenu from "./components/OptionsMenu/OptionsMenu";
 import UrlSearch from "./components/UrlSearch/UrlSearch";
-import TeamDisplay from "./components/TeamDisplay/TeamDisplay";
 import { TypeWriterContainer } from "./TypeWriterContainer.style";
 import {
   AppDisplay,
@@ -17,6 +16,10 @@ import { themeObjGenerator } from "./theme";
 import { GlobalStyles } from "./GlobalStyles";
 import { useLightMode } from "./hooks/useLightMode";
 import PokeTracker from "./components/PokeTracker/PokeTracker";
+import { LoadingScreen } from "./components/LoadingScreen";
+const TeamDisplay = React.lazy(
+  () => import("./components/TeamDisplay/TeamDisplay"),
+);
 
 const App: React.FC = () => {
   const [teamToDisplay, setTeamToDisplay] = useState<"p1" | "p2">("p2");
@@ -37,7 +40,7 @@ const App: React.FC = () => {
   });
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log('handleSubmit',previousBattleRoomId.current, battleRoomId);
+    console.log("handleSubmit", previousBattleRoomId.current, battleRoomId);
     previousBattleRoomId.current = battleRoomId;
     const target = e.target as typeof e.target & {
       url: { value: string };
@@ -90,13 +93,15 @@ const App: React.FC = () => {
               <TypeWriterContainer>
                 <h1>Poke Info</h1>
               </TypeWriterContainer>
-              <TeamDisplay
-                teamToDisplay={teamToDisplay}
-                battleRoomId={battleRoomId}
-                previousBattleRoomId={previousBattleRoomId.current}
-                activePkmTrack={activePkmTrack}
-                setActivePkmTrack={setActivePkmTrack}
-              />
+              <Suspense fallback={<LoadingScreen />}>
+                <TeamDisplay
+                  teamToDisplay={teamToDisplay}
+                  battleRoomId={battleRoomId}
+                  previousBattleRoomId={previousBattleRoomId.current}
+                  activePkmTrack={activePkmTrack}
+                  setActivePkmTrack={setActivePkmTrack}
+                />
+              </Suspense>
             </AppDisplay>
           </>
         ) : (

@@ -1,6 +1,6 @@
-import React from 'react';
-import LoadingSVG from '../media/pokeball.svg';
-import styled, { keyframes } from 'styled-components';
+import React from "react";
+import LoadingSVG from "../media/pokeball.svg";
+import styled, { keyframes } from "styled-components";
 const spinning = keyframes`
     from {
         transform: rotate(359deg);
@@ -14,9 +14,18 @@ const LoadingIcon = styled.img`
   animation: ${spinning} 4s infinite linear;
   height: 9rem;
   width: 9rem;
-  grid-column: -1/ 4;
   margin: auto;
 `;
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+`;
 export const LoadingScreen = () => {
-  return <LoadingIcon src={LoadingSVG} alt="Loading" />;
+  return (
+    <Container>
+      <LoadingIcon src={LoadingSVG} alt="Loading" />;
+    </Container>
+  );
 };
