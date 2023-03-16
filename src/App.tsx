@@ -31,15 +31,15 @@ const App: React.FC = () => {
   const [teamToDisplay, setTeamToDisplay] = useState<"p1" | "p2">("p2");
   const [battleRoomId, setBattleRoomId] = useState("");
   const [isInExtension, setIsInExtension] = useState(false);
-  const spectatorsAllowed = useSpectatorsAllowed(
-    new URLSearchParams(window.location.search),
-  );
   const [activePkmTrack, setActivePkmTrack] = useState(true);
   // previousBattleRoomId -> tracks previous battle room so
   // ws can clear info when new url is searched
   const previousBattleRoomId = useRef("");
   const [lightMode, setLightMode] = useLightMode();
   const params = new URLSearchParams(window.location.search);
+  const spectatorsAllowed = useSpectatorsAllowed(
+    params
+  );
   useEffect(() => {
     const paramBattleId = params.get("battleId");
     if (paramBattleId) {
