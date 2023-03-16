@@ -10,7 +10,7 @@ export const ContainerTop = styled.div`
 `;
 export const Container = styled.div`
   border: 3px solid ${(props) => props.theme.pokedexColor};
-  border-radius: 0 0 0 15px;
+  border-radius: ${(props) => props.theme.pokedexStyles.borderRadius};
   grid-column: 1/2;
   display: flex;
   flex-direction: column;
@@ -27,7 +27,6 @@ export const InnerContainer = styled.div`
   width: 100%;
   margin: 5px 0;
   padding: 2px;
-  
 `;
 const RedCircle = styled.div`
   ${Border}
