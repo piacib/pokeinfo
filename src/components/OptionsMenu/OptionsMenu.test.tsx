@@ -15,8 +15,10 @@ test("Types arr appears", () => {
       </OptionsMenu>
     </ThemeProvider>,
   );
-  const aside = document.getElementsByTagName("aside");
-  expect(aside.length).toBe(1)
-  expect(aside[0].style).toBe('-100%')
-  screen.debug();
+  const test = ["Test 1", "Test 2", "Test 3"];
+  test.forEach((x) => {
+    const regex = new RegExp(x, "i");
+    const el = screen.getByText(regex);
+    expect(el).toBeInTheDocument();
+  });
 });
