@@ -83,3 +83,19 @@ export const HeaderContainer = styled.div<RefProp>`
     height: fit-content;
   }
 `;
+export const NoPokemonText = styled.h2`
+  color: ${(props) => props.theme.fontColor};
+  grid-column: 1/3;
+  text-align: center;
+`;
+export const SearchForm = styled.form`
+  color: ${(props) => props.theme.fontColor};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  grid-column: 1/3;
+  place-self: center;
+  width: 100%;
+`;
+export const SearchLabel = styled.label``;

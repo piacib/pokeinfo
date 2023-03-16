@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { Suspense, useEffect, useRef, useState } from "react";
 import Home from "./components/Home/Home";
 import ModeToggle from "./components/ModeToggle/ModeToggle";
 import OptionsMenu from "./components/OptionsMenu/OptionsMenu";
 import UrlSearch from "./components/UrlSearch/UrlSearch";
-import TeamDisplay from "./components/TeamDisplay/TeamDisplay";
 import { TypeWriterContainer } from "./TypeWriterContainer.style";
 import {
   AppDisplay,
@@ -17,27 +16,40 @@ import { themeObjGenerator } from "./theme";
 import { GlobalStyles } from "./GlobalStyles";
 import { useLightMode } from "./hooks/useLightMode";
 import PokeTracker from "./components/PokeTracker/PokeTracker";
+import { LoadingScreen } from "./components/LoadingScreen";
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
+const PokeSearch = React.lazy(
+  () => import("./components/PokeSearch/PokeSearch"),
+);
+const TeamDisplay = React.lazy(
+  () => import("./components/TeamDisplay/TeamDisplay"),
+);
 
+const testNoSpecUrl =
+  "https://play.pokemonshowdown.com/battle-gen9randombattle-1821599719-7j7njjdppksd6fbxqeqsxe2h8tnib35pw";
 const App: React.FC = () => {
   const [teamToDisplay, setTeamToDisplay] = useState<"p1" | "p2">("p2");
   const [battleRoomId, setBattleRoomId] = useState("");
   const [isInExtension, setIsInExtension] = useState(false);
   const [activePkmTrack, setActivePkmTrack] = useState(true);
+  // previousBattleRoomId -> tracks previous battle room so
+  // ws can clear info when new url is searched
   const previousBattleRoomId = useRef("");
   const [lightMode, setLightMode] = useLightMode();
-
+  const params = new URLSearchParams(window.location.search);
+  const spectatorsAllowed = useSpectatorsAllowed(
+    params
+  );
   useEffect(() => {
-    if (window.location.search) {
-      const regMatch = window.location.search.match(/\?battleId=(.*)&/);
-      if (regMatch) {
-        setIsInExtension(true);
-        setBattleRoomId(regMatch[1]);
-      }
+    const paramBattleId = params.get("battleId");
+    if (paramBattleId) {
+      setIsInExtension(true);
+      setBattleRoomId(paramBattleId);
     }
   });
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log('handleSubmit',previousBattleRoomId.current, battleRoomId);
+    console.log("handleSubmit", previousBattleRoomId.current, battleRoomId);
     previousBattleRoomId.current = battleRoomId;
     const target = e.target as typeof e.target & {
       url: { value: string };
@@ -90,13 +102,21 @@ const App: React.FC = () => {
               <TypeWriterContainer>
                 <h1>Poke Info</h1>
               </TypeWriterContainer>
-              <TeamDisplay
-                teamToDisplay={teamToDisplay}
-                battleRoomId={battleRoomId}
-                previousBattleRoomId={previousBattleRoomId.current}
-                activePkmTrack={activePkmTrack}
-                setActivePkmTrack={setActivePkmTrack}
-              />
+              <ErrorBoundary>
+                <Suspense fallback={<LoadingScreen />}>
+                  {spectatorsAllowed ? (
+                    <TeamDisplay
+                      teamToDisplay={teamToDisplay}
+                      battleRoomId={battleRoomId}
+                      previousBattleRoomId={previousBattleRoomId.current}
+                      activePkmTrack={activePkmTrack}
+                      setActivePkmTrack={setActivePkmTrack}
+                    />
+                  ) : (
+                    <PokeSearch battleRoomId={battleRoomId} />
+                  )}
+                </Suspense>
+              </ErrorBoundary>
             </AppDisplay>
           </>
         ) : (
@@ -108,3 +128,12 @@ const App: React.FC = () => {
 };
 
 export default App;
+const useSpectatorsAllowed = (params: URLSearchParams) => {
+  const [spectatorsAllowed, setSpectatorsAllowed] = useState(true);
+  useEffect(() => {
+    if (params.get("noSpectators")) {
+      setSpectatorsAllowed(false);
+    }
+  });
+  return spectatorsAllowed;
+};

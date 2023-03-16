@@ -18,6 +18,9 @@ export const theme: DefaultTheme = {
   outerBorderStyle: "black",
   backgroundColor: "#eef2f5",
   pokedexColor: "#333",
+  pokedexStyles: {
+    borderRadius: "0 0 0 15px",
+  },
   fontColor: "black",
   secondaryBorderMargin: "0.25rem",
   padding: {

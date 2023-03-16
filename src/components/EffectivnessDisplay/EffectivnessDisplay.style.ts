@@ -29,7 +29,6 @@ export const Effectivness = styled.p`
   align-items: center;
   justify-content: center;
   span {
-    align-self: flex-start;
     margin-left: 1px;
   }
 `;

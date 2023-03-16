@@ -10,7 +10,7 @@ import {
   opponentTestTeam,
   userTestTeam,
 } from "../../developmentMode";
-
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 interface TeamProps {
   teamToDisplay: "p1" | "p2";
   battleRoomId: string;
@@ -31,7 +31,6 @@ const TeamDisplay = ({
   const [[teams, setTeams], activePokemon] = useWebSocket(
     battleRoomId,
     previousBattleRoomId,
-    // activePkmTrack,
   );
   useEffect(() => {
     if (battleRoomId === devRoomId) {
@@ -73,12 +72,15 @@ const TeamDisplay = ({
           ))}
         </ButtonDisplay>
       </PokeDexScreen>
-      {battleTypeRegex && activePokemonCheck(teamToDisplay, activePkmTrack) && (
-        <PokemonDataDisplay
-          pokemon={activePokemonCheck(teamToDisplay, activePkmTrack)}
-          battleType={battleTypeRegex[1]}
-        />
-      )}
+      <ErrorBoundary>
+        {battleTypeRegex &&
+          activePokemonCheck(teamToDisplay, activePkmTrack) && (
+            <PokemonDataDisplay
+              pokemon={activePokemonCheck(teamToDisplay, activePkmTrack)}
+              battleType={battleTypeRegex[1]}
+            />
+          )}
+      </ErrorBoundary>
     </>
   );
 };

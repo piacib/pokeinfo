@@ -22,6 +22,9 @@ declare module "styled-components" {
       small: string;
       large: string;
     };
+    pokedexStyles: {
+      borderRadius: string;
+    };
     color: {
       typeColors: {
         [key: string]: string;

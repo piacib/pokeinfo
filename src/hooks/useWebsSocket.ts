@@ -67,9 +67,7 @@ const useWebSocketConnection = (
 export const useWebSocket = (
   battleRoomId: string,
   previousBattleRoomId?: string | null,
-  // activePkmTrack = false,
 ): ReturnType => {
-  console.log("ws", battleRoomId, previousBattleRoomId);
   const [ws, [message, setMessage]] = useWebSocketConnection(battleRoomId);
   const [teams, setTeams] = useState<teamsType>({ p1: [], p2: [] });
   const [activePokemon, setActivePokemon] = useState<teamsType>({

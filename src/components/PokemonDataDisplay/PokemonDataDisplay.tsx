@@ -1,15 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { isTypeName, TypeName } from "../../types";
-import { dexSearchPrepper } from "../../functions";
-import { PokemonName, HeaderContainer } from "./DataDisplay.style";
+import React, { Suspense } from "react";
+import {
+  PokemonName,
+  HeaderContainer,
+  NoPokemonText,
+  SearchForm,
+  SearchLabel,
+} from "./DataDisplay.style";
 import DamageDisplay from "../DamageDisplay/DamageDisplay";
 import TypeDisplay from "../TypesDisplay/TypesDisplay";
 import StatsDisplay from "../StatsDisplay/StatsDisplay";
 import OtherFormatsDisplay from "./OtherFormatsDisplay";
-import { Dex } from "@pkmn/dex";
-import RandomBattlePokemonDisplay from "../RandomPokemonDisplay/RandomBattlePokemonDisplay";
-
-const { Species } = Dex.data;
+import { TextInput } from "../UrlSearch/UrlSearch.style";
+import { usePokemon } from "../../hooks/usePokemon";
+import { LoadingScreen } from "../LoadingScreen";
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
+const RandomBattlePokemonDisplay = React.lazy(
+  () => import("../RandomPokemonDisplay/RandomBattlePokemonDisplay"),
+);
 
 interface PokemonDataDisplayProps {
   pokemon: string;
@@ -19,88 +26,81 @@ const PokemonDataDisplay = ({
   pokemon,
   battleType,
 }: PokemonDataDisplayProps) => {
-  const [typesArray, setTypesArray] = useState<TypeName[] | null>(null);
-  const [pkmn, setPkmn] = useState(pokemon);
-  useEffect(() => {
-    // check if pokemon is in Species
-    if (Species[dexSearchPrepper(pokemon)]) {
-      setPkmn(pokemon);
-      return;
-    }
-    // if not in Species check pokemon is in a cosmetic form
-    //  which follows format of ${pokemon}-${cosmetic form}
-    const regExMatch = pokemon.match(/(.*)-/);
-    if (regExMatch && regExMatch[1]) {
-      if (Species[dexSearchPrepper(regExMatch[1])].name) {
-        setPkmn(regExMatch[1]);
-      }
-    }
-  }, [pokemon]);
-  useEffect(() => {
-    if (Dex.species.get(pkmn).exists) {
-      let newArr: TypeName[] = [];
-      const TypeArr = Species[dexSearchPrepper(pkmn)]?.types;
-      if (!TypeArr) {
-        console.error("error retrieving type", dexSearchPrepper(pkmn), pkmn);
-        setTypesArray(newArr);
-        return;
-      }
-
-      TypeArr.forEach((entry) => {
-        if (isTypeName(entry)) {
-          newArr.push(entry);
-        }
-      });
-      setTypesArray(newArr);
-    } else {
-      console.error("pokemon does not exist in dex", pokemon);
-    }
-  }, [pkmn]);
-
+  const { pkmn, setPkmn, typesArray, pkmnExists } = usePokemon(pokemon);
   const isRandomBattle = battleType.includes("random");
-
-  // exit if pokemon doesnt exist (should never happen)
-  const pokemonExists = Dex.species.get(pokemon).exists;
-
+  const handleSubmit = (e: React.SyntheticEvent) => {
+    const target = e.target as typeof e.target & {
+      pokemon_search: { value: string };
+    };
+    if (target.pokemon_search.value) {
+      setPkmn(target.pokemon_search.value);
+    }
+  };
   return (
     <>
-      <>
-        {pokemonExists ? (
-          <>
-            <HeaderContainer>
-              <PokemonName
-                href={`https://www.smogon.com/dex/ss/pokemon/${pkmn}/`}
-              >
-                {pokemon}
-              </PokemonName>
-              <TypeDisplay types={typesArray} />
-            </HeaderContainer>
-            <DamageDisplay typesArray={typesArray} />
-            <StatsDisplay pokemon={pkmn} />
-            {isRandomBattle ? (
-              <RandomBattlePokemonDisplay
-                pokemon={pkmn}
-                battleType={battleType}
-              />
-            ) : (
-              <OtherFormatsDisplay pokemon={pkmn} />
-            )}
-          </>
-        ) : (
-          <>
-            <HeaderContainer>
-              <PokemonName
-                href={`https://www.smogon.com/dex/ss/pokemon/${pkmn}/`}
-              >
-                {pokemon}
-              </PokemonName>
-            </HeaderContainer>
-            <h2>It appears the pokemon {pokemon} is not in our database</h2>
-          </>
-        )}
-        <></>
-      </>
+      {pkmnExists && typesArray ? (
+        <>
+          <HeaderContainer>
+            <PokemonName
+              href={`https://www.smogon.com/dex/ss/pokemon/${pkmn}/`}
+            >
+              {pkmn}
+            </PokemonName>
+            <TypeDisplay types={typesArray} />
+          </HeaderContainer>
+          <DamageDisplay typesArray={typesArray} />
+          <StatsDisplay pokemon={pkmn} />
+          {isRandomBattle ? (
+            <ErrorBoundary>
+              <Suspense fallback={<LoadingScreen />}>
+                <RandomBattlePokemonDisplay
+                  pokemon={pkmn}
+                  battleType={battleType}
+                />
+              </Suspense>
+            </ErrorBoundary>
+          ) : (
+            <OtherFormatsDisplay pokemon={pkmn} />
+          )}
+        </>
+      ) : (
+        <NoPokemonFound pkmn={pkmn} handleSubmit={handleSubmit} />
+      )}
     </>
+  );
+};
+interface NoPokemonFoundProps {
+  pkmn: string;
+  handleSubmit: (e: React.SyntheticEvent) => void;
+}
+const NoPokemonFound = ({ pkmn, handleSubmit }: NoPokemonFoundProps) => {
+  return (
+    <>
+      <NoPokemonText>
+        It appears the pokemon {pkmn} is not in our database.
+        <br />
+        <br />
+        Try searching the pokemon name
+      </NoPokemonText>
+      <Form handleSubmit={handleSubmit} />
+    </>
+  );
+};
+interface Props {
+  handleSubmit: (e: React.SyntheticEvent) => void;
+}
+const Form = ({ handleSubmit }: Props) => {
+  return (
+    <SearchForm
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSubmit(e);
+      }}
+    >
+      <SearchLabel htmlFor="pokemon_search">Enter Pokemon: </SearchLabel>
+      <TextInput type="text" id="pokemon_search" name="pokemon_search" />
+      <input type="submit" value="Submit" />
+    </SearchForm>
   );
 };
 export default PokemonDataDisplay;

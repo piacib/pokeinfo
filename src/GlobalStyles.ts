@@ -53,4 +53,10 @@ button:focus-visible {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
-}`;
+  color: ${(props) => props.theme.fontColor};
+}
+form,input {
+  color: ${(props) => props.theme.fontColor};
+
+}
+`;
