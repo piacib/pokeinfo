@@ -39,12 +39,8 @@ export const MoveInfo = styled.ul`
   padding: 0;
   margin: 0;
 `;
-const cssMoveProperty = css`
-  /* white-space: nowrap; */
-`;
-export const MoveProperty = styled.li`
-  ${cssMoveProperty}
-`;
+
+export const MoveProperty = styled.li``;
 export const MoveDescription = styled(MoveProperty)`
   white-space: initial;
 `;
