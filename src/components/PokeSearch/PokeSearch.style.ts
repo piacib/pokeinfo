@@ -20,14 +20,6 @@ export const TextInput = styled.input`
     outline: none;
   }
 `;
-export const Select = styled.select`
-  width: 100%;
-  max-width: 200px;
-  padding: 0.5rem;
-  border: 1rem;
-  min-width: 100px;
-  height: 1rem;
-`;
 export const Submit = styled.input`
   position: absolute;
   right: 0;

@@ -1,20 +1,6 @@
 import { TypeName, isRandomBattleReturn } from "./types";
 import { Dex } from "@pkmn/dex";
 
-const randomDataBattleTypes = [
-  "gen8randombattle",
-  "gen8randomdoublesbattle",
-  "gen8randombattlenodmax",
-  "gen7randombattle",
-  "gen7randomdoublesbattle",
-  "gen7letsgorandombattle",
-  "gen6randombattle",
-  "gen5randombattle",
-  "gen4randombattle",
-  "gen3randombattle",
-  "gen2randombattle",
-  "gen1randombattle",
-];
 export const isRandomBattle = (url: string): isRandomBattleReturn => {
   const urlArr = url.split("-");
   const gen = urlArr.filter((x) => x.startsWith("gen"));

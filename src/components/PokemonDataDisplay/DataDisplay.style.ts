@@ -14,7 +14,7 @@ export const PropertyDisplay = styled.div`
 export const HiddenPropertyText = styled.div`
   display: none;
 `;
-export const propertyCss = css`
+const propertyCss = css`
   padding: ${(props) => props.theme.padding.medium};
   text-align: center;
   margin: 2px;
@@ -55,7 +55,6 @@ export const PokemonName = styled.a`
   padding: 5px 0;
   max-width: 11rem;
   color: ${(props) => props.theme.fontColor};
-
   text-overflow: ellipsis;
 `;
 export const PropertiesContainer = styled.div`
