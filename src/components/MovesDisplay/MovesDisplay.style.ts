@@ -11,7 +11,6 @@ import {
   TypeColoredComponent,
 } from "../../App.style";
 export const HiddenMoveText = styled(HiddenPropertyText)``;
-const mediaWidth = "400px";
 export const MoveBtn = styled(TypeColoredComponent)`
   position: relative;
   ${hoverDisplayCss}
@@ -24,7 +23,7 @@ export const MoveBtn = styled(TypeColoredComponent)`
     padding: ${(props) => props.theme.padding.medium};
     font-size: 1.1rem;
     margin: 5px 0;
-    @media (max-width: ${(props) => props.theme.media.smallScreen}) {
+    @media (max-width: ${(props) => props.theme.media.mediumScreen}) {
       left: 0;
       max-width: 130px;
     }
