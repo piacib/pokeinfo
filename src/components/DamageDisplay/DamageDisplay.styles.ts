@@ -7,7 +7,7 @@ export const DamageContainer = styled.div`
   flex-direction: column;
   /* justify-content: center; */
   font-size: 0.95rem;
-  @media (max-width: 400px) {
+  @media (max-width: ${(props) => props.theme.media.mediumScreen}) {
     flex-direction: row;
     flex-wrap: wrap;
   }

@@ -10,8 +10,9 @@ const darkMode: ModeObj = {
 
 export const theme: DefaultTheme = {
   media: {
-    smallScreen: "600px",
-    extraSmallScreen: "230px",
+    smallScreen: "37.5rem",
+    mediumScreen: "37.5rem",
+    extraSmallScreen: "14.5rem",
   },
   outerBorderWidth: "5px",
   outerBorderColor: "solid",

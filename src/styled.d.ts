@@ -10,6 +10,7 @@ interface ModeObj {
 declare module "styled-components" {
   export interface DefaultTheme extends ModeObj {
     media: {
+      mediumScreen: string;
       smallScreen: string;
       extraSmallScreen: string;
     };

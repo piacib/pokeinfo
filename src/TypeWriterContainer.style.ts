@@ -40,10 +40,10 @@ export const TypeWriterContainer = styled.div`
     @media (prefers-reduced-motion) {
       animation: ${blinkCaret} 1.5s step-end infinite;
     }
-    @media (max-width: 37.5rem) {
-      font-size: 4.5rem;
+    @media (max-width: ${(props) => props.theme.media.mediumScreen}) {
+      font-size: 5.5rem;
     }
-    @media (max-width: 370px) {
+    @media (max-width: 24rem) {
       font-size: 3.2rem;
     }
     @media (max-width: 270px) {

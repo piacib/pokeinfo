@@ -18,8 +18,8 @@ export const Container = styled.div`
   place-items: center;
   padding: 5px 10px;
   max-width: 700px;
-  /* max-height: 100px;
-  height: 350px; */
+  width: 95%;
+  place-self: center;
 `;
 export const InnerContainer = styled.div`
   border: 2px solid ${(props) => props.theme.pokedexColor};

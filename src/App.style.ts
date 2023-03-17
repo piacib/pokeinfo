@@ -34,7 +34,7 @@ export const AppDisplay = styled.div<RefProp>`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 15px;
-  @media (max-width: 600px) {
+  @media (max-width: ${(props) => props.theme.media.mediumScreen}) {
     display: flex;
     flex-direction: column;
   }
