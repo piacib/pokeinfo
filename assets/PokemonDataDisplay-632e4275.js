@@ -1,4 +1,4 @@
-import{C as f,s as n,j as s,a as r,P as A,T as P,F as l,r as c,b as E,L as v,D as p,c as u,R as j,_ as T,E as R,e as _}from"./index-04423779.js";const O=f`
+import{C as f,s as n,j as s,a as r,P as A,T as P,F as l,r as c,b as E,L as v,D as p,c as u,R as j,_ as T,E as R,e as _}from"./index-ff2cf785.js";const O=f`
   border: 1px solid ${e=>e.theme.pokedexColor};
 `,N=n.div`
   display: flex;
@@ -15,8 +15,8 @@ import{C as f,s as n,j as s,a as r,P as A,T as P,F as l,r as c,b as E,L as v,D a
   place-items: center;
   padding: 5px 10px;
   max-width: 700px;
-  /* max-height: 100px;
-  height: 350px; */
+  width: 95%;
+  place-self: center;
 `,H=n.div`
   border: 2px solid ${e=>e.theme.pokedexColor};
   border-radius: 5px;
@@ -100,7 +100,6 @@ import{C as f,s as n,j as s,a as r,P as A,T as P,F as l,r as c,b as E,L as v,D a
   padding: 5px 0;
   max-width: 11rem;
   color: ${e=>e.theme.fontColor};
-
   text-overflow: ellipsis;
 `,Fe=n.div`
   margin: 5px 0 0 0;
@@ -118,10 +117,14 @@ import{C as f,s as n,j as s,a as r,P as A,T as P,F as l,r as c,b as E,L as v,D a
   margin-bottom: 0.3rem;
   height: 3rem;
 
-  @media (max-width: 300px) {
+  @media (max-width: 18.75rem) {
     flex-direction: column;
     height: fit-content;
   }
+  /* @media (max-width: 300px) {
+    flex-direction: column;
+    height: fit-content;
+  } */
 `,K=n.h2`
   color: ${e=>e.theme.fontColor};
   grid-column: 1/3;
@@ -142,7 +145,7 @@ import{C as f,s as n,j as s,a as r,P as A,T as P,F as l,r as c,b as E,L as v,D a
   flex-direction: column;
   /* justify-content: center; */
   font-size: 0.95rem;
-  @media (max-width: 400px) {
+  @media (max-width: ${e=>e.theme.media.mediumScreen}) {
     flex-direction: row;
     flex-wrap: wrap;
   }
@@ -207,7 +210,7 @@ import{C as f,s as n,j as s,a as r,P as A,T as P,F as l,r as c,b as E,L as v,D a
   background-color: #6890f0;
   border-radius: 15px;
   color: black;
-  @media (max-width: ${e=>e.theme.media.smallScreen}) {
+  @media (max-width: ${e=>e.theme.media.mediumScreen}) {
     order: 99;
   } ;
 `,ce=n.th`
@@ -237,4 +240,4 @@ import{C as f,s as n,j as s,a as r,P as A,T as P,F as l,r as c,b as E,L as v,D a
     background-color: ${e=>x(e.type,"bar")};
     border: 1px solid ${e=>x(e.type,"barBorder")};
   }
-`,fe={hp:"HP",atk:"Attack",def:"Defense",spa:"Sp. Atk",spd:"Sp. Def",spe:"Speed"},be=({pokemon:e})=>{const[t,o]=c.useState({hp:0,atk:0,def:0,spa:0,spd:0,spe:0}),d=e[0].toUpperCase()+e.slice(1);return c.useEffect(()=>{p.species.get(d).exists&&o(p.species.get(d).baseStats)},[d]),s(de,{children:[r(he,{children:r("tr",{children:r("th",{colSpan:2,children:"Stats"})})}),r("tbody",{children:Object.entries(t).map(i=>s(ge,{type:i[0],children:[s(ce,{children:[s(pe,{children:[fe[i[0]],":"]}),r(me,{children:r("b",{children:i[1]})})]}),r(ue,{children:r(F,{stat:i[1]})})]},`${i[0]}`))})]})},xe=n(U)``,ye=p.data.Abilities,ke=({abilities:e})=>s(xe,{children:[r("h3",{children:"Abilities:"}),e&&r(l,{children:e.map(t=>{var o;return s(W,{children:[t,r(D,{children:(o=ye[u(t)])==null?void 0:o.shortDesc})]},t)})})]}),we=({pokemon:e})=>{if(e[0].toUpperCase()+e.slice(1),e==="Not revealed")return r(l,{});const t=Object.entries(p.species.get(e).abilities).map(o=>o[1]);return r(ke,{abilities:t})},{Species:y}=p.data,Ce=e=>{const[t,o]=c.useState(e),[d,i]=c.useState(null);return c.useEffect(()=>{if(o(e),y[u(e)])return;const a=e.match(/(.*)-/);if(a&&a[1]&&y[u(a[1])].name){o(a[1]);return}},[e]),c.useEffect(()=>{var a;if(p.species.get(t).exists){let m=[];const b=(a=y[u(t)])==null?void 0:a.types;if(!b){console.error("error retrieving type",u(t),t),i(m);return}b.forEach(g=>{Z(g)&&m.push(g)}),i(m)}else console.error("pokemon does not exist in dex",t)},[t]),{pkmn:t,setPkmn:o,typesArray:d,setTypesArray:i,pkmnExists:p.species.get(t).exists}},$e=j.lazy(()=>T(()=>import("./RandomBattlePokemonDisplay-7a33f923.js"),["assets/RandomBattlePokemonDisplay-7a33f923.js","assets/index-04423779.js"])),Ae=({pokemon:e,battleType:t})=>{const{pkmn:o,setPkmn:d,typesArray:i,pkmnExists:a}=Ce(e),m=t.includes("random");return r(l,{children:a&&i?s(l,{children:[s(J,{children:[r(q,{href:`https://www.smogon.com/dex/ss/pokemon/${o}/`,children:o}),r(se,{types:i})]}),r(oe,{typesArray:i}),r(be,{pokemon:o}),m?r(R,{children:r(c.Suspense,{fallback:r(v,{}),children:r($e,{pokemon:o,battleType:t})})}):r(we,{pokemon:o})]}):r(ve,{pkmn:o,handleSubmit:g=>{const w=g.target;w.pokemon_search.value&&d(w.pokemon_search.value)}})})},ve=({pkmn:e,handleSubmit:t})=>s(l,{children:[s(K,{children:["It appears the pokemon ",e," is not in our database.",r("br",{}),r("br",{}),"Try searching the pokemon name"]}),r(Se,{handleSubmit:t})]}),Se=({handleSubmit:e})=>s(Q,{onSubmit:t=>{t.preventDefault(),e(t)},children:[r(X,{htmlFor:"pokemon_search",children:"Enter Pokemon: "}),r(_,{type:"text",id:"pokemon_search",name:"pokemon_search"}),r("input",{type:"submit",value:"Submit"})]});export{ke as A,D as H,Be as P,re as T,Ae as a,U as b,W as c,Fe as d,M as h};
+`,fe={hp:"HP",atk:"Attack",def:"Defense",spa:"Sp. Atk",spd:"Sp. Def",spe:"Speed"},be=({pokemon:e})=>{const[t,o]=c.useState({hp:0,atk:0,def:0,spa:0,spd:0,spe:0}),d=e[0].toUpperCase()+e.slice(1);return c.useEffect(()=>{p.species.get(d).exists&&o(p.species.get(d).baseStats)},[d]),s(de,{children:[r(he,{children:r("tr",{children:r("th",{colSpan:2,children:"Stats"})})}),r("tbody",{children:Object.entries(t).map(i=>s(ge,{type:i[0],children:[s(ce,{children:[s(pe,{children:[fe[i[0]],":"]}),r(me,{children:r("b",{children:i[1]})})]}),r(ue,{children:r(F,{stat:i[1]})})]},`${i[0]}`))})]})},xe=n(U)``,ye=p.data.Abilities,ke=({abilities:e})=>s(xe,{children:[r("h3",{children:"Abilities:"}),e&&r(l,{children:e.map(t=>{var o;return s(W,{children:[t,r(D,{children:(o=ye[u(t)])==null?void 0:o.shortDesc})]},t)})})]}),we=({pokemon:e})=>{if(e[0].toUpperCase()+e.slice(1),e==="Not revealed")return r(l,{});const t=Object.entries(p.species.get(e).abilities).map(o=>o[1]);return r(ke,{abilities:t})},{Species:y}=p.data,Ce=e=>{const[t,o]=c.useState(e),[d,i]=c.useState(null);return c.useEffect(()=>{if(o(e),y[u(e)])return;const a=e.match(/(.*)-/);if(a&&a[1]&&y[u(a[1])].name){o(a[1]);return}},[e]),c.useEffect(()=>{var a;if(p.species.get(t).exists){let m=[];const b=(a=y[u(t)])==null?void 0:a.types;if(!b){console.error("error retrieving type",u(t),t),i(m);return}b.forEach(g=>{Z(g)&&m.push(g)}),i(m)}else console.error("pokemon does not exist in dex",t)},[t]),{pkmn:t,setPkmn:o,typesArray:d,setTypesArray:i,pkmnExists:p.species.get(t).exists}},$e=j.lazy(()=>T(()=>import("./RandomBattlePokemonDisplay-acebac4e.js"),["assets/RandomBattlePokemonDisplay-acebac4e.js","assets/index-ff2cf785.js"])),Ae=({pokemon:e,battleType:t})=>{const{pkmn:o,setPkmn:d,typesArray:i,pkmnExists:a}=Ce(e),m=t.includes("random");return r(l,{children:a&&i?s(l,{children:[s(J,{children:[r(q,{href:`https://www.smogon.com/dex/ss/pokemon/${o}/`,children:o}),r(se,{types:i})]}),r(oe,{typesArray:i}),r(be,{pokemon:o}),m?r(R,{children:r(c.Suspense,{fallback:r(v,{}),children:r($e,{pokemon:o,battleType:t})})}):r(we,{pokemon:o})]}):r(ve,{pkmn:o,handleSubmit:g=>{const w=g.target;w.pokemon_search.value&&d(w.pokemon_search.value)}})})},ve=({pkmn:e,handleSubmit:t})=>s(l,{children:[s(K,{children:["It appears the pokemon ",e," is not in our database.",r("br",{}),r("br",{}),"Try searching the pokemon name"]}),r(Se,{handleSubmit:t})]}),Se=({handleSubmit:e})=>s(Q,{onSubmit:t=>{t.preventDefault(),e(t)},children:[r(X,{htmlFor:"pokemon_search",children:"Enter Pokemon: "}),r(_,{type:"text",id:"pokemon_search",name:"pokemon_search"}),r("input",{type:"submit",value:"Submit"})]});export{ke as A,D as H,Be as P,re as T,Ae as a,U as b,W as c,Fe as d,M as h};

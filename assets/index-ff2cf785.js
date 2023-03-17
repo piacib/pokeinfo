@@ -78,7 +78,8 @@ Error generating stack: `+i.message+`
     color: ${e=>e.theme.fontColor};
     font-family: "VT323";
     height: 1em;
-    font-size: 4.5rem;
+    font-size: 6rem;
+
     width: fit-content;
     overflow: hidden; /* Ensures the content is not revealed until the animation */
     border-right: 0.25em solid black; /* The typwriter cursor */
@@ -90,7 +91,10 @@ Error generating stack: `+i.message+`
     @media (prefers-reduced-motion) {
       animation: ${ad} 1.5s step-end infinite;
     }
-    @media (max-width: 370px) {
+    @media (max-width: ${e=>e.theme.media.mediumScreen}) {
+      font-size: 5.5rem;
+    }
+    @media (max-width: 24rem) {
       font-size: 3.2rem;
     }
     @media (max-width: 270px) {
@@ -123,7 +127,7 @@ Error generating stack: `+i.message+`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 15px;
-  @media (max-width: 600px) {
+  @media (max-width: ${e=>e.theme.media.mediumScreen}) {
     display: flex;
     flex-direction: column;
   }
@@ -457,7 +461,7 @@ Error generating stack: `+i.message+`
 `,yW=Y.ul`
   list-style: none;
   padding: 0;
-`,bW=({children:e})=>De(Aa,{children:[R(fW,{children:R("input",{type:"checkbox"})}),R(Nn,{children:R(yW,{children:e.map((t,a)=>R("li",{children:t},`${t}${a}}`))})})]}),kW={backgroundColor:"#333",fontColor:"white",pokedexColor:"white"},cd={media:{smallScreen:"600px",extraSmallScreen:"230px"},outerBorderWidth:"5px",outerBorderColor:"solid",outerBorderStyle:"black",backgroundColor:"#eef2f5",pokedexColor:"#333",pokedexStyles:{borderRadius:"0 0 0 15px"},fontColor:"black",secondaryBorderMargin:"0.25rem",padding:{medium:".25rem",small:".1rem",large:".5rem"},color:{typeColors:{Normal:"rgb(168, 167, 120)",Ground:"rgb(224, 192, 104)",Rock:"rgb(163, 140, 33)",Bug:"rgb(114, 159, 62)",Ghost:"rgb(123, 98, 163)",Steel:"rgb(158, 183, 184)",Fighting:"rgb(192, 48, 40)",Fire:"rgb(247, 125, 37)",Flying:"rgb(168, 143, 239)",Water:"rgb(69, 146, 196)",Poison:"rgb(185, 127, 201)",Grass:"rgb(155, 204, 80)",Electric:"rgb(248, 208, 48)",Psychic:"rgb(243, 102, 185)",Ice:"rgb(152, 216, 216)",Dragon:"rgb(112, 56, 248)",Dark:"rgb(112, 88, 72)",Fairy:"rgb(238, 153, 172)","???":"rgb(117, 117, 117)"},pokedexRed:"rgb(253,0,1)"},buttonBorderRadius:"10px",burgerMenu:{measureType:"px",barWidth:60,barHeight:8,hamburgerGap:6,foreground:"#333",background:"white",hamburgerMargin:8,animationTiming:"200ms ease-in-out",extraSmallScreen:{barWidth:20,barHeight:4,hamburgerGap:2}}},hd=e=>e==="light"?cd:{...cd,...kW},vW=yE`
+`,bW=({children:e})=>De(Aa,{children:[R(fW,{children:R("input",{type:"checkbox"})}),R(Nn,{children:R(yW,{children:e.map((t,a)=>R("li",{children:t},`${t}${a}}`))})})]}),kW={backgroundColor:"#333",fontColor:"white",pokedexColor:"white"},cd={media:{smallScreen:"18.75rem",mediumScreen:"37.5rem",extraSmallScreen:"14.5rem"},outerBorderWidth:"5px",outerBorderColor:"solid",outerBorderStyle:"black",backgroundColor:"#eef2f5",pokedexColor:"#333",pokedexStyles:{borderRadius:"0 0 0 15px"},fontColor:"black",secondaryBorderMargin:"0.25rem",padding:{medium:".25rem",small:".1rem",large:".5rem"},color:{typeColors:{Normal:"rgb(168, 167, 120)",Ground:"rgb(224, 192, 104)",Rock:"rgb(163, 140, 33)",Bug:"rgb(114, 159, 62)",Ghost:"rgb(123, 98, 163)",Steel:"rgb(158, 183, 184)",Fighting:"rgb(192, 48, 40)",Fire:"rgb(247, 125, 37)",Flying:"rgb(168, 143, 239)",Water:"rgb(69, 146, 196)",Poison:"rgb(185, 127, 201)",Grass:"rgb(155, 204, 80)",Electric:"rgb(248, 208, 48)",Psychic:"rgb(243, 102, 185)",Ice:"rgb(152, 216, 216)",Dragon:"rgb(112, 56, 248)",Dark:"rgb(112, 88, 72)",Fairy:"rgb(238, 153, 172)","???":"rgb(117, 117, 117)"},pokedexRed:"rgb(253,0,1)"},buttonBorderRadius:"10px",burgerMenu:{measureType:"px",barWidth:60,barHeight:8,hamburgerGap:6,foreground:"#333",background:"white",hamburgerMargin:8,animationTiming:"200ms ease-in-out",extraSmallScreen:{barWidth:20,barHeight:4,hamburgerGap:2}}},hd=e=>e==="light"?cd:{...cd,...kW},vW=yE`
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -627,4 +631,4 @@ form,input {
   height: 100%;
   display: grid;
   place-items: center;
-`,LW=()=>De(HW,{children:[R(MW,{src:GW,alt:"Loading"}),";"]});class IW extends _.Component{constructor(){super(...arguments);Il(this,"state",{hasError:!1})}static getDerivedStateFromError(a){return{hasError:!0}}componentDidCatch(a,r){console.error("Uncaught error:",a,r)}render(){return this.state.hasError?R("h1",{children:"Sorry.. there was an error"}):this.props.children}}const AW=Ct.lazy(()=>Sl(()=>import("./PokeSearch-9f7ac2f1.js"),["assets/PokeSearch-9f7ac2f1.js","assets/PokemonDataDisplay-831e5a93.js"])),BW=Ct.lazy(()=>Sl(()=>import("./TeamDisplay-05ba51dc.js"),["assets/TeamDisplay-05ba51dc.js","assets/PokemonDataDisplay-831e5a93.js"])),xW=()=>{const[e,t]=_.useState("p2"),[a,r]=_.useState(""),[s,i]=_.useState(!1),[o,n]=_.useState(!0),l=_.useRef(""),[u,m]=wW(),p=new URLSearchParams(window.location.search),g=RW(p);_.useEffect(()=>{const b=p.get("battleId");b&&(i(!0),r(b))});const v=b=>{b.preventDefault(),console.log("handleSubmit",l.current,a),l.current=a;const k=b.target,N=k.url.value.indexOf("battle");if(N===-1)return;const c=k.url.value.slice(N);r(c)};return De(Aa,{children:[R(vW,{theme:hd(u)}),R(gE,{theme:hd(u),children:a?De(Aa,{children:[s&&R(dd,{}),R(QE,{children:De(Aa,{children:[De(bW,{children:[s&&R(dd,{}),De(KE,{children:[De("h3",{children:[u==="light"?"Dark":"Light"," Mode:"]}),R(gW,{togClass:u,setTogClass:m})]}),R(FW,{toggle:o,setToggle:n}),!s&&R(rW,{handleSubmit:v})]}),R(_E,{onClick:()=>{t(e==="p1"?"p2":"p1")},children:"Switch Team"})]})}),De($E,{children:[R(Bh,{children:R("h1",{children:"Poke Info"})}),R(IW,{children:R(_.Suspense,{fallback:R(LW,{}),children:g?R(BW,{teamToDisplay:e,battleRoomId:a,previousBattleRoomId:l.current,activePkmTrack:o,setActivePkmTrack:n}):R(AW,{battleRoomId:a})})})]})]}):R(lW,{setBattleRoomId:r})})]})},RW=e=>{const[t,a]=_.useState(!0);return _.useEffect(()=>{e.get("noSpectators")&&a(!1)}),t};So.createRoot(document.getElementById("root")).render(R(Ct.StrictMode,{children:R(xW,{})}));export{ba as C,WE as D,IW as E,Aa as F,LW as L,KW as P,Ct as R,VW as T,Sl as _,R as a,qW as b,jW as c,bO as d,YE as e,XE as f,WW as i,De as j,EW as o,_ as r,Y as s,OW as u};
+`,LW=()=>De(HW,{children:[R(MW,{src:GW,alt:"Loading"}),";"]});class IW extends _.Component{constructor(){super(...arguments);Il(this,"state",{hasError:!1})}static getDerivedStateFromError(a){return{hasError:!0}}componentDidCatch(a,r){console.error("Uncaught error:",a,r)}render(){return this.state.hasError?R("h1",{children:"Sorry.. there was an error"}):this.props.children}}const AW=Ct.lazy(()=>Sl(()=>import("./PokeSearch-8d093274.js"),["assets/PokeSearch-8d093274.js","assets/PokemonDataDisplay-632e4275.js"])),BW=Ct.lazy(()=>Sl(()=>import("./TeamDisplay-893b2f2e.js"),["assets/TeamDisplay-893b2f2e.js","assets/PokemonDataDisplay-632e4275.js"])),xW=()=>{const[e,t]=_.useState("p2"),[a,r]=_.useState(""),[s,i]=_.useState(!1),[o,n]=_.useState(!0),l=_.useRef(""),[u,m]=wW(),p=new URLSearchParams(window.location.search),g=RW(p);_.useEffect(()=>{const b=p.get("battleId");b&&(i(!0),r(b))});const v=b=>{b.preventDefault(),console.log("handleSubmit",l.current,a),l.current=a;const k=b.target,N=k.url.value.indexOf("battle");if(N===-1)return;const c=k.url.value.slice(N);r(c)};return De(Aa,{children:[R(vW,{theme:hd(u)}),R(gE,{theme:hd(u),children:a?De(Aa,{children:[s&&R(dd,{}),R(QE,{children:De(Aa,{children:[De(bW,{children:[s&&R(dd,{}),De(KE,{children:[De("h3",{children:[u==="light"?"Dark":"Light"," Mode:"]}),R(gW,{togClass:u,setTogClass:m})]}),R(FW,{toggle:o,setToggle:n}),!s&&R(rW,{handleSubmit:v})]}),R(_E,{onClick:()=>{t(e==="p1"?"p2":"p1")},children:"Switch Team"})]})}),De($E,{children:[R(Bh,{children:R("h1",{children:"Poke Info"})}),R(IW,{children:R(_.Suspense,{fallback:R(LW,{}),children:g?R(BW,{teamToDisplay:e,battleRoomId:a,previousBattleRoomId:l.current,activePkmTrack:o,setActivePkmTrack:n}):R(AW,{battleRoomId:a})})})]})]}):R(lW,{setBattleRoomId:r})})]})},RW=e=>{const[t,a]=_.useState(!0);return _.useEffect(()=>{e.get("noSpectators")&&a(!1)}),t};So.createRoot(document.getElementById("root")).render(R(Ct.StrictMode,{children:R(xW,{})}));export{ba as C,WE as D,IW as E,Aa as F,LW as L,KW as P,Ct as R,VW as T,Sl as _,R as a,qW as b,jW as c,bO as d,YE as e,XE as f,WW as i,De as j,EW as o,_ as r,Y as s,OW as u};
