@@ -2,7 +2,6 @@ import styled, { css } from "styled-components";
 import {
   HiddenPropertyText,
   hoverDisplayCss,
-  propertyCss,
   PropertyDisplay,
 } from "../PokemonDataDisplay/DataDisplay.style";
 import {
