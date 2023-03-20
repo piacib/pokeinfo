@@ -30,7 +30,7 @@ interface RefProp extends React.FC {
 }
 export const AppDisplay = styled.div<RefProp>`
   min-width: 100px;
-  width: 100%;
+  width: 95%;
   max-width: 100rem;
   margin: 0 auto;
   padding: 1rem 0.8rem;
