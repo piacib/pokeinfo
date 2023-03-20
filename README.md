@@ -18,10 +18,11 @@ Poke info is a site set up to connect to a pokemon showdown battle and display r
 ## If I had more time I would change this
 
 - Better integration with the Dex types provided by @pkmn/types
-- add testing
+- add more testing
+- add a damage calculator 
 
 ## Installation and usage
 
-- Checkout the site at
+- Checkout the site at https://piacib.github.io/pokeinfo/ 
 - Download the chrome extension
 - Download the firefox extension
