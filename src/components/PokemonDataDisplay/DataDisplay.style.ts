@@ -77,14 +77,10 @@ export const HeaderContainer = styled.div<RefProp>`
   margin-bottom: 0.3rem;
   height: 3rem;
 
-  @media (max-width: 18.75rem) {
+  @media (max-width: 22rem) {
     flex-direction: column;
     height: fit-content;
   }
-  /* @media (max-width: 300px) {
-    flex-direction: column;
-    height: fit-content;
-  } */
 `;
 export const NoPokemonText = styled.h2`
   color: ${(props) => props.theme.fontColor};
