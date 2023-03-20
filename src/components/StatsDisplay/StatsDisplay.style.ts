@@ -9,6 +9,7 @@ export const StatsContainer = styled.table`
   background-color: #6890f0;
   border-radius: 15px;
   color: black;
+  max-width: 700px;
   @media (max-width: ${(props) => props.theme.media.mediumScreen}) {
     order: 99;
   } ;
