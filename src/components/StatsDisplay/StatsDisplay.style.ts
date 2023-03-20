@@ -18,8 +18,8 @@ export const StatBox = styled.th`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   padding-right: 0.4rem;
-  max-width: 10rem;
 `;
 const TextOneLine = css`
   overflow: hidden;
@@ -36,6 +36,9 @@ export const StatsHead = styled.thead`
 `;
 export const StatBar = styled.td`
   width: 80%;
+  @media (max-width: 200px) {
+    display: none;
+  }
 `;
 interface StatEntry {
   stat: number;
