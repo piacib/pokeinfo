@@ -4,8 +4,8 @@ export const devRoomId = "room-" + devPathname;
 
 export const userTestTeam = [
   "Vivillon-River",
-  "Dudunsparce-Three-Segment",
-  "Iron Leaves",
+  "Scizor",
+  "Hatterene",
   "Iron Moth",
   "Gyarados",
   "Giratina",
