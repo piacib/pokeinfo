@@ -8,6 +8,7 @@ export const ContainerTop = styled.div`
   width: 40px;
   justify-content: space-between;
 `;
+const scale = 1.1;
 export const Container = styled.div`
   border: 3px solid ${(props) => props.theme.pokedexColor};
   border-radius: ${(props) => props.theme.pokedexStyles.borderRadius};
@@ -20,6 +21,10 @@ export const Container = styled.div`
   max-width: 700px;
   width: 95%;
   place-self: center;
+  @media (min-width: 111rem) {
+    scale: ${scale};
+    max-width: ${scale} * 700px;
+  }
 `;
 export const InnerContainer = styled.div`
   border: 2px solid ${(props) => props.theme.pokedexColor};
