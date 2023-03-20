@@ -30,6 +30,9 @@ interface RefProp extends React.FC {
 }
 export const AppDisplay = styled.div<RefProp>`
   min-width: 100px;
+  width: 100%;
+  max-width: 100rem;
+  margin: 0 auto;
   padding: 1rem 0.8rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -63,4 +66,19 @@ export const Header = styled.div`
 export const Spacer = styled.div`
   width: 100%;
   height: 40px;
+`;
+export const PokeInfo = styled.h1`
+  font-size: 6rem;
+  @media (max-width: ${(props) => props.theme.media.mediumScreen}) {
+    font-size: 5.5rem;
+  }
+  @media (max-width: 24rem) {
+    font-size: 3.2rem;
+  }
+  @media (max-width: 270px) {
+    font-size: 36px;
+  }
+  @media (min-width: 62rem) {
+    font-size: 8rem;
+  }
 `;
