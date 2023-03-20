@@ -27,7 +27,7 @@ export const TypeWriterContainer = styled.div`
     color: ${(props) => props.theme.fontColor};
     font-family: "VT323";
     height: 1em;
-    font-size: 6rem;
+    
 
     width: fit-content;
     overflow: hidden; /* Ensures the content is not revealed until the animation */
@@ -40,14 +40,6 @@ export const TypeWriterContainer = styled.div`
     @media (prefers-reduced-motion) {
       animation: ${blinkCaret} 1.5s step-end infinite;
     }
-    @media (max-width: ${(props) => props.theme.media.mediumScreen}) {
-      font-size: 5.5rem;
-    }
-    @media (max-width: 24rem) {
-      font-size: 3.2rem;
-    }
-    @media (max-width: 270px) {
-      font-size: 36px;
-    }
+    
   }
 `;
