@@ -10,6 +10,7 @@ export const StatsContainer = styled.table`
   border-radius: 15px;
   color: black;
   max-width: 700px;
+  max-height: 15rem;
   @media (max-width: ${(props) => props.theme.media.mediumScreen}) {
     order: 99;
   } ;
