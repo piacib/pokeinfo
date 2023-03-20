@@ -9,9 +9,11 @@ import {
   Button,
   Header,
   ModeToggleContainer,
+  PokeInfo,
   Spacer,
 } from "./App.style";
 import { ThemeProvider } from "styled-components";
+import brennabolt from "./assets/brennabolt.svg";
 import { themeObjGenerator } from "./theme";
 import { GlobalStyles } from "./GlobalStyles";
 import { useLightMode } from "./hooks/useLightMode";
@@ -37,9 +39,7 @@ const App: React.FC = () => {
   const previousBattleRoomId = useRef("");
   const [lightMode, setLightMode] = useLightMode();
   const params = new URLSearchParams(window.location.search);
-  const spectatorsAllowed = useSpectatorsAllowed(
-    params
-  );
+  const spectatorsAllowed = useSpectatorsAllowed(params);
   useEffect(() => {
     const paramBattleId = params.get("battleId");
     if (paramBattleId) {
@@ -100,7 +100,7 @@ const App: React.FC = () => {
             </Header>
             <AppDisplay>
               <TypeWriterContainer>
-                <h1>Poke Info</h1>
+                <PokeInfo>Poke Info</PokeInfo>
               </TypeWriterContainer>
               <ErrorBoundary>
                 <Suspense fallback={<LoadingScreen />}>
@@ -120,7 +120,9 @@ const App: React.FC = () => {
             </AppDisplay>
           </>
         ) : (
-          <Home setBattleRoomId={setBattleRoomId} />
+          <>
+            <Home setBattleRoomId={setBattleRoomId} />
+          </>
         )}
       </ThemeProvider>
     </>
