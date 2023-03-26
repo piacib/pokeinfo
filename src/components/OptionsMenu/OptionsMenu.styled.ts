@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ToggleContainer } from "../ModeToggle/ModeToggle.style";
+import { UrlLabel } from "../UrlSearch/UrlSearch.style";
 
 export const SideBar = styled.aside`
   --hamburgerHeight: ${(props) =>
@@ -25,6 +26,9 @@ export const SideBar = styled.aside`
   width: 10rem;
 
   min-height: 100vh;
+  ${UrlLabel} {
+    color: white;
+  }
 `;
 export const HamburgerLabel = styled.label`
   --hamburgerHeight: ${(props) =>
