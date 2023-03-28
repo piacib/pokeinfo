@@ -34,11 +34,12 @@ const App: React.FC = () => {
   const [battleRoomId, setBattleRoomId] = useState("");
   const [isInExtension, setIsInExtension] = useState(false);
   const [activePkmTrack, setActivePkmTrack] = useState(true);
+  const [lightMode, setLightMode] = useLightMode();
   // previousBattleRoomId -> tracks previous battle room so
   // ws can clear info when new url is searched
   const previousBattleRoomId = useRef("");
-  const [lightMode, setLightMode] = useLightMode();
   const params = new URLSearchParams(window.location.search);
+  console.log(params.get("userTeam"));
   const spectatorsAllowed = useSpectatorsAllowed(params, battleRoomId);
   useEffect(() => {
     const paramBattleId = params.get("battleId");
@@ -60,6 +61,13 @@ const App: React.FC = () => {
     }
     const battleRoomIdTemp = target.url.value.slice(battleIndex);
     setBattleRoomId(battleRoomIdTemp);
+  };
+  const swapTeams = () => {
+    if (teamToDisplay === "p1") {
+      setTeamToDisplay("p2");
+    } else {
+      setTeamToDisplay("p1");
+    }
   };
   return (
     <>
@@ -85,17 +93,7 @@ const App: React.FC = () => {
                   />
                   {!isInExtension && <UrlSearch handleSubmit={handleSubmit} />}
                 </OptionsMenu>
-                <Button
-                  onClick={() => {
-                    if (teamToDisplay === "p1") {
-                      setTeamToDisplay("p2");
-                    } else {
-                      setTeamToDisplay("p1");
-                    }
-                  }}
-                >
-                  Switch Team
-                </Button>
+                <Button onClick={swapTeams}>Switch Team</Button>
               </>
             </Header>
             <AppDisplay>
@@ -104,7 +102,9 @@ const App: React.FC = () => {
               </TypeWriterContainer>
               <ErrorBoundary>
                 <Suspense fallback={<LoadingScreen />}>
-                  {!isInExtension && !spectatorsAllowed ? (
+                  {(!spectatorsAllowed && !isInExtension) ||
+                  !params.get("userTeam") ||
+                  !params.get("opponentsTeam") ? (
                     <PokeSearch battleRoomId={battleRoomId} />
                   ) : (
                     <TeamDisplay
@@ -121,9 +121,7 @@ const App: React.FC = () => {
             </AppDisplay>
           </>
         ) : (
-          <>
-            <Home setBattleRoomId={setBattleRoomId} />
-          </>
+          <Home setBattleRoomId={setBattleRoomId} />
         )}
       </ThemeProvider>
     </>
