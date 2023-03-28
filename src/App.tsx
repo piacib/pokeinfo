@@ -39,7 +39,7 @@ const App: React.FC = () => {
   const previousBattleRoomId = useRef("");
   const [lightMode, setLightMode] = useLightMode();
   const params = new URLSearchParams(window.location.search);
-  const spectatorsAllowed = useSpectatorsAllowed(params);
+  const spectatorsAllowed = useSpectatorsAllowed(params, battleRoomId);
   useEffect(() => {
     const paramBattleId = params.get("battleId");
     if (paramBattleId) {
@@ -104,16 +104,17 @@ const App: React.FC = () => {
               </TypeWriterContainer>
               <ErrorBoundary>
                 <Suspense fallback={<LoadingScreen />}>
-                  {spectatorsAllowed ? (
+                  {!isInExtension && !spectatorsAllowed ? (
+                    <PokeSearch battleRoomId={battleRoomId} />
+                  ) : (
                     <TeamDisplay
                       teamToDisplay={teamToDisplay}
                       battleRoomId={battleRoomId}
                       previousBattleRoomId={previousBattleRoomId.current}
                       activePkmTrack={activePkmTrack}
                       setActivePkmTrack={setActivePkmTrack}
+                      spectatorsAllowed={spectatorsAllowed}
                     />
-                  ) : (
-                    <PokeSearch battleRoomId={battleRoomId} />
                   )}
                 </Suspense>
               </ErrorBoundary>
@@ -130,12 +131,21 @@ const App: React.FC = () => {
 };
 
 export default App;
-const useSpectatorsAllowed = (params: URLSearchParams) => {
+const useSpectatorsAllowed = (
+  params: URLSearchParams,
+  battleRoomId: string,
+) => {
   const [spectatorsAllowed, setSpectatorsAllowed] = useState(true);
   useEffect(() => {
     if (params.get("noSpectators")) {
       setSpectatorsAllowed(false);
     }
   });
+  useEffect(() => {
+    if (battleRoomId.split("-").length > 3) {
+      console.log("spectatorsAllowed", false);
+      setSpectatorsAllowed(false);
+    }
+  }, [battleRoomId]);
   return spectatorsAllowed;
 };
