@@ -24,12 +24,18 @@ const RandomBattlePokemonDisplay: React.FC<RandomBattlePokemonDisplayProps> = ({
   battleType,
 }) => {
   const [randbatsPokemonData] = useRandomBattleData(battleType);
-  const pokemonName = pokemon[0].toUpperCase() + pokemon.slice(1);
+  let pokemonName = pokemon[0].toUpperCase() + pokemon.slice(1);
   if (
     Object.keys(randbatsPokemonData).length > 1 &&
     !randbatsPokemonData[pokemonName]
   ) {
-    console.error("no data for this pokemon", randbatsPokemonData, pokemon);
+    // catches appearance based names ie pikachu-original or flores-blue
+    const tempPkm = pokemonName.split("-")[0];
+    if (randbatsPokemonData[tempPkm]) {
+      pokemonName = tempPkm;
+    } else {
+      console.error("no data for this pokemon", randbatsPokemonData, pokemon);
+    }
   }
   const movesData = getMoves(randbatsPokemonData[pokemonName]?.moves);
   const rolesData = randbatsPokemonData[pokemonName]?.roles;
