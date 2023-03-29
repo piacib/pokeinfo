@@ -144,7 +144,6 @@ test("displays moves data", () => {
     </ThemeProvider>,
   );
   testMoves.forEach((move) => {
-    const regex = new RegExp(move, "i");
     const element = screen.getByText(new RegExp(move, "i"));
     expect(element).toBeInTheDocument();
   });
