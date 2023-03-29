@@ -13,14 +13,12 @@ import {
   Spacer,
 } from "./App.style";
 import { ThemeProvider } from "styled-components";
-import brennabolt from "./assets/brennabolt.svg";
 import { themeObjGenerator } from "./theme";
 import { GlobalStyles } from "./GlobalStyles";
 import { useLightMode } from "./hooks/useLightMode";
 import PokeTracker from "./components/PokeTracker/PokeTracker";
 import { LoadingScreen } from "./components/LoadingScreen";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
-import { devRoomId } from "./developmentMode";
 import { displayHandler } from "./functions";
 const PokeSearch = React.lazy(
   () => import("./components/PokeSearch/PokeSearch"),
