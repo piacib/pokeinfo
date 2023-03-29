@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ReturnType, teamsType } from "../useWebsSocket";
+import { ReturnType, teamsType } from "../useWebsSocket/useWebsSocket";
 // example url:
 // https://piacib.github.io/pokeinfo/
 // ?battleId=battle-gen9randombattle-1831739535

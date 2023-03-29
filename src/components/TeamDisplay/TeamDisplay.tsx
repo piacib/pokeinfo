@@ -4,7 +4,7 @@ import SpriteImage from "../SpriteImage";
 import { pokemonNameFilter } from "./TeamDisplay.functions";
 import PokeDexScreen from "../PokeDexScreen/PokeDex";
 import PokemonDataDisplay from "../PokemonDataDisplay/PokemonDataDisplay";
-import { useWebSocket } from "../../hooks/useWebsSocket";
+import { useWebSocket } from "../../hooks/useWebsSocket/useWebsSocket";
 import {
   devRoomId,
   opponentTestTeam,
