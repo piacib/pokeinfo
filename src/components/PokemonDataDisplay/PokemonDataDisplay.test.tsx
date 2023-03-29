@@ -16,7 +16,6 @@ describe("PokemonDataDisplay", () => {
       </ThemeProvider>,
     );
     const PokemonName = screen.getByText(pokemon);
-    screen.debug();
     expect(PokemonName).toBeInTheDocument();
   });
   it("Pokemon stats appears", () => {
@@ -39,7 +38,6 @@ describe("PokemonDataDisplay", () => {
       </ThemeProvider>,
     );
     const errorMessage = screen.getByText("Enter Pokemon:");
-        expect(errorMessage).toBeInTheDocument()
-    screen.debug();
+    expect(errorMessage).toBeInTheDocument();
   });
 });
