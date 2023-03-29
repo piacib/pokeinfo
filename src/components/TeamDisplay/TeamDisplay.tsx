@@ -11,7 +11,7 @@ import {
   userTestTeam,
 } from "../../developmentMode";
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
-import useNoSpectator from "../../hooks/useNoSpectator";
+import useNoSpectator from "../../hooks/useNoSpectators/useNoSpectator";
 interface TeamProps {
   teamToDisplay: "p1" | "p2";
   battleRoomId: string;
@@ -32,7 +32,7 @@ const TeamDisplay = ({
   const [index, setIndex] = useState(0);
   const [[teams, setTeams], activePokemon] = spectatorsAllowed
     ? useWebSocket(battleRoomId, previousBattleRoomId)
-    : useNoSpectator();
+    : useNoSpectator(new URLSearchParams(window.location.search));
   useEffect(() => {
     if (battleRoomId === devRoomId) {
       setTeams({
