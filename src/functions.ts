@@ -104,3 +104,32 @@ export const damageCalculator = (typesArray: TypeName[]) => {
   ]);
   return Object.fromEntries(damageObjectEntries);
 };
+export const displayHandler = (
+  spectatorsAllowed: boolean,
+  isInExtension: boolean,
+  userTeam: string | null,
+  opponentsTeam: string | null,
+): boolean => {
+  console.log({
+    spectatorsAllowed: spectatorsAllowed,
+    isInExtension: isInExtension,
+    userTeam: userTeam,
+    opponentsTeam: opponentsTeam,
+  });
+  if (spectatorsAllowed) {
+    // return teamDisplay
+    return true;
+  }
+  if (!spectatorsAllowed && isInExtension) {
+    if (userTeam && opponentsTeam) {
+      // in extension and url params includes teams.
+      // display teamDisplay
+      return true;
+    }
+    // in extension but no team included. (old extension)
+    // display search
+    return false;
+  }
+
+  return false;
+};

@@ -21,6 +21,7 @@ import PokeTracker from "./components/PokeTracker/PokeTracker";
 import { LoadingScreen } from "./components/LoadingScreen";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import { devRoomId } from "./developmentMode";
+import { displayHandler } from "./functions";
 const PokeSearch = React.lazy(
   () => import("./components/PokeSearch/PokeSearch"),
 );
@@ -77,35 +78,6 @@ const App: React.FC = () => {
     } else {
       setTeamToDisplay("p1");
     }
-  };
-  const displayHandler = (
-    spectatorsAllowed: boolean,
-    isInExtension: boolean,
-    userTeam: string | null,
-    opponentsTeam: string | null,
-  ): boolean => {
-    console.log({
-      spectatorsAllowed: spectatorsAllowed,
-      isInExtension: isInExtension,
-      userTeam: userTeam,
-      opponentsTeam: opponentsTeam,
-    });
-    if (spectatorsAllowed) {
-      // return teamDisplay
-      return true;
-    }
-    if (!spectatorsAllowed && isInExtension) {
-      if (userTeam && opponentsTeam) {
-        // in extension and url params includes teams.
-        // display teamDisplay
-        return true;
-      }
-      // in extension but no team included. (old extension)
-      // display search
-      return false;
-    }
-
-    return false;
   };
 
   return (
