@@ -6,7 +6,7 @@ import MovesDisplay from "../MovesDisplay/MovesDisplay";
 import AbilitiesDisplay from "../AbilitiesDisplay/AbilitiesDisplay";
 import RolesDisplay from "../RolesDisplay/RolesDisplay";
 import { PropertiesContainer } from "../PokemonDataDisplay/DataDisplay.style";
-import { useRandomBattleData } from "../../hooks/useRandomBattleData";
+import { useRandomBattleData } from "../../hooks/useRandomBattleData/useRandomBattleData";
 const { Moves } = Dex.data;
 export const getMoves = (moveData: string[] | undefined) => {
   if (moveData) {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { PokemonData } from "../types";
+import { PokemonData } from "../../types";
 const emptyRandbatsPokemonData = {
   "": {
     level: 0,

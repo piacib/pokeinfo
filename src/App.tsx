@@ -27,8 +27,6 @@ const TeamDisplay = React.lazy(
   () => import("./components/TeamDisplay/TeamDisplay"),
 );
 
-const testNoSpecUrl =
-  "https://play.pokemonshowdown.com/battle-gen9randombattle-1821599719-7j7njjdppksd6fbxqeqsxe2h8tnib35pw";
 const App: React.FC = () => {
   const [teamToDisplay, setTeamToDisplay] = useState<"p1" | "p2">("p2");
   const [battleRoomId, setBattleRoomId] = useState("");
@@ -40,15 +38,7 @@ const App: React.FC = () => {
   const previousBattleRoomId = useRef("");
   const params = new URLSearchParams(window.location.search);
   console.log(params.get("userTeam"));
-  const [spectatorsAllowed, setSpectatorsAllowed] = useSpectatorsAllowed(
-    params,
-    battleRoomId,
-  );
-  // useEffect(() => {
-  //   if (battleRoomId === devRoomId) {
-  //     setSpectatorsAllowed(true);
-  //   }
-  // }, [battleRoomId]);
+  const [spectatorsAllowed] = useSpectatorsAllowed(params, battleRoomId);
   useEffect(() => {
     const paramBattleId = params.get("battleId");
     if (paramBattleId) {
