@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer, useRef, useState } from "react";
-import { isRandomBattle } from "../functions";
+import { isRandomBattle } from "../../functions";
 import {
   getActivePokemon,
   getBattleType,
@@ -12,7 +12,7 @@ import {
 } from "./websocket.functions";
 export type teamsType = { p1: string[]; p2: string[] };
 const showdownWs = "wss://sim3.psim.us/showdown/websocket";
-type ReturnType = [
+export type ReturnType = [
   [teamsType, React.Dispatch<React.SetStateAction<teamsType>>],
   teamsType,
 ];

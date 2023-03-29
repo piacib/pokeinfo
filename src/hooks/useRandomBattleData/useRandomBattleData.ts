@@ -15,14 +15,19 @@ const subStringRemover = (origStr: string, subStr: string) => {
   const index = origStr.indexOf(subStr);
   return origStr.slice(0, index) + origStr.slice(index + subStr.length);
 };
-const battleTypeCheck = (battleType: string) => {
-  if (battleType.includes("unrated")) {
-    return subStringRemover(battleType, "unrated");
+export const battleTypeCheck = (battleType: string) => {
+  let temp = battleType;
+  if (battleType.includes("-")) {
+    // this is a no spectator battle need to remove id
+    temp = temp.slice(0, temp.indexOf("-"));
   }
-  if (battleType.includes("blitz")) {
-    return subStringRemover(battleType, "blitz");
+  if (temp.includes("unrated")) {
+    return subStringRemover(temp, "unrated");
   }
-  return battleType;
+  if (temp.includes("blitz")) {
+    return subStringRemover(temp, "blitz");
+  }
+  return temp;
 };
 
 interface RandomBattlePokemonData extends PokemonData {

@@ -4,19 +4,21 @@ import SpriteImage from "../SpriteImage";
 import { pokemonNameFilter } from "./TeamDisplay.functions";
 import PokeDexScreen from "../PokeDexScreen/PokeDex";
 import PokemonDataDisplay from "../PokemonDataDisplay/PokemonDataDisplay";
-import { useWebSocket } from "../../hooks/useWebsSocket";
+import { useWebSocket } from "../../hooks/useWebsSocket/useWebsSocket";
 import {
   devRoomId,
   opponentTestTeam,
   userTestTeam,
 } from "../../developmentMode";
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
+import useNoSpectator from "../../hooks/useNoSpectators/useNoSpectator";
 interface TeamProps {
   teamToDisplay: "p1" | "p2";
   battleRoomId: string;
   previousBattleRoomId: string;
   activePkmTrack: boolean;
   setActivePkmTrack: React.Dispatch<React.SetStateAction<boolean>>;
+  spectatorsAllowed: boolean;
 }
 // fetches latest pokemon data from auto updating github dataset
 const TeamDisplay = ({
@@ -24,14 +26,13 @@ const TeamDisplay = ({
   previousBattleRoomId,
   teamToDisplay = "p2",
   activePkmTrack = true,
+  spectatorsAllowed = true,
   setActivePkmTrack,
 }: TeamProps) => {
   const [index, setIndex] = useState(0);
-
-  const [[teams, setTeams], activePokemon] = useWebSocket(
-    battleRoomId,
-    previousBattleRoomId,
-  );
+  const [[teams, setTeams], activePokemon] = spectatorsAllowed
+    ? useWebSocket(battleRoomId, previousBattleRoomId)
+    : useNoSpectator(new URLSearchParams(window.location.search));
   useEffect(() => {
     if (battleRoomId === devRoomId) {
       setTeams({

@@ -20,6 +20,8 @@ import { useLightMode } from "./hooks/useLightMode";
 import PokeTracker from "./components/PokeTracker/PokeTracker";
 import { LoadingScreen } from "./components/LoadingScreen";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
+import { devRoomId } from "./developmentMode";
+import { displayHandler } from "./functions";
 const PokeSearch = React.lazy(
   () => import("./components/PokeSearch/PokeSearch"),
 );
@@ -34,12 +36,21 @@ const App: React.FC = () => {
   const [battleRoomId, setBattleRoomId] = useState("");
   const [isInExtension, setIsInExtension] = useState(false);
   const [activePkmTrack, setActivePkmTrack] = useState(true);
+  const [lightMode, setLightMode] = useLightMode();
   // previousBattleRoomId -> tracks previous battle room so
   // ws can clear info when new url is searched
   const previousBattleRoomId = useRef("");
-  const [lightMode, setLightMode] = useLightMode();
   const params = new URLSearchParams(window.location.search);
-  const spectatorsAllowed = useSpectatorsAllowed(params);
+  console.log(params.get("userTeam"));
+  const [spectatorsAllowed, setSpectatorsAllowed] = useSpectatorsAllowed(
+    params,
+    battleRoomId,
+  );
+  // useEffect(() => {
+  //   if (battleRoomId === devRoomId) {
+  //     setSpectatorsAllowed(true);
+  //   }
+  // }, [battleRoomId]);
   useEffect(() => {
     const paramBattleId = params.get("battleId");
     if (paramBattleId) {
@@ -61,6 +72,14 @@ const App: React.FC = () => {
     const battleRoomIdTemp = target.url.value.slice(battleIndex);
     setBattleRoomId(battleRoomIdTemp);
   };
+  const swapTeams = () => {
+    if (teamToDisplay === "p1") {
+      setTeamToDisplay("p2");
+    } else {
+      setTeamToDisplay("p1");
+    }
+  };
+
   return (
     <>
       <GlobalStyles theme={themeObjGenerator(lightMode)} />
@@ -85,17 +104,7 @@ const App: React.FC = () => {
                   />
                   {!isInExtension && <UrlSearch handleSubmit={handleSubmit} />}
                 </OptionsMenu>
-                <Button
-                  onClick={() => {
-                    if (teamToDisplay === "p1") {
-                      setTeamToDisplay("p2");
-                    } else {
-                      setTeamToDisplay("p1");
-                    }
-                  }}
-                >
-                  Switch Team
-                </Button>
+                <Button onClick={swapTeams}>Switch Team</Button>
               </>
             </Header>
             <AppDisplay>
@@ -104,13 +113,19 @@ const App: React.FC = () => {
               </TypeWriterContainer>
               <ErrorBoundary>
                 <Suspense fallback={<LoadingScreen />}>
-                  {spectatorsAllowed ? (
+                  {displayHandler(
+                    spectatorsAllowed,
+                    isInExtension,
+                    params.get("userTeam"),
+                    params.get("opponentsTeam"),
+                  ) ? (
                     <TeamDisplay
                       teamToDisplay={teamToDisplay}
                       battleRoomId={battleRoomId}
                       previousBattleRoomId={previousBattleRoomId.current}
                       activePkmTrack={activePkmTrack}
                       setActivePkmTrack={setActivePkmTrack}
+                      spectatorsAllowed={spectatorsAllowed}
                     />
                   ) : (
                     <PokeSearch battleRoomId={battleRoomId} />
@@ -120,9 +135,7 @@ const App: React.FC = () => {
             </AppDisplay>
           </>
         ) : (
-          <>
-            <Home setBattleRoomId={setBattleRoomId} />
-          </>
+          <Home setBattleRoomId={setBattleRoomId} />
         )}
       </ThemeProvider>
     </>
@@ -130,12 +143,23 @@ const App: React.FC = () => {
 };
 
 export default App;
-const useSpectatorsAllowed = (params: URLSearchParams) => {
+const useSpectatorsAllowed = (
+  params: URLSearchParams,
+  battleRoomId: string,
+): [boolean, React.Dispatch<React.SetStateAction<boolean>>] => {
   const [spectatorsAllowed, setSpectatorsAllowed] = useState(true);
   useEffect(() => {
     if (params.get("noSpectators")) {
+      console.log("spec", params.get("noSpectators"));
       setSpectatorsAllowed(false);
     }
   });
-  return spectatorsAllowed;
+  useEffect(() => {
+    if (battleRoomId.split("-").length > 3) {
+      console.log("battleRoomId", battleRoomId);
+      console.log("spectatorsAllowed", false);
+      setSpectatorsAllowed(false);
+    }
+  }, [battleRoomId]);
+  return [spectatorsAllowed, setSpectatorsAllowed];
 };

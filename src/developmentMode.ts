@@ -1,11 +1,11 @@
 export const isDevelopmentMode = process.env.NODE_ENV === "development";
 const devPathname = "battle-gen9randombattle-1710900595";
-export const devRoomId = "room-" + devPathname;
+export const devRoomId = "battle-gen9randombattle-1710900595";
 
 export const userTestTeam = [
   "Vivillon-River",
   "Scizor",
-  "Hatterene",
+  "Pikachu-Original",
   "Iron Moth",
   "Gyarados",
   "Giratina",
