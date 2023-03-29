@@ -20,10 +20,10 @@ export const getBuiltTeam = (data: string) => {
 
 export const getSwappedPkm = (data: string) => {
   const regExMatch1: string[] | null = data.match(
-    /(?<=switch\|p1a: [^\|]*\|)(.*?)(?=,|\|)/g,
+    /(?<=switch\|p1[a-zA-Z]: [^\|]*\|)(.*?)(?=,|\|)/g,
   );
   const regExMatch2: string[] | null = data.match(
-    /(?<=switch\|p2a: [^\|]*\|)(.*?)(?=,|\|)/g,
+    /(?<=switch\|p2[a-zA-Z]: [^\|]*\|)(.*?)(?=,|\|)/g,
   );
   if (!regExMatch1 && !regExMatch2) {
     return false;
@@ -59,8 +59,8 @@ export const getSafariBuiltTeam = (data: string) => {
 const iosSwitchMatch = (data: string, player: "p1" | "p2") => {
   const match = data.matchAll(
     player === "p1"
-      ? /(?:switch\|p1a:) ([^\|]*\|)(.*?)(?=,|\|)/g
-      : /(?:switch\|p2a:) ([^\|]*\|)(.*?)(?=,|\|)/g,
+      ? /(?:switch\|p1[a-zA-Z]:) ([^\|]*\|)(.*?)(?=,|\|)/g
+      : /(?:switch\|p2[a-zA-Z]:) ([^\|]*\|)(.*?)(?=,|\|)/g,
   );
   let matches: string[] = [];
   for (const m of match) {
