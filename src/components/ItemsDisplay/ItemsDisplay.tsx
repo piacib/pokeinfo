@@ -18,7 +18,7 @@ const ItemsDisplay: React.FC<ItemsDisplayProps> = ({ items }) => {
       {items ? (
         items.map((item) => (
           <PropertyBtn key={item}>
-            {item}
+            <span>{item}</span>
             <HiddenPropertyText>
               {Items[dexSearchPrepper(item)].desc}
             </HiddenPropertyText>
