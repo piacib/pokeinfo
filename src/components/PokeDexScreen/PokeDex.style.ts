@@ -25,6 +25,9 @@ export const Container = styled.div`
     scale: ${scale};
     max-width: ${scale} * 700px;
   }
+  @media (max-width: ${(props) => props.theme.media.mediumScreen}) {
+    width: 80%;
+  }
 `;
 export const InnerContainer = styled.div`
   border: 2px solid ${(props) => props.theme.pokedexColor};
