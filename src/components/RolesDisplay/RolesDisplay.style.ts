@@ -11,4 +11,12 @@ export const RolesBtn = styled.button`
 `;
 export const RolesContainer = styled(PropertyDisplay)`
   grid-column: 2;
+  padding: 0;
+  @media (max-width:${props => props.theme.media.smallScreen}) {
+    font-size:.8rem; 
+  }
+
+`;
+export const TeraTypesDisplay = styled(PropertyDisplay)`
+  padding: 0;
 `;
