@@ -2,15 +2,9 @@ import React from "react";
 import { Sprites } from "@pkmn/img";
 interface SpriteImageProps {
   name: string;
-  buttonSize?: number;
-  maxButtonWidth?: number;
+  size?: number;
 }
-const SpriteImage: React.FC<SpriteImageProps> = ({
-  name,
-  buttonSize = 40,
-  maxButtonWidth = 50,
-}) => {
-  const ButtonSizePX = `${buttonSize}px`;
+const SpriteImage: React.FC<SpriteImageProps> = ({ name, size = 40 }) => {
   if (name === "Not revealed") {
     return (
       <span
@@ -22,7 +16,7 @@ const SpriteImage: React.FC<SpriteImageProps> = ({
       />
     );
   }
-  const { url, w, h } = Sprites.getPokemon(name.toLowerCase(), {
+  const { url } = Sprites.getPokemon(name.toLowerCase(), {
     gen: 7,
     shiny: false,
   });
@@ -33,21 +27,19 @@ const SpriteImage: React.FC<SpriteImageProps> = ({
         src={url}
         alt={"question mark"}
         style={{
-          width: ButtonSizePX,
-          height: ButtonSizePX,
+          width: `${size}px`,
+          height: `${size}px`,
         }}
       ></img>
     );
   }
-  const width = `${(w / h) * buttonSize}px`;
   return (
     <img
       src={url}
       alt={name}
       style={{
-        width: width,
-        height: ButtonSizePX,
-        maxWidth: `${maxButtonWidth}px`,
+        maxWidth: `${size + 10}px`,
+        maxHeight: `${size}px`,
       }}
     ></img>
   );

@@ -19,7 +19,7 @@ const AbilitiesDisplay: React.FC<AbilitiesDisplayProps> = ({ abilities }) => {
         <>
           {abilities.map((ability) => (
             <PropertyBtn key={ability}>
-              {ability}
+              <span>{ability}</span>
               <HiddenPropertyText>
                 {Abilities[dexSearchPrepper(ability)]?.shortDesc}
               </HiddenPropertyText>

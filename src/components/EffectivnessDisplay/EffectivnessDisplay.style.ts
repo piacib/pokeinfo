@@ -6,6 +6,10 @@ export const DamageGroupContainer = styled.div`
   flex-direction: row;
   align-items: space-around;
   flex-wrap: wrap;
+  @media (max-width: ${(props) => props.theme.media.smallScreen}) {
+    justify-content: center;
+    width: 100%;
+  }
 `;
 export const TypeBox = styled(TypeColoredComponent)`
   ${PillDesign}

@@ -15,7 +15,7 @@ export const opponentTestTeam = [
   "Carbink",
   "Azumarill",
   "Gallade",
-  "Abomasnow",
+  "Kyogre",
   "Diancie",
 ];
 export const testAbilities = ["Cheek Pouch", "Intimidate", "Swift Swim"];

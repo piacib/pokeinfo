@@ -47,7 +47,6 @@ export const MoveDescription = styled(MoveProperty)`
 export const MovesContainer = styled(PropertyDisplay)`
   display: flex;
   position: relative;
-  padding-right: 4rem;
 `;
 
 export const MoveType = styled(MoveProperty)`

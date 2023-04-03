@@ -16,15 +16,15 @@ export const ButtonContainer = styled.div`
   justify-content: center;
   button {
     margin: 0 0.5rem;
-    background-color: red;
+    background-color: ${(props) => props.theme.color.pokedexRed};
   }
 `;
 export const WelcomeText = styled.p`
   text-align: center;
   font-size: 1.3rem;
   padding: 0 1rem;
-  @media (max-width: 24rem) {
-    /* font-size: .8rem; */
+  @media (max-width: ${(props) => props.theme.media.mediumScreen}) {
+    font-size: 0.9rem;
   }
 `;
 export const WelcomeHeader = styled.h1`
