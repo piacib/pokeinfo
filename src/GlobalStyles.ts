@@ -20,8 +20,9 @@ export const GlobalStyles = createGlobalStyle`
 html{
     font-size:${isDevelopmentMode ? "10px" : ""};
     background-color: ${(props) => props.theme.backgroundColor};
-}
-body {
+  }
+  body {
+  overscroll-behavior:contain;
     background-color: ${(props) => props.theme.backgroundColor};
     margin: 0;
   display: flex;
