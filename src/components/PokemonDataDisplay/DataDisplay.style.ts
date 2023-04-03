@@ -5,11 +5,16 @@ export const PropertyDisplay = styled.div`
   display: flex;
   flex-direction: row;
   color: ${(props) => props.theme.fontColor};
+  padding-right: 4rem;
 
   /* padding-bottom: 10px; */
   flex-wrap: wrap;
   align-items: center;
   position: relative;
+  margin-bottom: 0.5rem;
+  h3 {
+    margin: 0;
+  }
 `;
 export const HiddenPropertyText = styled.div`
   display: none;
@@ -45,6 +50,9 @@ export const PropertyBtn = styled.div`
   border: 2px solid  ${(props) => props.theme.fontColor};
   background-color: ${(props) => props.theme.backgroundColor};
   color: ${(props) => props.theme.fontColor};
+  span {
+    white-space: nowrap;
+  }
 `;
 export const PokemonName = styled.a`
   align-self: center;
