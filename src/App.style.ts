@@ -40,6 +40,7 @@ export const AppDisplay = styled.div<RefProp>`
   @media (max-width: ${(props) => props.theme.media.mediumScreen}) {
     display: flex;
     flex-direction: column;
+    padding: 1rem 0.2rem;
   }
   background-color: ${(props) => props.theme.backgroundColor};
   /* color: ${(props) => props.theme.fontColor}; */
