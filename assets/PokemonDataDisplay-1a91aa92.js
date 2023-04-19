@@ -1,4 +1,4 @@
-import{C as f,s as n,j as s,a as r,P,T as E,F as l,r as c,b as j,L as S,D as p,c as u,R as T,_ as R,E as _,e as O}from"./index-6a0a629e.js";const N=f`
+import{C as f,s as n,j as s,a as t,P,T as j,F as l,r as c,b as E,L as S,D as p,c as u,R as T,_ as R,E as _,e as O}from"./index-9fa90bd9.js";const N=f`
   border: 1px solid ${e=>e.theme.pokedexColor};
 `,z=n.div`
   display: flex;
@@ -20,6 +20,9 @@ import{C as f,s as n,j as s,a as r,P,T as E,F as l,r as c,b as j,L as S,D as p,c
   @media (min-width: 111rem) {
     scale: ${$};
     max-width: ${$} * 700px;
+  }
+  @media (max-width: ${e=>e.theme.media.mediumScreen}) {
+    width: 80%;
   }
 `,I=n.div`
   border: 2px solid ${e=>e.theme.pokedexColor};
@@ -54,16 +57,21 @@ import{C as f,s as n,j as s,a as r,P,T as E,F as l,r as c,b as j,L as S,D as p,c
     background: ${e=>e.theme.pokedexColor};
     margin: 2px 0;
   }
-`,Fe=({children:e})=>s(H,{children:[s(z,{children:[r(C,{}),r(C,{})]}),r(I,{children:e}),s(G,{children:[r(L,{}),s(U,{children:[r("div",{}),r("div",{}),r("div",{}),r("div",{})]})]})]}),V=n.div`
+`,Fe=({children:e})=>s(H,{children:[s(z,{children:[t(C,{}),t(C,{})]}),t(I,{children:e}),s(G,{children:[t(L,{}),s(U,{children:[t("div",{}),t("div",{}),t("div",{}),t("div",{})]})]})]}),V=n.div`
   height: fit-content;
   display: flex;
   flex-direction: row;
   color: ${e=>e.theme.fontColor};
+  padding-right: 4rem;
 
   /* padding-bottom: 10px; */
   flex-wrap: wrap;
   align-items: center;
   position: relative;
+  margin-bottom: 0.5rem;
+  h3 {
+    margin: 0;
+  }
 `,B=n.div`
   display: none;
 `,M=f`
@@ -95,6 +103,9 @@ import{C as f,s as n,j as s,a as r,P,T as E,F as l,r as c,b as j,L as S,D as p,c
   border: 2px solid  ${e=>e.theme.fontColor};
   background-color: ${e=>e.theme.backgroundColor};
   color: ${e=>e.theme.fontColor};
+  span {
+    white-space: nowrap;
+  }
 `,J=n.a`
   align-self: center;
   text-transform: capitalize;
@@ -149,12 +160,16 @@ import{C as f,s as n,j as s,a as r,P,T as E,F as l,r as c,b as j,L as S,D as p,c
     flex-direction: row;
     flex-wrap: wrap;
   }
-`,F=["Normal","Fighting","Flying","Poison","Ground","Rock","Bug","Ghost","Steel","Fire","Water","Grass","Electric","Psychic","Ice","Dragon","Dark","Fairy","???"];function ee(e){return F.includes(e)}const re=n.div`
+`,F=["Normal","Fighting","Flying","Poison","Ground","Rock","Bug","Ghost","Steel","Fire","Water","Grass","Electric","Psychic","Ice","Dragon","Dark","Fairy","???"];function ee(e){return F.includes(e)}const te=n.div`
   display: flex;
   flex-direction: row;
   align-items: space-around;
   flex-wrap: wrap;
-`,te=n(E)`
+  @media (max-width: ${e=>e.theme.media.smallScreen}) {
+    justify-content: center;
+    width: 100%;
+  }
+`,re=n(j)`
   ${P}
   /* margin: 5px;
 
@@ -178,9 +193,9 @@ import{C as f,s as n,j as s,a as r,P,T as E,F as l,r as c,b as j,L as S,D as p,c
   }
 `,oe=n.p`
   margin: 0 0.5rem 0 0;
-`,h=({damage:e,effectivenessArray:t})=>r(re,{children:t.length?r(l,{children:t.map(o=>s(te,{background:o,children:[r(oe,{children:o}),s(ne,{children:[r("span",{children:e}),r("span",{children:"x"})]})]},o))}):null}),ie=({typesArray:e})=>{const[t,o]=c.useState({0:[],.25:[],.5:[],2:[],4:[]});return c.useEffect(()=>{let d={0:[],.25:[],.5:[],2:[],4:[]};if(e&&e.length){const i=j(e);F.forEach(a=>{i&&(i[a]===0?d[0].push(a):i[a]===.25?d[.25].push(a):i[a]===.5?d[.5].push(a):i[a]===2?d[2].push(a):i[a]===4&&d[4].push(a))})}o(d)},[e]),r(Z,{children:t?s(l,{children:[r(h,{damage:"0",effectivenessArray:t[0]}),r(h,{damage:"¼",effectivenessArray:t[.25]}),r(h,{damage:"½",effectivenessArray:t[.5]}),r(h,{damage:"2",effectivenessArray:t[2]}),r(h,{damage:"4",effectivenessArray:t[4]})]}):r(S,{})})},ae=n.div`
+`,h=({damage:e,effectivenessArray:r})=>t(te,{children:r.length?t(l,{children:r.map(o=>s(re,{background:o,children:[t(oe,{children:o}),s(ne,{children:[t("span",{children:e}),t("span",{children:"x"})]})]},o))}):null}),ie=({typesArray:e})=>{const[r,o]=c.useState({0:[],.25:[],.5:[],2:[],4:[]});return c.useEffect(()=>{let d={0:[],.25:[],.5:[],2:[],4:[]};if(e&&e.length){const i=E(e);F.forEach(a=>{i&&(i[a]===0?d[0].push(a):i[a]===.25?d[.25].push(a):i[a]===.5?d[.5].push(a):i[a]===2?d[2].push(a):i[a]===4&&d[4].push(a))})}o(d)},[e]),t(Z,{children:r?s(l,{children:[t(h,{damage:"0",effectivenessArray:r[0]}),t(h,{damage:"¼",effectivenessArray:r[.25]}),t(h,{damage:"½",effectivenessArray:r[.5]}),t(h,{damage:"2",effectivenessArray:r[2]}),t(h,{damage:"4",effectivenessArray:r[4]})]}):t(S,{})})},ae=n.div`
   background-color: ${e=>e.theme.color.typeColors[e.background]};
-`,k=n(ae)`
+`,w=n(ae)`
   padding: 0.2rem 1rem;
   height: fit-content;
   border-radius: 20px;
@@ -194,13 +209,13 @@ import{C as f,s as n,j as s,a as r,P,T as E,F as l,r as c,b as j,L as S,D as p,c
   justify-content: center;
   height: 100%;
   padding: 0 1.2rem;
-  ${k}:first-child {
+  ${w}:first-child {
     border-radius: ${e=>e.types===2?"1rem 0 0 1rem":"1rem"};
   }
-  ${k}:nth-child(2) {
+  ${w}:nth-child(2) {
     border-radius: 0 1rem 1rem 0;
   }
-`,de=({types:e})=>e?r(se,{types:e.length,children:e.map(t=>r(k,{background:t,children:t},t))}):r(l,{}),ce=n.table`
+`,de=({types:e})=>e?t(se,{types:e.length,children:e.map(r=>t(w,{background:r,children:r},r))}):t(l,{}),ce=n.table`
   grid-column: 2/4;
   grid-row: 1/3;
   background: #e0e7ea;
@@ -238,11 +253,11 @@ import{C as f,s as n,j as s,a as r,P,T as E,F as l,r as c,b as j,L as S,D as p,c
 `,A=n.div`
   height: 20px;
   width: ${e=>`${e.stat*100/255}%`};
-`,v={hp:{background:"#FF5959",bar:"#FF0000",barBorder:"#A60000"},atk:{background:"#F5AC78",bar:"#F08030",barBorder:"#9C531F"},def:{background:"#FAE078",bar:"#F8D030",barBorder:"#A1871F"},spa:{background:"#9DB7F5",bar:"#6890F0",barBorder:"#445E9C"},spd:{background:"#A7DB8D",bar:"#78C850",barBorder:"#4E8234"},spe:{background:"#FA92B2",bar:"#F85888",barBorder:"#A13959"}},x=(e,t)=>!e||!v[e]?"":v[e][t],fe=n.tr`
+`,v={hp:{background:"#FF5959",bar:"#FF0000",barBorder:"#A60000"},atk:{background:"#F5AC78",bar:"#F08030",barBorder:"#9C531F"},def:{background:"#FAE078",bar:"#F8D030",barBorder:"#A1871F"},spa:{background:"#9DB7F5",bar:"#6890F0",barBorder:"#445E9C"},spd:{background:"#A7DB8D",bar:"#78C850",barBorder:"#4E8234"},spe:{background:"#FA92B2",bar:"#F85888",barBorder:"#A13959"}},x=(e,r)=>!e||!v[e]?"":v[e][r],fe=n.tr`
   background-color: red;
   background-color: ${e=>x(e.type,"background")};
   ${A} {
     background-color: ${e=>x(e.type,"bar")};
     border: 1px solid ${e=>x(e.type,"barBorder")};
   }
-`,be={hp:"HP",atk:"Attack",def:"Defense",spa:"Sp. Atk",spd:"Sp. Def",spe:"Speed"},xe=({pokemon:e})=>{const[t,o]=c.useState({hp:0,atk:0,def:0,spa:0,spd:0,spe:0}),d=e[0].toUpperCase()+e.slice(1);return c.useEffect(()=>{p.species.get(d).exists&&o(p.species.get(d).baseStats)},[d]),s(ce,{children:[r(ue,{children:r("tr",{children:r("th",{colSpan:2,children:"Stats"})})}),r("tbody",{children:Object.entries(t).map(i=>s(fe,{type:i[0],children:[s(le,{children:[s(me,{children:[be[i[0]],":"]}),r(he,{children:r("b",{children:i[1]})})]}),r(ge,{children:r(A,{stat:i[1]})})]},`${i[0]}`))})]})},ye=n(V)``,ke=p.data.Abilities,we=({abilities:e})=>s(ye,{children:[r("h3",{children:"Abilities:"}),e&&r(l,{children:e.map(t=>{var o;return s(q,{children:[t,r(B,{children:(o=ke[u(t)])==null?void 0:o.shortDesc})]},t)})})]}),$e=({pokemon:e})=>{if(e[0].toUpperCase()+e.slice(1),e==="Not revealed")return r(l,{});const t=Object.entries(p.species.get(e).abilities).map(o=>o[1]);return r(we,{abilities:t})},{Species:y}=p.data,Ce=e=>{const[t,o]=c.useState(e),[d,i]=c.useState(null);return c.useEffect(()=>{if(o(e),y[u(e)])return;const a=e.match(/(.*)-/);if(a&&a[1]&&y[u(a[1])].name){o(a[1]);return}},[e]),c.useEffect(()=>{var a;if(p.species.get(t).exists){let m=[];const b=(a=y[u(t)])==null?void 0:a.types;if(!b){console.error("error retrieving type",u(t),t),i(m);return}b.forEach(g=>{ee(g)&&m.push(g)}),i(m)}else console.error("pokemon does not exist in dex",t)},[t]),{pkmn:t,setPkmn:o,typesArray:d,setTypesArray:i,pkmnExists:p.species.get(t).exists}},ve=T.lazy(()=>R(()=>import("./RandomBattlePokemonDisplay-b77c6f56.js"),["assets/RandomBattlePokemonDisplay-b77c6f56.js","assets/index-6a0a629e.js"])),Pe=({pokemon:e,battleType:t})=>{const{pkmn:o,setPkmn:d,typesArray:i,pkmnExists:a}=Ce(e),m=t.includes("random");return r(l,{children:a&&i?s(l,{children:[s(K,{children:[r(J,{href:`https://www.smogon.com/dex/ss/pokemon/${o}/`,children:o}),r(de,{types:i})]}),r(ie,{typesArray:i}),r(xe,{pokemon:o}),m?r(_,{children:r(c.Suspense,{fallback:r(S,{}),children:r(ve,{pokemon:o,battleType:t})})}):r($e,{pokemon:o})]}):r(Se,{pkmn:o,handleSubmit:g=>{const w=g.target;w.pokemon_search.value&&d(w.pokemon_search.value)}})})},Se=({pkmn:e,handleSubmit:t})=>s(l,{children:[s(Q,{children:["It appears the pokemon ",e," is not in our database.",r("br",{}),r("br",{}),"Try searching the pokemon name"]}),r(De,{handleSubmit:t})]}),De=({handleSubmit:e})=>s(X,{onSubmit:t=>{t.preventDefault(),e(t)},children:[r(Y,{htmlFor:"pokemon_search",children:"Enter Pokemon: "}),r(O,{type:"text",id:"pokemon_search",name:"pokemon_search"}),r("input",{type:"submit",value:"Submit"})]});export{we as A,B as H,Fe as P,te as T,Pe as a,V as b,q as c,Ae as d,W as h};
+`,be={hp:"HP",atk:"Attack",def:"Defense",spa:"Sp. Atk",spd:"Sp. Def",spe:"Speed"},xe=({pokemon:e})=>{const[r,o]=c.useState({hp:0,atk:0,def:0,spa:0,spd:0,spe:0}),d=e[0].toUpperCase()+e.slice(1);return c.useEffect(()=>{p.species.get(d).exists&&o(p.species.get(d).baseStats)},[d]),s(ce,{children:[t(ue,{children:t("tr",{children:t("th",{colSpan:2,children:"Stats"})})}),t("tbody",{children:Object.entries(r).map(i=>s(fe,{type:i[0],children:[s(le,{children:[s(me,{children:[be[i[0]],":"]}),t(he,{children:t("b",{children:i[1]})})]}),t(ge,{children:t(A,{stat:i[1]})})]},`${i[0]}`))})]})},ye=n(V)``,we=p.data.Abilities,ke=({abilities:e})=>s(ye,{children:[t("h3",{children:"Abilities:"}),e&&t(l,{children:e.map(r=>{var o;return s(q,{children:[t("span",{children:r}),t(B,{children:(o=we[u(r)])==null?void 0:o.shortDesc})]},r)})})]}),$e=({pokemon:e})=>{if(e[0].toUpperCase()+e.slice(1),e==="Not revealed")return t(l,{});const r=Object.entries(p.species.get(e).abilities).map(o=>o[1]);return t(ke,{abilities:r})},{Species:y}=p.data,Ce=e=>{const[r,o]=c.useState(e),[d,i]=c.useState(null);return c.useEffect(()=>{if(o(e),y[u(e)])return;const a=e.match(/(.*)-/);if(a&&a[1]&&y[u(a[1])].name){o(a[1]);return}},[e]),c.useEffect(()=>{var a;if(p.species.get(r).exists){let m=[];const b=(a=y[u(r)])==null?void 0:a.types;if(!b){console.error("error retrieving type",u(r),r),i(m);return}b.forEach(g=>{ee(g)&&m.push(g)}),i(m)}else console.error("pokemon does not exist in dex",r)},[r]),{pkmn:r,setPkmn:o,typesArray:d,setTypesArray:i,pkmnExists:p.species.get(r).exists}},ve=T.lazy(()=>R(()=>import("./RandomBattlePokemonDisplay-1c348beb.js"),["assets/RandomBattlePokemonDisplay-1c348beb.js","assets/index-9fa90bd9.js"])),Pe=({pokemon:e,battleType:r})=>{const{pkmn:o,setPkmn:d,typesArray:i,pkmnExists:a}=Ce(e),m=r.includes("random");return t(l,{children:a&&i?s(l,{children:[s(K,{children:[t(J,{href:`https://www.smogon.com/dex/ss/pokemon/${o}/`,children:o}),t(de,{types:i})]}),t(ie,{typesArray:i}),t(xe,{pokemon:o}),m?t(_,{children:t(c.Suspense,{fallback:t(S,{}),children:t(ve,{pokemon:o,battleType:r})})}):t($e,{pokemon:o})]}):t(Se,{pkmn:o,handleSubmit:g=>{const k=g.target;k.pokemon_search.value&&d(k.pokemon_search.value)}})})},Se=({pkmn:e,handleSubmit:r})=>s(l,{children:[s(Q,{children:["It appears the pokemon ",e," is not in our database.",t("br",{}),t("br",{}),"Try searching the pokemon name"]}),t(De,{handleSubmit:r})]}),De=({handleSubmit:e})=>s(X,{onSubmit:r=>{r.preventDefault(),e(r)},children:[t(Y,{htmlFor:"pokemon_search",children:"Enter Pokemon: "}),t(O,{type:"text",id:"pokemon_search",name:"pokemon_search"}),t("input",{type:"submit",value:"Submit"})]});export{ke as A,B as H,Fe as P,re as T,Pe as a,V as b,q as c,Ae as d,W as h};
