@@ -23,6 +23,6 @@ Poke info is a site set up to connect to a pokemon showdown battle and display r
 
 ## Installation and usage
 
-- Checkout the site at https://piacib.github.io/pokeinfo/ 
-- Download the chrome extension
+- [Checkout the site](https://piacib.github.io/pokeinfo/)
+- [Download the chrome extension](https://chrome.google.com/webstore/detail/pokeinfo-extension/plolbicmjndjpglocmmgnbppgnadmlfb#:~:text=Poke%20info%20is%20a%20chrome,display%20real%20time%20battle%20information.)
 - Download the firefox extension
