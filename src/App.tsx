@@ -97,7 +97,7 @@ const App: React.FC = () => {
             </Header>
             <AppDisplay>
               <TypeWriterContainer>
-                <PokeInfo>PokeInfo</PokeInfo>
+                <PokeInfo>Pokeinfo</PokeInfo>
               </TypeWriterContainer>
               <ErrorBoundary>
                 <Suspense fallback={<LoadingScreen />}>
