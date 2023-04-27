@@ -1,4 +1,4 @@
-import{s,r as l,j as m,F as u,a as t,D as x}from"./index-9fa90bd9.js";import{P as k,a as S}from"./PokemonDataDisplay-1a91aa92.js";const y=s.form`
+import{s,r as l,j as m,F as u,a as t,D as x}from"./index-2a8eba30.js";import{P as k,a as S}from"./PokemonDataDisplay-f01224e4.js";const y=s.form`
   width: 100%;
 `;s.label``;const f=s.div`
   position: relative;
