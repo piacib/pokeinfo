@@ -20,6 +20,7 @@ import PokeTracker from "./components/PokeTracker/PokeTracker";
 import { LoadingScreen } from "./components/LoadingScreen";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import { displayHandler } from "./functions";
+import EffectivenessQuiz from "./pages/EffectivenessQuiz";
 const PokeSearch = React.lazy(
   () => import("./components/PokeSearch/PokeSearch"),
 );
@@ -72,7 +73,7 @@ const App: React.FC = () => {
     <>
       <GlobalStyles theme={themeObjGenerator(lightMode)} />
       <ThemeProvider theme={themeObjGenerator(lightMode)}>
-        {battleRoomId ? (
+        {/* {battleRoomId ? (
           <>
             {isInExtension && <Spacer />}
             <Header>
@@ -124,7 +125,8 @@ const App: React.FC = () => {
           </>
         ) : (
           <Home setBattleRoomId={setBattleRoomId} />
-        )}
+        )} */}
+        <EffectivenessQuiz />
       </ThemeProvider>
     </>
   );
