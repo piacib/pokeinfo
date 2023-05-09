@@ -21,6 +21,9 @@ import { LoadingScreen } from "./components/LoadingScreen";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import { displayHandler } from "./functions";
 import EffectivenessQuiz from "./components/EffectivenessQuiz/EffectivenessQuiz";
+import { devRoomId } from "./developmentMode";
+import { Link, useParams } from "react-router-dom";
+import { examplePath, inBattlePath, quizPath } from "./router/routes";
 const PokeSearch = React.lazy(
   () => import("./components/PokeSearch/PokeSearch"),
 );
@@ -30,22 +33,13 @@ const TeamDisplay = React.lazy(
 const App: React.FC = () => {
   const [teamToDisplay, setTeamToDisplay] = useState<"p1" | "p2">("p2");
   const [battleRoomId, setBattleRoomId] = useState("");
-  const [isInExtension, setIsInExtension] = useState(false);
   const [activePkmTrack, setActivePkmTrack] = useState(true);
-  const [lightMode, setLightMode] = useLightMode();
   // previousBattleRoomId -> tracks previous battle room so
   // ws can clear info when new url is searched
   const previousBattleRoomId = useRef("");
   const params = new URLSearchParams(window.location.search);
   console.log(params.get("userTeam"));
-  const [spectatorsAllowed] = useSpectatorsAllowed(params, battleRoomId);
-  useEffect(() => {
-    const paramBattleId = params.get("battleId");
-    if (paramBattleId) {
-      setIsInExtension(true);
-      setBattleRoomId(paramBattleId);
-    }
-  });
+
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     console.log("handleSubmit", previousBattleRoomId.current, battleRoomId);
@@ -70,9 +64,8 @@ const App: React.FC = () => {
 
   return (
     <>
-      <GlobalStyles theme={themeObjGenerator(lightMode)} />
-      <ThemeProvider theme={themeObjGenerator(lightMode)}>
-        {battleRoomId ? (
+      <div className="h1">Hello</div>
+      {/* {battleRoomId ? (
           <>
             {isInExtension && <Spacer />}
             <Header>
@@ -95,38 +88,12 @@ const App: React.FC = () => {
                 <Button onClick={swapTeams}>Switch Team</Button>
               </>
             </Header>
-            <AppDisplay>
-              <TypeWriterContainer>
-                <PokeInfo>Pokeinfo</PokeInfo>
-              </TypeWriterContainer>
-              <ErrorBoundary>
-                <Suspense fallback={<LoadingScreen />}>
-                  {displayHandler(
-                    spectatorsAllowed,
-                    isInExtension,
-                    params.get("userTeam"),
-                    params.get("opponentsTeam"),
-                  ) ? (
-                    <TeamDisplay
-                      teamToDisplay={teamToDisplay}
-                      battleRoomId={battleRoomId}
-                      previousBattleRoomId={previousBattleRoomId.current}
-                      activePkmTrack={activePkmTrack}
-                      setActivePkmTrack={setActivePkmTrack}
-                      spectatorsAllowed={spectatorsAllowed}
-                    />
-                  ) : (
-                    <PokeSearch battleRoomId={battleRoomId} />
-                  )}
-                </Suspense>
-              </ErrorBoundary>
-            </AppDisplay>
+            <InBattleDisplay prevBattleRef={previousBattleRoomId} />
           </>
         ) : (
           <Home setBattleRoomId={setBattleRoomId} />
-        )}
-        <EffectivenessQuiz />
-      </ThemeProvider>
+        )} */}
+      {/* <EffectivenessQuiz /> */}
     </>
   );
 };
@@ -151,4 +118,95 @@ const useSpectatorsAllowed = (
     }
   }, [battleRoomId]);
   return [spectatorsAllowed, setSpectatorsAllowed];
+};
+export const InBattleDisplay = ({}: {}) => {
+  const previousBattleRoomId = useRef("");
+  const [teamToDisplay, setTeamToDisplay] = useState<"p1" | "p2">("p2");
+  const [battleRoomId, setBattleRoomId] = useState("");
+  const [activePkmTrack, setActivePkmTrack] = useState(true);
+  const params = new URLSearchParams(window.location.search);
+  const { id } = useParams();
+  const [spectatorsAllowed] = useSpectatorsAllowed(params, battleRoomId);
+  const [isInExtension, setIsInExtension] = useState(false);
+  const paramBattleId = params.get("battleId");
+  // const handleSubmit = (e: React.SyntheticEvent) => {
+  //   e.preventDefault();
+  //   console.log("handleSubmit", previousBattleRoomId.current, battleRoomId);
+  //   previousBattleRoomId.current = battleRoomId;
+  //   const target = e.target as typeof e.target & {
+  //     url: { value: string };
+  //   };
+  //   const battleIndex = target.url.value.indexOf("battle");
+  //   if (battleIndex === -1) {
+  //     return;
+  //   }
+  //   const battleRoomIdTemp = target.url.value.slice(battleIndex);
+  //   setBattleRoomId(battleRoomIdTemp);
+  // };
+
+  useEffect(() => {
+    if (paramBattleId) {
+      setIsInExtension(true);
+      setBattleRoomId(paramBattleId);
+    }
+  });
+  const swapTeams = () => {
+    if (teamToDisplay === "p1") {
+      setTeamToDisplay("p2");
+    } else {
+      setTeamToDisplay("p1");
+    }
+  };
+
+  console.log("id", id);
+  if (!id) {
+    return <></>;
+  }
+  return (
+    <>
+      <Header>
+        <>
+          <OptionsMenu>
+            {isInExtension && <Spacer />}
+            <PokeTracker
+              toggle={activePkmTrack}
+              setToggle={setActivePkmTrack}
+            />
+            <Link to={inBattlePath}>Search A battle</Link>
+            <Link to={examplePath}>Example</Link>
+            <Link to={quizPath}>Effectiveness Quiz</Link>
+
+            {/* {!isInExtension && <UrlSearch handleSubmit={handleSubmit} />} */}
+          </OptionsMenu>
+          <Button onClick={swapTeams}>Switch Team</Button>
+        </>
+      </Header>
+      <AppDisplay>
+        <TypeWriterContainer>
+          <PokeInfo>Pokeinfo</PokeInfo>
+        </TypeWriterContainer>
+        <ErrorBoundary>
+          <Suspense fallback={<LoadingScreen />}>
+            {displayHandler(
+              spectatorsAllowed,
+              isInExtension,
+              params.get("userTeam"),
+              params.get("opponentsTeam"),
+            ) ? (
+              <TeamDisplay
+                teamToDisplay={teamToDisplay}
+                battleRoomId={id}
+                previousBattleRoomId={previousBattleRoomId.current}
+                activePkmTrack={activePkmTrack}
+                setActivePkmTrack={setActivePkmTrack}
+                spectatorsAllowed={spectatorsAllowed}
+              />
+            ) : (
+              <PokeSearch battleRoomId={battleRoomId} />
+            )}
+          </Suspense>
+        </ErrorBoundary>
+      </AppDisplay>
+    </>
+  );
 };
