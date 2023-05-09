@@ -1,9 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
-import EffectivenessQuiz from "./components/EffectivenessQuiz/EffectivenessQuiz";
+import {
+  RouterProvider,
+} from "react-router-dom";
+import { GlobalStyles } from "./GlobalStyles";
+import { ThemeProvider } from "styled-components";
+import { themeObjGenerator } from "./theme";
+import router from "./router/browserRouter";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    <GlobalStyles theme={themeObjGenerator("light")} />
+    <ThemeProvider theme={themeObjGenerator("light")}>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </React.StrictMode>,
 );
