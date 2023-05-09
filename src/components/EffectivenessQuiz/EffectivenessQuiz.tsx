@@ -37,12 +37,6 @@ function randomPokemonType(): TypeName {
 const singleOrDoubleType = () => Math.floor(Math.random() * 2) + 1;
 // const entry = (length = pkmTypes.length) => Math.floor(Math.random() * length);
 const generateTypeArr = (arrLength = singleOrDoubleType()) => {
-  console.log(
-    randomPokemonType(),
-    randomPokemonType(),
-    randomPokemonType(),
-    randomPokemonType(),
-  );
   if (arrLength === 1) {
     return [randomPokemonType()];
   }
@@ -171,3 +165,8 @@ const QuizContainer = styled.div`
   display: grid;
   place-items: center;
 `;
+
+// start quiz button 
+// 15 questions
+// store results
+// display results at end 

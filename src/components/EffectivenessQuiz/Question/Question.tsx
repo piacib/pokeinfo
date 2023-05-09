@@ -1,23 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { damageCalculator } from "../../../functions";
+import { damageCalculator, typeColorConverter } from "../../../functions";
 import { TypeName } from "@pkmn/dex";
 import { TypeColoredComponent } from "../../../App.style";
-// import { PokemonType } from "../../../pages/EffectivenessQuiz";
+import { TypeBox } from "../../EffectivnessDisplay/EffectivnessDisplay.style";
 
-const Type = styled(TypeColoredComponent)`
-  padding: 0.2rem 1rem;
-  height: fit-content;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-`;
-const TypeBox = styled(Type)`
-  width: 4rem;
-  height: 2rem;
-  justify-content: center;
-  font-family: "VT323";
-`;
 const QuestionContainer = styled.div`
   display: flex;
   flex-direction: row;

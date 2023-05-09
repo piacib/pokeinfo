@@ -27,7 +27,6 @@ const PokeSearch = React.lazy(
 const TeamDisplay = React.lazy(
   () => import("./components/TeamDisplay/TeamDisplay"),
 );
-
 const App: React.FC = () => {
   const [teamToDisplay, setTeamToDisplay] = useState<"p1" | "p2">("p2");
   const [battleRoomId, setBattleRoomId] = useState("");

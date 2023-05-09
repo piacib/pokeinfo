@@ -10,7 +10,7 @@ const Results = ({ data }: Props) => {
     <div>
       Results
       {data.map((x) => (
-        <span>
+        <div>
           <span>{x.correct ? "corrrect" : "incorrect"}: </span>
           <TypeBox background={x.moveType}>{x.moveType}</TypeBox>
           <span>attacks</span>
@@ -18,7 +18,7 @@ const Results = ({ data }: Props) => {
             <TypeBox background={x}>{x}</TypeBox>
           ))}
           <span>{x.answer}</span>
-        </span>
+        </div>
       ))}
     </div>
   );
