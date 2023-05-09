@@ -150,7 +150,8 @@ const EffectivenessQuiz = () => {
               data.generateData();
             }}
           />
-          <Results data={data.results} />
+
+          {/* <Results data={data.results} /> */}
         </QuizContainer>
       ) : (
         <></>
@@ -166,7 +167,7 @@ const QuizContainer = styled.div`
   place-items: center;
 `;
 
-// start quiz button 
+// start quiz button
 // 15 questions
 // store results
-// display results at end 
+// display results at end
