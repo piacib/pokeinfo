@@ -22,10 +22,7 @@ export const SubmitInput = styled.input`
 `;
 
 const colorLight = "white";
-const colorDark = "#212121";
-const colorSignal = "red";
 const colorBackground = "white";
-const colorText = "#212121";
 const colorAccent = "red";
 const sizeBezel = "0.5rem";
 const sizeRadius = "4px";
@@ -37,6 +34,7 @@ export const Button = styled.button`
   padding: ${sizeBezel} calc(${sizeBezel} * 2);
   background: ${colorAccent};
   border: none;
+  color: ${colorLight};
   border-radius: ${sizeRadius};
   font-weight: 900;
 `;
