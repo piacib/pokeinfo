@@ -10,8 +10,8 @@ import { paths } from "../../router/routes";
 import Pickahu from "./Pikachu";
 import { useNavigate } from "react-router-dom";
 
-const enterBattleText = "Enter new battle";
-const enterUrl = "Enter Url or battle id:";
+export const enterBattleText = "Enter new battle";
+export const enterUrl = "Enter Url or battle id:";
 
 const UrlSearch = () => {
   const navigate = useNavigate();
