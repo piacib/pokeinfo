@@ -1,15 +1,16 @@
-import { TextInput, UrlForm, UrlLabel } from "./UrlSearch.style";
+import { SubmitInput, TextInput, UrlForm, UrlLabel } from "./UrlSearch.style";
 import { paths } from "../../router/routes";
 export const enterBattleText = "Enter new battle";
-export const enterUrl = "Enter Url:";
+export const enterUrl = "Enter Url or battle id:";
 
 const UrlSearch = () => {
+  console.log("search box");
   return (
     <>
       <UrlForm onSubmit={(e) => handleSubmit(e)}>
         <UrlLabel htmlFor="url">{enterUrl}</UrlLabel>
         <TextInput type="text" id="url" name="url" />
-        <input type="submit" value="Submit" />
+        <SubmitInput type="submit" value="Submit" />
       </UrlForm>
     </>
   );
