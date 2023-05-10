@@ -4,7 +4,7 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import { AppDisplay, Button, Header, PokeInfo, Spacer } from "../../App.style";
 import OptionsMenu from "../OptionsMenu/OptionsMenu";
 import PokeTracker from "../PokeTracker/PokeTracker";
-import { examplePath, inBattlePath, quizPath } from "../../router/routes";
+import { paths } from "../../router/routes";
 import { TypeWriterContainer } from "../../TypeWriterContainer.style";
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 import { LoadingScreen } from "../LoadingScreen";
@@ -65,9 +65,9 @@ export const InBattleDisplay = () => {
               toggle={activePkmTrack}
               setToggle={setActivePkmTrack}
             />
-            <Link to={inBattlePath}>Search A battle</Link>
-            <Link to={examplePath}>Example</Link>
-            <Link to={quizPath}>Effectiveness Quiz</Link>
+            <Link to={paths.search}>Search A battle</Link>
+            <Link to={paths.example}>Example</Link>
+            <Link to={paths.quiz}>Effectiveness Quiz</Link>
 
             {/* {!isInExtension && <UrlSearch handleSubmit={handleSubmit} />} */}
           </OptionsMenu>
