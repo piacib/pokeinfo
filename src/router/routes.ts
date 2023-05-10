@@ -9,6 +9,7 @@ export const examplePath = `/inBattle/${devRoomId}`;
 export const paths = {
   effectiveness: "/effectiveness",
   inBattle: "/inBattle/:id",
+  inBattleGenerator: (battleId:string) => `/inBattle/${battleId}`,
   quiz: "/quiz",
   home: "/home",
   example: `/inBattle/${devRoomId}`,
