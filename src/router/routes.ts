@@ -1,15 +1,10 @@
 import { devRoomId } from "../developmentMode";
 
-export const effectivenessPath = "/effectiveness";
-export const inBattlePath = "/inBattle/:id";
-export const quizPath = "/quiz";
-export const homePath = "/home";
-export const examplePath = `/inBattle/${devRoomId}`;
-
 export const paths = {
   effectiveness: "/effectiveness",
   inBattle: "/inBattle/:id",
-  inBattleGenerator: (battleId:string) => `/inBattle/${battleId}`,
+  search: "/search",
+  inBattleGenerator: (battleId: string) => `/inBattle/${battleId}`,
   quiz: "/quiz",
   home: "/home",
   example: `/inBattle/${devRoomId}`,
