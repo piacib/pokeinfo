@@ -1,4 +1,11 @@
 import styled from "styled-components";
+export const UrlLabel = styled.label`
+  font-size: 3.2rem;
+  padding: 1rem 0;
+  place-self: center;
+  grid-row: 1;
+  grid-column: 1/-1;
+`;
 
 export const TextInput = styled.input`
   width: 100%;
@@ -7,23 +14,7 @@ export const TextInput = styled.input`
   grid-row: 2;
   grid-column: 3/5;
 `;
-export const UrlLabel = styled.label`
-  font-size: 3.2rem;
-  padding: 1rem 0;
-  place-self: center;
-  grid-row: 1;
-  grid-column: 1/-1;
-`;
-export const UrlForm = styled.form`
-  margin: 1rem 0;
-  align-items: center;
-  display: flex;
-  grid-template-columns: repeat(6, 1fr);
-  justify-content: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-  height: fit-content;
-`;
+
 export const SubmitInput = styled.input`
   color: black;
   grid-row: 2;
@@ -39,17 +30,17 @@ const colorAccent = "red";
 const sizeBezel = "0.5rem";
 const sizeRadius = "4px";
 const colorShadow = "#212121";
-const ButtonContainer = styled.div`
+export const ButtonContainer = styled.div`
   margin-top: calc(${sizeBezel} * 2.5);
 `;
-const Button = styled.button`
+export const Button = styled.button`
   padding: ${sizeBezel} calc(${sizeBezel} * 2);
   background: ${colorAccent};
   border: none;
   border-radius: ${sizeRadius};
   font-weight: 900;
 `;
-const InputLabelSpan = styled.span`
+export const InputLabelSpan = styled.span`
   position: absolute;
   left: 0;
   top: 0;
@@ -69,7 +60,7 @@ const InputLabelSpan = styled.span`
     color: ${colorAccent};
   }
 `;
-const TextInputField = styled.input`
+export const TextInputField = styled.input`
   position: relative;
   box-sizing: border-box;
   display: block;
@@ -87,10 +78,10 @@ const TextInputField = styled.input`
     }
   }
 `;
-const InputLabel = styled.label`
+export const InputLabel = styled.label`
   position: relative;
 `;
-const TempCont = styled.div`
+export const Page = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
@@ -98,7 +89,7 @@ const TempCont = styled.div`
   width: 100%;
 `;
 
-const Container = styled.div`
+export const UrlForm = styled.form`
   width: 100%;
   max-width: 400px;
   background: ${colorBackground};
