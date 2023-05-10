@@ -4,7 +4,7 @@ import ErrorScreen from "../components/ErrorScreen/ErrorScreen";
 import EffectivenessQuiz from "../components/EffectivenessQuiz/EffectivenessQuiz";
 import { paths } from "./routes";
 import { InBattleDisplay } from "../components/InBattleDisplay/InBattleDisplay";
-import UrlSearch from "../components/UrlSearch/UrlSearch";
+import SearchPage from "../pages/SearchPage/SearchPage";
 
 const router = createBrowserRouter(
   [
@@ -26,7 +26,7 @@ const router = createBrowserRouter(
     },
     {
       path: paths.search,
-      element: <UrlSearch />,
+      element: <SearchPage />,
       errorElement: <ErrorScreen />,
     },
     {
