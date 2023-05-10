@@ -1,5 +1,5 @@
 import React from "react";
-import { Result } from "../EffectivenessQuiz";
+import { Result } from "../../../hooks/useQuiz/useQuiz";
 import { TypeBox } from "../../EffectivnessDisplay/EffectivnessDisplay.style";
 
 interface Props {
