@@ -2,8 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "../components/Home/Home";
 import ErrorScreen from "../components/ErrorScreen/ErrorScreen";
 import EffectivenessQuiz from "../components/EffectivenessQuiz/EffectivenessQuiz";
-import { effectivenessPath, homePath, inBattlePath, quizPath } from "./routes";
+import { paths } from "./routes";
 import { InBattleDisplay } from "../App";
+import { UrlForm } from "../components/UrlSearch/UrlSearch.style";
 
 const router = createBrowserRouter(
   [
@@ -14,22 +15,27 @@ const router = createBrowserRouter(
       children: [],
     },
     {
-      path: effectivenessPath,
+      path: paths.effectiveness,
       element: <EffectivenessQuiz />,
       errorElement: <ErrorScreen />,
     },
     {
-      path: inBattlePath,
+      path: paths.inBattle,
       element: <InBattleDisplay />,
       errorElement: <ErrorScreen />,
     },
     {
-      path: quizPath,
+      path: paths.search,
+      element: <UrlForm />,
+      errorElement: <ErrorScreen />,
+    },
+    {
+      path: paths.quiz,
       element: <EffectivenessQuiz />,
       errorElement: <ErrorScreen />,
     },
     {
-      path: homePath,
+      path: paths.home,
       element: <Home />,
       errorElement: <ErrorScreen />,
     },
