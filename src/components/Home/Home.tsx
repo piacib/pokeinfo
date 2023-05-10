@@ -5,24 +5,25 @@ import {
   HomeContainer,
   WelcomeHeader,
   WelcomeText,
+  HomeLink,
 } from "./Home.style";
 import { Link } from "react-router-dom";
-import { examplePath, inBattlePath, quizPath } from "../../router/routes";
+import { paths } from "../../router/routes";
 
 const Home: React.FC = ({}) => {
   return (
     <HomeContainer>
       <TypeWriterContainer>
-        <WelcomeHeader>Welcome To PokeInfo</WelcomeHeader>
+        <WelcomeHeader>Welcome To Pokeinfo</WelcomeHeader>
       </TypeWriterContainer>
       <WelcomeText>
         Enter the url from your pokemon showdown battle to get real time data or
         click example
       </WelcomeText>
       <ButtonContainer>
-        <Link to={inBattlePath}>Search A battle</Link>
-        <Link to={examplePath}>Example</Link>
-        <Link to={quizPath}>Effectiveness Quiz</Link>
+        <HomeLink to={paths.search}>Search A battle</HomeLink>
+        <HomeLink to={paths.example}>Example</HomeLink>
+        <HomeLink to={paths.quiz}>Effectiveness Quiz</HomeLink>
       </ButtonContainer>
     </HomeContainer>
   );
