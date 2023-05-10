@@ -14,13 +14,6 @@ export const TextInput = styled.input`
   grid-row: 2;
   grid-column: 3/5;
 `;
-
-export const SubmitInput = styled.input`
-  color: black;
-  grid-row: 2;
-  grid-column: 5;
-`;
-
 const colorLight = "white";
 const colorBackground = "white";
 const colorAccent = "red";
@@ -78,13 +71,6 @@ export const TextInputField = styled.input`
 `;
 export const InputLabel = styled.label`
   position: relative;
-`;
-export const Page = styled.div`
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
 `;
 
 export const UrlForm = styled.form`
