@@ -13,7 +13,7 @@ const labelRegex = new RegExp(enterUrl, "i");
 test("UrlSearch button is present", () => {
   render(
     <ThemeProvider theme={theme}>
-      <UrlSearch handleSubmit={handleSubmit} />
+      <UrlSearch />
     </ThemeProvider>,
   );
   const element = screen.getByText(battleBtnRegex);
@@ -23,7 +23,7 @@ test("UrlSearch button is present", () => {
 test("Url form appears on click", () => {
   render(
     <ThemeProvider theme={theme}>
-      <UrlSearch handleSubmit={handleSubmit} />
+      <UrlSearch />
     </ThemeProvider>,
   );
   const element = screen.getByText(battleBtnRegex);
@@ -37,7 +37,7 @@ test("Url form appears on click", () => {
 test("UrlSearch form disappears", () => {
   render(
     <ThemeProvider theme={theme}>
-      <UrlSearch handleSubmit={handleSubmit} />
+      <UrlSearch />
     </ThemeProvider>,
   );
   const element = screen.getByText(battleBtnRegex);
