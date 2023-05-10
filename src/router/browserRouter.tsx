@@ -20,7 +20,7 @@ const router = createBrowserRouter(
       errorElement: <ErrorScreen />,
     },
     {
-      path: paths.inBattle,
+      path: paths.inBattleId,
       element: <InBattleDisplay />,
       errorElement: <ErrorScreen />,
     },
