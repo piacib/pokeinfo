@@ -5,6 +5,7 @@ import EffectivenessQuiz from "../components/EffectivenessQuiz/EffectivenessQuiz
 import { paths } from "./routes";
 import { InBattleDisplay } from "../components/InBattleDisplay/InBattleDisplay";
 import SearchPage from "../pages/SearchPage/SearchPage";
+import EffectivenessQuizPage from "../pages/EffectivenessQuizPage/EffectivenessQuizPage";
 
 const router = createBrowserRouter(
   [
@@ -13,11 +14,6 @@ const router = createBrowserRouter(
       element: <Home />,
       errorElement: <ErrorScreen />,
       children: [],
-    },
-    {
-      path: paths.effectiveness,
-      element: <EffectivenessQuiz />,
-      errorElement: <ErrorScreen />,
     },
     {
       path: paths.inBattle,
@@ -31,7 +27,7 @@ const router = createBrowserRouter(
     },
     {
       path: paths.quiz,
-      element: <EffectivenessQuiz />,
+      element: <EffectivenessQuizPage />,
       errorElement: <ErrorScreen />,
     },
     {
