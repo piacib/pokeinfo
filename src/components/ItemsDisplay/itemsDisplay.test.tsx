@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import ItemsDisplay from "./ItemsDisplay";
 import { ThemeProvider, ThemeProviderComponent } from "styled-components";
-import { theme } from "../../theme";
+import { theme } from "../../styles/theme";
 import userEvent from "@testing-library/user-event";
 const testItems = ["Choice Band", "Lum Berry"];
 const testDescriptions = [
