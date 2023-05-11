@@ -4,7 +4,7 @@ import Question from "./Question/Question";
 import Answers from "./Answer/Answer";
 import Results from "./Results/Results";
 import { TypeName } from "../../types";
-import { TypeWriterContainer } from "../../TypeWriterContainer.style";
+import { TypeWriterContainer } from "../../styles/TypeWriterContainer.style";
 import styled from "styled-components";
 import useQuiz from "../../hooks/useQuiz/useQuiz";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { TypeWriterContainer } from "../../TypeWriterContainer.style";
+import { TypeWriterContainer } from "../../styles/TypeWriterContainer.style";
 import {
   ButtonContainer,
   HomeContainer,

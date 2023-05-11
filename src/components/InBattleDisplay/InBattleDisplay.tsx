@@ -5,7 +5,7 @@ import { AppDisplay, Button, Header, PokeInfo, Spacer } from "../../App.style";
 import OptionsMenu from "../OptionsMenu/OptionsMenu";
 import PokeTracker from "../PokeTracker/PokeTracker";
 import { paths } from "../../router/routes";
-import { TypeWriterContainer } from "../../TypeWriterContainer.style";
+import { TypeWriterContainer } from "../../styles/TypeWriterContainer.style";
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 import { LoadingScreen } from "../LoadingScreen";
 import { displayHandler } from "../../functions";
