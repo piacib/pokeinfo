@@ -47,7 +47,9 @@ export const hoverDisplayCss = css`
 export const PropertyBtn = styled.div`
   ${hoverDisplayCss}
   ${propertyCss}
-  border: 2px solid  ${(props) => props.theme.fontColor};
+  box-shadow: ${(props) => props.theme.boxShadow};
+
+  border: 2px solid ${(props) => props.theme.fontColor};
   background-color: ${(props) => props.theme.backgroundColor};
   color: ${(props) => props.theme.fontColor};
   span {

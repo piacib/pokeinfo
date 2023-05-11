@@ -9,6 +9,7 @@ const darkMode: ModeObj = {
 };
 
 export const theme: DefaultTheme = {
+  boxShadow: "5px 5px 9px 0px rgba(0, 0, 0, 0.4)",
   media: {
     smallScreen: "18.75rem",
     mediumScreen: "37.5rem",
