@@ -10,8 +10,8 @@ import { paths } from "../../router/routes";
 import Pickahu from "./Pikachu";
 import { useNavigate } from "react-router-dom";
 
-const enterBattleText = "Enter new battle";
-const enterUrl = "Enter Url or battle id:";
+export const connectText = "Connect to a Battle";
+export const enterUrl = "Enter Url or Battle Id Here";
 
 const UrlSearch = () => {
   const navigate = useNavigate();
@@ -33,10 +33,10 @@ const UrlSearch = () => {
         }}
       >
         <Pickahu />
-        <h2>Connect to a Battle</h2>
+        <h2>{connectText}</h2>
         <InputLabel htmlFor="url">
           <TextInputField type="text" id="url" name="url" />
-          <InputLabelSpan>Enter Url or Battle Id Here</InputLabelSpan>
+          <InputLabelSpan>{enterUrl}</InputLabelSpan>
         </InputLabel>
         <ButtonContainer>
           <Button type="submit" value="Submit">
