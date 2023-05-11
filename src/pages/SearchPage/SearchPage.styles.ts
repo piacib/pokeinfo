@@ -1,9 +1,4 @@
 import styled from "styled-components";
+import { ContentCenteredContainer } from "../Page.style";
 
-export const SearchPageContainer = styled.div`
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-`;
+export const SearchPageContainer = styled(ContentCenteredContainer)``;
