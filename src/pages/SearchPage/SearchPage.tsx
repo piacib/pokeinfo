@@ -5,7 +5,7 @@ import Page from "../Page";
 
 const SearchPage = () => {
   return (
-    <Page>
+    <Page header>
       <SearchPageContainer>
         <UrlSearch />
       </SearchPageContainer>
