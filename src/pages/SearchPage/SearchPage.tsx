@@ -1,12 +1,15 @@
 import React from "react";
 import UrlSearch from "../../components/UrlSearch/UrlSearch";
 import { SearchPageContainer } from "./SearchPage.styles";
+import Page from "../Page";
 
 const SearchPage = () => {
   return (
-    <SearchPageContainer>
-      <UrlSearch />
-    </SearchPageContainer>
+    <Page>
+      <SearchPageContainer>
+        <UrlSearch />
+      </SearchPageContainer>
+    </Page>
   );
 };
 
