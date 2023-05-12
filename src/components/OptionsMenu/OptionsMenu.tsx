@@ -7,7 +7,6 @@ import {
   SidebarList,
 } from "./OptionsMenu.styled";
 import { paths } from "../../router/routes";
-// import "./options.css";
 interface Props {
   children?: React.ReactNode[];
 }

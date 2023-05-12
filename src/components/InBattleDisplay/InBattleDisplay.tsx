@@ -1,10 +1,9 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useSpectatorsAllowed from "../../hooks/useSpectatorsAllowed/useSpectatorsAllowed";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { AppDisplay, Button, Header, PokeInfo, Spacer } from "../../App.style";
 import OptionsMenu from "../OptionsMenu/OptionsMenu";
 import PokeTracker from "../PokeTracker/PokeTracker";
-import { paths } from "../../router/routes";
 import { TypeWriterContainer } from "../../styles/TypeWriterContainer.style";
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 import { LoadingScreen } from "../LoadingScreen";
@@ -22,21 +21,6 @@ export const InBattleDisplay = () => {
   const [spectatorsAllowed] = useSpectatorsAllowed(params, battleRoomId);
   const [isInExtension, setIsInExtension] = useState(false);
   const paramBattleId = params.get("battleId");
-  // const handleSubmit = (e: React.SyntheticEvent) => {
-  //   e.preventDefault();
-  //   console.log("handleSubmit", previousBattleRoomId.current, battleRoomId);
-  //   previousBattleRoomId.current = battleRoomId;
-  //   const target = e.target as typeof e.target & {
-  //     url: { value: string };
-  //   };
-  //   const battleIndex = target.url.value.indexOf("battle");
-  //   if (battleIndex === -1) {
-  //     return;
-  //   }
-  //   const battleRoomIdTemp = target.url.value.slice(battleIndex);
-  //   setBattleRoomId(battleRoomIdTemp);
-  // };
-
   useEffect(() => {
     if (paramBattleId) {
       setIsInExtension(true);
@@ -50,8 +34,6 @@ export const InBattleDisplay = () => {
       setTeamToDisplay("p1");
     }
   };
-
-  console.log("id", id);
   if (!id) {
     return <></>;
   }

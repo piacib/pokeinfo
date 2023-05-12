@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-const colorLight = "white";
 const colorBackground = "white";
-const colorAccent = "red";
 const sizeBezel = "0.5rem";
 const sizeRadius = "4px";
 const colorShadow = "#212121";
