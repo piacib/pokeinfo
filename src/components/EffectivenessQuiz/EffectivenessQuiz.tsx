@@ -1,56 +1,54 @@
-import React, { useState } from "react";
-import QuizOptions from "./QuizOptions/QuizOption";
 import Question from "./Question/Question";
 import Answers from "./Answer/Answer";
 import Results from "./Results/Results";
-import { TypeName } from "../../types";
 import { TypeWriterContainer } from "../../styles/TypeWriterContainer.style";
-import styled from "styled-components";
-import useQuiz from "../../hooks/useQuiz/useQuiz";
+import { ACTION_TYPE, useQuizReducer } from "../../hooks/useQuiz/useQuiz";
+import Umbreon from "./Umbreon";
+import { QuizContainer } from "./EffectivenessQuiz.style";
+
+export const quizLength = 15;
 
 const EffectivenessQuiz = () => {
-  const [answerSelected, setAnswerSelected] = useState<number | null>(null);
-  const data = useQuiz(answerSelected);
-  // const [results, setResults] = useState();
-  console.log("answer", data.results);
+  const { quizState, dispatch } = useQuizReducer();
+  const currentQuizQuestion = quizState.quiz[quizState.currentEntry];
+
   return (
     <>
-      {data.moveType && data.answer !== null ? (
-        <QuizContainer>
+      {!quizState.quizComplete ? (
+        <>
           <TypeWriterContainer>
-            <h1>Effectiveness Quiz</h1>
+            <h1>Quiz</h1>
           </TypeWriterContainer>
-          <QuizOptions />
-
-          <Question
-            moveType={data.moveType}
-            pokemonType={data.attackPokemonType}
-          />
-          <Answers
-            answer={data.answer}
-            reset={(choice: number) => {
-              setAnswerSelected(choice);
-              data.generateData();
-            }}
-          />
-
-          {/* <Results data={data.results} /> */}
-        </QuizContainer>
+          <QuizContainer>
+            <Umbreon />
+            {currentQuizQuestion && (
+              <>
+                <Question
+                  moveType={currentQuizQuestion.moveType}
+                  pokemonType={currentQuizQuestion.attackPokemonType}
+                />
+                <Answers
+                  answer={currentQuizQuestion.answer}
+                  reset={(choice: number) => {
+                    console.log("dispatching next");
+                    dispatch({
+                      type: ACTION_TYPE.NEXT,
+                      payload: { answerSelected: choice },
+                    });
+                  }}
+                />
+              </>
+            )}
+          </QuizContainer>
+        </>
       ) : (
-        <></>
+        <Results
+          data={quizState.results}
+          restartQuiz={() => dispatch({ type: ACTION_TYPE.GENERATE })}
+        />
       )}
     </>
   );
 };
 
 export default EffectivenessQuiz;
-
-const QuizContainer = styled.div`
-  display: grid;
-  place-items: center;
-`;
-
-// start quiz button
-// 15 questions
-// store results
-// display results at end
