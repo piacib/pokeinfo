@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { isDevelopmentMode } from "../developmentMode";
+import { isDevelopmentMode } from "./developmentMode";
 export const GlobalStyle = createGlobalStyle`
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
@@ -18,7 +18,7 @@ export const GlobalStyle = createGlobalStyle`
   -webkit-text-size-adjust: 100%;
 }
 html{
-    font-size:${isDevelopmentMode ? "10px" : ""};
+    /* font-size:${isDevelopmentMode ? "10px" : ""}; */
     background-color: ${(props) => props.theme.backgroundColor};
   }
   body {

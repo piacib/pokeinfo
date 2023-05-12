@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import { render, RenderOptions } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../styles/theme";
-import { GlobalStyle } from "../styles/GlobalStyles";
+import { GlobalStyle } from "../GlobalStyles";
 import { MemoryRouter } from "react-router-dom";
 
 const AllTheProviders = ({ children }: { children: React.ReactNode }) => {

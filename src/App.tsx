@@ -1,5 +1,5 @@
 import React from "react";
-import { GlobalStyle } from "./styles/GlobalStyles";
+import { GlobalStyle } from "./GlobalStyles";
 import { ThemeProvider } from "styled-components";
 import { RouterProvider } from "react-router-dom";
 import { themeObjGenerator } from "./styles/theme";

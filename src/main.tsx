@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
-import { GlobalStyle } from "./styles/GlobalStyles";
+import { GlobalStyle } from "./GlobalStyles";
 import { ThemeProvider } from "styled-components";
 import { themeObjGenerator } from "./styles/theme";
 import router from "./router/browserRouter";
