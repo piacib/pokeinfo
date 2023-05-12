@@ -7,7 +7,6 @@ import {
   WelcomeText,
   HomeLink,
 } from "./Home.style";
-import { Link } from "react-router-dom";
 import { paths } from "../../router/routes";
 
 const Home: React.FC = ({}) => {
