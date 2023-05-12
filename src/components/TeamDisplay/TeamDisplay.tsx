@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, ButtonDisplay } from "./TeamDisplay.style";
+import { Button, ButtonDisplay, SwapTeamsButton } from "./TeamDisplay.style";
 import SpriteImage from "../SpriteImage";
 import { pokemonNameFilter } from "./TeamDisplay.functions";
 import PokeDexScreen from "../PokeDexScreen/PokeDex";
@@ -12,8 +12,8 @@ import {
 } from "../../developmentMode";
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 import useNoSpectator from "../../hooks/useNoSpectators/useNoSpectator";
+import PokeTracker from "../PokeTracker/PokeTracker";
 interface TeamProps {
-  teamToDisplay: "p1" | "p2";
   battleRoomId: string;
   previousBattleRoomId: string;
   activePkmTrack: boolean;
@@ -24,12 +24,14 @@ interface TeamProps {
 const TeamDisplay = ({
   battleRoomId,
   previousBattleRoomId,
-  teamToDisplay = "p2",
-  activePkmTrack = true,
+  // activePkmTrack = true,
   spectatorsAllowed = true,
-  setActivePkmTrack,
-}: TeamProps) => {
+}: // setActivePkmTrack,
+TeamProps) => {
   const [index, setIndex] = useState(0);
+  const [teamToDisplay, setTeamToDisplay] = useState<"p1" | "p2">("p2");
+  const [activePkmTrack, setActivePkmTrack] = useState(true);
+
   const [[teams, setTeams], activePokemon] = spectatorsAllowed
     ? useWebSocket(battleRoomId, previousBattleRoomId)
     : useNoSpectator(new URLSearchParams(window.location.search));
@@ -54,10 +56,20 @@ const TeamDisplay = ({
     }
     return teams[teamToDisplay][index];
   };
+  const swapTeams = () => {
+    if (teamToDisplay === "p1") {
+      setTeamToDisplay("p2");
+    } else {
+      setTeamToDisplay("p1");
+    }
+  };
   const battleTypeRegex = battleRoomId.match(/battle-(.*)-/);
   return (
     <>
       <PokeDexScreen>
+        <PokeTracker toggle={activePkmTrack} setToggle={setActivePkmTrack} />
+        <SwapTeamsButton onClick={swapTeams}>Switch Team</SwapTeamsButton>
+
         <ButtonDisplay>
           {teams[teamToDisplay]?.map((x, idx) => (
             <Button

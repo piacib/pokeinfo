@@ -2,14 +2,32 @@ import styled, { css } from "styled-components";
 const Border = css`
   border: 1px solid ${(props) => props.theme.pokedexColor};
 `;
+const RedCircle = styled.div`
+  ${Border}
+  border-radius: 50%;
+  background: ${(props) => props.theme.color.pokedexRed};
+`;
+export const RedCircleTop = styled(RedCircle)`
+  grid-row: 1;
+  height: 10px;
+  width: 10px;
+`;
 export const ContainerTop = styled.div`
   display: flex;
   flex-direction: row;
-  width: 40px;
-  justify-content: space-between;
+  width: 100%;
+  height: 20px;
+  justify-content: center;
+  ${RedCircleTop}:first-of-type {
+    margin-right: 5px;
+  }
+  ${RedCircleTop}:last-of-type {
+    margin-left: 5px;
+  }
 `;
 const scale = 1.1;
 export const Container = styled.div`
+  position: relative;
   border: 3px solid ${(props) => props.theme.pokedexColor};
   border-radius: ${(props) => props.theme.pokedexStyles.borderRadius};
   grid-column: 1/2;
@@ -36,16 +54,7 @@ export const InnerContainer = styled.div`
   margin: 5px 0;
   padding: 2px;
 `;
-const RedCircle = styled.div`
-  ${Border}
-  border-radius: 50%;
-  background: ${(props) => props.theme.color.pokedexRed};
-`;
-export const RedCircleTop = styled(RedCircle)`
-  grid-row: 1;
-  height: 10px;
-  width: 10px;
-`;
+
 export const RedCircleBottom = styled(RedCircle)`
   grid-row: 3;
   height: 15px;
