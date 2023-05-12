@@ -25,11 +25,10 @@ export const dexTopRowButton = css`
   padding: 3px 5px;
   border-radius: 20px;
   z-index: 2;
+  font-weight: 600;
   background-color: ${(props) => props.theme.color.pokedexRed};
-  /* font-size: 0.6rem; */
-  @media screen and (min-width: 300px) {
-    font-size: 0.8rem;
-  }
+  color: white;
+  font-size: 0.8rem;
 `;
 export const SwapTeamsButton = styled.button`
   right: 5px;
