@@ -5,11 +5,9 @@ import { GlobalStyle } from "./styles/GlobalStyles";
 import { ThemeProvider } from "styled-components";
 import { themeObjGenerator } from "./styles/theme";
 import router from "./router/browserRouter";
+import App from "./App";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <GlobalStyle theme={themeObjGenerator("light")} />
-    <ThemeProvider theme={themeObjGenerator("light")}>
-      <RouterProvider router={router} />
-    </ThemeProvider>
+    <App />
   </React.StrictMode>,
 );

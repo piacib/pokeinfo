@@ -65,11 +65,6 @@ export const InBattleDisplay = () => {
               toggle={activePkmTrack}
               setToggle={setActivePkmTrack}
             />
-            <Link to={paths.search}>Search A battle</Link>
-            <Link to={paths.example}>Example</Link>
-            <Link to={paths.quiz}>Effectiveness Quiz</Link>
-
-            {/* {!isInExtension && <UrlSearch handleSubmit={handleSubmit} />} */}
           </OptionsMenu>
           <Button onClick={swapTeams}>Switch Team</Button>
         </>
