@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import { ToggleContainer } from "../ModeToggle/ModeToggle.style";
 import { UrlLabel } from "../UrlSearch/UrlSearch.style";
+import { Link } from "react-router-dom";
+import { PillDesign } from "../../App.style";
 
 export const SideBar = styled.aside`
   --hamburgerHeight: ${(props) =>
     props.theme.burgerMenu.barHeight * 3 +
     props.theme.burgerMenu.hamburgerGap * 2 +
     props.theme.burgerMenu.measureType};
-  font-size: 10px;
   position: absolute;
   top: 0;
   left: 0;
@@ -15,6 +16,7 @@ export const SideBar = styled.aside`
   transition: translate ${(props) => props.theme.burgerMenu.animationTiming};
   translate: -100%;
   padding: 0.5rem 1rem;
+  font-size: 1.2rem;
   padding-top: calc(
     var(--hamburgerHeight) +
       ${(props) =>
@@ -154,4 +156,11 @@ export const HamburgerLabel = styled.label`
 export const SidebarList = styled.ul`
   list-style: none;
   padding: 0;
+`;
+export const OptionsMenuLink = styled(Link)`
+  color: ${(props) => props.theme.backgroundColor};
+`;
+export const Li = styled.li`
+  margin: 1rem 0;
+  text-align: end;
 `;

@@ -1,5 +1,5 @@
 import { DefaultTheme } from "styled-components";
-import { ModeObj } from "./styled";
+import { ModeObj } from "../styled";
 
 // dark mode object gets pread
 const darkMode: ModeObj = {

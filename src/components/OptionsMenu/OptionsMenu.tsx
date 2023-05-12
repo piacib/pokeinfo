@@ -1,10 +1,17 @@
 import React from "react";
-import { HamburgerLabel, SideBar, SidebarList } from "./OptionsMenu.styled";
-// import "./options.css";
+import {
+  HamburgerLabel,
+  Li,
+  OptionsMenuLink,
+  SideBar,
+  SidebarList,
+} from "./OptionsMenu.styled";
+import { paths } from "../../router/routes";
 interface Props {
-  children: React.ReactNode[];
+  children?: React.ReactNode[];
 }
-const OptionsMenu: React.FC<Props> = ({ children }) => {
+
+const OptionsMenu: React.FC<Props> = ({ children = [] }) => {
   return (
     <>
       <HamburgerLabel>
@@ -13,8 +20,23 @@ const OptionsMenu: React.FC<Props> = ({ children }) => {
       <SideBar>
         <SidebarList>
           {children.map((child, idx) => (
-            <li key={`${child}${idx}}`}>{child}</li>
+            <Li key={`${child}${idx}}`}>{child}</Li>
           ))}
+          <Li>
+            {" "}
+            <OptionsMenuLink to={paths.search}>Search A Battle</OptionsMenuLink>
+          </Li>
+          <Li>
+            <OptionsMenuLink to={paths.example}>Example Battle</OptionsMenuLink>
+          </Li>
+          <Li>
+            <OptionsMenuLink to={paths.quiz}>
+              Effectiveness Quiz
+            </OptionsMenuLink>
+          </Li>
+          <Li>
+            <OptionsMenuLink to={paths.home}>Home</OptionsMenuLink>
+          </Li>
         </SidebarList>
       </SideBar>
     </>
