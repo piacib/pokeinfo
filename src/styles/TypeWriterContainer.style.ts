@@ -24,11 +24,12 @@ export const TypeWriterContainer = styled.div`
   grid-column: 1/2;
   margin: 0 auto;
   width: fit-content;
+  font-size: 1.2em;
   * {
     color: ${(props) => props.theme.fontColor};
     font-family: "VT323";
     height: 1em;
-
+    line-height: 1.1;
     width: fit-content;
     overflow: hidden; /* Ensures the content is not revealed until the animation */
     border-right: 0.25em solid black; /* The typwriter cursor */
