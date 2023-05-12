@@ -162,4 +162,5 @@ export const OptionsMenuLink = styled(Link)`
 `;
 export const Li = styled.li`
   margin: 1rem 0;
+  text-align: end;
 `;
