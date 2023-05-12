@@ -1,27 +1,67 @@
-import React from "react";
-import { Result } from "../../../hooks/useQuiz/useQuiz";
-import { TypeBox } from "../../EffectivnessDisplay/EffectivnessDisplay.style";
+import { RESULT } from "../../../hooks/useQuiz/useQuiz";
+import {
+  ResultRow,
+  ResultCell,
+  AnswerContainer,
+  PokemonTypeCell,
+  ResultTypedBox,
+  TableColumn,
+  ResutTable,
+  ChoiceContainer,
+} from "./Results.style";
+import { Button } from "../../UrlSearch/UrlSearch.style";
+import { TypeWriterContainer } from "../../../styles/TypeWriterContainer.style";
 
 interface Props {
-  data: Result[];
+  data: RESULT[];
+  restartQuiz: () => void;
 }
-const Results = ({ data }: Props) => {
-  return (
-    <div>
-      Results
-      {data.map((x) => (
-        <div>
-          <span>{x.correct ? "corrrect" : "incorrect"}: </span>
-          <TypeBox background={x.moveType}>{x.moveType}</TypeBox>
-          <span>attacks</span>
-          {x.attackPokemonType.map((x) => (
-            <TypeBox background={x}>{x}</TypeBox>
-          ))}
-          <span>{x.answer}</span>
-        </div>
-      ))}
-    </div>
-  );
-};
+const Results = ({ data, restartQuiz }: Props) => (
+  <>
+    <ResutTable>
+      <caption>
+        <TypeWriterContainer>
+          <h1>Results</h1>
+        </TypeWriterContainer>
+      </caption>
+      <thead>
+        <tr>
+          <TableColumn scope="col">Attack type</TableColumn>
+          <TableColumn scope="col">Pokemon Type</TableColumn>
+          <TableColumn scope="col">Correct</TableColumn>
+          <TableColumn scope="col">Choice</TableColumn>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((x) => (
+          <ResultRow>
+            <ResultCell>
+              <ResultTypedBox background={x.moveType}>
+                {x.moveType}
+              </ResultTypedBox>
+            </ResultCell>
+            <ResultCell>
+              <PokemonTypeCell>
+                {x.attackPokemonType.map((x) => (
+                  <ResultTypedBox background={x}>{x}</ResultTypedBox>
+                ))}
+              </PokemonTypeCell>
+            </ResultCell>
+
+            <ResultCell>
+              <AnswerContainer>x{x.answer}</AnswerContainer>
+            </ResultCell>
+            <ResultCell>
+              <ChoiceContainer correct={x.answer === x.answerSelected}>
+                x{x.answerSelected}
+              </ChoiceContainer>
+            </ResultCell>
+          </ResultRow>
+        ))}
+      </tbody>
+    </ResutTable>
+    <Button onClick={() => restartQuiz()}>Play Again</Button>
+  </>
+);
 
 export default Results;
