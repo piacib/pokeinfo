@@ -24,6 +24,9 @@ export const ButtonContainer = styled.div`
   margin-top: calc(${sizeBezel} * 2.5);
 `;
 export const Button = styled.button`
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
   padding: ${sizeBezel} calc(${sizeBezel} * 2);
   background: ${colorAccent};
   border: none;
