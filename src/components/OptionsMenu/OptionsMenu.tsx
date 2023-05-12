@@ -35,6 +35,9 @@ const OptionsMenu: React.FC<Props> = ({ children = [] }) => {
               Effectiveness Quiz
             </OptionsMenuLink>
           </Li>
+          <Li>
+            <OptionsMenuLink to={paths.home}>Home</OptionsMenuLink>
+          </Li>
         </SidebarList>
       </SideBar>
     </>
