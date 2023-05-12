@@ -5,7 +5,7 @@ import Page from "../Page";
 
 const EffectivenessQuizPage = () => {
   return (
-    <Page>
+    <Page header>
       <Container>
         <EffectivenessQuiz />
       </Container>
