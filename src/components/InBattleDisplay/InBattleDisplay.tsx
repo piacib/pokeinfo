@@ -13,9 +13,7 @@ import PokeSearch from "../PokeSearch/PokeSearch";
 
 export const InBattleDisplay = () => {
   const previousBattleRoomId = useRef("");
-  const [teamToDisplay, setTeamToDisplay] = useState<"p1" | "p2">("p2");
   const [battleRoomId, setBattleRoomId] = useState("");
-  const [activePkmTrack, setActivePkmTrack] = useState(true);
   const params = new URLSearchParams(window.location.search);
   const { id } = useParams();
   const [spectatorsAllowed] = useSpectatorsAllowed(params, battleRoomId);
@@ -27,30 +25,11 @@ export const InBattleDisplay = () => {
       setBattleRoomId(paramBattleId);
     }
   });
-  const swapTeams = () => {
-    if (teamToDisplay === "p1") {
-      setTeamToDisplay("p2");
-    } else {
-      setTeamToDisplay("p1");
-    }
-  };
   if (!id) {
     return <></>;
   }
   return (
     <>
-      <Header>
-        <>
-          <OptionsMenu>
-            {isInExtension && <Spacer />}
-            <PokeTracker
-              toggle={activePkmTrack}
-              setToggle={setActivePkmTrack}
-            />
-          </OptionsMenu>
-          <Button onClick={swapTeams}>Switch Team</Button>
-        </>
-      </Header>
       <AppDisplay>
         <TypeWriterContainer>
           <PokeInfo>Pokeinfo</PokeInfo>
@@ -64,11 +43,8 @@ export const InBattleDisplay = () => {
               params.get("opponentsTeam"),
             ) ? (
               <TeamDisplay
-                teamToDisplay={teamToDisplay}
                 battleRoomId={id}
                 previousBattleRoomId={previousBattleRoomId.current}
-                activePkmTrack={activePkmTrack}
-                setActivePkmTrack={setActivePkmTrack}
                 spectatorsAllowed={spectatorsAllowed}
               />
             ) : (

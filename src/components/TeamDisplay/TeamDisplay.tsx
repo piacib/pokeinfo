@@ -16,18 +16,14 @@ import PokeTracker from "../PokeTracker/PokeTracker";
 interface TeamProps {
   battleRoomId: string;
   previousBattleRoomId: string;
-  activePkmTrack: boolean;
-  setActivePkmTrack: React.Dispatch<React.SetStateAction<boolean>>;
   spectatorsAllowed: boolean;
 }
 // fetches latest pokemon data from auto updating github dataset
 const TeamDisplay = ({
   battleRoomId,
   previousBattleRoomId,
-  // activePkmTrack = true,
   spectatorsAllowed = true,
-}: // setActivePkmTrack,
-TeamProps) => {
+}: TeamProps) => {
   const [index, setIndex] = useState(0);
   const [teamToDisplay, setTeamToDisplay] = useState<"p1" | "p2">("p2");
   const [activePkmTrack, setActivePkmTrack] = useState(true);
