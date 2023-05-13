@@ -24,10 +24,8 @@ const Answer = ({
 
     if (choice === answer) {
       setCorrectChoices(correctChoices + 1);
-      console.log("success");
       return;
     }
-    console.log("you dumb bitch it was " + answer);
   };
 
   return (
