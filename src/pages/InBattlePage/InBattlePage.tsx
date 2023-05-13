@@ -7,8 +7,7 @@ const InBattlePage = () => {
   const params = new URLSearchParams(window.location.search);
   const isExtension = params.has("isExtension");
   return (
-    <Page header={!isExtension}>
-       {isExtension && <Spacer />}
+    <Page header>
       <InBattleDisplay />
     </Page>
   );
