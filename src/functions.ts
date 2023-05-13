@@ -110,12 +110,6 @@ export const displayHandler = (
   userTeam: string | null,
   opponentsTeam: string | null,
 ): boolean => {
-  console.log({
-    spectatorsAllowed: spectatorsAllowed,
-    isInExtension: isInExtension,
-    userTeam: userTeam,
-    opponentsTeam: opponentsTeam,
-  });
   if (spectatorsAllowed) {
     // return teamDisplay
     return true;

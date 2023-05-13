@@ -30,7 +30,6 @@ const EffectivenessQuiz = () => {
                 <Answers
                   answer={currentQuizQuestion.answer}
                   reset={(choice: number) => {
-                    console.log("dispatching next");
                     dispatch({
                       type: ACTION_TYPE.NEXT,
                       payload: { answerSelected: choice },
