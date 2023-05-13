@@ -49,7 +49,6 @@ export const getSafariBuiltTeam = (data: string) => {
   // used for any non random battle
   const regExMatch1 = iosBuiltMatch(data, "p1");
   const regExMatch2 = iosBuiltMatch(data, "p2");
-  // console.log({ p1: regExMatch1, p2: regExMatch2 });
   if (!regExMatch1 || !regExMatch2) {
     return false;
   }
@@ -74,7 +73,6 @@ const iosSwitchMatch = (data: string, player: "p1" | "p2") => {
 export const getSafariSwappedPkm = (data: string) => {
   const regExMatch1 = iosSwitchMatch(data, "p1");
   const regExMatch2 = iosSwitchMatch(data, "p2");
-  // console.log("safari", regExMatch1, regExMatch2);
   if (!regExMatch1 && !regExMatch2) {
     return false;
   }

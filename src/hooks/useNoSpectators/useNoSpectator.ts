@@ -7,7 +7,6 @@ import { ReturnType, teamsType } from "../useWebsSocket/useWebsSocket";
 // &userTeam=Cacturne%2CPolteageist%2CGallade%2CCrabominable%2CHypno%2CGoodra-Hisui
 // &opponentsTeam=Quaquaval%2CGrumpig%2CDunsparce%2COricorio-Pa%27u%2CGarchomp
 const useNoSpectator = (searchParams: URLSearchParams): ReturnType => {
-  console.log("useNoSpectator");
   const [teams, setTeams] = useState<teamsType>({ p1: [], p2: [] });
   const [activePokemon, setActivePokemon] = useState<teamsType>({
     p1: [],

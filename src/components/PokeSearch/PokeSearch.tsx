@@ -35,7 +35,6 @@ const Form = ({ handleSubmit, setPkmn }: FormProps) => {
         };
         const pokemon = target.pokemon_search.value.trim();
         if (pokemon && !previousSearches.includes(pokemon)) {
-          console.log(previousSearches, pokemon);
           setPreviousSearches([pokemon, ...previousSearches]);
         }
         handleSubmit(e);

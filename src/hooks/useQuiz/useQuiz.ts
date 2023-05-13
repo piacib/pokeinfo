@@ -50,93 +50,6 @@ const generateEntry = () => {
     attackPokemonType,
   };
 };
-// const useQuiz = (answerSelected: number | null, quizLength = 15) => {
-//   const [answer, setAnswer] = useState<number | null>(null);
-//   const [moveType, setMoveType] = useState<TypeName | null>();
-//   const [attackPokemonType, setAttackPokemonType] = useState<TypeName[]>([]);
-//   const results = useResults({
-//     answer,
-//     moveType,
-//     attackPokemonType,
-//     answerSelected,
-//   });
-
-//   const generateData = () => {
-//     setTimeout(() => {
-//       const {
-//         answer: tempAnswer,
-//         moveType: tempMoveType,
-//         attackPokemonType: tempAttackPokemonType,
-//       } = generateEntry();
-//       setMoveType(tempMoveType);
-//       setAttackPokemonType(tempAttackPokemonType);
-//       setAnswer(tempAnswer);
-//     }, 500);
-//   };
-
-//   useEffect(() => {
-//     generateData();
-//   }, []);
-//   return {
-//     answer,
-//     moveType,
-//     attackPokemonType,
-//     results,
-//     generateData,
-//   };
-// };
-// interface ResultProps {
-//   answer: number | null;
-//   answerSelected: number | null;
-//   moveType: TypeName | null;
-//   attackPokemonType: TypeName[];
-// }
-// export interface Result extends ResultProps {
-//   moveType: TypeName;
-//   attackPokemonType: TypeName[];
-//   correct: boolean;
-// }
-
-// const useResults = ({
-//   answer,
-//   answerSelected,
-//   moveType,
-//   attackPokemonType,
-// }: ResultProps) => {
-//   const [results, setResults] = useState<Result[]>([]);
-//   const addResult = (correct: boolean) => {
-//     if (answer !== null || answerSelected !== null || !moveType) {
-//       return;
-//     }
-//     const obj = {
-//       correct,
-//       answer,
-//       answerSelected,
-//       moveType,
-//       attackPokemonType,
-//     };
-//     setResults([...results, obj]);
-//   };
-
-//   useEffect(() => {
-//     // if (!answer || !answerSelected || !moveType) {
-//     //   return;
-//     // }
-
-//     if (answerSelected === answer) {
-//       console.log("correct!");
-//       addResult(true);
-//     }
-//     if (answerSelected !== answer) {
-//       console.log("WRONG!");
-//       addResult(false);
-//     }
-//   }, [answerSelected]);
-//   return results;
-// };
-
-// export default useQuiz;
-
 interface QuizQuestion {
   answer: number;
   moveType: TypeName;
@@ -168,7 +81,6 @@ export interface RESULT extends QuizQuestion {
 export const reducer = (state: STATE, action: ACTION) => {
   switch (action.type) {
     case ACTION_TYPE.GENERATE:
-      console.log("dispatching generate");
       return {
         quiz: Array.apply(null, Array(quizLength)).map((x) => generateEntry()),
         currentEntry: 0,
@@ -176,7 +88,6 @@ export const reducer = (state: STATE, action: ACTION) => {
         results: [],
       };
     case ACTION_TYPE.NEXT:
-      console.log("dispatching next");
       const nextEntry = state.currentEntry + 1;
       const answerSelected = action.payload.answerSelected;
       const resultEntry: RESULT = {

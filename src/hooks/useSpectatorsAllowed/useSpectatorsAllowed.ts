@@ -7,14 +7,11 @@ const useSpectatorsAllowed = (
   const [spectatorsAllowed, setSpectatorsAllowed] = useState(true);
   useEffect(() => {
     if (params.get("noSpectators")) {
-      console.log("spec", params.get("noSpectators"));
       setSpectatorsAllowed(false);
     }
   });
   useEffect(() => {
     if (battleRoomId.split("-").length > 3) {
-      console.log("battleRoomId", battleRoomId);
-      console.log("spectatorsAllowed", false);
       setSpectatorsAllowed(false);
     }
   }, [battleRoomId]);

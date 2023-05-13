@@ -9,10 +9,7 @@ const useExtensionRedirect = () => {
   const paramBattleId = params.get("battleId");
   useEffect(() => {
     if (paramBattleId) {
-      console.log(paramBattleId);
       const path = paths.inExtensionGenerator(paramBattleId);
-      console.log(path);
-      console.log(params);
       navigate(path);
     }
   });
