@@ -16,6 +16,7 @@ export const ButtonContainer = styled.div`
   flex-direction: row;
   align-content: center;
   justify-content: center;
+  flex-wrap: wrap;
   button {
     margin: 0 0.5rem;
     background-color: ${(props) => props.theme.color.pokedexRed};
