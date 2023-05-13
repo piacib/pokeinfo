@@ -12,6 +12,7 @@ export const Type = styled(TypeColoredComponent)`
   border-radius: 20px;
   display: flex;
   align-items: center;
+  box-shadow: ${(props) => props.theme.boxShadow};
 `;
 interface Props {
   types: number;

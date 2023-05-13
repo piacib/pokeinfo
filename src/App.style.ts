@@ -6,6 +6,7 @@ export const ModeToggleContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+
   h3 {
     text-transform: capitalize;
   }
@@ -14,9 +15,12 @@ export const Button = styled.button`
   border: none;
   white-space: nowrap;
   border-radius: 20px;
+  z-index: 2;
+  position: relative;
   background-color: ${(props) => props.theme.color.pokedexRed};
   /* width: 7rem; */
   font-size: 0.8rem;
+  box-shadow: ${(props) => props.theme.boxShadow};
 `;
 export const BattleButton = styled.button`
   border-radius: 20px;
@@ -56,6 +60,7 @@ export const PillDesign = css`
   padding: 0.1rem 0.25rem;
   border-radius: 10px;
   font-size: 1rem;
+  box-shadow: ${(props) => props.theme.boxShadow};
 `;
 export const Header = styled.div`
   display: flex;

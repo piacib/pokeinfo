@@ -23,12 +23,13 @@ export const TypeWriterContainer = styled.div`
   @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
   grid-column: 1/2;
   margin: 0 auto;
+  width: fit-content;
+  font-size: 1.2em;
   * {
     color: ${(props) => props.theme.fontColor};
     font-family: "VT323";
     height: 1em;
-    
-
+    line-height: 1.1;
     width: fit-content;
     overflow: hidden; /* Ensures the content is not revealed until the animation */
     border-right: 0.25em solid black; /* The typwriter cursor */
@@ -40,6 +41,5 @@ export const TypeWriterContainer = styled.div`
     @media (prefers-reduced-motion) {
       animation: ${blinkCaret} 1.5s step-end infinite;
     }
-    
   }
 `;

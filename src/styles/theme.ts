@@ -1,5 +1,5 @@
 import { DefaultTheme } from "styled-components";
-import { ModeObj } from "./styled";
+import { ModeObj } from "../styled";
 
 // dark mode object gets pread
 const darkMode: ModeObj = {
@@ -9,6 +9,7 @@ const darkMode: ModeObj = {
 };
 
 export const theme: DefaultTheme = {
+  boxShadow: "5px 5px 9px 0px rgba(0, 0, 0, 0.4)",
   media: {
     smallScreen: "18.75rem",
     mediumScreen: "37.5rem",

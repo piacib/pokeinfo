@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
-import { theme } from "../../theme";
+import { theme } from "../../styles/theme";
 import AbilitiesDisplay from "./AbilitiesDisplay";
 import "@testing-library/jest-dom";
 import { testAbilities } from "../../developmentMode";

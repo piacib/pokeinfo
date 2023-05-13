@@ -9,6 +9,7 @@ interface ModeObj {
 // and extend them!
 declare module "styled-components" {
   export interface DefaultTheme extends ModeObj {
+    boxShadow: string;
     media: {
       mediumScreen: string;
       smallScreen: string;

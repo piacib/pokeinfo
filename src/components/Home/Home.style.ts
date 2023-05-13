@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { PillDesign } from "../../App.style";
+import { Link } from "react-router-dom";
 
 export const HomeContainer = styled.div`
   display: flex;
@@ -14,10 +16,18 @@ export const ButtonContainer = styled.div`
   flex-direction: row;
   align-content: center;
   justify-content: center;
+  flex-wrap: wrap;
   button {
     margin: 0 0.5rem;
     background-color: ${(props) => props.theme.color.pokedexRed};
   }
+`;
+export const HomeLink = styled(Link)`
+  ${PillDesign}
+  background: ${(props) => props.theme.color.pokedexRed};
+  color: black;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
 `;
 export const WelcomeText = styled.p`
   text-align: center;

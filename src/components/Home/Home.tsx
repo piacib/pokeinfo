@@ -1,47 +1,29 @@
-import React, { useState } from "react";
-import { devRoomId } from "../../developmentMode";
-import { TypeWriterContainer } from "../../TypeWriterContainer.style";
-import { Form } from "../UrlSearch/UrlSearch";
-import { UrlForm } from "../UrlSearch/UrlSearch.style";
+import React, { useEffect } from "react";
+import { TypeWriterContainer } from "../../styles/TypeWriterContainer.style";
 import {
   ButtonContainer,
   HomeContainer,
   WelcomeHeader,
   WelcomeText,
+  HomeLink,
 } from "./Home.style";
-interface Props {
-  setBattleRoomId: React.Dispatch<React.SetStateAction<string>>;
-}
-const Home: React.FC<Props> = ({ setBattleRoomId }) => {
-  const [displayUrlInput, setDisplayUrlInput] = useState(false);
-  const handleSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    const target = e.target as typeof e.target & {
-      url: { value: string };
-    };
-    const battleIndex = target.url.value.indexOf("battle");
-    if (battleIndex === -1) {
-      return;
-    }
-    const battleRoomId = target.url.value.slice(battleIndex);
-    setBattleRoomId(battleRoomId);
-  };
+import { paths } from "../../router/routes";
+
+const Home: React.FC = ({}) => {
   return (
     <HomeContainer>
       <TypeWriterContainer>
-        <WelcomeHeader>Welcome To PokeInfo</WelcomeHeader>
+        <WelcomeHeader>Welcome To Pokeinfo</WelcomeHeader>
       </TypeWriterContainer>
       <WelcomeText>
         Enter the url from your pokemon showdown battle to get real time data or
         click example
       </WelcomeText>
       <ButtonContainer>
-        <button onClick={() => setBattleRoomId(devRoomId)}>Example</button>
-        <button onClick={() => setDisplayUrlInput(!displayUrlInput)}>
-          Url
-        </button>
+        <HomeLink to={paths.search}>Search A battle</HomeLink>
+        <HomeLink to={paths.example}>Example</HomeLink>
+        <HomeLink to={paths.quiz}>Effectiveness Quiz</HomeLink>
       </ButtonContainer>
-      {displayUrlInput && <Form handleSubmit={handleSubmit} />}
     </HomeContainer>
   );
 };
