@@ -29,6 +29,7 @@ export const dexTopRowButton = css`
   background-color: ${(props) => props.theme.color.pokedexRed};
   color: white;
   font-size: 0.8rem;
+  cursor: pointer;
 `;
 export const SwapTeamsButton = styled.button`
   right: 5px;
