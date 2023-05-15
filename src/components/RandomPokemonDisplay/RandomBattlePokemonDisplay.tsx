@@ -43,12 +43,10 @@ const RandomBattlePokemonDisplay: React.FC<RandomBattlePokemonDisplayProps> = ({
   return (
     <>
       {rolesData ? (
-        <>
-          <RolesDisplay
-            pokemonData={rolesData}
-            initialRole={Object.keys(rolesData)[0]}
-          />
-        </>
+        <RolesDisplay
+          pokemonData={rolesData}
+          initialRole={Object.keys(rolesData)[0]}
+        />
       ) : (
         <PropertiesContainer>
           <AbilitiesDisplay
