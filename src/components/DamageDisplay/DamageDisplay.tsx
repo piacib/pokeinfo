@@ -4,10 +4,8 @@ import { damageCalculator } from "../../functions";
 import { LoadingScreen } from "../LoadingScreen";
 import { TypeName, TypeNamesArr } from "../../types";
 import EffectivnessDisplay from "../EffectivnessDisplay/EffectivnessDisplay";
+type TypesArrayProp = TypeName[] | null;
 
-type DamageObj = {
-  [Type in TypeName]: number;
-};
 interface EffectObj {
   0: TypeName[];
   0.25: TypeName[];
@@ -16,67 +14,73 @@ interface EffectObj {
   4: TypeName[];
 }
 interface DamageDisplayProps {
-  typesArray: TypeName[] | null;
+  typesArray: TypesArrayProp;
 }
 const DamageDisplay: React.FC<DamageDisplayProps> = ({ typesArray }) => {
-  const [effectObj, setEffectObj] = useState<EffectObj>({
-    0: [],
-    0.25: [],
-    0.5: [],
-    2: [],
-    4: [],
-  });
+  const [effectivnessObj, seteffectivnessObj] = useState(
+    emptyEffectivnessObj(),
+  );
 
   useEffect(() => {
-    let effect: EffectObj = {
-      0: [],
-      0.25: [],
-      0.5: [],
-      2: [],
-      4: [],
-    };
-    if (typesArray && typesArray.length) {
-      const damageObj: DamageObj = damageCalculator(typesArray);
-      TypeNamesArr.forEach((x) => {
-        if (damageObj) {
-          if (damageObj[x] === 0) {
-            effect[0].push(x);
-          } else if (damageObj[x] === 0.25) {
-            effect[0.25].push(x);
-          } else if (damageObj[x] === 0.5) {
-            effect[0.5].push(x);
-          } else if (damageObj[x] === 2) {
-            effect[2].push(x);
-          } else if (damageObj[x] === 4) {
-            effect[4].push(x);
-          }
-        }
-      });
-    }
-    setEffectObj(effect);
+    const tempDamageObj = effectivnessObjGenerator(typesArray);
+    seteffectivnessObj(tempDamageObj);
   }, [typesArray]);
 
   return (
     <DamageContainer>
-      {effectObj ? (
-        <>
-          <EffectivnessDisplay damage={"0"} effectivenessArray={effectObj[0]} />
-          <EffectivnessDisplay
-            damage={"¼"}
-            effectivenessArray={effectObj[0.25]}
-          />
-          <EffectivnessDisplay
-            damage={"½"}
-            effectivenessArray={effectObj[0.5]}
-          />
-          <EffectivnessDisplay damage={"2"} effectivenessArray={effectObj[2]} />
-          <EffectivnessDisplay damage={"4"} effectivenessArray={effectObj[4]} />
-        </>
-      ) : (
-        <LoadingScreen />
-      )}
+      <EffectivnessDisplay
+        damage={"0"}
+        effectivenessArray={effectivnessObj[0]}
+      />
+      <EffectivnessDisplay
+        damage={"¼"}
+        effectivenessArray={effectivnessObj[0.25]}
+      />
+      <EffectivnessDisplay
+        damage={"½"}
+        effectivenessArray={effectivnessObj[0.5]}
+      />
+      <EffectivnessDisplay
+        damage={"2"}
+        effectivenessArray={effectivnessObj[2]}
+      />
+      <EffectivnessDisplay
+        damage={"4"}
+        effectivenessArray={effectivnessObj[4]}
+      />
     </DamageContainer>
   );
 };
 
 export default DamageDisplay;
+const emptyEffectivnessObj = (): EffectObj => {
+  return {
+    0: [],
+    0.25: [],
+    0.5: [],
+    2: [],
+    4: [],
+  };
+};
+const effectivnessObjGenerator = (typesArray: TypesArrayProp) => {
+  let effect = emptyEffectivnessObj();
+  if (typesArray && typesArray.length) {
+    const typeDamageObj = damageCalculator(typesArray);
+    TypeNamesArr.forEach((x) => {
+      if (typeDamageObj) {
+        if (typeDamageObj[x] === 0) {
+          effect[0].push(x);
+        } else if (typeDamageObj[x] === 0.25) {
+          effect[0.25].push(x);
+        } else if (typeDamageObj[x] === 0.5) {
+          effect[0.5].push(x);
+        } else if (typeDamageObj[x] === 2) {
+          effect[2].push(x);
+        } else if (typeDamageObj[x] === 4) {
+          effect[4].push(x);
+        }
+      }
+    });
+  }
+  return effect;
+};
