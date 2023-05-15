@@ -27,30 +27,28 @@ export const InBattleDisplay = () => {
     return <></>;
   }
   return (
-    <>
-      <AppDisplay>
-        <TypeWriterContainer>
-          <PokeInfo>Pokeinfo</PokeInfo>
-        </TypeWriterContainer>
-        <ErrorBoundary>
-          <Suspense fallback={<LoadingScreen />}>
-            {displayHandler(
-              spectatorsAllowed,
-              isInExtension,
-              params.get("userTeam"),
-              params.get("opponentsTeam"),
-            ) ? (
-              <TeamDisplay
-                battleRoomId={id}
-                previousBattleRoomId={previousBattleRoomId.current}
-                spectatorsAllowed={spectatorsAllowed}
-              />
-            ) : (
-              <PokeSearch battleRoomId={battleRoomId} />
-            )}
-          </Suspense>
-        </ErrorBoundary>
-      </AppDisplay>
-    </>
+    <AppDisplay>
+      <TypeWriterContainer>
+        <PokeInfo>Pokeinfo</PokeInfo>
+      </TypeWriterContainer>
+      <ErrorBoundary>
+        <Suspense fallback={<LoadingScreen />}>
+          {displayHandler(
+            spectatorsAllowed,
+            isInExtension,
+            params.get("userTeam"),
+            params.get("opponentsTeam"),
+          ) ? (
+            <TeamDisplay
+              battleRoomId={id}
+              previousBattleRoomId={previousBattleRoomId.current}
+              spectatorsAllowed={spectatorsAllowed}
+            />
+          ) : (
+            <PokeSearch battleRoomId={battleRoomId} />
+          )}
+        </Suspense>
+      </ErrorBoundary>
+    </AppDisplay>
   );
 };
