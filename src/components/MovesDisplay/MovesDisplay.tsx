@@ -9,6 +9,30 @@ import {
   HiddenMoveText,
 } from "./MovesDisplay.style";
 import { MoveData } from "@pkmn/dex-types";
+
+interface MovesDisplayProps {
+  movesData: MoveData[];
+}
+/**  movesData: MoveData[ ]  @pkmn/dex-types */
+const MovesDisplay: React.FC<MovesDisplayProps> = ({ movesData }) => {
+  return (
+    <MovesContainer>
+      <h3>Moves:</h3>
+      {movesData?.map(
+        (move) =>
+          move && (
+            <MoveBtn background={move.type} key={move.name}>
+              <p>{move.name}</p>
+              <HiddenMoveText>
+                <MoveInfoPopUp move={move} />
+              </HiddenMoveText>
+            </MoveBtn>
+          ),
+      )}
+    </MovesContainer>
+  );
+};
+export default MovesDisplay;
 interface MovesProps {
   move: MoveData;
 }
@@ -42,28 +66,3 @@ const MoveInfoPopUp: React.FC<MovesProps> = ({ move }) => {
     </MoveInfo>
   );
 };
-
-interface MovesDisplayProps {
-  movesData: MoveData[];
-}
-/**  movesData: MoveData[]  @pkmn/dex-types */
-const MovesDisplay: React.FC<MovesDisplayProps> = ({ movesData }) => {
-  return (
-    <MovesContainer>
-      <h3>Moves:</h3>
-      {movesData?.map((move) =>
-        move ? (
-          <MoveBtn background={move.type} key={move.name}>
-            <p>{move.name}</p>
-            <HiddenMoveText>
-              <MoveInfoPopUp move={move} />
-            </HiddenMoveText>
-          </MoveBtn>
-        ) : (
-          <></>
-        ),
-      )}
-    </MovesContainer>
-  );
-};
-export default MovesDisplay;
