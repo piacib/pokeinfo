@@ -10,18 +10,21 @@ import {
   Bar,
   StatsTableRow,
 } from "./StatsDisplay.style";
-interface Stats {
-  hp: number;
-  atk: number;
-  def: number;
-  spa: number;
-  spd: number;
-  spe: number;
+enum PokemonStats {
+  hp = "hp",
+  atk = "atk",
+  def = "def",
+  spa = "spa",
+  spd = "spd",
+  spe = "spe",
 }
-interface obj {
-  [k: string]: string;
-}
-const stateNameObj: obj = {
+type Stats = {
+  [key in PokemonStats]: number;
+};
+type obj = {
+  [key in PokemonStats]: string;
+};
+const statNameObj: obj = {
   hp: "HP",
   atk: "Attack",
   def: "Defense",
@@ -48,27 +51,15 @@ const StatsDisplay: React.FC<StatsDisplayProps> = ({ pokemon }) => {
       setStats(Dex.species.get(pokemonName).baseStats);
     }
   }, [pokemonName]);
-
+  const entries = Object.entries(stats) as [PokemonStats, number][];
   return (
     <StatsContainer>
       <StatsHead>
-        <tr>
-          <th colSpan={2}>Stats</th>
-        </tr>
+        <caption>Stats</caption>
       </StatsHead>
       <tbody>
-        {Object.entries(stats).map((x) => (
-          <StatsTableRow key={`${x[0]}`} type={x[0]}>
-            <StatBox>
-              <StatName>{stateNameObj[x[0]]}:</StatName>
-              <StatValue>
-                <b>{x[1]}</b>
-              </StatValue>
-            </StatBox>
-            <StatBar>
-              <Bar stat={x[1]}></Bar>
-            </StatBar>
-          </StatsTableRow>
+        {entries.map(([name, val]) => (
+          <StatRow statName={name} statVal={val} />
         ))}
       </tbody>
     </StatsContainer>
@@ -76,3 +67,23 @@ const StatsDisplay: React.FC<StatsDisplayProps> = ({ pokemon }) => {
 };
 
 export default StatsDisplay;
+
+const StatRow = ({
+  statName,
+  statVal,
+}: {
+  statName: PokemonStats;
+  statVal: number;
+}) => (
+  <StatsTableRow key={`${statName}`} type={statName}>
+    <StatBox>
+      <StatName>{statNameObj[statName]}:</StatName>
+      <StatValue>
+        <b>{statVal}</b>
+      </StatValue>
+    </StatBox>
+    <StatBar>
+      <Bar stat={statVal}></Bar>
+    </StatBar>
+  </StatsTableRow>
+);
