@@ -8,7 +8,6 @@ import {
   MovesContainer,
   HiddenMoveText,
 } from "./MovesDisplay.style";
-import { HiddenPropertyText } from "../PokemonDataDisplay/DataDisplay.style";
 import { MoveData } from "@pkmn/dex-types";
 interface MovesProps {
   move: MoveData;
