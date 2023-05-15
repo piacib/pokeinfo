@@ -9,7 +9,7 @@ import {
 } from "./Home.style";
 import { paths } from "../../router/routes";
 
-const Home: React.FC = ({}) => {
+const Home = () => {
   return (
     <HomeContainer>
       <TypeWriterContainer>
