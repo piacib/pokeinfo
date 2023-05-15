@@ -17,19 +17,15 @@ const EffectivnessDisplay: React.FC<EffectivnessProps> = ({
 }) => {
   return (
     <DamageGroupContainer>
-      {effectivenessArray.length ? (
-        <>
-          {effectivenessArray.map((x) => (
-            <TypeBox key={x} background={x}>
-              <Type>{x}</Type>
-              <Effectivness>
-                <span>{damage}</span>
-                <span>x</span>
-              </Effectivness>
-            </TypeBox>
-          ))}
-        </>
-      ) : null}
+      {effectivenessArray.map((x) => (
+        <TypeBox key={x} background={x}>
+          <Type>{x}</Type>
+          <Effectivness>
+            <span>{damage}</span>
+            <span>x</span>
+          </Effectivness>
+        </TypeBox>
+      ))}
     </DamageGroupContainer>
   );
 };
