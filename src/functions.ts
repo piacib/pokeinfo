@@ -91,9 +91,12 @@ const damageCalculatorOneType = (type: TypeName) => {
   return Object.fromEntries(damageConverted);
 };
 
+type TypeDamageObj = {
+  [Type in TypeName]: number;
+};
 export const damageCalculator = (typesArray: TypeName[]) => {
   if (typesArray.length === 1) {
-    return damageCalculatorOneType(typesArray[0]);
+    return damageCalculatorOneType(typesArray[0]) as TypeDamageObj;
   }
   const type1 = damageCalculatorOneType(typesArray[0]);
   const type2 = damageCalculatorOneType(typesArray[1]);
@@ -102,7 +105,7 @@ export const damageCalculator = (typesArray: TypeName[]) => {
     type,
     type1[type] * type2[type],
   ]);
-  return Object.fromEntries(damageObjectEntries);
+  return Object.fromEntries(damageObjectEntries) as TypeDamageObj;
 };
 export const displayHandler = (
   spectatorsAllowed: boolean,
