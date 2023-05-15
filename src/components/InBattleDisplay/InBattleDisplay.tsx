@@ -1,9 +1,7 @@
 import { useParams } from "react-router-dom";
 import useSpectatorsAllowed from "../../hooks/useSpectatorsAllowed/useSpectatorsAllowed";
 import { Suspense, useEffect, useRef, useState } from "react";
-import { AppDisplay, Button, Header, PokeInfo, Spacer } from "../../App.style";
-import OptionsMenu from "../OptionsMenu/OptionsMenu";
-import PokeTracker from "../PokeTracker/PokeTracker";
+import { AppDisplay, PokeInfo } from "../../App.style";
 import { TypeWriterContainer } from "../../styles/TypeWriterContainer.style";
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 import { LoadingScreen } from "../LoadingScreen";
