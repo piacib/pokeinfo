@@ -11,9 +11,10 @@ export const StatsContainer = styled.table`
   color: black;
   max-width: 700px;
   max-height: 15rem;
-  @media (max-width: ${(props) => props.theme.media.mediumScreen}) {
-    order: 99;
-  } ;
+  order: 99;
+  @media (min-width: ${(props) => props.theme.media.mediumScreen}) {
+    order: 1;
+  }
 `;
 export const StatBox = styled.th`
   display: flex;
@@ -37,8 +38,9 @@ export const StatsHead = styled.thead`
 `;
 export const StatBar = styled.td`
   width: 80%;
-  @media (max-width: 200px) {
-    display: none;
+  display: none;
+  @media (min-width: 200px) {
+    display: table-cell;
   }
 `;
 interface StatEntry {

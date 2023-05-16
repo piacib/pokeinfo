@@ -11,24 +11,7 @@ export const ModeToggleContainer = styled.div`
     text-transform: capitalize;
   }
 `;
-export const Button = styled.button`
-  border: none;
-  white-space: nowrap;
-  border-radius: 20px;
-  z-index: 2;
-  position: relative;
-  background-color: ${(props) => props.theme.color.pokedexRed};
-  /* width: 7rem; */
-  font-size: 0.8rem;
-  box-shadow: ${(props) => props.theme.boxShadow};
-`;
-export const BattleButton = styled.button`
-  border-radius: 20px;
-  width: fit-content;
-  /* position: absolute; */
 
-  top: 0;
-`;
 interface RefProp extends React.FC {
   changeDisplay?: boolean;
 }
@@ -38,16 +21,15 @@ export const AppDisplay = styled.div<RefProp>`
   max-width: 100rem;
   margin: 0 auto;
   padding: 1rem 0.8rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 15px;
-  @media (max-width: ${(props) => props.theme.media.mediumScreen}) {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem 0.2rem;
-  }
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0.2rem;
   background-color: ${(props) => props.theme.backgroundColor};
-  /* color: ${(props) => props.theme.fontColor}; */
+  @media (min-width: ${(props) => props.theme.media.mediumScreen}) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 15px;
+  }
 `;
 export const TypeColorBackground = css<TypeColorInterface>`
   background-color: ${(props) => typeColorConverter[props.background]};
@@ -74,15 +56,12 @@ export const Spacer = styled.div`
   height: 40px;
 `;
 export const PokeInfo = styled.h1`
-  font-size: 6rem;
-  @media (max-width: ${(props) => props.theme.media.mediumScreen}) {
+  font-size: 36px;
+  @media (min-width: 24rem) {
     font-size: 5.5rem;
   }
-  @media (max-width: 24rem) {
-    font-size: 3.2rem;
-  }
-  @media (max-width: 270px) {
-    font-size: 36px;
+  @media (min-width: 37.5rem) {
+    font-size: 6rem;
   }
   @media (min-width: 62rem) {
     font-size: 8rem;

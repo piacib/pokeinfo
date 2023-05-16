@@ -23,8 +23,9 @@ export const RolesBtn = styled.button`
 export const RolesContainer = styled(PropertyDisplay)`
   grid-column: 2;
   padding: 0;
-  @media (max-width: ${(props) => props.theme.media.smallScreen}) {
-    font-size: 0.8rem;
+  font-size: 0.8rem;
+  @media (min-width: ${(props) => props.theme.media.smallScreen}) {
+    font-size: inherit;
   }
 `;
 export const TeraTypesDisplay = styled(PropertyDisplay)`

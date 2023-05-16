@@ -31,31 +31,30 @@ export const HomeLink = styled(Link)`
 `;
 export const WelcomeText = styled.p`
   text-align: center;
-  font-size: 1.3rem;
   padding: 0 1rem;
-  @media (max-width: ${(props) => props.theme.media.mediumScreen}) {
-    font-size: 0.9rem;
+  font-size: 0.9rem;
+  @media (min-width: ${(props) => props.theme.media.mediumScreen}) {
+    font-size: 1.3rem;
   }
 `;
 export const WelcomeHeader = styled.h1`
-  font-size: 10rem;
-  /* font-size: 4.5rem; */
-  @media (max-width: 82rem) {
-    font-size: 8rem;
-  }
-  @media (max-width: 70rem) {
-    font-size: 7rem;
-  }
-  @media (max-width: 60rem) {
-    font-size: 6rem;
-  }
-  @media (max-width: 50rem) {
-    font-size: 4.3rem;
-  }
-  @media (max-width: 35rem) {
+  font-size: 2rem;
+  @media (min-width: 24rem) {
     font-size: 3rem;
   }
-  @media (max-width: 24rem) {
-    font-size: 2rem;
+  @media (min-width: 35rem) {
+    font-size: 4.3rem;
+  }
+  @media (min-width: 50rem) {
+    font-size: 6rem;
+  }
+  @media (min-width: 60rem) {
+    font-size: 7rem;
+  }
+  @media (min-width: 70rem) {
+    font-size: 8rem;
+  }
+  @media (min-width: 82rem) {
+    font-size: 10rem;
   }
 `;

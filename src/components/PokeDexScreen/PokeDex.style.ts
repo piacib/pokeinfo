@@ -37,14 +37,14 @@ export const Container = styled.div`
   place-items: center;
   padding: 5px 10px;
   max-width: 700px;
-  width: 95%;
   place-self: center;
   @media (min-width: 111rem) {
     scale: ${scale};
     max-width: ${scale} * 700px;
   }
-  @media (max-width: ${(props) => props.theme.media.mediumScreen}) {
-    width: 80%;
+  width: 80%;
+  @media (min-width: ${(props) => props.theme.media.mediumScreen}) {
+    width: 95%;
   }
 `;
 export const InnerContainer = styled.div`

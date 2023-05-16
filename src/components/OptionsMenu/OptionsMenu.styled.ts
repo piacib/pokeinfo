@@ -33,17 +33,17 @@ export const SideBar = styled.aside`
   }
 `;
 export const HamburgerLabel = styled.label`
-  --hamburgerHeight: ${(props) =>
-    props.theme.burgerMenu.barHeight * 3 +
-    props.theme.burgerMenu.hamburgerGap * 2 +
-    props.theme.burgerMenu.measureType};
   --x-width: calc(var(--hamburgerHeight) * 1.41421356237);
   --foreground: ${(props) => props.theme.burgerMenu.foreground};
   --background: ${(props) => props.theme.burgerMenu.background};
-  @media (max-width: ${(props) => props.theme.media.extraSmallScreen}) {
+  --hamburgerHeight: ${(props) =>
+    props.theme.burgerMenu.extraSmallScreen.barHeight * 3 +
+    props.theme.burgerMenu.extraSmallScreen.hamburgerGap * 2 +
+    props.theme.burgerMenu.measureType};
+  @media (min-width: ${(props) => props.theme.media.extraSmallScreen}) {
     --hamburgerHeight: ${(props) =>
-      props.theme.burgerMenu.extraSmallScreen.barHeight * 3 +
-      props.theme.burgerMenu.extraSmallScreen.hamburgerGap * 2 +
+      props.theme.burgerMenu.barHeight * 3 +
+      props.theme.burgerMenu.hamburgerGap * 2 +
       props.theme.burgerMenu.measureType};
   }
   display: flex;
@@ -68,10 +68,6 @@ export const HamburgerLabel = styled.label`
   ::after,
   input {
     content: "";
-    width: ${(props) =>
-      props.theme.burgerMenu.barWidth + props.theme.burgerMenu.measureType};
-    height: ${(props) =>
-      props.theme.burgerMenu.barHeight + props.theme.burgerMenu.measureType};
     background-color: ${(props) => props.theme.fontColor};
     border-radius: 9999px;
     transform-origin: left center;
@@ -80,13 +76,17 @@ export const HamburgerLabel = styled.label`
       rotate ${(props) => props.theme.burgerMenu.animationTiming},
       translate ${(props) => props.theme.burgerMenu.animationTiming},
       background-color ${(props) => props.theme.burgerMenu.animationTiming};
-    @media (max-width: ${(props) => props.theme.media.extraSmallScreen}) {
+    width: ${(props) =>
+      props.theme.burgerMenu.extraSmallScreen.barWidth +
+      props.theme.burgerMenu.measureType};
+    height: ${(props) =>
+      props.theme.burgerMenu.extraSmallScreen.barHeight +
+      props.theme.burgerMenu.measureType};
+    @media (min-width: ${(props) => props.theme.media.extraSmallScreen}) {
       width: ${(props) =>
-        props.theme.burgerMenu.extraSmallScreen.barWidth +
-        props.theme.burgerMenu.measureType};
+        props.theme.burgerMenu.barWidth + props.theme.burgerMenu.measureType};
       height: ${(props) =>
-        props.theme.burgerMenu.extraSmallScreen.barHeight +
-        props.theme.burgerMenu.measureType};
+        props.theme.burgerMenu.barHeight + props.theme.burgerMenu.measureType};
     }
   }
   input {
