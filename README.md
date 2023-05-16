@@ -1,7 +1,7 @@
 ## PokeInfo
 
 Pokeinfo is a platform designed to connect with Pokemon Showdown battles, offering users real-time information about the Pokemon engaged in battle.
-In addition, Pokeinfo features an interactive page built to test your knowledge of Pokemon type multipliers.
+In addition, Pokeinfo features an interactive page built to test your knowledge of Pokemon damage multipliers.
 
 - [Download the chrome extension](https://chrome.google.com/webstore/detail/pokeinfo-extension/plolbicmjndjpglocmmgnbppgnadmlfb#:~:text=Poke%20info%20is%20a%20chrome,display%20real%20time%20battle%20information.)
 
@@ -26,3 +26,9 @@ In addition, Pokeinfo features an interactive page built to test your knowledge 
 
 - Better integration with the Dex types provided by @pkmn/types
 - Add a damage calculator to display percent damage each move will inflict
+
+## What I learned from this project
+
+Building this project has helped expand my skill set across various critical areas of web development. Through the development process, I delved into the world of TypeScript, leveraging its strong typing system and enhanced code organization to build a more robust and maintainable application. Implementing websockets for real-time data communication with the Showdown server helped teach my about how data is sent over the web and understanding response errors.
+Along the way, I encountered and overcame numerous challenges related to error handling, which deepened my comprehension of anticipating and handling errors to ensure a seamless user experience. As the project grew in complexity, I gained valuable insights into project structure and architectural design, enabling me to envision and plan for larger-scale projects more effectively.
+Moreover, my adoption of Git as a version control system empowered me to track changes, and maintain a structured workflow throughout the project's lifecycle.
