@@ -21,6 +21,7 @@ In addition, Pokeinfo features an interactive page built to test your knowledge 
 - Employed Vite as a lightweight alternative to create-react-app.
 - Leveraged TypeScript to future-proof the application and streamline error handling in the long run.
 - Utilized websockets to establish a reliable and fast connection with the Showdown server, enabling real time battle info to be display.
+- Implemented React router to handle client side routing.
 
 ## If I had more time I would change this
 
