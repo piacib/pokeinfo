@@ -79,17 +79,15 @@ interface RefProp extends React.FC {
   changeDisplay?: boolean;
 }
 export const HeaderContainer = styled.div<RefProp>`
-  /* grid-area: 3/1; */
-
   display: flex;
   justify-content: space-between;
   flex-direction: ${(props) => (props.changeDisplay ? "column" : "row")};
   margin-bottom: 0.3rem;
   height: 3rem;
-
-  @media (max-width: 22rem) {
-    flex-direction: column;
-    height: fit-content;
+  flex-direction: column;
+  height: fit-content;
+  @media (min-width: 22rem) {
+    flex-direction: row;
   }
 `;
 export const NoPokemonText = styled.h2`

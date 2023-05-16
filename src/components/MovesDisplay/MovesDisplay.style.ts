@@ -18,13 +18,14 @@ export const MoveBtn = styled(TypeColoredComponent)`
   &:hover ${HiddenMoveText} {
     bottom: 100%;
     right: 0;
-    width: 11rem;
     padding: ${(props) => props.theme.padding.medium};
     font-size: 1.1rem;
     margin: 5px 0;
-    @media (max-width: ${(props) => props.theme.media.mediumScreen}) {
-      left: 0;
-      max-width: 130px;
+    left: 0;
+    width: 130px;
+    @media (min-width: ${(props) => props.theme.media.mediumScreen}) {
+      width: 11rem;
+      left: auto;
     }
   }
   p {

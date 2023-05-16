@@ -1,11 +1,11 @@
 import styled, { css } from "styled-components";
 export const ButtonDisplay = styled.div`
-  display: flex;
-  justify-content: space-between;
-  @media (max-width: 300px) {
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  @media (min-width: 300px) {
+    display: flex;
+    justify-content: space-between;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
   }
 `;
 export const Button = styled.button`
