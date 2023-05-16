@@ -78,7 +78,7 @@ export interface RESULT extends QuizQuestion {
   answerSelected: number;
   // correct: boolean;
 }
-export const reducer = (state: STATE, action: ACTION) => {
+const reducer = (state: STATE, action: ACTION) => {
   switch (action.type) {
     case ACTION_TYPE.GENERATE:
       return {
