@@ -2,10 +2,10 @@ import styled, { css } from "styled-components";
 export const ButtonDisplay = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  @media (min-width: 300px) {
+  display: grid;
+  @media screen and (min-width: 300px) {
     display: flex;
     justify-content: space-between;
-    display: grid;
   }
 `;
 export const Button = styled.button`
