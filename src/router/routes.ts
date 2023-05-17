@@ -7,6 +7,6 @@ export const paths = {
   extension: "/extension/inBattle/:id",
   inExtensionGenerator: (battleId: string) => `/extension/inBattle/${battleId}`,
   quiz: "/quiz",
-  home: "/home",
+  home: "/",
   example: `/inBattle/${devRoomId}`,
 };
