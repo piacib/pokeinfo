@@ -1,7 +1,4 @@
 import { useState } from "react";
-//
-// Add check to see if battle is still in progress
-//
 export function useLocalStorage<T>(key: string, initialValue: T) {
   // State to store our value
   // Pass initial state function to useState so logic is only executed once
