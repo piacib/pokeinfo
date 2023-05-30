@@ -1,12 +1,4 @@
 import { DefaultTheme } from "styled-components";
-import { ModeObj } from "../styled";
-
-// dark mode object gets pread
-const darkMode: ModeObj = {
-  backgroundColor: "#333",
-  fontColor: "white",
-  pokedexColor: "white",
-};
 
 export const theme: DefaultTheme = {
   boxShadow: "5px 5px 9px 0px rgba(0, 0, 0, 0.4)",
@@ -71,7 +63,4 @@ export const theme: DefaultTheme = {
     },
     // hamburgerHeight: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
   },
-};
-export const themeObjGenerator = (lightMode: string) => {
-  return lightMode === "light" ? theme : { ...theme, ...darkMode };
 };
