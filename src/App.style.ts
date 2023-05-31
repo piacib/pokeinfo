@@ -7,9 +7,7 @@ interface RefProp extends React.FC {
   changeDisplay?: boolean;
 }
 export const AppDisplay = styled.div<RefProp>`
-  min-width: 100px;
-  width: 95%;
-  max-width: 100rem;
+  width: clamp(100px, 95%, 100rem);
   margin: 0 auto;
   padding: 1rem 0.8rem;
   display: flex;
