@@ -41,7 +41,6 @@ export const propertyBtnDesign = css`
   padding: ${(props) => props.theme.padding.medium};
   text-align: center;
   margin: ${(props) => props.theme.padding.medium};
-
   font-size: 0.95rem;
   border-radius: ${(props) => props.theme.buttonBorderRadius};
   padding: 0.3rem 0.2rem;
