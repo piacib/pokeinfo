@@ -1,9 +1,7 @@
 import styled, { css } from "styled-components";
-const Border = css`
-  border: 1px solid ${(props) => props.theme.pokedexColor};
-`;
+import { FlexRowHorizCenteredDiv } from "../../styles/Components.style";
 const RedCircle = styled.div`
-  ${Border}
+  border: 1px solid ${(props) => props.theme.pokedexColor};
   border-radius: 50%;
   background: ${(props) => props.theme.color.pokedexRed};
 `;
@@ -60,10 +58,7 @@ export const RedCircleBottom = styled(RedCircle)`
   height: 15px;
   width: 15px;
 `;
-export const ContainerBottom = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+export const ContainerBottom = styled(FlexRowHorizCenteredDiv)`
   justify-content: space-between;
   width: 100%;
 `;
