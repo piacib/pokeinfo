@@ -47,6 +47,9 @@ export const theme: DefaultTheme = {
     pokedexRed: "rgb(253,0,1)",
   },
   buttonBorderRadius: "10px",
+  propertyBtn: {
+    borderWidth: "2px",
+  },
   burgerMenu: {
     measureType: "px",
     barWidth: 60,
