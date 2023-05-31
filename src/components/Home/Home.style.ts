@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { PillDesign } from "../../App.style";
 import { Link } from "react-router-dom";
+import { FlexColumnCenteredDiv } from "../../styles/Components.style";
 
-export const HomeContainer = styled.div`
+export const HomeContainer = styled(FlexColumnCenteredDiv)`
   display: flex;
   flex-direction: column;
   align-content: center;
