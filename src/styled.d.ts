@@ -35,6 +35,13 @@ declare module "styled-components" {
     propertyBtn: {
       borderWidth: string;
     };
+    searchForm: {
+      borderWidth: string;
+      borderRadius: string;
+      bezel: string;
+      shadowColor: string;
+      backgroundColor: string;
+    };
     buttonBorderRadius: string;
     burgerMenu: {
       measureType: string;
