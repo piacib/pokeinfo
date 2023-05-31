@@ -13,9 +13,9 @@ export const RedCircleTop = styled(RedCircle)`
 export const ContainerTop = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
   width: 100%;
   height: 20px;
-  justify-content: center;
   ${RedCircleTop}:first-of-type {
     margin-right: 5px;
   }
