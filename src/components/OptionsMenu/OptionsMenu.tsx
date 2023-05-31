@@ -23,7 +23,6 @@ const OptionsMenu: React.FC<Props> = ({ children = [] }) => {
             <Li key={`${child}${idx}}`}>{child}</Li>
           ))}
           <Li>
-            {" "}
             <OptionsMenuLink to={paths.search}>Search A Battle</OptionsMenuLink>
           </Li>
           <Li>

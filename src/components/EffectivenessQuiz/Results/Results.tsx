@@ -45,7 +45,7 @@ const Results = ({ data, restartQuiz }: Props) => (
                 {x.attackPokemonType.map((x) => (
                   <ResultTypedBox background={x}>{x}</ResultTypedBox>
                 ))}
-              </PokemonTypeCell>
+              </PokemonTypeCell> 
             </ResultCell>
 
             <ResultCell>

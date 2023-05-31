@@ -1,26 +1,24 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { PillDesign } from "../../App.style";
 import { Link } from "react-router-dom";
-
-export const HomeContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
+import {
+  FlexColumnCenteredDiv,
+  FlexRowCenteredDiv,
+} from "../../styles/Components.style";
+const fontSizing = css`
+  font-size: 0.9rem;
+  @media (min-width: ${(props) => props.theme.media.mediumScreen}) {
+    font-size: 1.3rem;
+  }
+`;
+export const HomeContainer = styled(FlexColumnCenteredDiv)`
   height: 100%;
+  margin: 1rem;
   color: ${(props) => props.theme.fontColor};
   background-color: ${(props) => props.theme.backgroundColor};
 `;
-export const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: center;
+export const ButtonContainer = styled(FlexRowCenteredDiv)`
   flex-wrap: wrap;
-  button {
-    margin: 0 0.5rem;
-    background-color: ${(props) => props.theme.color.pokedexRed};
-  }
 `;
 export const HomeLink = styled(Link)`
   ${PillDesign}
@@ -28,14 +26,11 @@ export const HomeLink = styled(Link)`
   color: black;
   padding: 0.5rem 1rem;
   text-decoration: none;
+  ${fontSizing}
 `;
 export const WelcomeText = styled.p`
   text-align: center;
-  padding: 0 1rem;
-  font-size: 0.9rem;
-  @media (min-width: ${(props) => props.theme.media.mediumScreen}) {
-    font-size: 1.3rem;
-  }
+  ${fontSizing}
 `;
 export const WelcomeHeader = styled.h1`
   font-size: 2rem;

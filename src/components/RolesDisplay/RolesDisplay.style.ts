@@ -1,23 +1,15 @@
 import styled from "styled-components";
-import { PropertyDisplay } from "../PokemonDataDisplay/DataDisplay.style";
+import {
+  PropertyDisplay,
+  propertyBtnDesign,
+} from "../PokemonDataDisplay/DataDisplay.style";
 export const RolesBtn = styled.button`
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #f9f9f9;
-  cursor: pointer;
+  ${propertyBtnDesign}
   transition: border-color 0.25s;
-  border: 2px solid ${(props) => props.theme.fontColor};
-  background-color: ${(props) => props.theme.backgroundColor};
-  margin: 10px;
-  box-shadow: ${(props) => props.theme.boxShadow};
-
-  color: ${(props) => props.theme.fontColor};
+  padding: 0.5rem 1rem;
   :hover {
-    border: 2px solid red;
+    border: ${(props) => props.theme.propertyBtn.borderWidth} solid
+      ${(props) => props.theme.color.pokedexRed};
   }
 `;
 export const RolesContainer = styled(PropertyDisplay)`

@@ -32,7 +32,16 @@ declare module "styled-components" {
     pokedexColor: string;
     backgroundColor: string;
     fontColor: string;
-
+    propertyBtn: {
+      borderWidth: string;
+    };
+    searchForm: {
+      borderWidth: string;
+      borderRadius: string;
+      bezel: string;
+      shadowColor: string;
+      backgroundColor: string;
+    };
     buttonBorderRadius: string;
     burgerMenu: {
       measureType: string;
