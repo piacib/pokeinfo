@@ -23,7 +23,8 @@ export const hoverDisplayCss = css`
     display: block;
     position: absolute;
     text-align: start;
-    border: 2px solid ${(props) => props.theme.fontColor};
+    border: ${(props) => props.theme.propertyBtn.borderWidth} solid
+      ${(props) => props.theme.fontColor};
     color: ${(props) => props.theme.fontColor};
     background: ${(props) => props.theme.backgroundColor};
     border-radius: ${(props) => props.theme.buttonBorderRadius};
