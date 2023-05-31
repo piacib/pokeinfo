@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { FlexColumnDiv } from "../../styles/Components.style";
 
 export const PropertyDisplay = styled.div`
   height: fit-content;
@@ -6,8 +7,6 @@ export const PropertyDisplay = styled.div`
   flex-direction: row;
   color: ${(props) => props.theme.fontColor};
   padding-right: 4rem;
-
-  /* padding-bottom: 10px; */
   flex-wrap: wrap;
   align-items: center;
   position: relative;
@@ -19,24 +18,13 @@ export const PropertyDisplay = styled.div`
 export const HiddenPropertyText = styled.div`
   display: none;
 `;
-const propertyCss = css`
-  padding: ${(props) => props.theme.padding.medium};
-  text-align: center;
-  margin: 2px;
-  font-size: 0.95rem;
-  border-radius: ${(props) => props.theme.buttonBorderRadius};
-
-  cursor: pointer;
-  div {
-    cursor: pointer;
-  }
-`;
 export const hoverDisplayCss = css`
   &:hover ${HiddenPropertyText} {
     display: block;
     position: absolute;
     text-align: start;
-    border: 2px solid ${(props) => props.theme.fontColor};
+    border: ${(props) => props.theme.propertyBtn.borderWidth} solid
+      ${(props) => props.theme.fontColor};
     color: ${(props) => props.theme.fontColor};
     background: ${(props) => props.theme.backgroundColor};
     border-radius: ${(props) => props.theme.buttonBorderRadius};
@@ -44,14 +32,26 @@ export const hoverDisplayCss = css`
     z-index: 2;
   }
 `;
-export const PropertyBtn = styled.div`
-  ${hoverDisplayCss}
-  ${propertyCss}
+export const propertyBtnDesign = css`
   box-shadow: ${(props) => props.theme.boxShadow};
-
-  border: 2px solid ${(props) => props.theme.fontColor};
+  border: ${(props) => props.theme.propertyBtn.borderWidth} solid
+    ${(props) => props.theme.fontColor};
   background-color: ${(props) => props.theme.backgroundColor};
   color: ${(props) => props.theme.fontColor};
+  padding: ${(props) => props.theme.padding.medium};
+  text-align: center;
+  margin: ${(props) => props.theme.padding.medium};
+  font-size: 0.95rem;
+  border-radius: ${(props) => props.theme.buttonBorderRadius};
+  padding: 0.3rem 0.2rem;
+  cursor: pointer;
+  div {
+    cursor: pointer;
+  }
+`;
+export const PropertyBtn = styled.div`
+  ${hoverDisplayCss}
+  ${propertyBtnDesign}
   span {
     white-space: nowrap;
   }
@@ -80,11 +80,9 @@ interface RefProp extends React.FC {
 }
 export const HeaderContainer = styled.div<RefProp>`
   display: flex;
-  justify-content: space-between;
-  flex-direction: ${(props) => (props.changeDisplay ? "column" : "row")};
-  margin-bottom: 0.3rem;
-  height: 3rem;
   flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
   height: fit-content;
   @media (min-width: 22rem) {
     flex-direction: row;

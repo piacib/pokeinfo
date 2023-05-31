@@ -2,23 +2,12 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { typeColorConverter } from "./functions";
 import { TypeColorInterface } from "./types";
-export const ModeToggleContainer = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-
-  h3 {
-    text-transform: capitalize;
-  }
-`;
 
 interface RefProp extends React.FC {
   changeDisplay?: boolean;
 }
 export const AppDisplay = styled.div<RefProp>`
-  min-width: 100px;
-  width: 95%;
-  max-width: 100rem;
+  width: clamp(100px, 95%, 100rem);
   margin: 0 auto;
   padding: 1rem 0.8rem;
   display: flex;

@@ -1,12 +1,4 @@
 import { DefaultTheme } from "styled-components";
-import { ModeObj } from "../styled";
-
-// dark mode object gets pread
-const darkMode: ModeObj = {
-  backgroundColor: "#333",
-  fontColor: "white",
-  pokedexColor: "white",
-};
 
 export const theme: DefaultTheme = {
   boxShadow: "5px 5px 9px 0px rgba(0, 0, 0, 0.4)",
@@ -55,6 +47,16 @@ export const theme: DefaultTheme = {
     pokedexRed: "rgb(253,0,1)",
   },
   buttonBorderRadius: "10px",
+  propertyBtn: {
+    borderWidth: "2px",
+  },
+  searchForm: {
+    borderWidth: "2px",
+    borderRadius: "4px",
+    bezel: "0.5rem",
+    shadowColor: "rgb(33, 33, 33)",
+    backgroundColor: "white",
+  },
   burgerMenu: {
     measureType: "px",
     barWidth: 60,
@@ -71,7 +73,4 @@ export const theme: DefaultTheme = {
     },
     // hamburgerHeight: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
   },
-};
-export const themeObjGenerator = (lightMode: string) => {
-  return lightMode === "light" ? theme : { ...theme, ...darkMode };
 };
