@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { TypeColorInterface } from "../../types";
+import { FlexRowCenteredDiv } from "../../styles/Components.style";
 
 const TypeColoredComponent = styled.div<TypeColorInterface>`
-  background-color: ${(props) =>
-    props.theme.color.typeColors[props.background]};
+  background: ${(props) => props.theme.color.typeColors[props.background]};
 `;
 
 export const Type = styled(TypeColoredComponent)`
@@ -17,12 +17,8 @@ export const Type = styled(TypeColoredComponent)`
 interface Props {
   types: number;
 }
-export const TypeContainer = styled.div<Props>`
+export const TypeContainer = styled(FlexRowCenteredDiv)<Props>`
   grid-column: 1;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
   height: 100%;
   padding: 0 1.2rem;
   ${Type}:first-child {
