@@ -1,13 +1,14 @@
-import styled from "styled-components";
-import { ToggleContainer } from "../ModeToggle/ModeToggle.style";
+import styled, { css } from "styled-components";
 import { UrlLabel } from "../UrlSearch/UrlSearch.style";
 import { Link } from "react-router-dom";
-import { PillDesign } from "../../App.style";
 
 export const SideBar = styled.aside`
   --hamburgerHeight: ${(props) =>
     props.theme.burgerMenu.barHeight * 3 +
     props.theme.burgerMenu.hamburgerGap * 2 +
+    props.theme.burgerMenu.measureType};
+  --hamburgerMargin: ${(props) =>
+    props.theme.burgerMenu.hamburgerMargin +
     props.theme.burgerMenu.measureType};
   position: absolute;
   top: 0;
@@ -17,12 +18,7 @@ export const SideBar = styled.aside`
   translate: -100%;
   padding: 0.5rem 1rem;
   font-size: 1.2rem;
-  padding-top: calc(
-    var(--hamburgerHeight) +
-      ${(props) =>
-        props.theme.burgerMenu.hamburgerMargin +
-        props.theme.burgerMenu.measureType} + 1rem
-  );
+  padding-top: calc(var(--hamburgerHeight) + var(--hamburgerMargin) + 1rem);
   background-color: ${(props) => props.theme.burgerMenu.foreground};
   color: ${(props) => props.theme.burgerMenu.background};
   width: 10rem;
@@ -32,6 +28,37 @@ export const SideBar = styled.aside`
     color: white;
   }
 `;
+const hamburgerBunRotate = css`
+  :has(input:checked)::after {
+    rotate: -45deg;
+    translate: 0
+      ${(props) =>
+        props.theme.burgerMenu.barHeight / 2 +
+        props.theme.burgerMenu.measureType};
+  }
+  :has(input:checked)::before {
+    rotate: 45deg;
+    translate: 0
+      ${(props) =>
+        props.theme.burgerMenu.barHeight / -2 +
+        props.theme.burgerMenu.measureType};
+  }
+  @media (max-width: ${(props) => props.theme.media.extraSmallScreen}) {
+    :has(input:checked)::after {
+      translate: 0
+        ${(props) =>
+          props.theme.burgerMenu.extraSmallScreen.barHeight / 2 +
+          props.theme.burgerMenu.measureType};
+    }
+    :has(input:checked)::before {
+      translate: 0
+        ${(props) =>
+          props.theme.burgerMenu.extraSmallScreen.barHeight / -2 +
+          props.theme.burgerMenu.measureType};
+    }
+  }
+`;
+
 export const HamburgerLabel = styled.label`
   --x-width: calc(var(--hamburgerHeight) * 1.41421356237);
   --foreground: ${(props) => props.theme.burgerMenu.foreground};
@@ -67,15 +94,14 @@ export const HamburgerLabel = styled.label`
   ::before,
   ::after,
   input {
+    --animationTime: ${(props) => props.theme.burgerMenu.animationTiming};
     content: "";
     background-color: ${(props) => props.theme.fontColor};
     border-radius: 9999px;
     transform-origin: left center;
-    transition: opacity ${(props) => props.theme.burgerMenu.animationTiming},
-      width ${(props) => props.theme.burgerMenu.animationTiming},
-      rotate ${(props) => props.theme.burgerMenu.animationTiming},
-      translate ${(props) => props.theme.burgerMenu.animationTiming},
-      background-color ${(props) => props.theme.burgerMenu.animationTiming};
+    transition: opacity var(--animationTime), width var(--animationTime),
+      rotate var(--animationTime), translate var(--animationTime),
+      background-color var(--animationTime);
     width: ${(props) =>
       props.theme.burgerMenu.extraSmallScreen.barWidth +
       props.theme.burgerMenu.measureType};
@@ -96,25 +122,13 @@ export const HamburgerLabel = styled.label`
     outline: none;
     pointer-events: none;
   }
-  :has(input:checked)::before {
-    rotate: 45deg;
-    width: var(--x-width);
-    background-color: ${(props) => props.theme.burgerMenu.background};
-    translate: 0
-      ${(props) =>
-        props.theme.burgerMenu.barHeight / -2 +
-        props.theme.burgerMenu.measureType};
-  }
-  :has(input:checked)::after {
-    rotate: -45deg;
-    background-color: ${(props) => props.theme.burgerMenu.background};
+  ${hamburgerBunRotate}
 
+  :has(input:checked)::after, :has(input:checked)::before {
+    background-color: ${(props) => props.theme.burgerMenu.background};
     width: var(--x-width);
-    translate: 0
-      ${(props) =>
-        props.theme.burgerMenu.barHeight / 2 +
-        props.theme.burgerMenu.measureType};
   }
+
   input:checked {
     opacity: 0;
     width: 0;
@@ -122,35 +136,11 @@ export const HamburgerLabel = styled.label`
   :has(input:checked) + ${SideBar} {
     translate: 0;
   }
-  :has(input:checked) + ${SideBar} {
-    translate: 0;
-  }
+
   @media (max-width: ${(props) => props.theme.media.extraSmallScreen}) {
     gap: ${(props) =>
       props.theme.burgerMenu.extraSmallScreen.hamburgerGap +
       props.theme.burgerMenu.measureType};
-    :has(input:checked)::after {
-      translate: 0
-        ${(props) =>
-          props.theme.burgerMenu.extraSmallScreen.barHeight / 2 +
-          props.theme.burgerMenu.measureType};
-    }
-    :has(input:checked)::before {
-      translate: 0
-        ${(props) =>
-          props.theme.burgerMenu.extraSmallScreen.barHeight / -2 +
-          props.theme.burgerMenu.measureType};
-    }
-    ::before,
-    ::after,
-    input {
-      width: ${(props) =>
-        props.theme.burgerMenu.extraSmallScreen.barWidth +
-        props.theme.burgerMenu.measureType};
-      height: ${(props) =>
-        props.theme.burgerMenu.extraSmallScreen.barHeight +
-        props.theme.burgerMenu.measureType};
-    }
   }
 `;
 export const SidebarList = styled.ul`

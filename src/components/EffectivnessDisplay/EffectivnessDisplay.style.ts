@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import { PillDesign, TypeColoredComponent } from "../../App.style";
+import {
+  FlexRowCenteredCSS,
+  FlexRowHorizCenteredDiv,
+} from "../../styles/Components.style";
 
-export const DamageGroupContainer = styled.div`
-  display: flex;
-  flex-direction: row;
+export const DamageGroupContainer = styled(FlexRowHorizCenteredDiv)`
   align-items: space-around;
   flex-wrap: wrap;
-  justify-content: center;
   width: 100%;
   @media (min-width: ${(props) => props.theme.media.smallScreen}) {
     justify-content: flex-start;
@@ -25,9 +26,7 @@ export const Effectivness = styled.p`
   margin: 0;
   height: 1.2rem;
   width: 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  ${FlexRowCenteredCSS}
   span {
     margin-left: 1px;
   }

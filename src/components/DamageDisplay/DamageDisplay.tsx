@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { DamageContainer } from "./DamageDisplay.styles";
 import { damageCalculator } from "../../functions";
-import { LoadingScreen } from "../LoadingScreen";
 import { TypeName, TypeNamesArr } from "../../types";
 import EffectivnessDisplay from "../EffectivnessDisplay/EffectivnessDisplay";
 type TypesArrayProp = TypeName[] | null;
