@@ -27,6 +27,7 @@ export const usePokemon = (
     if (regExMatch && regExMatch[1]) {
       if (Species[dexSearchPrepper(regExMatch[1])].name) {
         setPkmn(regExMatch[1]);
+
         return;
       }
     }

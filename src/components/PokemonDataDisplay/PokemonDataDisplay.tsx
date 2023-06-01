@@ -36,6 +36,7 @@ const PokemonDataDisplay = ({
       setPkmn(target.pokemon_search.value);
     }
   };
+
   return (
     <>
       {pkmnExists && typesArray ? (
