@@ -2,7 +2,6 @@ import React from "react";
 import { Header } from "../App.style";
 import OptionsMenu from "../components/OptionsMenu/OptionsMenu";
 import { GlobalStyle } from "../GlobalStyles";
-import { themeObjGenerator } from "../styles/theme";
 
 const Page = ({
   children,
