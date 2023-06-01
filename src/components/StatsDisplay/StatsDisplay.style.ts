@@ -67,7 +67,9 @@ export const StatsTableRow = styled.tr<RowType>`
     border: 1px solid ${(props) => colorObjConverter(props.type, "barBorder")};
   }
 `;
-export const StatsTable = styled.table``;
+export const StatsTable = styled.table`
+  width: 100%;
+`;
 export const StatsContainer = styled.div`
   grid-column: 2/4;
   grid-row: 1/3;
