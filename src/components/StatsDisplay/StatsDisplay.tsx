@@ -4,11 +4,12 @@ import {
   StatsContainer,
   StatBox,
   StatName,
-  StatValue,
   StatsHead,
   StatBar,
   Bar,
   StatsTableRow,
+  StatCaption,
+  StatsTable,
 } from "./StatsDisplay.style";
 enum PokemonStats {
   hp = "hp",
@@ -54,14 +55,15 @@ const StatsDisplay: React.FC<StatsDisplayProps> = ({ pokemon }) => {
   const entries = Object.entries(stats) as [PokemonStats, number][];
   return (
     <StatsContainer>
-      <StatsHead>
-        <caption>Stats</caption>
-      </StatsHead>
-      <tbody>
-        {entries.map(([name, val]) => (
-          <StatRow statName={name} statVal={val} />
-        ))}
-      </tbody>
+      <StatsTable>
+        <StatCaption>Stats</StatCaption>
+        <StatsHead></StatsHead>
+        <tbody>
+          {entries.map(([name, val]) => (
+            <StatRow statName={name} statVal={val} />
+          ))}
+        </tbody>
+      </StatsTable>
     </StatsContainer>
   );
 };
@@ -77,10 +79,9 @@ const StatRow = ({
 }) => (
   <StatsTableRow key={`${statName}`} type={statName}>
     <StatBox>
-      <StatName>{statNameObj[statName]}:</StatName>
-      <StatValue>
-        <b>{statVal}</b>
-      </StatValue>
+      <StatName>
+        {statNameObj[statName]}:{statVal}
+      </StatName>
     </StatBox>
     <StatBar>
       <Bar stat={statVal}></Bar>

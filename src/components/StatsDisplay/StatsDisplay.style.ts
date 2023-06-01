@@ -1,36 +1,23 @@
 import styled, { css } from "styled-components";
-export const StatsContainer = styled.table`
-  grid-column: 2/4;
-  grid-row: 1/3;
-  background: #e0e7ea;
-  border: 1px solid #aaa;
-  font-size: 1.2em;
-  padding: 0.2rem;
-  background-color: #6890f0;
-  border-radius: 15px;
-  color: black;
-  max-width: 700px;
-  max-height: 15rem;
-  order: 99;
-  @media (min-width: ${(props) => props.theme.media.mediumScreen}) {
-    order: 1;
-  }
+const borderRadius = "15px";
+
+export const StatCaption = styled.caption`
+  text-align: start;
+  font-size: 1.75rem;
+  padding-left: 0.5rem;
 `;
 export const StatBox = styled.th`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  text-align: end;
+  height: 1rem;
   padding-right: 0.4rem;
 `;
 const TextOneLine = css`
   overflow: hidden;
   white-space: nowrap;
 `;
-export const StatName = styled.div`
+export const StatName = styled.span`
   ${TextOneLine}
 `;
-export const StatValue = styled.div``;
 export const StatsHead = styled.thead`
   * > h2 {
     margin: 0;
@@ -78,5 +65,34 @@ export const StatsTableRow = styled.tr<RowType>`
   ${Bar} {
     background-color: ${(props) => colorObjConverter(props.type, "bar")};
     border: 1px solid ${(props) => colorObjConverter(props.type, "barBorder")};
+  }
+`;
+export const StatsTable = styled.table``;
+export const StatsContainer = styled.div`
+  grid-column: 2/4;
+  grid-row: 1/3;
+  border: ${(props) => props.theme.statTable.border};
+  font-size: 1.2em;
+  padding: 0.4rem;
+  background-color: ${(props) => props.theme.statTable.backgroundColor};
+  border-radius: ${(props) => props.theme.statTable.borderRadius};
+  max-width: 700px;
+  height: fit-content;
+  max-height: 15rem;
+  order: 99;
+  ${StatsTableRow}:first-child ${StatBox} {
+    border-radius: ${(props) => props.theme.statTable.borderRadius} 0 0;
+  }
+  ${StatsTableRow}:last-child ${StatBox} {
+    border-radius: 0 0 0 ${(props) => props.theme.statTable.borderRadius};
+  }
+  ${StatsTableRow}:first-child ${StatBar} {
+    border-radius: 0 ${(props) => props.theme.statTable.borderRadius} 0 0;
+  }
+  ${StatsTableRow}:last-child ${StatBar} {
+    border-radius: 0 0 ${(props) => props.theme.statTable.borderRadius} 0;
+  }
+  @media (min-width: ${(props) => props.theme.media.mediumScreen}) {
+    order: 1;
   }
 `;
