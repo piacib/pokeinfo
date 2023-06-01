@@ -42,6 +42,11 @@ declare module "styled-components" {
       shadowColor: string;
       backgroundColor: string;
     };
+    statTable: {
+      border: string;
+      backgroundColor: string;
+      borderRadius: string;
+    };
     buttonBorderRadius: string;
     burgerMenu: {
       measureType: string;

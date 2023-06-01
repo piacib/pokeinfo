@@ -57,6 +57,11 @@ export const theme: DefaultTheme = {
     shadowColor: "rgb(33, 33, 33)",
     backgroundColor: "white",
   },
+  statTable: {
+    border: "1px solid rgb(170, 170, 170)",
+    backgroundColor: "rgb(104, 144, 240)",
+    borderRadius: "15px",
+  },
   burgerMenu: {
     measureType: "px",
     barWidth: 60,
