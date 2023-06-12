@@ -7,6 +7,7 @@ import EffectivenessQuizPage from "../pages/EffectivenessQuizPage/EffectivenessQ
 import HomePage from "../pages/HomePage/HomePage";
 import InBattlePage from "../pages/InBattlePage/InBattlePage";
 import ExtensionPage from "../pages/ExtensionPage/ExtensionPage";
+import PokemonSearchPage from "../pages/PokemonSearchPage/PokemonSearchPage";
 
 const router = createHashRouter(
   [
@@ -39,6 +40,11 @@ const router = createHashRouter(
     {
       path: paths.home,
       element: <Home />,
+      errorElement: <ErrorScreen />,
+    },
+    {
+      path: paths.pokemonsearch,
+      element: <PokemonSearchPage />,
       errorElement: <ErrorScreen />,
     },
   ],
