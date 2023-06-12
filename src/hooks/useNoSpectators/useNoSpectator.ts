@@ -1,31 +1,35 @@
-import React, { useEffect, useState } from "react";
-import { ReturnType, teamsType } from "../useWebsSocket/useWebsSocket";
+import { useEffect, useState } from "react";
+import { teamsType } from "../useWebsSocket/useWebsSocket";
+import { TeamsReturn } from "../useTeams/useTeams";
 // example url:
-// https://piacib.github.io/pokeinfo/
-// ?battleId=battle-gen9randombattle-1831739535
-// &isExtension=true
-// &userTeam=Cacturne%2CPolteageist%2CGallade%2CCrabominable%2CHypno%2CGoodra-Hisui
-// &opponentsTeam=Quaquaval%2CGrumpig%2CDunsparce%2COricorio-Pa%27u%2CGarchomp
-const useNoSpectator = (searchParams: URLSearchParams): ReturnType => {
+// /pokeinfo/
+// ?noSpectators=true&userTeam=Hypno%2CSlither+Wing&opponentsTeam=Magnezone%2CTinkaton%2CBanette
+// #/extension/inBattle/
+// battle-gen9randombattle-1883179912-akcs7p17r2bucyxrsnrtio6vfzr6tffpw
+const getTeamFromParam = (team: string, searchParams: URLSearchParams) => {
+  const teamParam = searchParams.get(team);
+  return teamParam ? teamParam.split(",") : null;
+};
+const useNoSpectator = (): TeamsReturn | false => {
+  const [{ searchParams }] = useState(new URL(window.location.href));
   const [teams, setTeams] = useState<teamsType>({ p1: [], p2: [] });
   const [activePokemon, setActivePokemon] = useState<teamsType>({
     p1: [],
     p2: [],
   });
-  const userTeamParam = searchParams.get("userTeam");
-  const userTeam = userTeamParam ? userTeamParam.split(",") : null;
-  const opponentsTeamParam = searchParams.get("opponentsTeam");
-  const opponentsTeam = opponentsTeamParam
-    ? opponentsTeamParam.split(",")
-    : null;
-  if (!userTeam || !opponentsTeam) {
-    return [[{ p1: [], p2: [] }, setTeams], activePokemon];
-  }
   useEffect(() => {
+    const userTeam = getTeamFromParam("userTeam", searchParams);
+    const opponentsTeam = getTeamFromParam("opponentsTeam", searchParams);
+    if (!userTeam || !opponentsTeam) {
+      return;
+    }
     setTeams({ p1: userTeam, p2: opponentsTeam });
     setActivePokemon({ p1: [userTeam[0]], p2: [opponentsTeam[0]] });
-  }, []);
-  return [[teams, setTeams], activePokemon];
+  }, [searchParams]);
+  if (!searchParams.toString()) {
+    return false;
+  }
+  return { teams, setTeams, activePokemon, noSpectators: true };
 };
 
 export default useNoSpectator;
