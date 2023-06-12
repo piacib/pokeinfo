@@ -21,16 +21,19 @@ const RandomBattlePokemonDisplay = React.lazy(
 
 interface PokemonDataDisplayProps {
   pokemon: string;
+  battleId?: string;
 }
-const PokemonDataDisplay = ({ pokemon }: PokemonDataDisplayProps) => {
+const PokemonDataDisplay = ({ pokemon, battleId }: PokemonDataDisplayProps) => {
   const { pkmn, setPkmn, typesArray, pkmnExists } = usePokemon(pokemon);
-  const { id } = useParams();
+
+  const params = useParams();
+  const id = battleId ? battleId : params.id;
   const battleTypeRegex = id && id.match(/battle-(.*)-/);
   if (!battleTypeRegex) {
     return <></>;
   }
   const battleType = battleTypeRegex[1];
-  const isRandomBattle = battleType.includes("random");
+  const isRandomBattle = id.includes("random");
   const handleSubmit = (e: React.SyntheticEvent) => {
     const target = e.target as typeof e.target & {
       pokemon_search: { value: string };
