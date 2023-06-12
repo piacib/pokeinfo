@@ -80,6 +80,7 @@ const Form = ({ handleSubmit, setPkmn }: FormProps) => {
 const PokeSearch = ({ battleRoomId }: Props) => {
   const [pkmn, setPkmn] = useState("");
   const [error, setError] = useState<false | ERRORS>(false);
+  const [battleType, setBattleType] = useState("battle-gen9ou-");
   const handleSubmit = (e: React.SyntheticEvent) => {
     const target = e.target as typeof e.target & {
       pokemon_search: { value: string };
@@ -93,6 +94,7 @@ const PokeSearch = ({ battleRoomId }: Props) => {
       setPkmn(pokemon);
     }
   };
+  console.log(Object.keys(Dex.species.dex.data.Species));
 
   return (
     <>
@@ -112,7 +114,9 @@ const PokeSearch = ({ battleRoomId }: Props) => {
           It appears the searched pokemon {pkmn} is not in our database.
         </ErrorText>
       ) : (
-        <>{pkmn && <PokemonDataDisplay pokemon={pkmn} />}</>
+        <>
+          {pkmn && <PokemonDataDisplay pokemon={pkmn} battleId={battleType} />}
+        </>
       )}
     </>
   );
