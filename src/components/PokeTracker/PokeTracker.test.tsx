@@ -34,7 +34,6 @@ it("test_toggle_button_toggles_state", () => {
       cancelable: true,
     }),
   );
-  screen.debug();
   expect(mockHandleChange).toHaveBeenCalledTimes(2);
   expect(mockSetToggle).toHaveBeenCalled();
   expect(mockToggle).toBeFalsy();
