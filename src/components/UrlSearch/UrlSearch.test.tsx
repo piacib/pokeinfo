@@ -1,51 +1,32 @@
 import React from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import UrlSearch, { connectText, enterUrl } from "./UrlSearch";
 
-const battleBtnRegex = new RegExp(connectText, "i");
+const connectHeader = new RegExp(connectText, "i");
 const labelRegex = new RegExp(enterUrl, "i");
+import { render } from "../../test/test_utils";
+import { vi } from "vitest";
+import { NavigateFunction } from "react-router-dom";
+const mockNavigate = vi.fn();
+const battleId = "battle-gen9randombattle-1831739535";
+vi.mock("react-router-dom", async () => {
+  const actual = (await vi.importActual("react-router-dom")) as any;
+  return {
+    ...actual,
+    useNavigate: () => mockNavigate,
+  };
+});
 
-// TODO: fix test-- getting error b/c useNavigate is outside router and mocking response returns jest undefined
+test("UrlSearch Header is present", () => {
+  render(<UrlSearch />);
+  const element = screen.getByText(connectHeader);
+  expect(element).toBeInTheDocument();
+});
 
-// const mockedUsedNavigate = jest.fn();
-// jest.mock("react-router-dom", () => ({
-//   ...jest.requireActual("react-router-dom"),
-//   useNavigate: () => jest.fn(),
-// }));
-// test("UrlSearch button is present", () => {
-//   render(<UrlSearch />);
-//   const element = screen.getByText(battleBtnRegex);
-//   expect(element).toBeInTheDocument();
-// });
-
-// test("Url form appears on click", () => {
-//   render(
-//     <ThemeProvider theme={theme}>
-//       <UrlSearch />
-//     </ThemeProvider>,
-//   );
-//   const element = screen.getByText(battleBtnRegex);
-//   fireEvent.click(element);
-//   expect(element).toBeInTheDocument();
-
-//   const label = screen.getByLabelText(labelRegex);
-//   expect(label).toBeInTheDocument();
-// });
-
-// test("UrlSearch form disappears", () => {
-//   render(
-//     <ThemeProvider theme={theme}>
-//       <UrlSearch />
-//     </ThemeProvider>,
-//   );
-//   const element = screen.getByText(battleBtnRegex);
-//   fireEvent.click(element);
-
-//   const label = screen.getByLabelText(labelRegex);
-//   expect(element).toBeInTheDocument();
-
-//   fireEvent.click(element);
-
-//   expect(label).not.toBeInTheDocument();
-// });
+test("Url form text is inputable", () => {
+  render(<UrlSearch />);
+  const input = screen.getByRole("textbox") as HTMLInputElement;
+  fireEvent.change(input, { target: { value: battleId } });
+  expect(input.value).toBe(battleId);
+});
