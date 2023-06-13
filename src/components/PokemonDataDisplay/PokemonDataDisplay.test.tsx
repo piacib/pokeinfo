@@ -17,7 +17,6 @@ describe("PokemonDataDisplay", () => {
         <PokemonDataDisplay pokemon={pokemon} />
       </ThemeProvider>,
     );
-    screen.debug();
     const PokemonName = screen.getByText(pokemon);
     expect(PokemonName).toBeInTheDocument();
   });
