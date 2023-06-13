@@ -10,8 +10,8 @@ const getTeamFromParam = (team: string, searchParams: URLSearchParams) => {
   const teamParam = searchParams.get(team);
   return teamParam ? teamParam.split(",") : null;
 };
-const useNoSpectator = (): TeamsReturn | false => {
-  const [{ searchParams }] = useState(new URL(window.location.href));
+const useNoSpectator = (href: string): TeamsReturn | false => {
+  const [{ searchParams }] = useState(new URL(href));
   const [teams, setTeams] = useState<teamsType>({ p1: [], p2: [] });
   const [activePokemon, setActivePokemon] = useState<teamsType>({
     p1: [],

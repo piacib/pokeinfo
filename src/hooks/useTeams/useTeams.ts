@@ -16,7 +16,7 @@ const useTeams = (): TeamsReturn => {
 
   const { id } = useParams();
   const websocketData = useWebSocket(`${id}`, previousBattleRoomId.current);
-  const noSpectatorData = useNoSpectator();
+  const noSpectatorData = useNoSpectator(window.location.href);
 
   if (noSpectatorData === false) {
     return { ...websocketData };
