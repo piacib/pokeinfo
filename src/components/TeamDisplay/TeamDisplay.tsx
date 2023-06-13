@@ -1,45 +1,34 @@
 import React, { useEffect, useState } from "react";
-import { Button, ButtonDisplay, SwapTeamsButton } from "./TeamDisplay.style";
+import {
+  Button,
+  ButtonDisplay,
+  NoSpectatorsText,
+  SwapTeamsButton,
+} from "./TeamDisplay.style";
 import SpriteImage from "../SpriteImage";
 import { pokemonNameFilter } from "./TeamDisplay.functions";
 import PokeDexScreen from "../PokeDexScreen/PokeDex";
 import PokemonDataDisplay from "../PokemonDataDisplay/PokemonDataDisplay";
-import { useWebSocket } from "../../hooks/useWebsSocket/useWebsSocket";
 import {
   devRoomId,
   opponentTestTeam,
   userTestTeam,
 } from "../../developmentMode";
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
-import useNoSpectator from "../../hooks/useNoSpectators/useNoSpectator";
 import PokeTracker from "../PokeTracker/PokeTracker";
+import useTeams from "../../hooks/useTeams/useTeams";
+import { teamsType } from "../../hooks/useWebsSocket/useWebsSocket";
 interface TeamProps {
   battleRoomId: string;
   previousBattleRoomId: string;
-  spectatorsAllowed: boolean;
 }
 // fetches latest pokemon data from auto updating github dataset
-const TeamDisplay = ({
-  battleRoomId,
-  previousBattleRoomId,
-  spectatorsAllowed = true,
-}: TeamProps) => {
+const TeamDisplay = ({ battleRoomId, previousBattleRoomId }: TeamProps) => {
   const [index, setIndex] = useState(0);
-  const [teamToDisplay, setTeamToDisplay] = useState<"p1" | "p2">("p2");
+  const { teamToDisplay, swapTeams } = useDisplayTeam();
   const [activePkmTrack, setActivePkmTrack] = useState(true);
 
-  const [[teams, setTeams], activePokemon] = spectatorsAllowed
-    ? useWebSocket(battleRoomId, previousBattleRoomId)
-    : useNoSpectator(new URLSearchParams(window.location.search));
-  useEffect(() => {
-    if (battleRoomId === devRoomId) {
-      setTeams({
-        p1: userTestTeam,
-        p2: opponentTestTeam,
-      });
-    }
-    return () => {};
-  }, []);
+  const { teams, activePokemon, noSpectators } = useTeams();
   const activePokemonCheck = (
     teamToDisplay: "p1" | "p2",
     activePkmTrack: boolean,
@@ -52,14 +41,16 @@ const TeamDisplay = ({
     }
     return teams[teamToDisplay][index];
   };
-  const swapTeams = () => {
-    if (teamToDisplay === "p1") {
-      setTeamToDisplay("p2");
-    } else {
-      setTeamToDisplay("p1");
-    }
-  };
-  const battleTypeRegex = battleRoomId.match(/battle-(.*)-/);
+
+  if (noSpectators && !teams.p1.length) {
+    return (
+      <PokeDexScreen>
+        <NoSpectatorsText>
+          This Battle Does Not Allow Spectators
+        </NoSpectatorsText>
+      </PokeDexScreen>
+    );
+  }
   return (
     <>
       <PokeDexScreen>
@@ -82,15 +73,25 @@ const TeamDisplay = ({
         </ButtonDisplay>
       </PokeDexScreen>
       <ErrorBoundary>
-        {battleTypeRegex &&
-          activePokemonCheck(teamToDisplay, activePkmTrack) && (
-            <PokemonDataDisplay
-              pokemon={activePokemonCheck(teamToDisplay, activePkmTrack)}
-              battleType={battleTypeRegex[1]}
-            />
-          )}
+        {activePokemonCheck(teamToDisplay, activePkmTrack) && (
+          <PokemonDataDisplay
+            pokemon={activePokemonCheck(teamToDisplay, activePkmTrack)}
+          />
+        )}
       </ErrorBoundary>
     </>
   );
 };
 export default TeamDisplay;
+
+const useDisplayTeam = () => {
+  const [teamToDisplay, setTeamToDisplay] = useState<"p1" | "p2">("p2");
+  const swapTeams = () => {
+    if (teamToDisplay === "p1") {
+      setTeamToDisplay("p2");
+    } else {
+      setTeamToDisplay("p1");
+    }
+  };
+  return { teamToDisplay, swapTeams };
+};

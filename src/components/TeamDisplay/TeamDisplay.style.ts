@@ -35,3 +35,6 @@ export const SwapTeamsButton = styled.button`
   right: 5px;
   ${dexTopRowButton}
 `;
+export const NoSpectatorsText = styled.h3`
+  text-align: center;
+`;

@@ -14,19 +14,22 @@ import { TextInput } from "../UrlSearch/UrlSearch.style";
 import { usePokemon } from "../../hooks/usePokemon";
 import { LoadingScreen } from "../LoadingScreen";
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
+import { useParams } from "react-router-dom";
 const RandomBattlePokemonDisplay = React.lazy(
   () => import("../RandomPokemonDisplay/RandomBattlePokemonDisplay"),
 );
 
 interface PokemonDataDisplayProps {
   pokemon: string;
-  battleType: string;
 }
-const PokemonDataDisplay = ({
-  pokemon,
-  battleType,
-}: PokemonDataDisplayProps) => {
+const PokemonDataDisplay = ({ pokemon }: PokemonDataDisplayProps) => {
   const { pkmn, setPkmn, typesArray, pkmnExists } = usePokemon(pokemon);
+  const { id } = useParams();
+  const battleTypeRegex = id && id.match(/battle-(.*)-/);
+  if (!battleTypeRegex) {
+    return <></>;
+  }
+  const battleType = battleTypeRegex[1];
   const isRandomBattle = battleType.includes("random");
   const handleSubmit = (e: React.SyntheticEvent) => {
     const target = e.target as typeof e.target & {

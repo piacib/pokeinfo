@@ -10,26 +10,40 @@ import {
   getSwappedPkm,
   isMac,
 } from "./websocket.functions";
+import { TeamsReturn } from "../useTeams/useTeams";
+import {
+  devRoomId,
+  opponentTestTeam,
+  userTestTeam,
+} from "../../developmentMode";
 export type teamsType = { p1: string[]; p2: string[] };
 const showdownWs = "wss://sim3.psim.us/showdown/websocket";
-export type ReturnType = [
-  [teamsType, React.Dispatch<React.SetStateAction<teamsType>>],
-  teamsType,
-];
+const spectatorsNotAllowed = "does not exist or requires a login to join.";
+const battleObservingBegan = (message: string) =>
+  message.includes("|init|battle");
+const isSpectatingNotAllowed = (message: string) =>
+  message.includes(spectatorsNotAllowed);
+
 const useWebSocketConnection = (
   battleRoomId: string,
-): [
-  React.MutableRefObject<WebSocket | undefined>,
-  [string, React.Dispatch<React.SetStateAction<string>>],
-] => {
+  connectCondition = true,
+): {
+  ws: React.MutableRefObject<WebSocket | undefined>;
+  message: string;
+  setMessage: React.Dispatch<React.SetStateAction<string>>;
+} => {
   const ws = useRef<WebSocket>();
   const [message, setMessage] = useState("");
   // opens and closes websocket
   useEffect(() => {
     function connect(timeout = 500) {
+      if (timeout >= 8000) {
+        console.log('Socket unable to connect')
+        return;
+      }
       ws.current = new WebSocket(showdownWs);
 
-      ws.current.onopen = () => {
+      ws.current.onopen = (e) => {
         console.log("ws opened");
         if (ws.current?.readyState) {
           console.log("joining battleRoom", battleRoomId, ws.current);
@@ -43,7 +57,9 @@ const useWebSocketConnection = (
 
       ws.current.onclose = function (e) {
         console.log(
-          "Socket is closed. Reconnect will be attempted in 1 second.",
+          `Socket is closed. Reconnect will be attempted in ${
+            timeout / 1000
+          } second.`,
           e.reason,
         );
         setTimeout(function () {
@@ -56,30 +72,41 @@ const useWebSocketConnection = (
         ws.current?.close();
       };
     }
+    console.log("checking condition");
+    if (connectCondition) {
+      console.log("condition confirmed");
 
-    connect();
+      connect();
+    }
     return () => {
       ws.current?.close();
     };
   }, []);
-  return [ws, [message, setMessage]];
+  return { ws, message, setMessage };
 };
 export const useWebSocket = (
   battleRoomId: string,
-  previousBattleRoomId?: string | null,
-): ReturnType => {
-  const [ws, [message, setMessage]] = useWebSocketConnection(battleRoomId);
+  previousBattleRoomId: string | null,
+): TeamsReturn => {
+  const isNoSpectatorsId = battleRoomId.split("-").length > 3;
+  const wsNoConnectCondition = battleRoomId === devRoomId || isNoSpectatorsId;
+  const { ws, message, setMessage } = useWebSocketConnection(
+    battleRoomId,
+    !wsNoConnectCondition,
+  );
   const [teams, setTeams] = useState<teamsType>({ p1: [], p2: [] });
   const [activePokemon, setActivePokemon] = useState<teamsType>({
     p1: [],
     p2: [],
   });
   const [teamRecieved, setTeamRecieved] = useState(false);
+  const [noSpectators, setNoSpectators] = useState(isNoSpectatorsId);
 
   // checks if previous battle id is present
   // if yes then leaves stream and joins new battleroom id stream
   useEffect(() => {
     if (previousBattleRoomId && ws.current) {
+      console.log({ previousBattleRoomId });
       setTeams({ p1: [], p2: [] });
       setMessage("");
       ws.current?.send(`|/leave ${previousBattleRoomId}`);
@@ -130,5 +157,34 @@ export const useWebSocket = (
       }
     }
   }, [message]);
-  return [[teams, setTeams], activePokemon];
+  // handles battle that does not allow spectating
+  useEffect(() => {
+    if (isSpectatingNotAllowed(message)) {
+      console.log(
+        `The room '${battleRoomId}' does not exist or requires a login to join.`,
+      );
+      setNoSpectators(true);
+      ws.current?.send(`|/leave ${battleRoomId}`);
+    }
+  }, [message, battleRoomId]);
+  // handle example battle
+  useEffect(() => {
+    if (battleRoomId === devRoomId) {
+      setTeams({
+        p1: userTestTeam,
+        p2: opponentTestTeam,
+      });
+    }
+    return () => {};
+  }, []);
+
+  if (battleRoomId.split("-").length > 3) {
+    return {
+      teams,
+      setTeams,
+      activePokemon,
+      noSpectators: true,
+    };
+  }
+  return { teams, setTeams, activePokemon, noSpectators };
 };
