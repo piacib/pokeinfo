@@ -1,7 +1,4 @@
-import React from "react";
-import { fireEvent, screen } from "@testing-library/react";
-import { ThemeProvider } from "styled-components";
-import { theme } from "../../styles/theme";
+import { screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import OptionsMenu from "./OptionsMenu";
 import { render } from "../../test/test_utils";
