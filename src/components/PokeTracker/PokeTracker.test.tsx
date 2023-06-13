@@ -1,6 +1,6 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import { vi } from "vitest";
-
+import { render } from "../../test/test_utils";
 import PokeTracker, { stopText, trackText } from "./PokeTracker";
 // Tests that clicking the toggle button toggles the state and displays the correct text.
 it("test_toggle_button_toggles_state", () => {
