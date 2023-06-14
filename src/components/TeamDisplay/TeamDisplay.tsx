@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import {
   Button,
   ButtonDisplay,
@@ -25,7 +25,10 @@ interface TeamProps {
 // fetches latest pokemon data from auto updating github dataset
 const TeamDisplay = ({ battleRoomId, previousBattleRoomId }: TeamProps) => {
   const [index, setIndex] = useState(0);
-  const { teamToDisplay, swapTeams } = useDisplayTeam();
+  const [teamToDisplay, switchTeams] = useReducer(
+    (team) => (team === "p1" ? "p2" : "p1"),
+    "p1",
+  );
   const [activePkmTrack, setActivePkmTrack] = useState(true);
 
   const { teams, activePokemon, noSpectators } = useTeams();
@@ -55,7 +58,7 @@ const TeamDisplay = ({ battleRoomId, previousBattleRoomId }: TeamProps) => {
     <>
       <PokeDexScreen>
         <PokeTracker toggle={activePkmTrack} setToggle={setActivePkmTrack} />
-        <SwapTeamsButton onClick={swapTeams}>Switch Team</SwapTeamsButton>
+        <SwapTeamsButton onClick={switchTeams}>Switch Team</SwapTeamsButton>
 
         <ButtonDisplay>
           {teams[teamToDisplay]?.map((x, idx) => (
@@ -83,15 +86,3 @@ const TeamDisplay = ({ battleRoomId, previousBattleRoomId }: TeamProps) => {
   );
 };
 export default TeamDisplay;
-
-const useDisplayTeam = () => {
-  const [teamToDisplay, setTeamToDisplay] = useState<"p1" | "p2">("p2");
-  const swapTeams = () => {
-    if (teamToDisplay === "p1") {
-      setTeamToDisplay("p2");
-    } else {
-      setTeamToDisplay("p1");
-    }
-  };
-  return { teamToDisplay, swapTeams };
-};
