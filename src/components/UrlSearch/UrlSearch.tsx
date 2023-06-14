@@ -9,7 +9,7 @@ import {
 import { paths } from "../../router/routes";
 import Pickahu from "./Pikachu";
 import { useNavigate } from "react-router-dom";
-
+// TODO: Disable button when no text entered
 export const connectText = "Connect to a Battle";
 export const enterUrl = "Enter Url or Battle Id Here";
 
