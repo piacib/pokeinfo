@@ -20,6 +20,7 @@ export type teamsKeys = "p1" | "p2";
 export type teamsType = { [k in teamsKeys]: string[] };
 const showdownWs = "wss://sim3.psim.us/showdown/websocket";
 const spectatorsNotAllowed = "does not exist or requires a login to join.";
+// TODO: stop checking is spectating when battleObserve is found
 const battleObservingBegan = (message: string) =>
   message.includes("|init|battle");
 const isSpectatingNotAllowed = (message: string) =>
