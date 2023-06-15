@@ -9,31 +9,28 @@ import SpriteImage from "../SpriteImage";
 import { pokemonNameFilter } from "./TeamDisplay.functions";
 import PokeDexScreen from "../PokeDexScreen/PokeDex";
 import PokemonDataDisplay from "../PokemonDataDisplay/PokemonDataDisplay";
-import {
-  devRoomId,
-  opponentTestTeam,
-  userTestTeam,
-} from "../../developmentMode";
+
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 import PokeTracker from "../PokeTracker/PokeTracker";
 import useTeams from "../../hooks/useTeams/useTeams";
-import { teamsType } from "../../hooks/useWebsSocket/useWebsSocket";
+import { teamsKeys, teamsType } from "../../hooks/useWebsSocket/useWebsSocket";
 interface TeamProps {
   battleRoomId: string;
   previousBattleRoomId: string;
 }
+
 // fetches latest pokemon data from auto updating github dataset
 const TeamDisplay = ({ battleRoomId, previousBattleRoomId }: TeamProps) => {
   const [index, setIndex] = useState(0);
   const [teamToDisplay, switchTeams] = useReducer(
-    (team) => (team === "p1" ? "p2" : "p1"),
+    (team:teamsKeys) => (team === "p1" ? "p2" : "p1"),
     "p1",
   );
   const [activePkmTrack, setActivePkmTrack] = useState(true);
 
   const { teams, activePokemon, noSpectators } = useTeams();
   const activePokemonCheck = (
-    teamToDisplay: "p1" | "p2",
+    teamToDisplay: teamsKeys,
     activePkmTrack: boolean,
   ) => {
     if (!activePkmTrack) {

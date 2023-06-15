@@ -16,7 +16,8 @@ import {
   opponentTestTeam,
   userTestTeam,
 } from "../../developmentMode";
-export type teamsType = { p1: string[]; p2: string[] };
+export type teamsKeys = "p1" | "p2";
+export type teamsType = { [k in teamsKeys]: string[] };
 const showdownWs = "wss://sim3.psim.us/showdown/websocket";
 const spectatorsNotAllowed = "does not exist or requires a login to join.";
 const battleObservingBegan = (message: string) =>
@@ -38,7 +39,7 @@ const useWebSocketConnection = (
   useEffect(() => {
     function connect(timeout = 500) {
       if (timeout >= 8000) {
-        console.log('Socket unable to connect')
+        console.log("Socket unable to connect");
         return;
       }
       ws.current = new WebSocket(showdownWs);
