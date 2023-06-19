@@ -1,9 +1,10 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import eslint from "vite-plugin-eslint";
 
 // https://vitejs.dev/config/
 export const baseUrl = "/pokeinfo/";
 export default defineConfig({
   base: baseUrl,
-  plugins: [react()],
+  plugins: [react(), eslint()],
 });
