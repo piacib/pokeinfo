@@ -60,7 +60,7 @@ export const useRandomBattleData = (
       setRandbatsPokemonData(response);
     }
     asyncFetchRandomPokemonData();
-  }, []);
+  }, [battleType]);
   // sets pokemon data when new pokemon is selected
   return [randbatsPokemonData, setRandbatsPokemonData];
 };
