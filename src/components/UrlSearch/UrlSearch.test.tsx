@@ -1,13 +1,11 @@
 import React from "react";
 import { fireEvent, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import UrlSearch, { connectText, enterUrl } from "./UrlSearch";
-
-const connectHeader = new RegExp(connectText, "i");
-const labelRegex = new RegExp(enterUrl, "i");
+import UrlSearch, { connectText } from "./UrlSearch";
 import { render } from "../../test/test_utils";
 import { vi } from "vitest";
-import { NavigateFunction } from "react-router-dom";
+
+const connectHeader = new RegExp(connectText, "i");
 const mockNavigate = vi.fn();
 const battleId = "battle-gen9randombattle-1831739535";
 vi.mock("react-router-dom", async () => {
