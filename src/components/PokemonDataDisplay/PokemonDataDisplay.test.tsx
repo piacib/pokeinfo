@@ -1,9 +1,8 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
-import { ThemeProvider } from "styled-components";
-import { theme } from "../../styles/theme";
+import { screen } from "@testing-library/react";
 import PokemonDataDisplay from "./PokemonDataDisplay";
 import { vi } from "vitest";
+import { render } from "../../test/test_utils";
 import { Params } from "react-router-dom";
 vi.mock("react-router-dom", () => ({
   useParams: (): Readonly<Params<string>> => ({ id: "battle-gen9ou-" }),
@@ -12,20 +11,12 @@ vi.mock("react-router-dom", () => ({
 describe("PokemonDataDisplay", () => {
   const pokemon = "Azumarill";
   it("Pokemon name appears", () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <PokemonDataDisplay pokemon={pokemon} />
-      </ThemeProvider>,
-    );
+    render(<PokemonDataDisplay pokemon={pokemon} />);
     const PokemonName = screen.getByText(pokemon);
     expect(PokemonName).toBeInTheDocument();
   });
   it("Pokemon stats appears", () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <PokemonDataDisplay pokemon={pokemon} />
-      </ThemeProvider>,
-    );
+    render(<PokemonDataDisplay pokemon={pokemon} />);
     const stats = screen.getByText(new RegExp("stats", "i"));
     expect(stats).toBeInTheDocument();
     ["HP", "Attack", "Defense", "Sp. Atk", "Sp. Def", "Speed"].forEach((x) => {
@@ -34,11 +25,7 @@ describe("PokemonDataDisplay", () => {
     });
   });
   it("Incorrect Pokemon cause error screen", () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <PokemonDataDisplay pokemon={"badName"} />
-      </ThemeProvider>,
-    );
+    render(<PokemonDataDisplay pokemon={"badName"} />);
     const errorMessage = screen.getByText("Enter Pokemon:");
     expect(errorMessage).toBeInTheDocument();
   });

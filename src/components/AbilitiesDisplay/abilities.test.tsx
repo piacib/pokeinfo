@@ -1,14 +1,10 @@
-import { render, screen } from "@testing-library/react";
-import { ThemeProvider } from "styled-components";
-import { theme } from "../../styles/theme";
+import { screen } from "@testing-library/react";
 import AbilitiesDisplay from "./AbilitiesDisplay";
+import { render } from "../../test/test_utils";
+
 import "@testing-library/jest-dom";
 test("Abilities text is present", () => {
-  render(
-    <ThemeProvider theme={theme}>
-      <AbilitiesDisplay abilities={[]} />
-    </ThemeProvider>,
-  );
+  render(<AbilitiesDisplay abilities={[]} />);
   const abilities = screen.getByText(/Abilities/i);
   expect(abilities).toBeInTheDocument();
 });

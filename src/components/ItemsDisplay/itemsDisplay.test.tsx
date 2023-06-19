@@ -1,29 +1,21 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import { render } from "../../test/test_utils";
+
 import "@testing-library/jest-dom";
 import ItemsDisplay from "./ItemsDisplay";
-import { ThemeProvider } from "styled-components";
-import { theme } from "../../styles/theme";
 const testItems = ["Choice Band", "Lum Berry"];
 const testDescriptions = [
   "Holder's Attack is 1.5x, but it can only select the first move it executes.",
   "Holder cures itself if it has a non-volatile status or is confused. Single use.",
 ];
 test("loads and displays no item display", async () => {
-  render(
-    <ThemeProvider theme={theme}>
-      <ItemsDisplay items={undefined} />
-    </ThemeProvider>,
-  );
+  render(<ItemsDisplay items={undefined} />);
   const noItems = screen.getByText(/none/i);
   expect(noItems).toBeInTheDocument();
 });
 
 test("loads and displays item display", async () => {
-  render(
-    <ThemeProvider theme={theme}>
-      <ItemsDisplay items={testItems} />
-    </ThemeProvider>,
-  );
+  render(<ItemsDisplay items={testItems} />);
   testItems.forEach((x) => {
     const regex = new RegExp(x, "i");
     const element = screen.getByText(regex);
@@ -31,11 +23,7 @@ test("loads and displays item display", async () => {
   });
 });
 test("item description is initially invisible", async () => {
-  render(
-    <ThemeProvider theme={theme}>
-      <ItemsDisplay items={testItems} />
-    </ThemeProvider>,
-  );
+  render(<ItemsDisplay items={testItems} />);
   testItems.forEach((x, idx) => {
     const description = screen.getByText(
       new RegExp(testDescriptions[idx], "i"),
