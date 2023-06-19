@@ -1,4 +1,3 @@
-import React from "react";
 import { Dex } from "@pkmn/dex";
 import AbilitiesDisplay from "../AbilitiesDisplay/AbilitiesDisplay";
 
@@ -7,9 +6,7 @@ interface OtherFormatsDisplayProps {
 }
 
 const OtherFormatsDisplay = ({ pokemon }: OtherFormatsDisplayProps) => {
-  const pokemonName = pokemon[0].toUpperCase() + pokemon.slice(1);
-
-  if (pokemon === "Not revealed") {
+  if (pokemon.toLowerCase() === "not revealed") {
     return <></>;
   }
   const abilities = Object.entries(Dex.species.get(pokemon).abilities).map(
