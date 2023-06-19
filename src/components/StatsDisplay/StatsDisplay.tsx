@@ -25,6 +25,7 @@ type Stats = {
 type obj = {
   [key in PokemonStats]: string;
 };
+type ValueOf<T> = T[keyof T];
 const statNameObj: obj = {
   hp: "HP",
   atk: "Attack",
@@ -52,7 +53,10 @@ const StatsDisplay: React.FC<StatsDisplayProps> = ({ pokemon }) => {
       setStats(Dex.species.get(pokemonName).baseStats);
     }
   }, [pokemonName]);
-  const entries = Object.entries(stats) as [PokemonStats, number][];
+  const entries = Object.entries(stats) as [
+    keyof typeof stats,
+    ValueOf<typeof stats>,
+  ][];
   return (
     <StatsContainer>
       <StatsTable>
