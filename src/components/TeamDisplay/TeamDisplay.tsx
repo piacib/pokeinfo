@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import { useReducer, useState } from "react";
 import {
   Button,
   ButtonDisplay,
@@ -13,17 +13,13 @@ import PokemonDataDisplay from "../PokemonDataDisplay/PokemonDataDisplay";
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 import PokeTracker from "../PokeTracker/PokeTracker";
 import useTeams from "../../hooks/useTeams/useTeams";
-import { teamsKeys, teamsType } from "../../hooks/useWebsSocket/useWebsSocket";
-interface TeamProps {
-  battleRoomId: string;
-  previousBattleRoomId: string;
-}
+import { teamsKeys } from "../../hooks/useWebsSocket/useWebsSocket";
 
 // fetches latest pokemon data from auto updating github dataset
 const TeamDisplay = () => {
   const [index, setIndex] = useState(0);
   const [teamToDisplay, switchTeams] = useReducer(
-    (team:teamsKeys) => (team === "p1" ? "p2" : "p1"),
+    (team: teamsKeys) => (team === "p1" ? "p2" : "p1"),
     "p1",
   );
   const [activePkmTrack, setActivePkmTrack] = useState(true);
