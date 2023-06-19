@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { FlexRowHorizCenteredDiv } from "../../styles/Components.style";
 const RedCircle = styled.div`
   border: 1px solid ${(props) => props.theme.pokedexColor};
