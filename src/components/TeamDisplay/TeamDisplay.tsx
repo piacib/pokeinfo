@@ -20,7 +20,7 @@ interface TeamProps {
 }
 
 // fetches latest pokemon data from auto updating github dataset
-const TeamDisplay = ({ battleRoomId, previousBattleRoomId }: TeamProps) => {
+const TeamDisplay = () => {
   const [index, setIndex] = useState(0);
   const [teamToDisplay, switchTeams] = useReducer(
     (team:teamsKeys) => (team === "p1" ? "p2" : "p1"),
