@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-const borderRadius = "15px";
 
 export const StatCaption = styled.caption`
   text-align: start;
