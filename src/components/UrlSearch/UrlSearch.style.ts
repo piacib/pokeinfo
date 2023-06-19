@@ -14,10 +14,6 @@ export const TextInput = styled.input`
   grid-row: 2;
   grid-column: 3/5;
 `;
-const colorLight = "white";
-const colorBackground = "white";
-
-const colorShadow = "#212121";
 
 export const ButtonContainer = styled.div`
   margin-top: calc(${(props) => props.theme.searchForm.bezel} * 2.5);
