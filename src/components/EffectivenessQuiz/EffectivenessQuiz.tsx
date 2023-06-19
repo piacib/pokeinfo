@@ -3,7 +3,7 @@ import Answers from "./Answer/Answer";
 import Results from "./Results/Results";
 import { TypeWriterContainer } from "../../styles/TypeWriterContainer.style";
 import { ACTION_TYPE, useQuizReducer } from "../../hooks/useQuiz/useQuiz";
-import Umbreon from "./Umbreon";
+import Umbreon from "../PokemonSvgs/Umbreon";
 import { QuizContainer } from "./EffectivenessQuiz.style";
 
 export const quizLength = 15;
