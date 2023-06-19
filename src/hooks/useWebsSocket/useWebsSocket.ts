@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useRef, useState } from "react";
+import React, { useEffect,  useRef, useState } from "react";
 import { isRandomBattle } from "../../functions";
 import {
   getActivePokemon,
