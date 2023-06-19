@@ -1,5 +1,5 @@
 import { TypeName } from "@pkmn/dex";
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer } from "react";
 import { damageCalculator } from "../../functions";
 import { quizLength } from "../../components/EffectivenessQuiz/EffectivenessQuiz";
 const pkmTypes: TypeName[] = [
