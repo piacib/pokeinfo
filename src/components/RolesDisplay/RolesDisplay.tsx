@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
   PropertiesContainer,
-  PropertyDisplay,
 } from "../PokemonDataDisplay/DataDisplay.style";
 import {
   RolesBtn,
