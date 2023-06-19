@@ -1,9 +1,8 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { ThemeProvider, ThemeProviderComponent } from "styled-components";
-import { theme } from "../../styles/theme";
 import MovesDisplay from "./MovesDisplay";
 import { MoveData } from "@pkmn/dex";
+import { render } from "../../test/test_utils";
 const testData: MoveData[] = [
   {
     num: 512,
@@ -128,21 +127,13 @@ const testData: MoveData[] = [
 ];
 const testMoves = testData.map((x) => x.name);
 test("loads and displays", async () => {
-  render(
-    <ThemeProvider theme={theme}>
-      <MovesDisplay movesData={[]} />
-    </ThemeProvider>,
-  );
+  render(<MovesDisplay movesData={[]} />);
   const moves = screen.getByText(/moves/i);
   expect(moves).toBeInTheDocument();
 });
 
 test("displays moves data", () => {
-  render(
-    <ThemeProvider theme={theme}>
-      <MovesDisplay movesData={testData} />
-    </ThemeProvider>,
-  );
+  render(<MovesDisplay movesData={testData} />);
   testMoves.forEach((move) => {
     const element = screen.getByText(new RegExp(move, "i"));
     expect(element).toBeInTheDocument();
