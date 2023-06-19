@@ -1,5 +1,5 @@
 import React from "react";
-import { TypeName, TypeNamesArr } from "../../types";
+import { TypeName } from "../../types";
 import {
   DamageGroupContainer,
   Effectivness,

@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { TypeWriterContainer } from "../../styles/TypeWriterContainer.style";
 import {
   ButtonContainer,
