@@ -6,7 +6,6 @@ import {
   InputContainer,
   TextInput,
   SearchForm,
-  SearchLabel,
   Submit,
   OptionsList,
   ErrorText,
@@ -21,7 +20,6 @@ interface FormProps {
   handleSubmit: (e: React.SyntheticEvent) => void;
   setPkmn: React.Dispatch<React.SetStateAction<string>>;
 }
-const poke = "Annihilape";
 const Form = ({ handleSubmit, setPkmn }: FormProps) => {
   const [text, setText] = useState("");
   const [previousSearches, setPreviousSearches] = useState<string[]>([]);
