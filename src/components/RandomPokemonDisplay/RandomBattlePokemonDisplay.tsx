@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Dex } from "@pkmn/dex";
 import { dexSearchPrepper } from "../../functions";
 import ItemsDisplay from "../ItemsDisplay/ItemsDisplay";
