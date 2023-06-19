@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import { FlexColumnDiv } from "../../styles/Components.style";
 
 export const PropertyDisplay = styled.div`
   height: fit-content;
