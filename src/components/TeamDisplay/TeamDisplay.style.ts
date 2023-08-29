@@ -15,6 +15,7 @@ export const Button = styled.button`
   height: 40px;
   border-radius: 0;
   padding: 0;
+  cursor: pointer;
   color: ${(props) => props.theme.fontColor};
 `;
 export const dexTopRowButton = css`
