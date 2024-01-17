@@ -45,7 +45,7 @@ export const useRandomBattleData = (
   const [randbatsPokemonData, setRandbatsPokemonData] =
     useState<RandomBattleData>(emptyRandbatsPokemonData);
 
-  if (!battleType.includes("randombattle")) {
+  if (!battleType.includes("random")) {
     // fetchs random pokemon data only on startup
     console.error(battleType + " is not a valid random battle type");
   }
