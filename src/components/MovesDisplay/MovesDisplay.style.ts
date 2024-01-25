@@ -4,11 +4,9 @@ import {
   hoverDisplayCss,
   PropertyDisplay,
 } from "../PokemonDataDisplay/DataDisplay.style";
-import {
-  PillDesign,
-  TypeColorBackground,
-  TypeColoredComponent,
-} from "../../App.style";
+import { PillDesign, TypeColoredComponent } from "../../App.style";
+import { TypeColorInterface } from "../../types";
+import { typeColorConverter } from "../../functions";
 export const HiddenMoveText = styled(HiddenPropertyText)``;
 export const MoveBtn = styled(TypeColoredComponent)`
   position: relative;
@@ -41,7 +39,7 @@ export const MoveInfo = styled.ul`
   margin: 0;
 `;
 
-export const MoveProperty = styled.li``;
+export const MoveProperty = styled.li<TypeColorInterface>``;
 export const MoveDescription = styled(MoveProperty)`
   white-space: initial;
 `;
@@ -51,7 +49,7 @@ export const MovesContainer = styled(PropertyDisplay)`
 `;
 
 export const MoveType = styled(MoveProperty)`
-  ${TypeColorBackground}
+  background-color: ${(props) => typeColorConverter[props.background]};
   padding: ${(props) => props.theme.padding.small};
   width: fit-content;
   margin: 0 auto;

@@ -20,11 +20,9 @@ export const AppDisplay = styled.div<RefProp>`
     grid-gap: 15px;
   }
 `;
-export const TypeColorBackground = css<TypeColorInterface>`
+
+export const TypeColoredComponent = styled.div<TypeColorInterface>`
   background-color: ${(props) => typeColorConverter[props.background]};
-`;
-export const TypeColoredComponent = styled.div`
-  ${TypeColorBackground}
 `;
 export const PillDesign = css`
   margin: 5px;
