@@ -39,7 +39,7 @@ export const MoveInfo = styled.ul`
   margin: 0;
 `;
 
-export const MoveProperty = styled.li<TypeColorInterface>``;
+export const MoveProperty = styled.li``;
 export const MoveDescription = styled(MoveProperty)`
   white-space: initial;
 `;
@@ -48,7 +48,7 @@ export const MovesContainer = styled(PropertyDisplay)`
   position: relative;
 `;
 
-export const MoveType = styled(MoveProperty)`
+export const MoveType = styled(MoveProperty)<TypeColorInterface>`
   background-color: ${(props) => typeColorConverter[props.background]};
   padding: ${(props) => props.theme.padding.small};
   width: fit-content;
