@@ -37,6 +37,7 @@ export const TypeNamesArr = [
   "Dragon",
   "Dark",
   "Fairy",
+  "Stellar",
   "???",
 ] as const;
 type TypeTuple = typeof TypeNamesArr;
